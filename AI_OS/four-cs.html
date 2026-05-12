@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Four Cs of an AI OS™ — Nate Herk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink-1000:#060E1C;
+    --ink-950:#0A1628;
+    --ink-900:#0F1B30;
+    --ink-800:#152340;
+    --ink-700:#1E2F50;
+    --ink-600:#293D63;
+    --paper-50:#F5F1EA;
+    --paper-100:#E8EEF7;
+    --paper-200:#C4D0E0;
+    --paper-300:#7B8AA3;
+    --paper-400:#4F5E78;
+    --accent:#4A9EFF;
+    --accent-hot:#82B7FF;
+    --signal:#FFB347;
+    --grid:rgba(255,255,255,0.035);
+    --hairline:rgba(255,255,255,0.08);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  ::selection{ background:var(--accent); color:var(--ink-1000); }
+
+  body{
+    font-family:'Manrope', system-ui, sans-serif;
+    font-weight:300;
+    background:var(--ink-950);
+    color:var(--paper-100);
+    line-height:1.55;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(74,158,255,0.10), transparent 60%),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 100% 100%, 64px 64px, 64px 64px;
+    background-attachment: fixed, fixed, fixed;
+    min-height:100vh;
+  }
+
+  /* film-grain noise overlay */
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:1;
+    opacity:.035;
+    background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .frame{
+    position:relative; z-index:2;
+    max-width:1320px;
+    margin:0 auto;
+    padding:0 56px;
+  }
+
+  /* ───────── HERO ───────── */
+  .hero{
+    padding:96px 0 72px;
+    position:relative;
+  }
+
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    padding-bottom:64px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .topbar .left{ display:flex; align-items:center; gap:14px; }
+  .topbar .left::before{
+    content:''; width:8px; height:8px; border-radius:50%;
+    background:var(--signal);
+    box-shadow:0 0 12px var(--signal);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%, 100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:.5; transform:scale(.85); }
+  }
+  .topbar .right{ display:flex; gap:32px; }
+  .topbar .right span:not(:last-child)::after{
+    content:'/'; margin-left:32px; color:var(--paper-400);
+  }
+
+  .eyebrow{
+    margin-top:72px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{
+    content:''; width:32px; height:1px; background:var(--accent);
+  }
+
+  h1.title{
+    margin-top:32px;
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 144, 'wght' 360, 'SOFT' 0, 'WONK' 1;
+    font-size:clamp(56px, 9.2vw, 148px);
+    line-height:.92;
+    letter-spacing:-.035em;
+    color:var(--paper-100);
+  }
+  h1.title .ital{
+    font-style:italic;
+    font-variation-settings:'opsz' 144, 'wght' 320, 'SOFT' 100, 'WONK' 1;
+    color:var(--accent);
+  }
+  h1.title .tm{
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:.16em;
+    font-weight:500;
+    vertical-align:super;
+    color:var(--paper-300);
+    letter-spacing:.04em;
+    margin-left:.15em;
+  }
+
+  .kicker{
+    margin-top:40px;
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 36, 'wght' 320, 'SOFT' 50;
+    font-style:italic;
+    font-size:clamp(20px, 2.1vw, 26px);
+    line-height:1.45;
+    color:var(--paper-200);
+    max-width:760px;
+  }
+
+  .meta{
+    margin-top:64px;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:32px;
+    padding-top:32px;
+    border-top:1px solid var(--hairline);
+  }
+  .meta .cell{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+  }
+  .meta .cell strong{
+    display:block;
+    margin-top:12px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-variation-settings:'opsz' 48, 'wght' 400;
+    font-size:clamp(28px, 2.6vw, 38px);
+    line-height:1.05;
+    letter-spacing:-.01em;
+    color:var(--paper-100);
+    text-transform:none;
+  }
+  @media (max-width:780px){ .meta{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ───────── CLIMB STATEMENT ───────── */
+  .climb{
+    margin-top:120px;
+    padding:48px 0;
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .climb .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+  }
+  .climb .stmt{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 96, 'wght' 320, 'SOFT' 30;
+    font-size:clamp(26px, 3.4vw, 44px);
+    line-height:1.18;
+    letter-spacing:-.018em;
+    color:var(--paper-100);
+  }
+  .climb .stmt em{
+    font-style:italic;
+    color:var(--accent);
+    font-variation-settings:'opsz' 96, 'wght' 360, 'SOFT' 100, 'WONK' 1;
+  }
+  @media (max-width:780px){
+    .climb{ grid-template-columns:1fr; }
+  }
+
+  /* ───────── TOWER ───────── */
+  .tower{
+    position:relative;
+    margin-top:64px;
+    padding-bottom:64px;
+  }
+
+  /* Elevation rail (left side) */
+  .rail{
+    position:absolute;
+    left:-32px;
+    top:0;
+    bottom:0;
+    width:64px;
+    pointer-events:none;
+    display:none;
+  }
+  @media (min-width:1100px){ .rail{ display:block; } }
+  .rail::before{
+    content:'';
+    position:absolute;
+    left:50%; top:0; bottom:0;
+    width:1px;
+    background:linear-gradient(to bottom, transparent, var(--paper-400) 12%, var(--accent) 88%, transparent);
+    transform:translateX(-50%);
+  }
+  .rail .marker{
+    position:absolute;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.16em;
+    color:var(--paper-300);
+    background:var(--ink-950);
+    padding:6px 0;
+    text-align:center;
+    width:100%;
+  }
+  .rail .marker .num{ display:block; color:var(--paper-100); font-weight:600; font-size:11px; }
+  .rail .marker.m1{ top: 12.5%; }
+  .rail .marker.m2{ top: 37.5%; }
+  .rail .marker.m3{ top: 62.5%; }
+  .rail .marker.m4{ top: 87.5%; color:var(--accent); }
+  .rail .marker.m4 .num{ color:var(--accent); }
+
+  /* Each floor */
+  .floor{
+    position:relative;
+    padding:88px 0 88px 0;
+    border-top:1px solid var(--hairline);
+    display:grid;
+    grid-template-columns: 280px 1fr 380px;
+    column-gap:64px;
+    row-gap:32px;
+    align-items:start;
+    transition:background 320ms ease;
+  }
+  .floor:last-child{ border-bottom:1px solid var(--hairline); }
+  .floor:hover{ background:linear-gradient(90deg, transparent, rgba(74,158,255,0.025), transparent); }
+
+  .floor.lvl-04{
+    background: linear-gradient(180deg, rgba(74,158,255,0.06) 0%, rgba(74,158,255,0.015) 50%, transparent 100%);
+  }
+  .floor.lvl-04:hover{
+    background: linear-gradient(180deg, rgba(74,158,255,0.10) 0%, rgba(74,158,255,0.03) 50%, transparent 100%);
+  }
+
+  /* big floor number */
+  .floor .number{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:28px;
+  }
+  .floor .number .digit{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 144, 'wght' 200, 'SOFT' 0, 'WONK' 0;
+    font-style:italic;
+    font-size:clamp(140px, 16vw, 220px);
+    line-height:.84;
+    letter-spacing:-.05em;
+    user-select:none;
+    display:block;
+  }
+  .floor.lvl-01 .number .digit{ color:rgba(196,208,224,.32); }
+  .floor.lvl-02 .number .digit{ color:rgba(196,208,224,.55); }
+  .floor.lvl-03 .number .digit{ color:rgba(196,208,224,.85); }
+  .floor.lvl-04 .number .digit{
+    color:var(--accent);
+    text-shadow: 0 0 80px rgba(74,158,255,.35);
+  }
+  .floor .number .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    white-space:nowrap;
+  }
+  .floor .number .tag::before{
+    content:'';
+    width:24px; height:1px;
+    background:var(--paper-300);
+    flex-shrink:0;
+  }
+
+  /* Floor body content */
+  .floor .body .verb{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .floor .body .verb::before{
+    content:''; width:18px; height:1px; background:var(--accent);
+  }
+
+  .floor .body h2{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 96, 'wght' 380, 'SOFT' 30, 'WONK' 1;
+    font-size:clamp(48px, 5.8vw, 76px);
+    line-height:.95;
+    letter-spacing:-.028em;
+    color:var(--paper-100);
+    margin-bottom:14px;
+  }
+  .floor.lvl-04 .body h2{ color:var(--accent); }
+
+  .floor .body .tagline{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 350';
+    font-style:italic;
+    font-size:22px;
+    line-height:1.4;
+    color:var(--paper-200);
+    margin-bottom:28px;
+  }
+
+  .floor .body p.desc{
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--paper-200);
+    max-width:38em;
+    margin-bottom:24px;
+  }
+
+  .floor .body .needs{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    padding-top:24px;
+    border-top:1px dashed rgba(255,255,255,0.12);
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .floor .body .needs .arrow{
+    color:var(--accent);
+    font-size:14px;
+    transform:translateY(-1px);
+  }
+  .floor.lvl-01 .body .needs .arrow{ color:var(--paper-300); }
+
+  /* Right column: panel with test card + glyph */
+  .floor .panel{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .test-card{
+    border:1px solid var(--hairline);
+    border-radius:6px;
+    padding:22px 22px 24px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.10));
+    backdrop-filter: blur(6px);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    line-height:1.6;
+    color:var(--paper-200);
+    position:relative;
+    overflow:hidden;
+  }
+  .test-card::before{
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity:.4;
+  }
+  .test-card .head{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--paper-300);
+    margin-bottom:14px;
+    padding-bottom:14px;
+    border-bottom:1px dashed rgba(255,255,255,.1);
+  }
+  .test-card .head .status{ display:inline-flex; align-items:center; gap:7px; }
+  .test-card .head .status::before{
+    content:''; width:7px; height:7px; border-radius:50%;
+    background:var(--paper-300);
+  }
+  .floor.lvl-04 .test-card .head .status{ color:var(--signal); }
+  .floor.lvl-04 .test-card .head .status::before{
+    background:var(--signal);
+    box-shadow:0 0 8px var(--signal);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+
+  .test-card .q{ color:var(--accent); margin-bottom:8px; }
+  .test-card .q::before{ content:'? '; color:var(--paper-300); }
+  .test-card .a{ color:var(--paper-100); }
+  .test-card .a::before{ content:'→ '; color:var(--paper-300); }
+
+  /* Glyph SVGs */
+  .glyph{
+    border:1px solid var(--hairline);
+    border-radius:6px;
+    height:160px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .glyph .label{
+    position:absolute;
+    bottom:10px; left:14px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+  }
+  .glyph svg{ width:100%; height:100%; }
+
+  /* responsive collapse */
+  @media (max-width:1100px){
+    .floor{
+      grid-template-columns: 200px 1fr;
+      column-gap:40px;
+    }
+    .floor .panel{ grid-column:1 / -1; flex-direction:row; }
+    .floor .panel .test-card, .floor .panel .glyph{ flex:1; }
+  }
+  @media (max-width:760px){
+    .frame{ padding:0 24px; }
+    .floor{ grid-template-columns:1fr; padding:56px 0; }
+    .floor .panel{ flex-direction:column; }
+    .floor .number{ font-size:120px; }
+    h1.title{ font-size:56px; }
+    .topbar .right{ display:none; }
+  }
+
+  /* ───────── LITMUS / CLOSE ───────── */
+  .litmus{
+    margin-top:80px;
+    padding:80px 0 64px;
+    border-top:2px solid var(--accent);
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:80px;
+    align-items:start;
+  }
+  @media (max-width:900px){ .litmus{ grid-template-columns:1fr; gap:48px; } }
+  .litmus .lh{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:24px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .litmus .lh::before{ content:''; width:32px; height:1px; background:var(--accent); }
+  .litmus h3{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 96, 'wght' 380, 'SOFT' 30, 'WONK' 1;
+    font-size:clamp(36px, 4.4vw, 56px);
+    line-height:1.02;
+    letter-spacing:-.025em;
+    color:var(--paper-100);
+    margin-bottom:24px;
+  }
+  .litmus h3 em{
+    font-style:italic;
+    color:var(--accent);
+    font-variation-settings:'opsz' 96, 'wght' 380, 'SOFT' 100, 'WONK' 1;
+  }
+  .litmus p{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 320;
+    font-style:italic;
+    font-size:21px;
+    line-height:1.5;
+    color:var(--paper-200);
+    max-width:36em;
+  }
+
+  .scoreboard{
+    border:1px solid var(--hairline);
+    border-radius:6px;
+    padding:32px;
+    background: linear-gradient(135deg, rgba(74,158,255,0.04), rgba(0,0,0,0.2));
+  }
+  .scoreboard .row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 0;
+    border-bottom:1px dashed rgba(255,255,255,.1);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--paper-200);
+  }
+  .scoreboard .row:last-child{ border-bottom:none; padding-bottom:0; }
+  .scoreboard .row:first-child{ padding-top:0; }
+  .scoreboard .row .name{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:20px;
+    font-variation-settings:'opsz' 24, 'wght' 380;
+    color:var(--paper-100);
+    text-transform:none;
+    letter-spacing:0;
+  }
+  .scoreboard .row .check{
+    width:18px; height:18px;
+    border-radius:50%;
+    background:transparent;
+    border:1px solid var(--paper-400);
+    display:inline-flex; align-items:center; justify-content:center;
+    color:var(--paper-400);
+    font-size:11px;
+  }
+  .scoreboard .row .check.on{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:var(--ink-1000);
+    box-shadow:0 0 16px rgba(74,158,255,.4);
+  }
+  .scoreboard .total{
+    margin-top:24px;
+    padding-top:24px;
+    border-top:1px solid var(--hairline);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    display:flex; justify-content:space-between;
+  }
+  .scoreboard .total strong{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:18px;
+    font-variation-settings:'opsz' 24, 'wght' 480;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--signal);
+  }
+
+  /* ───────── FOOTER ───────── */
+  footer{
+    margin-top:120px;
+    padding:48px 0 64px;
+    border-top:1px solid var(--hairline);
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
+    gap:24px;
+  }
+  footer .tm-line{
+    color:var(--paper-200);
+    font-style:normal;
+    text-transform:none;
+    letter-spacing:.04em;
+    font-size:11.5px;
+  }
+
+  /* on-load reveal */
+  @media (prefers-reduced-motion: no-preference){
+    .floor{
+      opacity:0;
+      transform: translateY(24px);
+      animation: rise 900ms cubic-bezier(.2,.6,.2,1) forwards;
+    }
+    .floor.lvl-01{ animation-delay:120ms; }
+    .floor.lvl-02{ animation-delay:240ms; }
+    .floor.lvl-03{ animation-delay:360ms; }
+    .floor.lvl-04{ animation-delay:480ms; }
+    @keyframes rise{
+      to{ opacity:1; transform:none; }
+    }
+    h1.title, .kicker, .meta, .climb { animation: rise 900ms cubic-bezier(.2,.6,.2,1) backwards; }
+    h1.title{ animation-delay:60ms; }
+    .kicker{ animation-delay:160ms; }
+    .meta{ animation-delay:260ms; }
+    .climb{ animation-delay:360ms; }
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <!-- ───────── HERO ───────── -->
+  <header class="hero">
+    <div class="topbar">
+      <div class="left">A FRAMEWORK BY NATE HERK · 2026</div>
+      <div class="right">
+        <span>VERSION 01</span>
+        <span>BUILD ORDER · 01 → 04</span>
+        <span>TRADEMARK FILED</span>
+      </div>
+    </div>
+
+    <div class="eyebrow">The architecture of the AIS-OS</div>
+
+    <h1 class="title">
+      The Four <span class="ital">Cs</span><br>
+      of an <span class="ital">AI&nbsp;OS</span><span class="tm">™</span>
+    </h1>
+
+    <p class="kicker">
+      Tools change every six months. The platform you're using today might not exist next year. What doesn't change is how the layers stack — and the order you have to build them in.
+    </p>
+
+    <div class="meta">
+      <div class="cell">01<strong>Context</strong></div>
+      <div class="cell">02<strong>Connections</strong></div>
+      <div class="cell">03<strong>Capabilities</strong></div>
+      <div class="cell">04<strong>Cadence</strong></div>
+    </div>
+  </header>
+
+  <!-- ───────── CLIMB STATEMENT ───────── -->
+  <section class="climb">
+    <div class="label">— Read me first</div>
+    <div class="stmt">
+      You don't pick one. You <em>climb</em> them. Each layer stands on the one below — skip a floor and the whole tower falls.
+    </div>
+  </section>
+
+  <!-- ───────── THE TOWER ───────── -->
+  <section class="tower">
+
+    <!-- Elevation rail -->
+    <div class="rail" aria-hidden="true">
+      <div class="marker m1"><span class="num">01</span>KNOWS</div>
+      <div class="marker m2"><span class="num">02</span>REACHES</div>
+      <div class="marker m3"><span class="num">03</span>DOES</div>
+      <div class="marker m4"><span class="num">04</span>RUNS</div>
+    </div>
+
+    <!-- ── 01 · CONTEXT ── -->
+    <article class="floor lvl-01" id="context">
+      <div class="number"><span class="digit">01</span><span class="tag">Floor 01 · Foundation</span></div>
+
+      <div class="body">
+        <div class="verb">The brain · knows</div>
+        <h2>Context</h2>
+        <div class="tagline">It knows your business.</div>
+        <p class="desc">
+          Wiki, decisions log, intake answers, who-works-here, what-you-sell, what-you-stand-for. Without it, every prompt starts cold and every output sounds like nobody. Most setups die on this floor — they confuse data with interpretation. The wiki is not a doc dump. The decisions log is not a Slack archive.
+        </p>
+        <div class="needs"><span class="arrow">▸</span> Stands on: nothing. This is the ground.</div>
+      </div>
+
+      <div class="panel">
+        <div class="test-card">
+          <div class="head">
+            <span>Binary "in place" test · 01</span>
+            <span class="status">DRY-RUN</span>
+          </div>
+          <div class="q">"What does this business do, and who works here?"</div>
+          <div class="a">A fresh Claude session answers cold — no browsing, no paste.</div>
+        </div>
+        <div class="glyph">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="40" y="20"  width="120" height="14" rx="2" stroke="#7B8AA3" stroke-width="1"/>
+            <rect x="40" y="40"  width="100" height="14" rx="2" stroke="#7B8AA3" stroke-width="1"/>
+            <rect x="40" y="60"  width="120" height="14" rx="2" stroke="#7B8AA3" stroke-width="1"/>
+            <rect x="40" y="80"  width="80"  height="14" rx="2" stroke="#7B8AA3" stroke-width="1"/>
+            <line x1="0" y1="110" x2="200" y2="110" stroke="#4A9EFF" stroke-width="1"/>
+            <text x="40" y="14" fill="#7B8AA3" font-family="JetBrains Mono" font-size="7" letter-spacing="1.5">/wiki</text>
+          </svg>
+          <span class="label">Knowledge base</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── 02 · CONNECTIONS ── -->
+    <article class="floor lvl-02" id="connections">
+      <div class="number"><span class="digit">02</span><span class="tag">Floor 02 · Wiring</span></div>
+
+      <div class="body">
+        <div class="verb">The wiring · reaches</div>
+        <h2>Connections</h2>
+        <div class="tagline">It reaches your stuff.</div>
+        <p class="desc">
+          MCPs, APIs, integrations — calendar, tasks, mail, drive, the stack you actually live in. Once Context is in place, Connections stop being a convenience and start being structural. The OS pulls live data instead of begging you for paste.
+        </p>
+        <div class="needs"><span class="arrow">▲</span> Stands on: Context. Without it, connections retrieve noise.</div>
+      </div>
+
+      <div class="panel">
+        <div class="test-card">
+          <div class="head">
+            <span>Binary "in place" test · 02</span>
+            <span class="status">LIVE-DATA</span>
+          </div>
+          <div class="q">"What's on my calendar tomorrow, and what tasks are due?"</div>
+          <div class="a">Returns live data. No paste. No "could you share…?"</div>
+        </div>
+        <div class="glyph">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="100" cy="60" r="6" fill="#4A9EFF"/>
+            <circle cx="40"  cy="30" r="4" stroke="#C4D0E0" stroke-width="1"/>
+            <circle cx="40"  cy="90" r="4" stroke="#C4D0E0" stroke-width="1"/>
+            <circle cx="160" cy="30" r="4" stroke="#C4D0E0" stroke-width="1"/>
+            <circle cx="160" cy="90" r="4" stroke="#C4D0E0" stroke-width="1"/>
+            <circle cx="100" cy="20" r="4" stroke="#C4D0E0" stroke-width="1"/>
+            <circle cx="100" cy="100" r="4" stroke="#C4D0E0" stroke-width="1"/>
+            <line x1="100" y1="60" x2="40"  y2="30" stroke="#7B8AA3" stroke-width="1"/>
+            <line x1="100" y1="60" x2="40"  y2="90" stroke="#7B8AA3" stroke-width="1"/>
+            <line x1="100" y1="60" x2="160" y2="30" stroke="#7B8AA3" stroke-width="1"/>
+            <line x1="100" y1="60" x2="160" y2="90" stroke="#7B8AA3" stroke-width="1"/>
+            <line x1="100" y1="60" x2="100" y2="20" stroke="#7B8AA3" stroke-width="1"/>
+            <line x1="100" y1="60" x2="100" y2="100" stroke="#7B8AA3" stroke-width="1"/>
+          </svg>
+          <span class="label">MCP / API graph</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── 03 · CAPABILITIES ── -->
+    <article class="floor lvl-03" id="capabilities">
+      <div class="number"><span class="digit">03</span><span class="tag">Floor 03 · Workshop</span></div>
+
+      <div class="body">
+        <div class="verb">The hands · does</div>
+        <h2>Capabilities</h2>
+        <div class="tagline">It knows how to do the work.</div>
+        <p class="desc">
+          Skills and sub-agents that turn a short phrase into a multi-step workflow producing an actual artifact. Lego principle: smallest steps first, deterministic before agentic, validated before chained. Boring is beautiful — and workflows beat agents until they don't.
+        </p>
+        <div class="needs"><span class="arrow">▲▲</span> Stands on: Context + Connections. Skills without either are demos.</div>
+      </div>
+
+      <div class="panel">
+        <div class="test-card">
+          <div class="head">
+            <span>Binary "in place" test · 03</span>
+            <span class="status">ARTIFACT</span>
+          </div>
+          <div class="q">A short phrase triggers a multi-step workflow.</div>
+          <div class="a">Out the other end: a real artifact. A doc, a draft, a brief, a file.</div>
+        </div>
+        <div class="glyph">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="20"  y="40" width="32" height="32" rx="2" stroke="#C4D0E0" stroke-width="1"/>
+            <rect x="60"  y="40" width="32" height="32" rx="2" stroke="#C4D0E0" stroke-width="1"/>
+            <rect x="100" y="40" width="32" height="32" rx="2" stroke="#4A9EFF" stroke-width="1.5"/>
+            <rect x="140" y="40" width="32" height="32" rx="2" stroke="#C4D0E0" stroke-width="1"/>
+            <line x1="52" y1="56" x2="60"  y2="56" stroke="#7B8AA3" stroke-width="1"/>
+            <line x1="92" y1="56" x2="100" y2="56" stroke="#7B8AA3" stroke-width="1"/>
+            <line x1="132" y1="56" x2="140" y2="56" stroke="#4A9EFF" stroke-width="1"/>
+            <text x="36"  y="60" fill="#7B8AA3" font-family="JetBrains Mono" font-size="8" text-anchor="middle">in</text>
+            <text x="76"  y="60" fill="#7B8AA3" font-family="JetBrains Mono" font-size="8" text-anchor="middle">do</text>
+            <text x="116" y="60" fill="#4A9EFF" font-family="JetBrains Mono" font-size="8" text-anchor="middle">do</text>
+            <text x="156" y="60" fill="#7B8AA3" font-family="JetBrains Mono" font-size="8" text-anchor="middle">out</text>
+          </svg>
+          <span class="label">Skill chain · validated</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── 04 · CADENCE ── -->
+    <article class="floor lvl-04" id="cadence">
+      <div class="number"><span class="digit">04</span><span class="tag">Floor 04 · The OS is alive</span></div>
+
+      <div class="body">
+        <div class="verb">The pulse · runs</div>
+        <h2>Cadence</h2>
+        <div class="tagline">It runs without being asked.</div>
+        <p class="desc">
+          Scheduled standups, ambient nudges, hooks, cron, launchd. The OS works while you sleep. Laptop closed, a brief lands in your inbox. A teammate messages your AIOS at 11pm and gets a real answer in your voice. This is the line between an AIOS and a pile of automations.
+        </p>
+        <div class="needs"><span class="arrow">▲▲▲</span> Stands on: all three below. Skip any and Cadence runs into the dark.</div>
+      </div>
+
+      <div class="panel">
+        <div class="test-card">
+          <div class="head">
+            <span>Binary "in place" test · 04</span>
+            <span class="status">RUNNING</span>
+          </div>
+          <div class="q">Laptop closed. Something happens.</div>
+          <div class="a">A brief lands in your inbox. The reply goes out. The OS doesn't wait.</div>
+        </div>
+        <div class="glyph">
+          <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M 10 60 L 40 60 L 50 30 L 65 90 L 80 45 L 95 75 L 110 55 L 125 60 L 190 60"
+                  stroke="#4A9EFF" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+            <circle cx="65" cy="90" r="3" fill="#4A9EFF"/>
+            <circle cx="80" cy="45" r="3" fill="#4A9EFF"/>
+            <line x1="0" y1="60" x2="200" y2="60" stroke="#7B8AA3" stroke-width=".5" stroke-dasharray="2 4" opacity=".5"/>
+          </svg>
+          <span class="label">Pulse · ambient triggers</span>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ───────── LITMUS ───────── -->
+  <section class="litmus">
+    <div>
+      <div class="lh">The litmus moment</div>
+      <h3>Nail all four. Or you have a <em>pile of automations.</em></h3>
+      <p>
+        While you're not at your desk, your AIOS sees something happen and produces something — a reply, a draft, a brief, an alert — faster and more accurate than what you'd produce yourself. If yes, you have an AIOS. If no, you have four floors that don't talk to each other.
+      </p>
+    </div>
+    <div class="scoreboard">
+      <div class="row"><span class="name">Context</span> <span class="check on">✓</span></div>
+      <div class="row"><span class="name">Connections</span> <span class="check on">✓</span></div>
+      <div class="row"><span class="name">Capabilities</span> <span class="check on">✓</span></div>
+      <div class="row"><span class="name">Cadence</span> <span class="check on">✓</span></div>
+      <div class="total">
+        <span>Score · 4 of 4</span>
+        <strong>AIOS confirmed</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── FOOTER ───────── -->
+  <footer>
+    <div>NATE HERK · 2026</div>
+    <div class="tm-line"><em>The Four Cs of an AI OS</em>™ — © 2026 Nate Herk. All rights reserved.</div>
+    <div>BUILD · v1.0</div>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+00:00:00
+This trader will be featured in the upcoming Market Wizards book with verified profits exceeding $100 million. The best trade of my career used a this simple system combining different concepts, then I followed the trailing stops along previous candle lows, and the trend kept going. The beauty of this method is that it works on any asset and any timeframe. I try to tilt the odds in my favor for a bounce to happen. I aim to make the profit really big. Welcome Lance Brightstein on Chart Fanatic. In this episode, he breaks down the steps in detail so you can follow along and apply them to your own trades. My way of handling trades is all about balancing the factors.
+
+00:00:40
+The market is constantly changing every moment, and I consider the rate of change one of the most important factors I always keep an eye on. We can build the same framework and theory—sometimes the market prices reflect pure euphoria, like everything is perfect, and other times it prices in pessimism, like everything is about to collapse. The truth is, no matter the asset class, this strategy works for you. Learn directly from a professional trader for free. The beauty here is that you can say, "Wow, I can multiply my capital ten times as long as America doesn’t stumble." And with a 99% success rate, you can achieve that return. In this type of chart, the...
+
+00:01:24
+The Deal of the Century. A lot of people who suffer small losses or don’t see the point of these strategies end up misreading the chart. The market isn’t what they think—it’s constant, exhausting ups and downs. One of the most common mistakes traders make is... Welcome back to Chart Fanatics, your go-to spot for the best analysis of strategies and concepts from the world’s top traders. Speaking of which, today we’ve got an exceptional trader with us. We recorded the Words of Rizdom episode back in January, and now we’re excited to have him here on Chart Fanatics. He’s made verified profits exceeding $100 million, and he’s about to...
+
+00:02:05
+As part of the upcoming Market Wizards series, you all know him well – the ever-shining Lance Brightstein. I'm really happy to be here with you, Yareez, and excited to be back, especially on Chart Fanatics, which I follow passionately. So, for today’s audience, I’m not just here to share a setup; I want to teach you how I think and how I build these systems and strategies. It’s not just about one strategy—I want to show you how to analyze market structure and price action for any strategy, so you can apply it your own way and succeed with any financial asset, whether it’s in continuation trades or pullbacks.
+
+00:02:50
+The average. Specifically for me, we'll focus on mean reversion or the kind of pullback trades that got popular thanks to the old Chat With Traders podcast. So, the idea I want to start with is this: markets are super efficient, and it’s really hard to beat them. Most hedge fund managers don’t deliver the returns they aim for, and most traders actually fail. My basic assumption is that the initial price we see for a stock or any financial product is always the fair and logical price in the market. With that in mind, you’ve got to ask yourself, what could cause us to move away from that?
+
+00:03:37
+Balance? So anytime you trade, the main idea behind every decision you make is expected value. What’s expected value? It’s your chance of winning a trade multiplied by your profit, minus the chance of losing multiplied by your loss. So basically, one minus your win rate times your risk when you lose. In every trade, I try to figure out what’s causing the imbalance and look for reasons why this trade might have a positive expected value in this market. To do that, one thing we can focus on is mean reversion, or of course, continuation. Here, I’ll focus on the mean reversion perspective—why the price might reverse direction and how.
+
+00:04:26
+So, we're turning the process from just flipping a coin randomly into a thoughtful decision, right? The idea of flipping a coin means a 50/50 chance—you either win a dollar or lose one. But no one actually wins once you factor in commissions and fees; the truth is, in trading, you end up losing money. Keeping that in mind, you can start coming up with ideas and some logic, and that’s exactly what we’re going to do now. So, I want you all to think about this: if the S&P index dropped by just one cent, would that be enough to convince anyone to buy—something they wouldn’t normally do under usual conditions? Of course not, right? The S&P price is way too high.
+
+00:05:14
+If you’re buying the SPY, for example, and there’s no real push to buy, then the first thing I’m focusing on is how big the move is. I mean, the rate of price movement in the market. Now, imagine if the S&P 500 didn’t move even a cent, but instead moved $10, $50, or even $100 in the SPY—that would suddenly be a really strong and tempting reason to buy. So, the size of the move is a key factor. Another question I ask is, if the S&P moved 5%, that could be super tempting—if it happened in a minute or even a second. Otherwise, it wouldn’t be tempting at all.
+
+00:06:02
+If the S&P moves 5% over a year, I don’t think anyone in the world would say, "I want to sell as much SPY as possible if we go up 5% in a year." And the opposite is true—no one would say, "I want to buy a ton of SPY if we drop 5% in a year." So, the timeframe and the speed of the move come second. There’s another factor that affects the buying decision, which is the presence of significant news. If the fundamental basis of a stock changes, we might not want to buy it even at certain price levels. For example, if it suddenly turns out that Quantum Computing stocks can deliver amazing results and actually solve problems, then...
+
+00:06:55
+The news will drastically change the cash flow prospects and intrinsic value of these companies all of a sudden. On the flip side, for Quantum Computing stocks, if it suddenly turns out that the technology will never work, that’s a major shift in these companies’ value. When thinking about a bounce back to the average, we need to ask: has there been a fundamental change in the actual equilibrium price? We’re looking for assets that have strayed from their balance point, and if the company’s intrinsic value changes, the equilibrium point will shift too—and suddenly. Another factor to consider is the number of consecutive days the price has gone up or down. I think most efficiency theorists...
+
+00:07:39
+People say that repeated drops over several days don’t change the fact that each day’s movement is an independent event. They say the odds are always like flipping a coin. But from my experience—and I think most traders feel this instinctively—that’s just not true. If the S&P drops 3% for eight days straight, the chance of it going up on the ninth day is definitely not just a 50/50 coin toss. The idea of it being like flipping a coin shifts a lot the more consecutive days of drops or gains you have—the odds start tipping heavily in your favor. So, we’re talking about the number of consecutive days adding up to...
+
+00:08:24
+Our list. Yep, it's the number of consecutive days. [speaker_0] Hey everyone! Before we dive into this awesome episode, I just want to say a huge thanks for all your support of Words of Wisdom and Chart Fanatics. We've seen amazing growth and we’re just getting started. Now, to give back to all of you, if you’re looking for free winning strategies, head over to chartfanatics.com—the link’s in the description—sign up with your email, and we’ll send you a weekly PDF packed with winning strategies for our guests. Plus, on the site, you can jump right in and browse the strategy library for free just by signing up with your email. We also launched the Chart Fanatics community on...
+
+00:09:08
+Discord currently has over 10,000 traders. Our live Chart Fanatics traders are there, and I also share all my trades there. We’ve got exclusive discounts, huge giveaways, and a lot more coming your way. Don’t forget to follow the episode updates and the innovations we’re bringing to this field that will change it forever. Links are in the description. Let’s get started with this episode now. 
+
+Like I said, we’re looking for opportunities where efficiency around that balance point has broken down. What actually pushes prices out of that balance or efficiency? Of course, it happens when market dynamics can’t operate freely and fairly, or when the market structure forces moves.
+
+00:09:54
+There’s a certain forced pressure on prices. Something common happens, and we saw it during the COVID period, which is forced liquidation. This is when big traders with high leverage or hedge funds are forced to sell. Or the opposite can happen—you might be short and get a margin call or lose the ability to borrow. At certain times, the market structure forces price movements that throw things out of balance. If a hedge fund has to sell stocks worth hundreds of millions or even billions, there has to be a buyer, and this liquidation process will inevitably cause a noticeable change in the price level. Another factor that pushes prices out of balance is buying activity or...
+
+00:10:38
+Forced selling. So, what else pushes us out of equilibrium? From my over 15 years of experience, I’ve come to realize more and more that market sentiment is the main driver behind stock prices. Even as I’m writing this, we’ve seen huge moves in Bitcoin, as well as in stocks like MicroStrategy, SanDisk, Micron, Nvidia, and Palantir. What’s really changed in the last couple of weeks? Honestly, not much has changed fundamentally, but the sentiment around AI and some cloud services—their growth and profitability—that’s what’s really shifted. So, sentiment can be a very powerful factor.
+
+00:11:30
+Sometimes the market prices things based on over-the-top optimism, like everything’s perfect. Other times, pessimism takes over, as if all hope is lost. The truth usually lies somewhere in the middle, so sentiment is a crucial factor we need to consider. Now, let’s build on this idea. What financial asset would you be more inclined to buy when the market is weak? Would you go for a biotech company valued at 5 million with sketchy financials, no analyst coverage, and practically nobody knows about it? Or would you prefer to buy the S&P 500 index, Apple shares, Bank of America, or maybe Berkshire Hathaway? Obviously...
+
+00:12:19
+Bigger companies tend to be more diverse and stable, so we'll add another factor: diversity and market cap. Within this market cap, there are standout stocks like Apple, Nvidia, and Palantir. But in the small-cap world, transparency is lower, markets are less efficient, and they get less attention. Another thing to consider is how stable the security is. Does it have cash flows that can be tracked? Most fundamental analysis is based on the present value of future cash flows. So, people try to estimate the value of Apple’s future cash flows, or in the case of bonds, like treasury bonds.
+
+00:13:15
+Americans try to figure out the current value of these cash flows using quantitative equations. Assets like Bitcoin are obviously harder to value since they rely entirely on supply and demand rather than cash flows. So, how measurable an asset is quantitatively remains a crucial factor. Don’t mind my side opinions. Some people think I’m a devil in human form. Honestly, I think that’s exactly what happened. We’re now actually starting to build this framework, and it’s clear that bigger moves make the asset way more attractive for mean reversion trades in the market. The same goes for how fast the moves are, whether there’s news, the number of days buying and selling happen, and the market cap size.
+
+00:14:09
+And on the quantitative side, all these factors come together to build this overall framework. Going back to the concept of expected value, I can say that some of these variables start tipping the equation in your favor. If an asset that’s usually stable suddenly moves sharply and unexpectedly, especially without any news to explain it, I see it’s no longer just random movement. This greatly increases the chance of a price bounce. That raises the expected value and boosts potential returns, which actually improves the expected value and lowers the risk. And that’s the key point.
+
+00:14:55
+The expected value equals the probability, and these values need to be calculated accurately based on the resulting profits and losses. So, here's my question to all of you: let's say, just as a thought experiment, that Apple's stock suddenly drops from its current price and starts trading at just one dollar. What would happen? What's the chance that a stock like Apple would bounce back from one dollar, assuming there’s no news or major changes? This happened super fast. Honestly, I see the probability of that happening as very close to 100%. And I claim your profits could be incredible—maybe over 100 times your investment. But the real question here is, what...
+
+00:15:45
+So, what's the actual risk you're taking on this trade? Let's just assume, for the sake of argument, that Apple's stock crashes down to one dollar. Your only risk is that single dollar, even if the company goes bankrupt the next day—which I think is almost impossible, like a 0.00001 chance. If we run the numbers and realize we can multiply our capital 100 times or more by risking just one dollar, then based on those calculations, the expected value—I’ll highlight this part—the expected value is actually huge. There's another point I want to clear up with this example, and that’s that something kind of magical happens here. Since we’re heading toward a drop, it’s become...
+
+00:16:37
+We now have this minimum that gives us protection. That minimum. At zero dollars, it’s amazing because that’s the max loss possible. But with shorting, there’s no minimum or maximum limit on losses or gains. When you short, your losses are unlimited—stocks can go from 100 to 1000 or more. Even if you rule that out, we’ve seen crazy moves in small caps that can ruin a trader’s career. We’ve seen stocks go wild, even IPOs or something like Circle this year. So, saying it’s impossible is an exaggeration, though hitting astronomical numbers is unrealistic. The point is, there’s a fundamental difference between...
+
+00:17:25
+Shorting and buying stocks. So, in this context, we can add something to shorting, like a minimum limit. Here, we're building a complete mental framework for how to analyze things, and once it’s ready, I always like to start testing it with real-life examples to see how it plays out in reality. Now, we’ll create a full working model by going through some examples. Let’s say there’s a panic similar to the COVID-19 pandemic or another black swan event, and stocks crash really fast. Let’s look at these examples, starting with very small companies. Imagine their stock prices have already dropped by 90%.
+
+00:18:22
+Alright, now let’s jump straight into talking about the famous MSTR stock. This is a really great example. Let’s say this stock dropped by 90%. Now, let’s take Bank of America, or BAC. Man, things look pretty rough there too. Let’s assume it also dropped by up to 90%. Then, just for argument’s sake, let’s say the S&P 500 dropped by 90%. After that, let’s consider how government bonds would be in this scenario. A 90% drop as well. Hey futures traders, it’s time you heard about Apex Trader Funding, the biggest company in the game—they’ve completely changed the rules with their new evaluations.
+
+00:19:15
+So far, they’ve paid out over $600 million to traders all around the world, just like you and me. And that’s not all—Apex holds the record for the biggest profit payouts to traders. For example, Jade Cap, known among Chart Fanatics, got a single payout of $2.5 million, and before that, Trader Kane received $2 million. What makes Apex stand out? You can open up to 20 accounts, which no other company in this space offers. Plus, their rules are super clear. With the new updates, there’s no MAE rule, no 5-to-1 risk rule, no hidden rules or grey areas—just clearly defined drawdown models.
+
+00:20:00
+You’ve got two options now: end-of-day withdrawal or intraday withdrawal. That means no withdrawal rejections, no reviews, no subjective decisions, and no unexpected surprises. What’s also great is the full 100% profit share on SIM Funded accounts—so every dollar you make is all yours. Like I said, you can have up to 20 accounts and even pass the test in just one day. What I like about Apex is the variety of account sizes, starting from $25K up to $300K. You can grab 20 accounts of any size you want, and on top of that, they offer a range of trading platforms.
+
+00:20:42
+Starting from Wealth Charts and Tradovate to Rithmic, the choice is yours. Make sure to use the code CN to get up to 90% off on subscriptions through the link in the description below. Trade with Apex today, and now let’s get back to our episode. 
+
+Based on this framework, we can start analyzing now. The number of followers for these micro-cap stocks and the huge liquidity expected to flow in—if anything wild happens in the world, can you even imagine what would go down? Very few people. The chance of this stock bouncing back, or them bouncing back…
+
+00:21:25
+It’s gonna be really low, right? I’m not gonna like that. So, if we look at a company like MSTR, which is a software company but also holds Bitcoin. During crises, forced liquidations, and panic, I honestly don’t know how Bitcoin will perform. Some Bitcoin maxis might say Bitcoin will go up, but I’m not sure. I think it’ll act like a risk asset, like we’ve seen before, but what’s its fair value? No clue. This option is definitely better, but I’m not excited about buying Bank of America shares. Bank of America is a huge, stable institution, has solid deposits, and is pretty heavily regulated, especially after...
+
+00:22:10
+The 2008 crisis. I'm not saying it won’t go bankrupt or that nothing bad will happen, but it’s way safer than debts used to buy Bitcoin. So it started to seem kinda appealing to me. But do I really want to own Bank of America stocks? We’ve seen financial crises, and that bank almost went under in 2008. The safer bet is to invest in a diversified basket of the top 500 companies. Once you get that kind of diversification, the deal gets way more attractive, but then... here’s where something almost magical happens, especially in our most extreme example, government bonds. If they’re U.S. government bonds, they have a clear value that can...
+
+00:22:59
+You can calculate and measure it precisely. If the bond will mature at a face value of $100, but it's down 90% and trading at $10, the nice thing is you can do the math—as long as the U.S. government doesn't default. If it does, then micro caps will be left high and dry. For MSTR, you can debate the Bitcoin angle, but for this example, it won’t look good and their debt would become disastrous. Bank of America is definitely safer if America goes bankrupt, and most S&P 500 companies would collapse. So, government bonds are the safest option among all these choices. And since you have...
+
+00:23:41
+It's a measurable value. So, if the price is trading at $10 and the face value is 100, first—oh, the coverage just dropped. That’s the work tax here at Chart Fanatics. And here’s the cool part: you can say, wow, I can multiply my capital by 10 times as long as America doesn’t crash. With a 99.99999% success rate, you can make a profit equal to 10 times your investment. This is the framework we use to go over examples and how I think about these things. It might sound pretty theoretical, but with this framework, we can move on to real-life examples, and by doing that, we start analyzing and reviewing the charts. And now...
+
+00:24:27
+Let's move on to the part everyone cares about: Chart Patterns. Any pro trader would say, "Hey Lance, the theory sounds great, but how do we actually use it?" I get you, so let's jump straight into practical stuff. Going back to fine details like speed and rate of change, I consider the rate of change one of the key things I watch. We can build the same framework and theory using Chart Patterns. Now, let’s say we have one pattern. How would you describe that, Riz?  
+[speaker_0] I'd say it's definitely bearish.  
+[speaker_1] Is it a steady drop, crazy drop, or panic?  
+[speaker_0] Seems steady, yeah.  
+[speaker_1] Steady. I think when we describe a move...
+
+00:25:15
+When we say it's bearish, what usually catches the eye is the price trend or the slope. Oh, the color totally changed. Here we go now. Our slope is, I don't know, maybe negative. About half a degree negative. Of course, there are no axes in front of us, so no precise calculation, but we can say that as long as the slope is around negative half, the movement is somewhat stable, and there's no big change. No real panic going on. And as for the rate of change, if the price suddenly drops from a hundred dollars to one dollar, that's pretty tempting, truly shocking. Now we can confidently say, alright, things are getting sharper and tenser, and then we can calmly start to say...
+
+00:26:01
+This thing gets more and more aggressive. If it goes all the way, we might hit an asymptotic point where the price just crashes down like a waterfall—super sharp and violent. If we dig into this trend, we might start with a negative slope of one, then gradually move to minus three, and eventually get close to minus ten. We also touched on other factors like boredom and asset stability. Now picture this: imagine you have an investment that's insanely boring, like unusually and exceptionally dull. Oops, that happened twice today—never doubt it.
+
+00:26:50
+In your Da Vinci B. So, this situation is super boring. Something that’s been stuck within a certain range for a long time. Take silver, for example—it’s kind of dull, or currencies, which are even more boring. That’s exactly what I like about these thought experiments. We know currencies are usually more boring than silver and gold. Gold and silver are more boring than Bitcoin, and currencies are more boring than stocks. And Apple and Bank of America stocks are way quieter than small companies. So, if we take the calmest assets, theoretically, what we’re hoping for is a breakout, then we see a big, unusual move.
+
+00:27:34
+At first, it was boring. So let’s switch things up, change direction, shake off the boredom. Suddenly, we jump to a completely different scene where everything speeds up and shifts. Intense. This kind of move is exactly what we love, and I think the official term for it is what really grabs our attention. Doing this makes us feel totally satisfied and genuinely happy. [speaker_0] Do you also think this setup we’re studying is meant for the big picture? Like, compared to the average movement of Ace and P, let’s say it’s 1% per day. Is that the benchmark we’re using? But then one day, the market moves 3 or 4% in any direction, strong and fast, matching the rest...
+
+00:28:30
+The rules apply, but only within that specific day and time frame. Does the same concept hold if we apply it to Day Trading with the same mindset? Or is it just meant for Swing trades or bigger investment positions?  
+[speaker_1] The great thing is that it works across all products and time frames—it acts like a fractal. These concepts are universal and all-encompassing. When we look at real examples, you'll see how these patterns form in the market. I think the most common mistake with Mean Reversion is traders not being selective enough. A lot of people say, "Hey Lance, if I wait for the right side of the..."
+
+00:29:12
+For the reversal, I’ll end up with small, repeated losses that wipe out my account. My response to that is: it’s all about these concepts—they’re kind of simple, but applying them is very selective. If there’s a 0.5 bias, and then a clear breakout like that happens, I definitely don’t want to get into that trade at all. Now, let’s get practical about how to trade these tools—that’s the heart of the matter. There’s nothing stopping the market from being boring. Yeah, we might see a price reversal, but that’s the reality. So how do you stop yourself from buying here and losing, buying here and losing, and just repeating the same mistake?
+
+00:29:55
+Over and over again? We’ve got to break out of this cycle. Just like our framework, we’re always trying to stack the odds in our favor. What happens is, if we get a pattern that looks like this instead, or a move without any news, or a drop for five days straight—when all these factors line up for us, that’s when we boost our chances of success. The result is that instead of relying on luck or the random walk theory, or a 50/50 chance, or winning a dollar and losing a dollar, what actually happens is more winning trades and fewer losing ones, which means higher returns.
+
+00:30:40
+Risks go down. In extreme cases like these, compared to others, our reward from a 50% bounce back might just be that small amount. The beauty lies in the downside scenarios—if a 50% drop happens as the main scenario, you’ll see that the potential return becomes way bigger than we expected. Looking at the examples, you’ll understand that’s exactly my goal: I’m trying to increase the chances of profit by betting on a price rebound. I aim to maximize returns as much as possible, and with certain trading systems, we can cut risks down a lot. When you do that, the expected value shoots up massively, and we’re back in the game.
+
+00:31:29
+Traders are super happy.  
+[speaker_0] Before we move on, how often do these opportunities come up—monthly or yearly?  
+That really depends on the timeframe you’re trading with.  
+[speaker_1] Definitely, it always depends on how extreme you want to get. All these things fall within a certain range, and we take all those variables into account.  
+When it comes to the fine structure of the market in day trading, these setups show up clearly every single day.  
+The real question is: how picky are you? Are you going to wait for pocket aces? And how do you define “pocket aces” for your product and your timeframe?
+
+00:32:08
+And your own strategies? Pocket aces are naturally super rare. You might be looking for huge multi-sigma moves, or a six-day straight pullback or rally in a really boring financial asset. The more picky you get, needing all these factors to line up perfectly, and the higher your standards, the scarcer the opportunities become. But these patterns and concepts show up every day in almost every asset, so let’s connect all this to trading systems and how to actually execute these strategies. If you follow what I’m saying, the chart patterns reveal a lot of these variables, and the more of them work in our favor, the better.
+
+00:32:53
+Even though this is great, we still need the ability to actually execute. So, how do we make the trades? Here, I introduce a concept I call the right side of the V, which basically means that instead of buying during a sharp drop, we wait for confirmation. In other words, we wait until the reversal starts and enter a buy trade as the price goes up. The advantage here is that we have a clear and defined stop-loss point, allowing us to capture this price correction with high accuracy. Most people fall into this trap again—if the pullback is around minus half, they naively think it’s a golden opportunity they can’t miss. What...
+
+00:33:49
+Here’s what happens first: if the price drops from $500 to $499, the problem is that the expected return when hitting a 50% retracement is really limited. Now, if it bounces back up—yeah, the chart isn’t exactly precise, but who cares about internet critics—the potential gain might not even pass 50 cents. The big difference comes down to the power to flip the situation. Imagine a sudden panic in the market, and the price crashes from $500 all the way down to 450. When that reversal happens, the price could bounce back really hard. So instead of just 50 cents, we’re talking...
+
+00:34:42
+Here, we're talking about an actual rebound of $50. Not only that, but those willing to buy at this discount are only paying one dollar, which doesn’t mean much—it’s just a 0.2% discount on a $500 stock. Here, they get a 10% discount when the stock drops from $500 to $450. You'll get way more buyers and fewer sellers, which boosts your chances of success and increases your profits. The great thing is you'll always keep a set risk limit on all your trades.  
+[Speaker 0] What's the biggest mistake traders make when applying the right side of the V?  
+[Speaker 1] Definitely, they don’t consider all the variables.
+
+00:35:27
+They tend to oversimplify things, which is why we built a framework covering all the variables. Often, they overlook checking the daily or intraday charts, or even calculating the slope and rate of price change. How far are we from the Bollinger Band or the moving average? How "boring" is this stock? How many Average Trading Ranges have we covered? Even the variables I mentioned at the start are just a small part of countless factors we can consider. You can also think about the overall market condition and what similar stocks in the sector are doing. And what about different seasonal patterns? There are so many variables.
+
+00:36:09
+There are countless factors you can build a system around. When it comes down to making a trading decision, what we’re really doing is combining all these variables into a mental framework. My approach to handling trades is all about constantly balancing these factors dynamically at any given moment. Since all these variables change every second, I’m always carefully assessing how good the expected value of the trade is. So, in my mind, I’m continuously evaluating all these variables—some matter more than others, but they all fall within a certain range. Think of it like this: the rate of change, the daily chart, intraday movements, and even boredom.
+
+00:37:05
+If I could expand this list endlessly, I’d include all those factors, but what I’m doing is just a mental calculation. Let’s say I rate each variable from zero to ten. Suppose the rate of change is excellent, and we’ve really started to pick up speed, so I might give that a nine. Maybe the daily chart is touching a long-term support level, and if that chart looks great, I might give that a nine too. The intraday chart might be steadier, not as amazing as the daily chart, so I’d rate it a six. Despite all these positives, the stock is in a volatile sector, maybe semiconductors right now, and...
+
+00:37:50
+It made a big jump, so in terms of boredom, it only gets a two—definitely not boring at all. In my mind, I’m putting all these factors together, which brings the total to twenty-six. In precise quant terms, that means we’re giving it just one smiley face rating in this system. So, I might be totally ready to trade something like this, maybe even give it a B risk rating. That means the score of twenty-six probably corresponds to a B risk. If the setup scores only twenty, that’s a C risk. But if it gets fifteen, I’m not entering the trade.
+
+00:38:38
+The problem is that most traders don’t take all these variables into account when making decisions. They don’t look at the bigger picture; instead, they simplify things and say, “I’ll buy as soon as there’s a reversal,” instead of saying, “We haven’t met the conditions yet,” which means no trade. Let’s say we scored ten across all variables. So, a total of forty could mean an A++ rating, really excellent. This is the framework I use to evaluate capitulation trades, and this is how I think about it. It’s not that simple—people want easy answers. They want to know, if X happens, then do Y. A lot of people think I’m hiding something.
+
+00:39:22
+Here’s the secret: trading is packed with details and variables. The cool thing about this field is that opportunities are similar but never exactly the same. Every trade has its own unique situation; no two trades are identical. If you’re trying to memorize a simple formula like “if X happens, do Y,” it won’t work. It’s way more complicated than that. 
+
+Think about picking a basketball player. If I said, “Pick the tall guy,” sure, height is super important, but it’s not everything. If he’s tall but has no arms, he’s not a good pick. If he’s tall but totally uncoordinated, that’s also a bad choice. And if he’s tall but weighs 700 pounds and can’t run, well...
+
+00:40:05
+Bad choice. So, things can’t be simplified. You have to tell yourself, if I pick this player, I need to evaluate him based on all the important factors, and you’ll never get a perfect deal in every way. Look, maybe it doesn’t seem exciting, but this downside is balanced out by other aspects. When we go through my examples, you’ll see how these elements fit together, and I’ll explain some of them in detail. So, shall we finally get started and dive into these details?  
+[speaker_0] Definitely, let’s start. Should we take a quick look at the chart elements before getting into the entry?  
+[speaker_1] Great, after understanding this framework and analyzing the charts,
+
+00:40:43
+How do we figure out the entry point? It all comes down to spotting when the market changes direction. Although this topic could easily fill an entire training course, we'll just call it identifying a trend reversal. What usually happens is that we break the known trendline. That break might be exactly what we’re looking for. If there’s panic but the price holds steady, we can see a certain movement. This is what keeps the previous bar highs intact—that’s what defines the trend break. Of course, this applies to uptrends too. Even if we’re talking about a downtrend, the rule is the same.
+
+00:41:53
+It stays steady in both cases. Even when we talk about prior bar highs, the same rule applies to prior bar lows. We can consider the overall trend—well, let's just say this type of analysis is really precise. I need to get ready immediately, exactly like that, and that’s how we get lower lows and lower highs. But when we break out of this price range, suddenly we might see a strong push up to higher highs than we expected at this stage. We’re clearly seeing a series of higher lows forming, and that’s how eventually the downtrend of lower lows and lower highs that controlled the market during this period gets broken.
+
+00:42:45
+In the most extreme scenario, which I'll add here, there will be times when the price hits an asymptotic phase, real panic sets in, and the chart drops like a waterfall. Here’s exactly what will happen. For example, as a thought experiment, imagine Apple’s stock falls from 100 to 99, then 98, then 95, and suddenly crashes sharply down to 1 dollar in a single candle, breaking the previous candle’s high at 98. I wouldn’t wait for it to climb back from 1 to 98. In the most extreme cases, I’d be ready to jump into instant return trades because the rewards, probabilities, and risks would be totally in my favor. In those extreme cases, I would...
+
+00:43:32
+Basically, you buy as the price pulls back within the same candle—intra-bar—right as it starts to move up. We’ll see this pattern happen clearly in our upcoming trades too. These are the entry points, then of course we set the stops.  
+[speaker_0] Yeah, okay, you’re about to do that.  
+[speaker_1] Yeah, actually, I’ll mark them all in red. In cases like this, I rely on the swing lows. In other situations with previous candle highs, I still focus on the lows. When those lows and descending highs break and new higher highs and higher lows start forming, we’ll watch closely to see if this pattern gets broken or invalidated. If it pulls back...
+
+00:44:14
+The full price, and if we don’t hold at this level, what will happen? When the higher lows get broken, that’s when I get out of the trade. This point also marks the bottom of the move, which helps us set our entry and our stop. As for how long to hold the trade, it follows the same pattern. If the trend is up with prior bar highs, I expect the trend to continue at best and to hold the prior bar lows. If the trend is down with lower highs and lower lows, once that breaks, I expect higher lows and higher highs. In extreme cases, I usually rely on the previous candle’s lows.
+
+00:45:00
+Alright, we'll stop here... I'll point out some pros and cons. The truth is, people want things simple, but it's not always that straightforward. So, there will be exceptions, and how do I figure those out? It depends on balancing all the factors. Like, if the deal is really good—let's say it gets a perfect rating—and we break the trend but haven't hit the peak yet, for example, if the move came from far away, we broke the trend, and as this move develops, I don't necessarily want to get stopped out if the price is coming from above. So, there will be immediate adjustments and all that.
+
+00:45:44
+It all comes down to the Expected Value. Exactly. [speaker_0] Regarding this specific trade, can the entry order be set as a Limit or a Stop Order? Since we're talking about Daily Candles, you can place a pending order just above the daily candle’s high to automatically enter the market. [speaker_1] Exactly, the beauty of this method, especially when trading on a higher Time Frame, is that it gives you complete independence. You set your entry order in the system ahead of time because the previous day’s candle is clear. Once this pattern forms, you just place your Stop order, which is a really convenient trading style. It’s ironic that trading is complicated and tough, but...
+
+00:46:24
+When used in the right situations, these simple systems turn out to be the most effective. In the best trade of my career, I applied this simple system, combined a few concepts, then followed the price at the previous candle lows, and the trend kept moving up with me. Now, let’s check out some real examples on the chart, shall we? Let’s get started. But first, let’s take a quick break because I want to talk about our special sponsor in the CFD trading world, the unique and top-notch company, Alpha Capital. They truly stand out in this field. Only with Alpha Capital do you have a real path forward.
+
+00:47:02
+Step up your game with the chance to trade live from a trading floor right in the heart of London. You’ll get a salary and trade alongside pros, building a successful career as a trader. This opportunity is open to everyone. Once you pass the challenges, secure funding, and prove your consistency, you won’t just start trading with a real account—you’ll also earn a salary and work in a professional environment equipped with all the tools you need to grow your career. Just look at the huge profits Alpha has shared in a short time with traders like you and me all over the world. At Alpha Capital, you get access to the best trading platforms, from MetaTrader 5 to CTrader.
+
+00:47:47
+And TradeLocker. More importantly, we’re about to launch Alpha Trader soon. Alpha Group is the only finance company that offers a complete system for all your needs in one place. All this and more is available exclusively at Alpha Capital, with links down in the description. Use code CF at checkout to get the best discount. The offer is on your screen right now. Sometimes we even offer custom options for you, whether it’s a one-stage, two-stage, or three-stage challenge. The link’s below, and now, let’s get back to the episode.  
+[speaker_1] After fully explaining the concept and focusing on the ideal picture and how it should look, we’ll now move on to...
+
+00:48:29
+Practical application. Let’s look at some real examples on the charts to see how these trades actually play out when you spot them on a chart. We’ll also go over it in reverse order. I want to show you that these concepts are timeless. I’ve been collecting charts throughout my 15-year career. Funny enough, I learned from my coach who’s been collecting charts since 2001. Even if we go back to the bank crisis and the financial crash of 2008, you’ll see these concepts still hold up, and those trades were happening back then. Honestly, I believe they’ve been around forever, and I think they’ll keep going until AI algorithms take over.
+
+00:49:15
+We, as traders in the markets, are constantly being replaced. The OCLR example goes back to 2016, even before some of the young traders we know today were born. Hey RIZ, this definitely shows us how much older we've gotten. So, let's move on to... October 27, 2016. Okay, got it. Like I said earlier, let's go back to October 27, 2016. It was the stock of Oclaro, and we started seeing a clear, steady weekly uptrend right from the market open. Now, let's get back to the theory. I’d describe this phase as slow and steady, just like the first example you asked me about.
+
+00:50:03
+Previously, the slope here might have been negative half. Then we started accelerating, and the slope became roughly negative one. Here we hit that asymptote I mentioned—the collapse—where things were steady, then suddenly sped up and crashed. Looking at these variables, we can say the stock was stable at the open, and we were in total equilibrium. The rate of change sped up a lot, then the crash happened. We saw a huge spike in volume, which for me is the key indicator of capitulation. The stock dropped over 25%, if my mental estimate is right—around 20%, actually.
+
+00:50:47
+I double-checked this number myself. This is a huge move, and now we can jump straight into analyzing the daily chart. So, what do we see there? Things were pretty steady—no sharp spikes—and just look at how boring the daily trading ranges have been. On regular days, the stock moves about 30 cents. So this was a massive move on the daily chart, and the trading volume was off the charts. That’s why I always look at multiple timeframes to get a full picture of what’s going on. Honestly, I think we’re taking Oclaro back a bit—it’s been a pretty dull semiconductor stock.
+
+00:51:28
+Right before the AI boom. The cool thing is, it kept holding the previous highs throughout the downtrend. People often ask me, "What if the trading isn’t smooth? What if it doesn’t break the previous highs or form a clear pattern?" Well, the answer is simple—you don’t have to trade it at all. That’s where selectivity comes in. A lot of people who keep losing or don’t see success with their strategies fall into the trap of trading a chart pattern they think is perfect, but it’s actually just choppy and boring price movement. That’s showing previous price action. This bar is price acceptance. I don’t want that bar—I’m looking for this kind of pattern, where the...
+
+00:52:14
+Suddenly, those boring bars started showing some crazy moves. Look at the size—on the daily chart, we showed the average price range is 30 cents. This stock is now moving 30 cents in one bar, but at the open, it only moved five. Those little details are what make it exciting. You can tell how passionate I am about this—it takes me back to my early learning days, building these patterns, and playing mental games to design experiments on the charts. Things are really picking up. The trading volume hit capitulation levels, the pattern is perfect, it’s a top-tier chart. You can buy in here.
+
+00:52:55
+You can enter right at the bar itself, or wait for it to break the previous bar’s high and jump in around 7.25, then set your stop loss at the initial low of the pattern. Start by placing your stop loss at the lows of the previous candles—that’ll basically get you out close to this moving average at 7.57. People always ask how to figure out the success rate. Honestly, all these variables fall within a pretty wide range. I know that if I were to give my mental estimate and say the trading success rate is 90 or 95 percent, I’d give it that rating. Of course, this is all just theoretical, right? I don’t have a solid mental benchmark, but it’s around 90 degrees, so there are definitely some good advantages here. I know that.
+
+00:53:40
+When all these factors line up, the chance of a bounce is around 70 to 80%. If we look back now and the price breaks the trend, and you ask me what I think, I’d say it’s just a gamble. In fact, the chance of a bounce is lower because we’re in a downtrend, so it might not even hit 40%. But when the move accelerates and the price drops sharply like a waterfall, going beyond the average trading range, the bounce probability starts to shift from 40% theoretically up to 50%, 60%, and eventually 70%. When there’s a massive volume capitulation and the price begins to reverse, that’s when the success rate hits 70 to 80%. And with proper confirmation...
+
+00:54:25
+With these models, you can do backtesting and study historical chart patterns to accurately calculate profit ratios. Or you can try live trading to see how often these trades actually end up profitable. That’s how you build these stats, and over time you can figure out your own numbers and measure how far the price moved—let’s say it was about 30 cents or so. Then you can set your profit target at, say, 30 cents. The key point is that even if the risk-reward is equal, the beauty of this trade lies in its very high win rate. Notice how perfect this trade was based on those examples—I use this setup.
+
+00:55:07
+With all its variables and details, to judge its quality. It’s not just about the Intraday Chart, but all those factors combined. [speaker_0] Do you think one common mistake is trying to hold onto the trade? Once we hit these levels, we’re basically betting on the market’s volatile emotions, expecting a bounce or price correction back to the average price, right? Do you think many people manage to execute well but then get greedy, holding onto the trade hoping for a return to the highs or waiting for the entire upward move to finish? Instead of sticking to the system’s rules, they fall into the trap of emotions because of...
+
+00:55:49
+When the price drops, greed takes over and people start thinking, "How much will I make if it goes back up?" instead of using logic. Do you think this is a mistake a lot of people make?  
+[speaker_1] Exactly. Often, you need to assess the situation—like when a stock crashes due to panic and falls below seven dollars. Would people rush to buy it again at $8.40 or $8.30 after it was available at a 20% discount? It's actually a bit less than 20%. I know I'll be judged for being so precise. But if you had the chance to grab it at that discounted price, would you hurry to buy it again at eight?
+
+00:56:26
+Thirty? Of course not. In theory, it could happen, but the odds are against you. That’s why I like using this Moving Average as a kind of balance point. It’s basically part of the Bollinger Bands and is a 20-period average, so I see it as a balance point where price often bounces. I use this as a rough price target in my mental calculations. So when I wonder how far this bounce might go and try to estimate things in my head, I tell myself: at this candle, the previous candle’s high was 2.5, and the Moving Average was at 7.88. Of course, this will change with...
+
+00:57:08
+Including the low candles in the calculations, but I know that if the price bounces back strongly, I could make fifty or sixty cents, and if the bounce is weaker, I might settle for thirty cents. Overall, this is the expected, typical outcome I consider. This is the basic scenario I expect for this pattern: we hold the previous candle highs during the drop with a capitulation on high volume. Then we bounce back, hold the previous candle lows going up, and reach the average. For me, this pattern is an ideal, textbook trade, and that’s exactly what I’m trying to show here in this clear teaching example.
+
+00:57:51
+[speaker_0] I love that.  
+[speaker_1] Awesome. Now, let’s move on to another historical chart, the NGD stock on January 31, 2017. NGD is a gold mining stock, and it’s still around today. What we see is that the day before, there was some news about the stock, it had weak selling, and it closed really low. But the next day, trading volumes picked up, and we saw a capitulation pattern with a price bounce—mean reversion—right after the market opened. I’ll repeat, what happened was—actually, let me back up a bit to give some context. This stock is usually super boring.
+
+00:58:35
+If we’re talking about boring sectors, gold stocks are definitely boring. They move based on the metal’s price—it's a straightforward math equation. If gold is priced at this, then the fair stock price is that. Most gold stocks, if the gold price is stable and your gold company is steady, won’t shoot up 500% in a year or crash 90%. They generally stay pretty steady. As for the average trading range, we're looking at a swing between five to ten cents, maybe fifteen or twenty cents. What actually happens is we get news that causes a sharp drop, so you have to get used to these recent swings. The stock starts dropping, but we...
+
+00:59:16
+We’re holding onto the prior bar highs as our support. Then we see the same volume capitulation pattern. The stock has moved over 25% now, which is really great. Here, we follow the same setup: buy when it breaks the previous candle’s high, and keep support at its lows to catch the upward move. I’ll go back to those earlier variables we used in our analysis. This stock was super volatile the day before because of the news. It was less stable at the open and showed a stronger move right from the start, unlike CLR, where we saw a state of equilibrium. We have a solid panic sell-off, but it hasn’t hit the peak of the waterfall yet.
+
+01:00:04
+The move is a bit weaker, but that’s totally fine and not really a big deal. Overall, by my standards, I’d say this trade is acceptable. The other issue is the downside risk when buying at 2.5. At 2, the risk is about thirteen cents, and because of that long wick on the candle, the stop-loss level is kind of far. If we calculate the expected value of this trade, it still looks good. That’s how I use this criterion—it’s genuinely acceptable. I like that it’s a boring stock, and I really like the fact that it’s actually boring. I also like this volume surrender. Usually, you see...
+
+01:00:49
+The stock had the highest trading volume at the open, but now we’re moving after twenty minutes. We could’ve opened at 2.50 instead of $3. We traded, then headed down, and then the crash happened. There was news yesterday that widened today’s trading range. All these factors, including this wick, raise the risk level. These details make the trade more borderline compared to the OCLR example, but I’ll give it a shot since it might be worth the risk. Right now, this trade is a solid C-grade with very limited risk, which is acceptable within this range. You’ll also notice that when all the variables line up...
+
+01:01:32
+For your own good, you'll get a better bounce—sometimes the price will even hit or go beyond the Moving Average. With weaker trades, the bounce is usually weak or might not happen at all. And if the trend is really steady, I actually expect an even worse bounce. See how this way of thinking about Price Action helps us figure out the range of possible outcomes for these trades? This gives you way more realistic expectations. Like I said before, the problem is when some people hold onto trades for too long, and that mostly comes down to emotions.
+
+01:02:12
+On the other hand, would you agree with me that most traders are driven by emotion because they don’t really understand the variables? In other words, they haven’t clearly defined the exact mindset for what’s actually possible in that specific trade. That makes it easy for your emotions to take over since you haven’t truly grasped what the market is telling you. This brings us back to the point that many blame emotions, when the real issue is a lack of vision and hard work, right?  
+Exactly, I really like how you put that. The more effort you put in to understand the framework and price movement, the more experience you gain, memorizing charts and all those patterns inside and out. Once you get that work done,
+
+01:02:57
+You get a deeper understanding that gives you more confidence and complete control over your emotions, and you gain the experience to trust the pattern. At that point, you realize you might hold a 10.8 or 10.9 in this situation. You know your cards and how to play them, so you can act realistically instead of guessing. One more thing I want to say, honestly, for the average trader, I think people get way too much credit because the truth is most of them buy here and then get stopped out. They buy here and then get stopped out. And when the price settles and the momentum slows down, they keep stubbornly holding on and say, "Instead of exiting, I'll just hold."
+
+01:03:42
+Right in the middle. Then the price suddenly shoots up, and they end up taking a huge loss. They lose once, then twice, then a third time. By the time the reversal finally happens, they’re completely drained. I’m not trying to make fun of beginners—believe me, I’ve made this mistake millions of times. I still mess up sometimes, even when I try to hold back before the turn and jump into buying trades, ending up with some losses. Even then, I struggle with these feelings and have to remind myself, “Wait, Lance, you’re not waiting for the turn.” Everyone falls into this trap, me included, and I always have to be patient. This kind of awareness only comes...
+
+01:04:27
+From experience. This is what most traders do—they take losses during the uptrend, then lose more when the capitulation happens and give up before the rebound. It’s not just beginners; it happens to me sometimes too. I train traders who make seven and eight-figure numbers, and I have one trader this year I truly respect, but he got stuck fighting the shorts and didn’t wait for the market to reverse. This happens to everyone, but our mindset tricks us when we lack experience and awareness to say, “Stop, take a step back, wait for the reversal, stick to your plan.” We all fall into it.
+
+01:05:07
+Sure, and the worst part is that after all this, they decide to sell, thinking the stock is going down. That’s exactly when the whole short-selling story begins. Yeah, like when you think, "Maybe this stock will go to zero." You’re right—I made that mistake too. Honestly, I wish people could see how bad I was at the start. Anyone who thinks I was born with some natural trading talent is totally wrong. I had no talent at all; I was a complete disaster and did everything wrong. I only learned after making the same mistakes a million times, beating myself up over them, and finally getting the lesson and stopping the nonsense. I used to tell myself, "What the..."
+
+01:05:48
+Your entry point? Why can’t you just do it? It takes effort, repetition, and a lot of mental awareness. Don’t buy on the initial surge, wait for the pullback, wait for the pullback. You tell yourself, “This is the chance,” but don’t buy. Then you hesitate and think, “Maybe this is it,” and end up buying at the top, believing the price really bounced back. Then you chase the peak and get stopped out. You’ve made every possible psychological mistake in this game. You let all those negative emotions destroy you and make losing trades. It took me years to reprogram myself, and it’s an ongoing process. It’s like... I always laugh when David Goggins says, “No, you don’t.”
+
+01:06:30
+You know, I’m not great. I’m a lazy person, and every single day I have to convince myself not to be. People think successful traders are like emotionless machines, but that’s not true. Literally, every day when I’m trading, I have to tell myself, “Lance, don’t be dumb. Fight these feelings, fight them constantly.” Sometimes I mess up and make mistakes, but over time you get more aware and experienced, until you can say, “Hey, most of the time I’m on the right track.” This time I slipped up, but I’m aware of it and fixing it now. The game never gets easy, ever. Alright, let’s take a quick break, guys, and I’ll tell you about our sponsor.
+
+01:07:11
+TradeZella is the standout tool—hands down the number one in the entire trading world. It helps you become a more profitable trader and make huge progress, whether you're a beginner or a pro, by making journaling super easy and straightforward. It turns logging your trades into a fun, interactive, and simple process, whether you’re trading crypto, futures, forex, or stocks. All you have to do is pick your broker and platform, connect it to TradeZella, and the system will automatically sync your trades and pull all that data into your dashboard, making journaling and tracking your progress a breeze.
+
+01:07:53
+Building and improving your competitive edge is super easy. We've teamed up with TradeZella and Chart Fanatics to turn pro traders' strategies from our episodes into ready-to-use playbooks on the TradeZella platform. You can jump in and check out the pre-set rules, so make sure to give them a try. Right now, you can get 10% off your monthly subscription using code CF10 on TradeZella. Even better, use code CF20 to score 20% off an annual subscription. Links are in the description below—don’t miss out. Use code CF20 and get 20% off!
+
+01:08:35
+For the annual subscription, and level up your trading today. Let’s get back to our episode. [speaker_1] Alright, here’s another example that I really love. This is one of the most famous moves that happened during the Covid pandemic. It’s actually a pretty fun story. So, this event took place on July 29, 2020. It was one of the craziest trades during the Covid period. I can’t remember the exact headline, but somehow Kodak’s name got linked to Operation Warp Speed during the pandemic. There was a huge short squeeze on a stock that was super boring before. Let me see, can I even—look at this. The stock was moving at a rate of 10
+
+01:09:18
+Just cents, super boring. We all know Kodak as a camera company, and honestly, it’s been a terrible company for a long time with nothing worth noting. Then out of nowhere, the company got tied to Operation Warp Speed, and the stock shot way up, causing a massive short squeeze. When you think about it, Kodak was a really dull, old-school, steady company, but actually struggling, so a lot of people ended up stuck. We saw a huge gap up in the price. We know the company is stable, but this is a massive daily move, and the trading volume is off the charts, so much that you can’t even see...
+
+01:10:02
+The volume bars on the chart are a strong indicator of how massive the movement was, to the point where you can’t even see the previous trading volumes. This is about the daily analysis, and now we’ll move on to July 29th. That’s July 29, 2020. I’m using a two-minute chart, but this applies to any timeframe. So, what we see here is the stock started moving right at the open. Sure, there was some movement the day before, but nothing crazy or out of the ordinary. Then the stock really took off. We started pulling back, then the price went back up. There was a big gap up, so a lot of people...
+
+01:10:45
+They jumped in with shorts, thinking the move was over. Then the breakout happens with huge trading volumes pouring in, and we see a sharp spike in the price. Notice the stock didn’t go crazy at the news, but now we’re seeing consecutive, straight-up price jumps. The stock going from $20 to $60 — just a few bucks before — that’s insane. And not just that, we’re way above the highs, actually way above the moving average. At this peak, the moving average was at $26, while the stock was at $60. That means the average price is more than 50% below the current price. This is seriously wild. We’re holding strong.
+
+01:11:30
+At the prior bar lows, showing a really sharp trend, almost like a reverse waterfall. Then we see a break below the previous candle’s low, and that’s when the reversal happens—especially this reversal inside the candle, which signals a momentum shift, with the green continuing. Like in our system, I focus on the number of consecutive up or down days. This fractal pattern works on any timeframe—one candle, two, three, four, five, six—and on the seventh, the trend reverses, then boom. This system is really simple. Of course, this example is one of the most extreme, one of the best trades of 2020, but it follows the framework of a pretty boring stock that made an exceptionally big move.
+
+01:12:15
+This real-time chart was almost perfect. If I combined all the variables in my own assessment, I’d probably give it about 95 out of 100. The main risk here was the short position. God forbid, if you went big on a short and the stock suddenly jumped to the limit up and got halted, you’d be facing unlimited financial risk. Now imagine if this stock was steady at $100, then the next day it suddenly crashed to $80 because of bad news, opened at $60, and kept falling down to $20. Now picture flipping those prices to a downtrend, where the stock moves from $100 to $80 to $60.
+
+01:13:02
+Then it drops to 20 in this pattern. If this had been a long trade, it would have been the deal of the century—you could’ve made double profits on a stock that was steady and boring at 100. A few days ago, this was just a theoretical idea, and that’s how you apply these concepts. This setup scores ninety-five out of a hundred. The only downside, of course, is that if the trade fails, the short position is riskier, so I might reduce my position size compared to a long trade. Still, I made a big profit because the return was amazing. You ended up making over twenty dollars, which is really exceptional. Definitely, and the risk stays limited at that level.
+
+01:13:45
+About eight dollars, which makes the risk-reward ratio over one to two in this trade.  
+Exactly, you’re talking about a risk-reward ratio close to three to one. The odds after the price reverses following consecutive bullish candles are over seventy percent. The only downside is the unexpected tail risk. God forbid you fall into that trap, but—  
+Sure, what’s the actual speed here? In this case, like you said, we’re dealing with two-minute candles. How can trades be executed effectively, get the right price, and manage risk properly?
+
+01:14:25
+Need to use hotkeys? And are there specific tools necessary to ensure effective execution of these trades? [speaker_1] Yeah, in intraday trading like this, the moves are super fast, but you can still grab the price and liquidity available here. All of this happens within seconds after the reversal. You gotta use hotkeys—if you rely on manual clicking, you need to be insanely fast. This definitely isn’t the place to be slow. With that in mind, let’s set up some examples we can move to where you’re working on a daily timeframe, because these concepts repeat and you can apply them.
+
+01:15:06
+Same deal. On the daily timeframe, for those who don’t do day trading or are looking for strategies that fit people with jobs or side gigs. So, let’s move on to one of those. We’ll look at a recent example too, something that actually happened. In October 2025, let’s take the ticker UAMY as an example—it’s one of the important rare metals stocks in the market. Usually, this stock is super boring, and we’ll go back to get the full long-term historical context. This stock, to put it in technical terms, was really bad for a long time. We’re talking about trading...
+
+01:15:52
+At twenty or thirty years old, this stock is just plain bad, in every sense of the word. The stock started to take off and rise. Still, even this year, despite all the trade tariffs and the trade war between the US and China, it’s only around three dollars. What really happened is that the talk about rare earth metals started picking up big time, which pushed the stock up hard. Looking back at our approach, this stock was super boring and honestly performed terribly for a long time. You’ve got to be careful because these small market cap companies, when you go back to that framework, the more...
+
+01:16:33
+Market cap went down, risk went up. You won’t see NVIDIA or Tesla stocks move like this, but that’s the point. You get crazy moves. Here’s where the breakout happened. Look at these first candles. Even with these breakout candles, the move is less than a dollar. But check this out—the stock held the lows of the previous candles for about eight or nine candles, then the price range started speeding up noticeably. Compared to two months ago, the price range on some of these candles didn’t even hit 35 cents between high and low. And even when volatility picks up, the price range still doesn’t go over a dollar.
+
+01:17:19
+Almost. Sorry, we went a bit over the limit. What we’re seeing here is a price range of one dollar, then it starts to widen to three dollars, and suddenly jumps to four dollars, until we’re actually close to a five-dollar range. This stock is experiencing a bullish capitulation, happening again with huge trading momentum, and it’s holding above the previous lows for each bar. We’ve broken past the upper Bollinger band and moved away from the moving average. Yeah, there’s news about a trade war and escalating tensions between China and the US over metals, but nothing really new or significant, and that’s been the main driver behind all this movement since...
+
+01:18:04
+The beginning. There's no new news explaining this sudden surge in movement. When we analyze these variables, we start by saying, "Wow, this looks really good." Between the trading volume and the strength of the move, the stock price doubled within a week or two—that's a clean win. The price is moving almost vertically, and all these factors are totally in our favor to make this trade now. You can trade intraday or even as a swing trade. The previous candle lows are being broken around $15.50. Open a short here with a stop loss, then start trailing.
+
+01:18:48
+Above the candles. The distance from the moving average is good, and although the profit wasn’t amazing, we ended up making almost three dollars. After the first day, you start moving your stop and risk gradually. Once that day passes, don’t risk more than one dollar. There are other ways to set up this trade—I don’t think there’s a perfect one-size-fits-all method. What I’m saying is you can do a back test or use this framework to assess the situation. If the candle wick is too far from the previous day and you decide to go short, it might be best to just set your stop loss at that wick’s high.
+
+01:19:32
+The candle. And often, this is totally fine. What you need to do is measure how it affects your success rate and your risk-to-reward ratio. In the end, it’s all acceptable and mostly depends on your personal beliefs and data. Here lies part of the art and skill in judging how good the intraday setup is, and whether the price will move smoothly. How confident am I that this level won’t break compared to that one? Here’s another classic, great example of a swing trade that traders could have pulled off this year. It’s all about applying the same concepts and framework. That said, I’d give this trade a lower rating because it’s on the selling side. The market value looks riskier.
+
+01:20:17
+A bit. This stock didn’t have high liquidity, so I’d give it a B+ or A-. That’s because the price movement was away from the moving average, trading volume was low, and the performance was pretty dull. It’s a mix of all these factors. As I mentioned, market volume and the nature of short selling really make a difference, because like we said earlier, many see the opportunity and rush to execute trades without considering all the variables that change the trade setup and actually affect the quality of the deal. Yeah, exactly. And if we move to comparisons, for example, USAR as another name in the rare metals sector. If we look at the chart, the opportunity was...
+
+01:21:05
+The short was good, but for me, the stock wasn’t moving smoothly enough. We saw some down days with those red candles showing up, and the trend wasn’t clean. Honestly, this trade worked out and could’ve been good, but I always try to stick to my method to catch clearer and more extreme opportunities. That’s why I’m shorting UAMY—because the volume, the clean movement, and the number of green candles all boost my chances of success. Even though the USAR trade ended up working, it’s this build-up of decisions that really makes the difference, helping me avoid the losses others fall into, while also letting me increase my bigger trades confidently.
+
+01:21:49
+And applying the concept of Exponential Bet Sizing that I always talk about. [speaker_0] Yeah, it worked this time, but the trap is in when it doesn’t work, right? Sometimes the trade works when you’re not even in it, then you try later and it fails. The worst is when it succeeds the one time you decide to jump in, making you think it’s all normal, and that just leads to a never-ending cycle. [speaker_1] Exactly. The truth is, you’re always going to face losses, so you need these wins to make up for all the other trades. I think most traders make mistakes and lack selectiveness, so you really have to take advantage of the truly great opportunities. Let me give you two examples.
+
+01:22:32
+Also, I wanted to pick really recent examples to make things more interesting. We're recording this episode in late November, just before the well-known American Thanksgiving. About the Bitcoin chart, what actually happened is we had a period of price acceptance, and the price looked kinda weak. We tried to break through certain levels, made some highs, then the prices crashed. We got a lower high, then a lower low, then another lower high. That's one way to spot the trend. Right now, we're also below the moving average. It was a sharp move, but it was just price acceptance, barely any movement at all. But now, we're facing almost the third wave down.
+
+01:23:20
+The more waves there are, the higher the chance of a rebound, so I like patterns that have three or more downward waves because they boost my odds. The more waves, the more convinced I am that the equilibrium price isn’t down here, but way up there. In this example, we started with an initial drop, followed by a weak bounce, then a smaller second wave down, and after that, the real panic kicked in, ending with a violent flush out. This move is the first time we truly break away from the Bollinger Band and move far from the Moving Average—the previous moves were just fluctuations within the range. We're not below the lower Bollinger Band here; it's just a touch.
+
+01:24:06
+Simple. Now this looks like multiple waves. This is the biggest intense sell-off we've seen. Let's move on to Bitcoin—it dropped about 10% from the previous closing price. If we look at the intraday data, which we will, you can clearly see the panic that took over. This creates an opportunity for a long trade or even a swing long. Now, moving on to the price action. Another point—Bitcoin is hard to value quantitatively since it doesn’t have clear cash flows, putting it in a completely different category. Still, Bitcoin is currently accepted and has become pretty institutional with the presence of ETFs. Everyone’s watching it, and there’s a lot of liquidity doing arbitrage.
+
+01:24:50
+It's pretty stable overall. Look at these candles—we're talking about a range between two thousand and two thousand points. Like I said, we saw a price range that reached almost eight thousand dollars. Now, let's move on to today's price movement. Check this out: at 2:30 in the morning, there was a huge liquidation. I was asleep then, but luckily, there were some pending buy orders. So, based on that, and from the chart example we looked at earlier, this is one of those cases where you might want to buy during the Intra Bar formation, because if you wait for the reversal here, and hold off buying until it hits eighty-four thousand, you might miss out.
+
+01:25:32
+Most of this price action is probably already over. Bitcoin dropped about five percent in just four minutes. That’s a huge move. Setting a stop loss here gets tricky. You might have to wait for an intra-bar reversal, or maybe buy a small piece of the front side without a stop. I know this sounds a bit crazy, whether it’s stocks, crypto, or anything else. I buy on the front side, but with a very small position size. When I’m asleep, I place pre-set buy orders, so when I trade without watching the market, I keep my sizes smaller. This drop...
+
+01:26:14
+The surprising thing is you get to buy on the front side, then just look at this rebound. This massive rebound almost completely recovered the previous move. Why was the rebound so big? Because the previous move was sharp. This was the fastest drop, actually the most panic-driven moment here. Look at how it was. The price barely moved, maybe a hundred dollars per candle, if that. Then suddenly, out of nowhere, we dropped a full four thousand dollars. A 5% move in just four minutes. This shows we were in a pretty stable state.
+
+01:26:54
+Definitely. The chance of a bounce here is really high, but be careful when buying on the front side, so managing your position size is crucial. I’m not surprised that this 80% bounce holds at the previous candle’s lows and delivers great results. That’s awesome, but in the end, we’re still seeing a price pullback. So basically, what’s happening is we do get a bounce. But if we look at this high, the rising low, the rising high, then break the rising low and start forming a lower high, then a lower low, and another lower high, that’s when we actually hit the panic phase. I’m sure a lot of people have already gotten out of...
+
+01:27:36
+They were holding their ground at the dip, but we got back on track, and that’s where we broke the trend. This was the bottom, and that was the lower high, but we broke through it. Not only that, we also broke the moving average, which was acting as resistance, letting you jump back in and build your position. Now, let’s say you’re a swing trader. If you’re swing trading and you entered the trade, you can track the price using the previous candle lows. Part of what makes this trade appealing as a swing trade—and as I’m recording this episode, I’m still long on some Bitcoin for the same reason—is that this was the first wave. For me, this wave was...
+
+01:28:19
+Second, while the third wave saw a bigger capitulation with the highest trading volume in weeks, and it was the longest with daily panic. We broke the trend, so if you want to turn this into a swing trade, I had previously bought and sold part of it with scalping on the bounce. I’m still holding the core position. At first, I was targeting the lows, now I’m relying on the previous candle’s lows. I don’t know when my stop loss will get hit, but if the price bounces well, the moving average is still far away, so it’s possible—though today’s not a good day. Yesterday’s close was excellent, but the price might still pull back toward the ninety-thousand level, and if it does bounce...
+
+01:29:01
+It's strong, which we don't see today; the price can go up to around ninety-five thousand. This is a real example of how I structure my trades and combine these concepts, especially since Bitcoin was very stable recently. We actually lost about thirty percent, even more than that, of its total value in just two weeks. As you saw, nothing major changed. The market had a slight dip, and it was panic that really caused this sharp drop. So, we need to understand that Bitcoin can't be measured precisely, but it's boring. The daily chart is great, and the intraday was...
+
+01:29:43
+Panic sets in, and using this framework, we identify the trend and seize the opportunities.  
+[speaker_0] Definitely. Before we wrap up, what does your process for finding investment opportunities look like? Do you watch stocks that are going parabolic, then decide if they might reverse later? How do you go about spotting these opportunities from your perspective?  
+[speaker_1] Yeah, exactly, it’s pretty much what you said. I have a flutter for charts that scans the market for stocks above or below the Bollinger Bands. I also have a flutter that looks for the number of consecutive up or down days. You can build a flutter that shows you patterns holding the lows.
+
+01:30:24
+Or the previous candle tops, so I rely on the scan a million percent. I’m always looking for the most active stocks in the market and trying to grab the best setups. I don’t start my day with specific stocks in mind; I wake up with the mindset of searching for whatever offers the best opportunities right now. [speaker_0] That’s awesome. Lance, I’m sure there’s a lot more to talk about, and hopefully, we’ll have you back on Chart Fanatics again. Thanks so much. And to everyone watching, drop in the comments what your biggest takeaway was today. As always, you’ll find Lance’s links down in the description—make sure to check them out. Other episodes are popping up on the screen now.
+
+01:31:05
+Stay tuned. Don’t forget to like and subscribe. This was Chart Fanatics. See you next time!
+

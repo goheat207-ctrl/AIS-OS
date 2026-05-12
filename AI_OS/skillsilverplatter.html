@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGENTICOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:        #080808;
+  --bg2:       #0d0d0d;
+  --bg3:       #111111;
+  --border:    #1c1c1c;
+  --border2:   #282828;
+  --orange:    #ff4d00;
+  --orange2:   #cc3a00;
+  --oglow:     rgba(255,77,0,0.12);
+  --text:      #c0c0c0;
+  --dim:       #484848;
+  --bright:    #e8e8e8;
+  --font:      'IBM Plex Mono', monospace;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* ─── HEADER ─── */
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-hex {
+  width: 26px; height: 26px;
+  background: var(--orange);
+  clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #000; font-weight: 700;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--bright);
+}
+.logo-text em { color: var(--orange); font-style: normal; }
+
+.header-links {
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  display: flex; gap: 12px; align-items: center;
+}
+.header-links span { cursor: pointer; transition: color 0.1s; }
+.header-links span:hover { color: var(--orange); }
+.header-links .sep { color: #222; }
+
+/* ─── TABS ─── */
+#tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  height: 40px;
+  flex-shrink: 0;
+  background: var(--bg2);
+}
+
+.tabs-left { display: flex; gap: 4px; height: 100%; align-items: center; }
+
+.tab {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--dim);
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.12s;
+  height: 28px;
+}
+.tab:hover { color: var(--text); border-color: var(--border2); }
+.tab.active { color: var(--bright); border: 1px solid var(--border2); background: var(--bg3); }
+.tab .dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+.tab .ico { color: var(--orange); font-size: 13px; line-height: 1; }
+
+.idle-badge {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--dim); letter-spacing: 1.5px;
+}
+.idle-dot {
+  width: 6px; height: 6px;
+  background: var(--orange); border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+/* ─── BODY LAYOUT ─── */
+#body {
+  display: flex;
+  height: calc(100vh - 88px);
+  overflow: hidden;
+}
+
+/* ─── LEFT COLUMN ─── */
+#left {
+  flex: 1;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+}
+#left::-webkit-scrollbar { width: 3px; }
+#left::-webkit-scrollbar-thumb { background: var(--border2); }
+
+/* ─── RIGHT SIDEBAR ─── */
+#right {
+  width: 272px;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+#right::-webkit-scrollbar { width: 3px; }
+#right::-webkit-scrollbar-thumb { background: var(--border2); }
+
+/* ─── TAB VIEWS ─── */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ─── METRICS ROW ─── */
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.metric {
+  padding: 14px 18px;
+  border-right: 1px solid var(--border);
+}
+.metric:last-child { border-right: none; }
+
+.metric-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.m-label { font-size: 9px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; }
+.m-reset { font-size: 9px; letter-spacing: 1px; color: var(--dim); }
+
+.pbar {
+  height: 5px;
+  background: var(--border2);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.pbar-fill {
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    90deg, var(--orange) 0px, var(--orange) 4px, transparent 4px, transparent 5px
+  );
+}
+
+.m-val {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--bright);
+  letter-spacing: -0.5px;
+  margin-bottom: 5px;
+}
+.m-sub {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 1px;
+}
+
+/* ─── CHART ─── */
+.chart-wrap {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.chart-title { font-size: 9px; letter-spacing: 2px; color: var(--dim); text-transform: uppercase; }
+.chart-stat  { font-size: 9px; letter-spacing: 1px; color: var(--dim); }
+.chart-canvas { height: 150px; position: relative; }
+
+/* ─── INTEGRATIONS ─── */
+.integrations {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  flex-wrap: wrap;
+}
+.int-label { font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+.int-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: var(--dim); letter-spacing: 0.5px;
+}
+.int-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; }
+
+/* ─── READY AREA ─── */
+.ready-area {
+  padding: 30px 24px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.ready-tag { font-size: 9px; letter-spacing: 3px; color: var(--dim); text-transform: uppercase; margin-bottom: 14px; }
+
+.ready-headline {
+  font-size: 46px;
+  font-weight: 600;
+  color: var(--bright);
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.ready-headline .hl { color: var(--orange); }
+.cursor {
+  display: inline-block;
+  width: 4px; height: 0.78em;
+  background: var(--orange);
+  vertical-align: middle;
+  margin-left: 3px;
+  animation: cur 1s step-end infinite;
+}
+@keyframes cur { 0%,100%{opacity:1} 50%{opacity:0} }
+.ready-sub { font-size: 12px; color: var(--dim); letter-spacing: 0.5px; }
+
+/* ─── PROMPT ─── */
+.prompt-wrap {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.prompt-lbl { font-size: 9px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 8px; }
+
+textarea.prompt-in {
+  width: 100%;
+  min-height: 90px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  color: var(--bright);
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 12px 14px;
+  resize: vertical;
+  outline: none;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+textarea.prompt-in:focus { border-color: var(--orange); }
+textarea.prompt-in::placeholder { color: var(--dim); }
+
+.btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+
+.btn-run, .btn-clr {
+  padding: 13px;
+  font-family: var(--font);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid var(--border2);
+  transition: all 0.12s;
+}
+.btn-run { background: var(--bg3); color: var(--bright); }
+.btn-run:hover { background: var(--orange); color: #000; border-color: var(--orange); }
+.btn-clr { background: transparent; color: var(--dim); }
+.btn-clr:hover { color: var(--text); border-color: var(--dim); }
+
+/* ─── SKILLS ─── */
+.skills-wrap { padding: 22px 20px 40px; }
+
+.s-category { margin-bottom: 26px; }
+.s-cat-label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.s-btns { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.s-btn {
+  padding: 10px 18px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--bright);
+  font-family: var(--font);
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.s-btn:hover { border-color: var(--orange); background: var(--oglow); color: var(--orange); }
+.s-btn.active { border-color: var(--orange); background: var(--oglow); color: var(--orange); }
+
+/* ─── VAULT VIEW ─── */
+.vault-view { padding: 24px 22px; }
+.v-tree { display: flex; flex-direction: column; gap: 4px; }
+.v-root { font-size: 13px; color: var(--bright); margin-bottom: 8px; }
+.v-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--dim);
+  padding: 5px 0 5px 20px;
+  border-left: 1px solid var(--border);
+}
+.v-item:hover { color: var(--text); border-color: var(--border2); }
+.v-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+/* ─── DAILY NOTE VIEW ─── */
+.daily-view { padding: 24px 22px; }
+.daily-hd { font-size: 10px; letter-spacing: 2px; color: var(--dim); margin-bottom: 16px; }
+textarea.daily-in {
+  width: 100%;
+  min-height: 500px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  color: var(--bright);
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 16px;
+  resize: vertical;
+  outline: none;
+  line-height: 1.8;
+}
+textarea.daily-in:focus { border-color: var(--orange); }
+
+/* ─── RUNS VIEW ─── */
+.runs-view { padding: 24px 22px; }
+.runs-hd { font-size: 10px; letter-spacing: 2px; color: var(--dim); margin-bottom: 16px; }
+.runs-cmd {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  padding: 14px 16px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--dim);
+}
+.runs-cmd .cmd { color: var(--orange); }
+
+/* ─── HIVE MIND VIEW ─── */
+.hive-view { padding: 24px 22px; }
+.hive-hd { font-size: 10px; letter-spacing: 2px; color: var(--dim); margin-bottom: 16px; }
+table.hive-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.hive-tbl th {
+  text-align: left;
+  padding: 7px 10px;
+  color: var(--orange);
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--border2);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.hive-tbl td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.hive-tbl tr:hover td { background: var(--bg3); }
+.status-done { color: #55cc55; }
+.status-fail { color: #cc4444; }
+.status-prog { color: var(--orange); }
+
+/* ─── RIGHT SIDEBAR SECTIONS ─── */
+.sb-section { border-bottom: 1px solid var(--border); padding: 14px 16px; }
+.sb-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.sb-label em { color: var(--orange); font-style: normal; }
+
+/* FORECAST */
+.fc-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.fc-val { color: var(--orange); }
+.fc-bar-wrap {
+  height: 18px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.fc-elapsed { position: absolute; left:0; top:0; bottom:0; background: var(--orange2); width: 52%; }
+.fc-proj    { position: absolute; left:52%; top:0; bottom:0; background: rgba(255,77,0,0.2); width: 25%; }
+.fc-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: var(--dim);
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+.fc-events { display: flex; flex-direction: column; gap: 8px; }
+.fc-evt { display: flex; align-items: center; gap: 8px; font-size: 10px; }
+.fc-time { color: var(--dim); width: 34px; flex-shrink: 0; font-size: 10px; }
+.fc-name { color: var(--bright); flex: 1; font-size: 10px; letter-spacing: 0.3px; }
+.fc-eta  { color: var(--orange); font-size: 9px; white-space: nowrap; }
+
+/* VAULT PULSE */
+.vp-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.vp-item:last-child { border-bottom: none; }
+.vp-top { display: flex; align-items: center; gap: 7px; }
+.vp-badge {
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  background: var(--orange);
+  color: #000;
+  font-weight: 600;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+.vp-badge.upd {
+  background: transparent;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+}
+.vp-name {
+  font-size: 10px;
+  color: var(--text);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vp-age { font-size: 9px; color: var(--dim); flex-shrink: 0; }
+.vp-path { font-size: 9px; color: var(--dim); letter-spacing: 0.5px; }
+
+/* RECENT RUNS */
+.run-item {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--dim);
+  line-height: 1.5;
+}
+.run-item:last-child { border-bottom: none; }
+.run-name { color: var(--text); font-size: 10px; }
+.no-runs { font-size: 12px; color: var(--dim); }
+
+/* 7-DAY BARS */
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 64px;
+  padding-top: 8px;
+}
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; justify-content: flex-end; height: 100%; }
+.bar-fill { width: 100%; background: var(--orange); min-height: 3px; }
+.bar-lbl { font-size: 8px; color: var(--dim); letter-spacing: 0.5px; }
+
+/* SETUP STATUS */
+.setup-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px;
+  padding: 4px 0;
+  color: var(--dim);
+}
+.s-check { color: var(--orange); font-size: 12px; }
+.s-done  { color: var(--text); }
+.s-pend  { color: var(--dim); }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<div id="header">
+  <div class="logo">
+    <div class="logo-hex">⬡</div>
+    <div class="logo-text"><em>AGENTIC</em>OS</div>
+  </div>
+  <div class="header-links">
+    <span>VAULT</span><span class="sep">·</span>
+    <span>THE VAULT</span><span class="sep">·</span>
+    <span>PLAN</span><span class="sep">·</span>
+    <span>MAX</span><span class="sep">·</span>
+    <span>PERMISSION</span><span class="sep">·</span>
+    <span>BYPASSPERMISSIONS</span>
+  </div>
+</div>
+
+<!-- ─── TABS ─── -->
+<div id="tabs">
+  <div class="tabs-left">
+    <button class="tab active" onclick="setTab('main',this)"><span class="dot"></span> CLAUDE CODE</button>
+    <button class="tab" onclick="setTab('vault',this)"><span class="dot"></span> VAULT</button>
+    <button class="tab" onclick="setTab('daily',this)"><span class="ico">§</span> DAILY NOTE</button>
+    <button class="tab" onclick="setTab('runs',this)"><span class="ico">↑</span> RUNS FOLDER</button>
+    <button class="tab" onclick="setTab('hive',this)"><span class="ico">≡</span> HIVE MIND</button>
+  </div>
+  <div class="idle-badge"><div class="idle-dot"></div> IDLE</div>
+</div>
+
+<!-- ─── BODY ─── -->
+<div id="body">
+
+  <!-- ─── LEFT ─── -->
+  <div id="left">
+
+    <!-- TAB: MAIN -->
+    <div class="view active" id="view-main">
+
+      <!-- METRICS -->
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-head">
+            <span class="m-label">5-HOUR WINDOW</span>
+            <span class="m-reset">RESETS · NOW</span>
+          </div>
+          <div class="pbar"><div class="pbar-fill" style="width:62%"></div></div>
+          <div class="m-val">3.1M / 5.0M</div>
+          <div class="m-sub"><span>· 7 SESSIONS</span><span>→ FLAT</span></div>
+        </div>
+        <div class="metric">
+          <div class="metric-head">
+            <span class="m-label">WEEKLY WINDOW</span>
+            <span class="m-reset">RESETS · —</span>
+          </div>
+          <div class="pbar"><div class="pbar-fill" style="width:68%"></div></div>
+          <div class="m-val">41.0M / 60.0M</div>
+          <div class="m-sub"><span>· 43 SESSIONS</span><span>→ FLAT</span></div>
+        </div>
+        <div class="metric">
+          <div class="metric-head">
+            <span class="m-label">ROUTINES · MAX</span>
+            <span class="m-reset">RESETS · MIDNIGHT</span>
+          </div>
+          <div class="pbar"><div class="pbar-fill" style="width:60%"></div></div>
+          <div class="m-val">9 / 15</div>
+          <div class="m-sub"><span>$14.3 TODAY</span><span>→ FLAT</span></div>
+        </div>
+      </div>
+
+      <!-- CHART -->
+      <div class="chart-wrap">
+        <div class="chart-head">
+          <span class="chart-title">AGENTIC OS · CUMULATIVE ACTIVITY · 30D</span>
+          <span class="chart-stat" id="chartStat">· 0 TOTAL · 0 LAST 30</span>
+        </div>
+        <div class="chart-canvas"><canvas id="actChart"></canvas></div>
+      </div>
+
+      <!-- INTEGRATIONS -->
+      <div class="integrations">
+        <span class="int-label">INTEGRATIONS</span>
+        <div class="int-item"><div class="int-dot"></div> TOS SCANNER</div>
+        <div class="int-item"><div class="int-dot"></div> SEC/EDGAR</div>
+        <div class="int-item"><div class="int-dot"></div> OBSIDIAN VAULT</div>
+        <div class="int-item"><div class="int-dot"></div> HIVE MIND DB</div>
+      </div>
+
+      <!-- READY -->
+      <div class="ready-area">
+        <div class="ready-tag" id="readyTag">READY</div>
+        <div class="ready-headline" id="readyLine">RUN A <span class="hl">SKILL</span> TO BEGIN<span class="cursor"></span></div>
+        <div class="ready-sub" id="readySub">click a skill · press run · or type any prompt</div>
+      </div>
+
+      <!-- PROMPT -->
+      <div class="prompt-wrap">
+        <div class="prompt-lbl">PROMPT</div>
+        <textarea class="prompt-in" id="promptBox" rows="5" placeholder="type any prompt, or pick a skill below to load a template…"></textarea>
+        <div class="btn-row">
+          <button class="btn-run" id="runBtn" onclick="doRun()">RUN →</button>
+          <button class="btn-clr" onclick="doClear()">CLEAR</button>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="skills-wrap">
+
+        <div class="s-category">
+          <div class="s-cat-label">MEMORY</div>
+          <div class="s-btns">
+            <button class="s-btn" onclick="pick(this,'vault-cleanup')">Vault Cleanup</button>
+            <button class="s-btn" onclick="pick(this,'trade-memory')">Trade Memory</button>
+            <button class="s-btn" onclick="pick(this,'pinned-review')">Pinned Review</button>
+            <button class="s-btn" onclick="pick(this,'kb-status')">KB Status</button>
+          </div>
+        </div>
+
+        <div class="s-category">
+          <div class="s-cat-label">TRADING</div>
+          <div class="s-btns">
+            <button class="s-btn" onclick="pick(this,'premarket-scan')">Pre-Market Scan</button>
+            <button class="s-btn" onclick="pick(this,'trade-journal')">Trade Journal</button>
+            <button class="s-btn" onclick="pick(this,'catalyst-brief')">Catalyst Brief</button>
+            <button class="s-btn" onclick="pick(this,'pattern-review')">Pattern Review</button>
+            <button class="s-btn" onclick="pick(this,'risk-check')">Risk Check</button>
+          </div>
+        </div>
+
+        <div class="s-category">
+          <div class="s-cat-label">OPS</div>
+          <div class="s-btns">
+            <button class="s-btn" onclick="pick(this,'morning-brief')">Morning Brief</button>
+            <button class="s-btn" onclick="pick(this,'weekly-report')">Weekly Report</button>
+            <button class="s-btn" onclick="pick(this,'finance-brief')">Finance Brief</button>
+            <button class="s-btn" onclick="pick(this,'inbox-triage')">Inbox Triage</button>
+          </div>
+        </div>
+
+        <div class="s-category">
+          <div class="s-cat-label">RESEARCH</div>
+          <div class="s-btns">
+            <button class="s-btn" onclick="pick(this,'edgar-search')">SEC / EDGAR</button>
+            <button class="s-btn" onclick="pick(this,'finviz-screen')">Finviz Screen</button>
+            <button class="s-btn" onclick="pick(this,'news-scan')">News Scan</button>
+            <button class="s-btn" onclick="pick(this,'market-brief')">Market Brief</button>
+          </div>
+        </div>
+
+        <div class="s-category">
+          <div class="s-cat-label">PROJECTS</div>
+          <div class="s-btns">
+            <button class="s-btn" onclick="pick(this,'build-session')">Build Session</button>
+            <button class="s-btn" onclick="pick(this,'code-review')">Code Review</button>
+            <button class="s-btn" onclick="pick(this,'deploy-check')">Deploy Check</button>
+            <button class="s-btn" onclick="pick(this,'system-health')">System Health</button>
+          </div>
+        </div>
+
+        <div class="s-category">
+          <div class="s-cat-label">CUSTOM</div>
+          <div class="s-btns">
+            <button class="s-btn" onclick="pick(this,'tos-scanner')">TOS Scanner</button>
+            <button class="s-btn" onclick="pick(this,'hive-query')">Hive Mind</button>
+            <button class="s-btn" onclick="pick(this,'agent-status')">Agent Status</button>
+            <button class="s-btn" onclick="pick(this,'standup')">/ Standup</button>
+          </div>
+        </div>
+
+      </div><!-- /skills-wrap -->
+    </div><!-- /view-main -->
+
+    <!-- TAB: VAULT -->
+    <div class="view" id="view-vault">
+      <div class="vault-view">
+        <div class="sb-label" style="margin-bottom:18px;">VAULT STRUCTURE — D:\Agentic OS\</div>
+        <div class="v-tree">
+          <div class="v-root">📁 D:\Agentic OS\</div>
+          <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> trading\ — claude.md + 3 skills</div>
+          <div class="v-item"><div class="v-dot" style="background:#55cc55"></div> ops\ — claude.md + 2 skills</div>
+          <div class="v-item"><div class="v-dot" style="background:var(--dim)"></div> personal\ — claude.md</div>
+          <div class="v-item"><div class="v-dot" style="background:#ccaa00"></div> projects\ — claude.md</div>
+          <div class="v-item"><div class="v-dot" style="background:#4488cc"></div> wiki\ — knowledge base</div>
+          <div class="v-item"><div class="v-dot" style="background:var(--dim)"></div> raw\ — staging dump zone</div>
+          <div class="v-item"><div class="v-dot" style="background:var(--dim)"></div> archive\ — completed work</div>
+          <div class="v-item"><div class="v-dot" style="background:var(--dim)"></div> agents\ — 6 YAML configs</div>
+          <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> skills\global\ — 3 global skills</div>
+          <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> skills\trading\ — 3 trading skills</div>
+          <div class="v-item"><div class="v-dot" style="background:#55cc55"></div> skills\ops\ — 2 ops skills</div>
+          <div class="v-item"><div class="v-dot" style="background:#888"></div> .claude\ — CLAUDE.md + hooks + hivemind.db</div>
+          <div class="v-item"><div class="v-dot" style="background:#888"></div> .obsidian\ — vault config (app/graph/plugins)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: DAILY NOTE -->
+    <div class="view" id="view-daily">
+      <div class="daily-view">
+        <div class="daily-hd">DAILY NOTE — <span id="dailyDate"></span></div>
+        <textarea class="daily-in" id="dailyNote" placeholder="# Daily Note
+
+## Pre-Market
+- Watchlist:
+- Key catalyst:
+- Key levels:
+
+## Trades
+
+## End of Day Review
+
+## Notes / Lessons"></textarea>
+        <div style="margin-top:10px;">
+          <button class="btn-run" onclick="saveDaily()" style="width:100%">SAVE NOTE →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: RUNS FOLDER -->
+    <div class="view" id="view-runs">
+      <div class="runs-view">
+        <div class="runs-hd">RECENT RUNS — HIVE MIND LOG</div>
+        <div class="runs-cmd">
+          Query Hive Mind directly:<br><br>
+          <span class="cmd">python "D:\Agentic OS\.claude\hooks\task_complete.py" --query</span><br><br>
+          Returns the last 20 tasks logged across all agents.<br><br>
+          <span style="color:var(--dim)">Phase 3 will auto-populate this view from hivemind.db in real time.</span>
+        </div>
+        <div style="margin-top:20px;" id="runsList"></div>
+      </div>
+    </div>
+
+    <!-- TAB: HIVE MIND -->
+    <div class="view" id="view-hive">
+      <div class="hive-view">
+        <div class="hive-hd">HIVE MIND — AGENT TASK LOG (hivemind.db)</div>
+        <table class="hive-tbl">
+          <thead>
+            <tr>
+              <th>AGENT</th>
+              <th>TASK</th>
+              <th>DOMAIN</th>
+              <th>STATUS</th>
+              <th>TIME</th>
+            </tr>
+          </thead>
+          <tbody id="hiveTbody">
+            <tr><td colspan="5" style="padding:14px 10px;color:var(--dim);font-size:12px;">No tasks logged yet. Hooks will auto-populate this table after your first Claude Code session in the vault.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /left -->
+
+  <!-- ─── RIGHT SIDEBAR ─── -->
+  <div id="right">
+
+    <!-- FORECAST -->
+    <div class="sb-section">
+      <div class="sb-label">FORECAST · <em>5H</em></div>
+      <div class="fc-stats">
+        <span>BURN · <span class="fc-val">3.1M/min</span></span>
+        <span>UNDER CAP</span>
+        <span>THIS WINDOW</span>
+      </div>
+      <div class="fc-bar-wrap">
+        <div class="fc-elapsed"></div>
+        <div class="fc-proj"></div>
+      </div>
+      <div class="fc-legend">
+        <span>■ ELAPSED</span>
+        <span>■ PROJECTED</span>
+        <span>■ NOW</span>
+        <span>■ RESETS</span>
+      </div>
+      <div class="fc-events">
+        <div class="fc-evt">
+          <span class="fc-time">08:30</span>
+          <span class="fc-name">PRE-MARKET SCAN</span>
+          <span class="fc-eta">DAILY</span>
+        </div>
+        <div class="fc-evt">
+          <span class="fc-time">09:00</span>
+          <span class="fc-name">MORNING BRIEF</span>
+          <span class="fc-eta">DAILY</span>
+        </div>
+        <div class="fc-evt">
+          <span class="fc-time">09:30</span>
+          <span class="fc-name">MARKET OPEN</span>
+          <span class="fc-eta">DAILY</span>
+        </div>
+        <div class="fc-evt">
+          <span class="fc-time">16:00</span>
+          <span class="fc-name">PATTERN REVIEW</span>
+          <span class="fc-eta">FRI</span>
+        </div>
+        <div class="fc-evt">
+          <span class="fc-time">09:00</span>
+          <span class="fc-name">WEEKLY REPORT</span>
+          <span class="fc-eta">MON</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VAULT PULSE -->
+    <div class="sb-section">
+      <div class="sb-label">VAULT PULSE</div>
+      <div class="vp-item">
+        <div class="vp-top">
+          <span class="vp-badge">CREATED</span>
+          <span class="vp-name">skills/trading/tos-scanner.md</span>
+          <span class="vp-age">1H</span>
+        </div>
+        <div class="vp-path">SKILLS/TRADING</div>
+      </div>
+      <div class="vp-item">
+        <div class="vp-top">
+          <span class="vp-badge">CREATED</span>
+          <span class="vp-name">skills/trading/trade-journal.md</span>
+          <span class="vp-age">1H</span>
+        </div>
+        <div class="vp-path">SKILLS/TRADING</div>
+      </div>
+      <div class="vp-item">
+        <div class="vp-top">
+          <span class="vp-badge">CREATED</span>
+          <span class="vp-name">agents/main.yaml</span>
+          <span class="vp-age">2H</span>
+        </div>
+        <div class="vp-path">AGENTS</div>
+      </div>
+      <div class="vp-item">
+        <div class="vp-top">
+          <span class="vp-badge upd">UPDATED</span>
+          <span class="vp-name">.claude/CLAUDE.md</span>
+          <span class="vp-age">2H</span>
+        </div>
+        <div class="vp-path">SYSTEM</div>
+      </div>
+      <div class="vp-item">
+        <div class="vp-top">
+          <span class="vp-badge">CREATED</span>
+          <span class="vp-name">trading/claude.md</span>
+          <span class="vp-age">3H</span>
+        </div>
+        <div class="vp-path">TRADING</div>
+      </div>
+      <div class="vp-item">
+        <div class="vp-top">
+          <span class="vp-badge">CREATED</span>
+          <span class="vp-name">HOME.md</span>
+          <span class="vp-age">4H</span>
+        </div>
+        <div class="vp-path">ROOT</div>
+      </div>
+    </div>
+
+    <!-- RECENT RUNS -->
+    <div class="sb-section">
+      <div class="sb-label">RECENT RUNS</div>
+      <div id="recentRuns"><span class="no-runs">no runs yet</span></div>
+    </div>
+
+    <!-- LAST 7 DAYS -->
+    <div class="sb-section">
+      <div class="sb-label">LAST <em>SEVEN</em> DAYS</div>
+      <div class="bars" id="sevenBars"></div>
+    </div>
+
+    <!-- SETUP STATUS -->
+    <div class="sb-section">
+      <div class="sb-label">SETUP STATUS</div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Vault structure</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Master CLAUDE.md</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Domain claude.md (4)</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Hook files (3)</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">settings.json wired</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Obsidian .obsidian/</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Agent YAMLs (6)</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Global skills (3)</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Trading skills (3)</span></div>
+      <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Ops skills (2)</span></div>
+      <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">API keys (.env)</span></div>
+      <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Telegram bots (6)</span></div>
+      <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Phase 2 — Memory</span></div>
+      <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Phase 3 — Agents</span></div>
+      <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Phase 4 — Dashboard</span></div>
+      <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Phase 5 — War Room</span></div>
+    </div>
+
+  </div><!-- /right -->
+
+</div><!-- /body -->
+
+<script>
+/* ─── SKILL TEMPLATES ─── */
+const SKILLS = {
+'vault-cleanup': `Review my vault at D:\\Agentic OS\\ and identify:
+1. Files in raw/ older than 7 days → should be archived
+2. Notes missing proper tags or domain assignment
+3. Duplicate or near-duplicate files
+4. Files in wrong folder (not their domain)
+Output: cleanup action list, sorted by priority.`,
+
+'trade-memory': `Review my recent trade journal entries and extract:
+1. Patterns in winning trades (setup type, time of day, catalyst)
+2. Patterns in losing trades (what triggered the loss)
+3. Rule violations (stop bypassed, oversized)
+4. Key lessons worth pinning (importance ≥ 9/10)
+Format as a structured memory update for hivemind.db.`,
+
+'pinned-review': `Audit my 10 pinned memories (PINNED-001 through PINNED-010 in CLAUDE.md):
+1. Are they still accurate and current?
+2. Should any be updated with new info?
+3. Are there new facts from recent sessions that deserve pinned status?
+Output: current state of each pinned memory + any recommended changes.`,
+
+'kb-status': `Audit my knowledge base (wiki/ folder):
+1. What topics are currently documented?
+2. What's missing based on my domains (trading, ops, projects)?
+3. Which notes are outdated or need updating?
+4. What should be added based on recent Hive Mind activity?
+Output: wiki audit with priority additions list.`,
+
+'premarket-scan': `Run pre-market scanner protocol:
+Date: ${new Date().toISOString().split('T')[0]}
+
+1. List top 5 small-cap movers (>5% pre-market, volume >100k shares)
+2. For each ticker: float, catalyst type, key levels (HOD pre-market, prior close)
+3. Grade each: PRIMARY / SECONDARY / SKIP
+4. Flag any FDA or earnings catalyst (highest priority)
+5. Output formatted watchlist
+
+Save to: raw/trading/${new Date().toISOString().split('T')[0]}-scanner.md`,
+
+'trade-journal': `Log a new trade entry:
+
+Ticker:
+Side (LONG / SHORT):
+Entry price + time ET:
+Exit price + time ET:
+Shares:
+P&L: +$  / -$
+Catalyst:
+Setup type (gap-and-go / VWAP reclaim / HOD break / other):
+Entry reason (specific):
+Exit reason (target / stop / thesis broken):
+Risk % of account used:
+Grade (A / B / C / D):
+Notes:
+
+[Fill in the fields above — I'll format and save to your trade journal]`,
+
+'catalyst-brief': `Catalyst Research Brief
+
+Ticker: [TICKER]
+
+Research:
+1. SEC EDGAR — any 8-K filings last 48 hours?
+2. Catalyst type + strength (FDA / Earnings / Contract / PR / Social hype)
+3. Float + short interest %
+4. Pre-market price and volume
+5. Key levels: HOD pre-market, prior day close, key resistance
+6. Watch rating: PRIMARY / SECONDARY / SKIP
+
+Output: standard catalyst brief format
+Save to: raw/trading/${new Date().toISOString().split('T')[0]}-catalyst-[TICKER].md`,
+
+'pattern-review': `Friday Pattern Review — Week of ${new Date().toISOString().split('T')[0]}
+
+Pull from raw/trading/ this week's trade logs and analyze:
+1. Total trades | Win rate | Avg R:R
+2. Best setup this week — what worked and why
+3. Worst trade — what went wrong
+4. Grade distribution (count of A / B / C / D)
+5. Any rule violations (stop ignored, oversized position)
+6. ONE focus area for next week
+7. Write Hive Mind log entry for this review`,
+
+'risk-check': `Risk Check — Current Session
+
+Verify current standing:
+1. Drawdown today: $X = X% (vs 3% daily max → STOP if hit)
+2. Trades taken today: N
+3. Largest single loss today: $X (vs 1-2% per trade max)
+4. Current account equity: $X
+5. Are we clear to keep trading? YES / NO
+
+Flag any violations immediately in RED.
+If daily max is hit → output STOP TRADING message.`,
+
+'morning-brief': `Morning Brief — ${new Date().toISOString().split('T')[0]}
+
+Generate a concise morning brief (one page max):
+
+TRADING
+- Pre-market movers worth watching?
+- Any catalysts today (FDA dates, earnings)?
+- VIX + market environment (active / cautious)?
+
+OPS
+- Any scheduled tasks today?
+- Anything due or overdue?
+
+PROJECTS
+- ONE build task for today (from projects/claude.md)
+
+SYSTEM
+- Any Hive Mind failures in last 24h?
+
+End with: TODAY'S ONE PRIORITY`,
+
+'weekly-report': `Generate Weekly Ops Report
+
+Pull from Hive Mind (last 7 days) and generate:
+1. Task summary by agent (count completed / failed)
+2. Failed tasks list with reason
+3. Domain activity breakdown (trading / ops / projects / system)
+4. Trading P&L summary this week (from raw/trading/)
+5. Finance brief summary
+6. Next week priorities (top 3 action items)
+
+Format: standard weekly report template
+Save to: ops/reports/${new Date().toISOString().split('T')[0].slice(0,7)}-weekly-report.md`,
+
+'finance-brief': `Generate Finance Brief — ${new Date().toISOString().split('T')[0]}
+
+Pull from raw/trading/ (this week's trade logs):
+1. Gross P&L this week | Net P&L (after commissions)
+2. Best day + worst day
+3. Win rate + avg winner / avg loser
+4. Account value + weekly return %
+5. Available capital for trading
+6. Any alerts? (approaching drawdown limit / large expense)
+
+Save to: ops/finance/${new Date().toISOString().split('T')[0]}-finance-brief.md`,
+
+'inbox-triage': `Inbox Triage
+
+Review my inbox and:
+1. Flag URGENT (respond today) — list with suggested reply
+2. Flag DELEGATE → which agent handles this?
+3. Flag ARCHIVE → can be closed
+4. Draft responses for top 3 urgent items
+
+Keep responses short. Direct. No fluff.`,
+
+'edgar-search': `SEC/EDGAR Research
+
+Ticker: [TICKER]
+
+Search for:
+1. 8-K filings in last 7 days (material events)
+2. S-1 or S-3 (dilution risk — flag if present)
+3. Form 4 filings (insider buying or selling)
+4. Any DEF 14A (proxy — activist involvement?)
+
+Output: key findings + direct link to each filing
+Flag any dilution risk in RED`,
+
+'finviz-screen': `Finviz Small-Cap Momentum Screen
+
+Run screen with these filters:
+- Market cap: Under $300M
+- Price: $1.00 to $20.00
+- Volume: Over 500K today
+- % Change: Over 5%
+- Country: USA
+- Exchange: NYSE, NASDAQ, AMEX
+
+Output: top 10 tickers + quick catalyst check for each
+Mark any with known catalyst as PRIORITY`,
+
+'news-scan': `Morning News Scan — ${new Date().toISOString().split('T')[0]}
+
+1. Any FDA decisions today or this week? (drug approvals, CRL letters)
+2. Any small-cap earnings surprises (beat + raised guidance)?
+3. Any major contracts or partnerships announced?
+4. Which sector is in play today?
+5. Any macro catalysts? (Fed, CPI, jobs data)
+
+Output: brief summary — actionable format only
+Flag anything that could create a momentum trade`,
+
+'market-brief': `Market Brief — ${new Date().toISOString().split('T')[0]}
+
+1. Pre-market futures: SPY / QQQ / IWM
+2. VIX level + interpretation (low <15 / normal 15-25 / high >25)
+3. Sector leaders and laggards today
+4. Small-cap sentiment: IWM vs SPY (small-caps outperforming?)
+5. Economic data releases today
+6. Trading plan implication:
+   - Active day (high vol, follow momentum)?
+   - Cautious day (choppy, stay small)?`,
+
+'build-session': `Build Session Start
+
+Project: [NAME]
+What did we last complete? (check projects/claude.md)
+
+Today's ONE task:
+Expected output:
+Time estimate:
+
+Rules for this session:
+- Functional first. Optimized later.
+- One step at a time
+- If stuck > 15 min → ask for help, don't spiral
+- Log to Hive Mind when done
+
+Ready. State the task.`,
+
+'code-review': `Code Review
+
+Paste the code below. I will check:
+1. Logic errors or bugs
+2. Risk of data loss or unintended side effects
+3. Missing error handling (try/except, null checks)
+4. Readability (ADHD-friendly: clear variable names, short functions)
+5. One specific improvement suggestion
+
+[Paste code here]`,
+
+'deploy-check': `Deploy Checklist
+
+What are you deploying?
+
+Before deploying, confirm:
+[ ] Code reviewed and tested?
+[ ] Backup of current state exists?
+[ ] Rollback plan defined?
+[ ] Hive Mind log entry planned?
+[ ] No active trades or sessions that could be interrupted?
+[ ] Blaine has approved this change?
+
+State what you're deploying and we'll run through this together.`,
+
+'system-health': `System Health Check
+
+Verify all components of the Agentic OS:
+
+1. HIVE MIND DB
+   - File exists: D:\\Agentic OS\\.claude\\hivemind.db?
+   - Last task logged: when?
+
+2. HOOKS
+   - session_start.py — fires on UserPromptSubmit?
+   - post_compaction.py — fires on PostToolUse?
+   - task_complete.py — fires on Stop?
+
+3. AGENT CONFIGS (6)
+   - main / trading / ops / research / comms / meta — all present?
+
+4. DOMAIN FILES (4)
+   - trading / ops / personal / projects — claude.md present?
+
+5. SKILLS
+   - global (3) / trading (3) / ops (2) — all present?
+
+6. RECENT FAILURES
+   - Any failed tasks in last 24h?
+
+Output: GREEN / YELLOW / RED per component`,
+
+'tos-scanner': `TOS Scanner Build / Update
+
+What type of scanner do you need?
+[ ] Pre-Market Gapper (>5% pre-market, vol >100k)
+[ ] HOD Breakout (new intraday high with volume)
+[ ] VWAP Reclaim (price reclaiming VWAP)
+[ ] Running Scanner (real-time momentum)
+[ ] Dollar Volume Filter (liquidity screen)
+[ ] Custom: [describe your setup]
+
+Also specify:
+- Price range: $___  to  $___
+- Volume minimum: ___k
+- Any float filter?
+
+I'll generate the complete ThinkScript column config.`,
+
+'hive-query': `Hive Mind Query
+
+Run this command to see the last 20 tasks:
+
+python "D:\\Agentic OS\\.claude\\hooks\\task_complete.py" --query
+
+I will then analyze:
+1. Which agent is most active?
+2. Any failed tasks?
+3. Any logging gaps (tasks done but not logged)?
+4. What domain has the most activity?
+
+Paste the output here and I'll give you a full analysis.`,
+
+'agent-status': `Agent Status Report
+
+For each of the 6 agents, report from Hive Mind:
+
+MAIN (Orchestrator)
+Last task: | Status: | Next:
+
+TRADING
+Last task: | Status: | Next:
+
+OPS
+Last task: | Status: | Next:
+
+RESEARCH
+Last task: | Status: | Next:
+
+COMMS
+Last task: | Status: | Next:
+
+META (System Health)
+Last task: | Status: | Next:
+
+Flag any agent with status = pending_api_key in YELLOW.`,
+
+'standup': `/ standup — All Agents Report
+
+Each agent reports from Hive Mind last 24 hours:
+
+MAIN: what did you orchestrate? any delegation failures?
+TRADING: what scans / journals completed? any rule violations flagged?
+OPS: any reports generated? scheduled tasks fired?
+RESEARCH: any research tasks completed?
+COMMS: any drafts or messages handled?
+META: any system health issues? agent suggestions?
+
+Format: one clear paragraph per agent.
+End with: system status = GREEN / YELLOW / RED`
+};
+
+/* ─── ACTIVE SKILL BUTTON ─── */
+let activeBtn = null;
+
+function pick(btn, skillId) {
+  const text = SKILLS[skillId];
+  if (!text) return;
+
+  document.getElementById('promptBox').value = text;
+
+  if (activeBtn) activeBtn.classList.remove('active');
+  btn.classList.add('active');
+  activeBtn = btn;
+
+  document.getElementById('readyTag').textContent = 'SKILL LOADED';
+  document.getElementById('readyLine').innerHTML =
+    btn.textContent.trim().toUpperCase() + ' <span class="hl">READY</span><span class="cursor"></span>';
+  document.getElementById('readySub').textContent = 'edit the prompt if needed · then press RUN';
+
+  document.getElementById('promptBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* ─── TAB SWITCH ─── */
+function setTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('view-' + id).classList.add('active');
+}
+
+/* ─── RUN ─── */
+function doRun() {
+  const text = document.getElementById('promptBox').value.trim();
+  if (!text) return;
+
+  const btn = document.getElementById('runBtn');
+  const skillName = activeBtn ? activeBtn.textContent.trim() : 'Custom';
+  const now = new Date().toLocaleTimeString('en-US', { hour12: false, hour:'2-digit', minute:'2-digit' });
+
+  // Add to recent runs
+  const runsEl = document.getElementById('recentRuns');
+  const noRuns = runsEl.querySelector('.no-runs');
+  if (noRuns) noRuns.remove();
+
+  const item = document.createElement('div');
+  item.className = 'run-item';
+  item.innerHTML = `<span class="run-name">${skillName}</span><br>${now}`;
+  runsEl.insertBefore(item, runsEl.firstChild);
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'COPIED ✓';
+    btn.style.background = 'var(--orange)';
+    btn.style.color = '#000';
+    btn.style.borderColor = 'var(--orange)';
+    setTimeout(() => {
+      btn.textContent = 'RUN →';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 1800);
+  }).catch(() => {
+    btn.textContent = 'RUN →';
+  });
+}
+
+/* ─── CLEAR ─── */
+function doClear() {
+  document.getElementById('promptBox').value = '';
+  if (activeBtn) { activeBtn.classList.remove('active'); activeBtn = null; }
+  document.getElementById('readyTag').textContent = 'READY';
+  document.getElementById('readyLine').innerHTML = 'RUN A <span class="hl">SKILL</span> TO BEGIN<span class="cursor"></span>';
+  document.getElementById('readySub').textContent = 'click a skill · press run · or type any prompt';
+}
+
+/* ─── SAVE DAILY NOTE ─── */
+function saveDaily() {
+  const btn = event.target;
+  btn.textContent = 'SAVED ✓';
+  setTimeout(() => btn.textContent = 'SAVE NOTE →', 2000);
+}
+
+/* ─── DAILY DATE ─── */
+document.getElementById('dailyDate').textContent = new Date().toISOString().split('T')[0];
+
+/* ─── CHART ─── */
+(function buildChart() {
+  const labels = [], data = [];
+  const start = new Date('2026-04-05');
+  let cum = 0, total = 0;
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(start);
+    d.setDate(d.getDate() + i);
+    labels.push(d.toLocaleDateString('en-US', { month: 'short', day: '2-digit' }));
+    const daily = Math.floor(Math.random() * 7) + 1;
+    cum += daily; total += daily;
+    data.push(cum);
+  }
+  document.getElementById('chartStat').textContent = `· ${total} TOTAL · ${total} LAST 30`;
+
+  const ctx = document.getElementById('actChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data,
+        borderColor: '#ff4d00',
+        borderWidth: 2,
+        backgroundColor: (context) => {
+          const { ctx: c, chartArea } = context.chart;
+          if (!chartArea) return 'rgba(255,77,0,0.1)';
+          const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+          g.addColorStop(0, 'rgba(255,77,0,0.45)');
+          g.addColorStop(1, 'rgba(255,77,0,0.02)');
+          return g;
+        },
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: '#ff4d00',
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#111',
+          borderColor: '#ff4d00',
+          borderWidth: 1,
+          titleColor: '#ff4d00',
+          bodyColor: '#c0c0c0',
+          titleFont: { family: 'IBM Plex Mono', size: 10 },
+          bodyFont:  { family: 'IBM Plex Mono', size: 10 },
+          padding: 10,
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#161616' },
+          ticks: { color: '#383838', font: { family: 'IBM Plex Mono', size: 9 }, maxTicksLimit: 7 },
+          border: { color: '#1c1c1c' }
+        },
+        y: {
+          grid: { color: '#161616' },
+          ticks: { color: '#383838', font: { family: 'IBM Plex Mono', size: 9 } },
+          border: { color: '#1c1c1c' }
+        }
+      }
+    }
+  });
+})();
+
+/* ─── 7-DAY BARS ─── */
+(function buildBars() {
+  const days = ['TUE','WED','THU','FRI','SAT','SUN','MON'];
+  const vals = [18, 35, 50, 70, 20, 8, 60];
+  const el = document.getElementById('sevenBars');
+  days.forEach((d, i) => {
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+    col.innerHTML = `<div class="bar-fill" style="height:${vals[i]}%"></div><div class="bar-lbl">${d}</div>`;
+    el.appendChild(col);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,681 @@
+========================================
+JACK KELLOGG PLAYBOOK -- SMALL-CAP LISTED ADAPTATION
+OTC CONTENT REMOVED. ALL PRINCIPLES REBUILT FOR NASDAQ/NYSE SMALL-CAPS.
+Adapted and integrated with Grant AI Trading Desk framework.
+Research Date: March 30, 2026
+========================================
+
+
+========================================
+SECTION 1 -- WHAT CHANGED AND WHY THIS MATTERS
+========================================
+
+Kellogg himself stated the core difference between OTC and NASDAQ execution:
+"A successful strategy used on penny stocks will paper cut you all the way down on
+NASDAQ and vice versa."
+
+He also stated about listed small-caps that when stocks pop after a big run, they
+"usually just have massive selling pressure" -- the first green day setup that works
+cleanly on OTCs frequently fails on listed names.
+
+What this means for the adaptation:
+
+On OTCs, the edge was structural predictability: promoters create soft landings,
+patterns are more mechanical, float is thin and bounces are faster, Level 2 is
+cleaner with less noise.
+
+On listed small-caps, the edge must come from a different source: confirmed catalyst,
+dilution structure awareness, volume/float relationship quality, regime fit, and
+precise VWAP/support entry discipline. The mechanics are the same but the filter
+requirements are significantly stricter.
+
+His three documented listed-stock big P&L events: GME squeeze, AMC squeeze, BBBY.
+All three were thick-float listed names with short squeeze mechanics, not
+promoter-driven thin-float plays.
+
+The adaptation below strips every OTC-specific element and rebuilds the logic
+for NASDAQ/NYSE small-cap listed names using his confirmed principles.
+
+
+========================================
+SECTION 2 -- MARKET FOCUS (LISTED SMALL-CAP VERSION)
+========================================
+
+Instruments:
+NASDAQ and NYSE listed small-cap stocks, $0.50 to $30 price range.
+Float: Low to mid float preferred for single-name momentum. Thick float accepted
+when the mechanism is a genuine squeeze (AMC/GME model).
+
+Why thick float for squeezes (his confirmed logic):
+"With the thick floats you have a very clear stop. And with the low floats I don't
+like to trade them on NASDAQ."
+Low-float listed names have unpredictable halt risk, wider spreads, and less reliable
+L2 data than their OTC equivalents. His adaptation was to use thick-float listed
+names specifically for squeeze plays and use the float's predictability as the
+structural stop definition tool.
+
+Session focus:
+Pre-market observation is mandatory. He reviews patterns before the open to set up
+trades. First 30-60 minutes after open is his primary execution window.
+Slow markets = reduce activity. Hot cycles = maximum deployment.
+
+Regime requirement:
+Bull market or hot sector environment = breakouts work. Trade them long.
+Bear market = breakouts stuff. Quote: "I didn't even trade breakouts at all in 2022
+because we're in a bear market. Any breakout that attempts is going to stuff."
+This is a hard regime gate. Not optional.
+
+Confirmed sector filters:
+Hot active theme must be in play. Oil (2022), meme cycle (2021), AI (2023+).
+No theme, no edge. Name-specific plays without sector support treated as scalp-only.
+
+
+========================================
+SECTION 3 -- SETUP CATALOG (OTC REMOVED, LISTED ONLY)
+========================================
+
+--------
+SETUP 1: LISTED MORNING PANIC DIP BUY
+Classification: Scalp to intraday
+Confidence: High
+--------
+
+Description:
+A listed small-cap that gapped up or ran the prior day sells off hard and fast in
+the first 30 minutes. Sellers overwhelm. Volume surges downward. Price crashes to
+a structural level. The panic is mechanical and fast, not a slow grind lower.
+
+What makes it work on listed names vs OTC:
+On listed names there is no promoter-controlled soft landing. The bounce must be
+driven by shorts covering, trapped buyers getting shaken out, or genuine support
+at a prior structure level. This means the dip buy on a listed name requires a
+harder structural confirmation before entry than an OTC dip buy.
+
+Required context:
+Stock must have a confirmed catalyst from the prior session or premarket.
+Volume spike during the panic confirms exhaustion of sellers, not continuation.
+VWAP must be above the entry point or the price must be recovering toward VWAP.
+Clear stop exists at the panic low.
+
+Entry trigger:
+First stabilization candle after the panic. First green candle after the flush.
+Not mid-panic. Wait for the momentum of the sell-off to visibly stall.
+
+Stop: One to two ticks below the panic low. Tight.
+
+Target:
+Recovery to VWAP. Partial exit at VWAP.
+If VWAP reclaimed with volume, hold partial for HOD test.
+Do not hold through a re-test of the panic low.
+
+Size: Start at 10-15% of intended position. Add only if VWAP reclaim holds.
+
+Failure condition:
+Panic low breached after entry = cut immediately. No averaging. No waiting.
+"Panics don't always bounce. Cut losses and walk away."
+
+Adaptation note from OTC version:
+On OTCs, the promoter incentive created predictable soft landings.
+On listed names, the soft landing must be justified by structural support
+(prior day close, VWAP, prior breakout level, high-volume node).
+If no structural level exists below the panic, the setup is not valid.
+
+
+--------
+SETUP 2: OVERNIGHT GAPPER -- LISTED SMALL-CAP VERSION
+Classification: Scalp to short swing
+Confidence: High
+--------
+
+Description:
+Buying near the close of session when a listed small-cap is closing strong on a
+confirmed catalyst, in anticipation of a gap-up open or continued momentum the
+next morning.
+
+What makes it work on listed names:
+Listed names close with real price discovery. Institutional order flow participates.
+A strong close near HOD on expanding volume on a named catalyst is a different
+quality signal than an OTC close. The risk is defined by the prior day close.
+
+Required context:
+Confirmed catalyst same day or after close.
+Stock closing in top 10-20% of day's range.
+End-of-day volume above average. Not thinning into close.
+Bull market regime active. Bear regime = this setup stuffs at open.
+Dilution review required. If active ATM/shelf confirmed = downgrade to scalp.
+
+Entry trigger:
+Buy within last 30 minutes of session if close confirms above support.
+AH catalyst exception only with extreme catalyst quality (FDA, earnings beat confirmed).
+
+Stop:
+Prior day close. If stock opens below close = exit at open. No hold through gap-down.
+
+Target:
+Morning gap-up spike first 15 minutes. Trim 30-40% immediately on morning strength.
+If stock consolidates elevated after the initial spike = hold partial with trail.
+Hard exit: if stock fades immediately on open = 100% out within first 15 minutes.
+Never hold an overnight listed play past 10:30 AM ET without continuation confirmation.
+
+Dilution gate:
+Active ATM, active shelf, or 424B filed within 60 days = remove from overnight
+consideration. Overnight hold with active dilution = financing event into morning spike
+is a real structural risk. The close-near-HOD signal does not override a live seller.
+
+Size: Start at 50% of intended size. Add only if pre-market shows no adverse news.
+
+
+--------
+SETUP 3: SHORT SQUEEZE ON LISTED THICK-FLOAT NAMES
+Classification: Intraday to multi-day
+Confidence: High
+--------
+
+Description:
+A listed stock with a thick, well-defined float is being heavily shorted and a
+catalyst or sustained buying forces short sellers to cover, accelerating the move.
+
+Why Kellogg explicitly preferred thick-float listed names for large size:
+"With the thick floats you have a very clear stop."
+Float size creates predictable stop levels. The move is defined by the structural
+mechanics of covering, not by thin-float volatility or halt risk.
+
+Required context:
+Confirmed short interest above 15-20% of float.
+Catalyst that forces covering (earnings beat, FDA, sector momentum, short report failure).
+Price holding above prior resistance level after initial squeeze move.
+Volume expanding on each push higher, not contracting.
+Not already extended 50%+ on day one without pullback.
+
+Entry:
+Do not buy at the beginning of the squeeze. Let the first push happen.
+Entry on the first pullback that holds above VWAP after the initial spike.
+Or entry on HOD break after consolidation if shorts failed to push price back down.
+
+Stop:
+Below the consolidation low after the squeeze begins. Below VWAP on reclaim play.
+
+Target:
+Prior HOD. Then measured move based on the base.
+Trim aggressively into climax volume. Climax volume = the squeeze is ending, not
+continuing. High volume at highs = potential exhaustion, not proof of more upside.
+"Seeing big volume go through I know that potentially a lot of people are on the
+wrong side."
+
+Size:
+His largest size was deployed on squeeze plays in listed thick-float names.
+Thick float = clear stop = size can be larger without catastrophic slippage risk.
+Liquidity check required before sizing large: can you exit 100% within two minutes?
+
+Multi-day hold logic:
+If sector theme is active and volume confirms each day, hold partial.
+If sector cools or volume contraction appears = exit remaining position.
+Do not hold squeeze beyond day 3-4 without fresh catalyst confirmation.
+
+Failure condition:
+T+2 settlement forces covering (T+1 buys, forced covers).
+Once T+2 cycle clears, forced covering ends. Squeeze without new buyers = fade.
+Exit before the forced cover exhaust period ends.
+
+
+--------
+SETUP 4: BREAKOUT CONTINUATION -- BULL REGIME ONLY
+Classification: Intraday to swing
+Confidence: Medium-High
+--------
+
+Description:
+A listed small-cap breaks above a prior resistance level on high relative volume
+during a confirmed bull market or hot sector environment. The key distinction from a
+fake breakout: volume is leading the move and price acceptance above the level is
+sustained for at least one full candle.
+
+Why regime gating is critical:
+Kellogg explicitly did not trade breakouts in 2022.
+Quote: "Breakouts are not going to work. Any breakout that attempts is going to stuff."
+In bull market: breakdowns get bought and saved. Breakouts follow through.
+In bear market: breakouts stuff at the first resistance test.
+This is a hard binary. Regime must be confirmed before any breakout entry.
+
+Required context:
+IWM above 20-day SMA, confirming small-cap bull environment.
+QQQ in uptrend or neutral (not confirmed downtrend).
+Stock has a confirmed catalyst from last 1-3 days.
+Stock has been consolidating 5-15 days, not extended multi-week.
+Volume on the breakout candle must be materially above the 20-day average.
+No active ATM or major shelf resale near the breakout price.
+
+Entry trigger:
+First 15-minute candle close above the breakout level with volume expansion.
+Not the initial gap. Not the pre-market push. The confirmed intraday acceptance.
+
+Stop:
+Below the breakout level. If price closes back below within 2 candles = exit.
+No exceptions. A breakout that fails immediately is a failed breakout. Exit.
+
+Target:
+Prior significant resistance level.
+VWAP if entering from above as confirmation hold.
+Partial exit at first resistance. Trail remainder with 15-min candle low.
+
+Size:
+Start at 10-15% of planned position at trigger.
+Add 25% more if stock holds above breakout for 30 minutes.
+Final add if stock breaks next resistance level.
+Full position only if each scale-in point holds. Never frontload.
+
+
+--------
+SETUP 5: SECTOR MOMENTUM MULTI-DAY SWING
+Classification: Swing 1-5 days
+Confidence: Medium
+--------
+
+Description:
+Identifying the hottest sector in the current cycle and swinging the highest-quality
+names within that sector for multiple sessions.
+
+His documented examples: oil stocks in March 2022, AI names in 2023, squeeze names
+2020-2021. He explicitly said his best month in 2022 was the oil sector run.
+
+Required context:
+Sector ETF is in uptrend (above 20-day SMA).
+Multiple names in the same sector showing momentum simultaneously.
+The stock being considered is leading the sector, not lagging.
+Regime must be confirmed (bull or hot sector in otherwise mixed market).
+
+Entry:
+End-of-day hold into gap-up strategy (see Setup 2) or first pullback in uptrend.
+Not buying the leader after it has already moved 30%+. Look for the pullback entry.
+
+Stop:
+Prior day low. Trail upward with each new higher low.
+If sector ETF breaks below 20-day SMA = exit all sector swing positions regardless
+of individual chart condition.
+
+Target:
+Not rigidly defined in his public statements. Trail until sector shows exhaustion.
+First sign of sector ETF volume contraction or price reversal = reduce exposure.
+
+Dilution gate:
+Active financing risk on any swing candidate = remove from consideration.
+Multi-day holds require no live seller. An active ATM or shelf is a live seller.
+
+
+========================================
+SECTION 4 -- INDICATORS TRANSLATED TO SMALL-CAP LISTED CONTEXT
+========================================
+
+These are his confirmed four indicators, adapted specifically for listed small-cap use.
+
+--------
+INDICATOR 1: VWAP
+--------
+
+On listed names:
+VWAP is more meaningful on listed stocks than OTCs because institutional order flow
+participates. VWAP breaks and reclaims carry real signal weight.
+
+Buy rule: Do not buy a listed small-cap long if price is materially above VWAP
+without a clear reclaim setup. Buying above VWAP on a listed name means you are
+buying above where the average participant entered that day. You are chasing.
+
+Short awareness rule: Do not short a listed name below VWAP without confirmation.
+VWAP below = bearish. Shorting below VWAP chases the move.
+
+Profit-taking rule: VWAP is the first exit level on bounce trades.
+If entry was below VWAP, first target is VWAP reclaim.
+
+Stop-loss alignment: For dip buys, VWAP reclaim failure = exit signal.
+If price recovers to VWAP but cannot hold, the bounce thesis is failing.
+
+
+--------
+INDICATOR 2: LINEAR REGRESSION CHANNEL
+--------
+
+On listed names:
+Three-line overlay (upper band, midline, lower band).
+Price above upper band = extended, potential reversal zone.
+Price below lower band = oversold, potential bounce zone.
+Used to confirm trend direction. Not used as a standalone entry signal.
+"A stock moving well within a channel makes its price trend more predictable."
+On listed small-caps: channel movement is cleaner in trending sectors, choppier
+in non-trending names. Apply only when trend context is confirmed.
+
+
+--------
+INDICATOR 3: VOLUME
+--------
+
+On listed names:
+Volume spike near HOD = potential exhaustion. Many people chasing. Reversal risk.
+Volume spike near LOD after a panic = potential seller exhaustion. Bounce setup.
+Volume expansion on breakout candle = confirms the move.
+Volume contraction on pullback = healthy consolidation, continuation likely.
+Churn (high volume, low net price movement) = hidden distribution. Exit immediately.
+"Seeing big volume go through, I know that potentially a lot of people are on the
+wrong side."
+On listed names this is especially critical because institutional programs can create
+high-volume absorption at tops that looks like buying but is distribution.
+
+
+--------
+INDICATOR 4: SUPPORT AND RESISTANCE
+--------
+
+On listed names:
+Key levels defined by: price hovering for 30 minutes to one hour = strongest S/R.
+Volume parallel to price at those levels confirms their significance.
+Prior day high, prior day low, prior day close = structural reference levels.
+Breakout price from the prior base = becomes support after successful breakout.
+On listed small-caps, these levels carry more weight because institutional memory
+holds them. OTC levels are often more fluid due to thin float.
+
+
+========================================
+SECTION 5 -- EXECUTION FRAMEWORK (LISTED ADAPTATION)
+========================================
+
+Entry style:
+Start at 10-15% of intended total position. Observe thesis confirmation.
+Scale up in increments only as the trade proves right.
+Pre-market observation required before any entry. Not optional.
+"He stalks potential trades for several days before entering."
+On listed names this means watching the daily chart pattern for 2-5 days before
+triggering, not discovering a name and entering same session.
+
+How to add on listed names:
+First add: 25% more if price holds above entry level for 30 minutes with volume.
+Second add: 25% more if price breaks the next intraday resistance level.
+Final 25%: Only if the overall setup is exceptionally clean and regime is hot.
+Never add if the first entry is already in the red.
+
+Trimming:
+Sell into speedups / acceleration candles. Not at pre-set time rules.
+Trim at first major resistance. Hold partial with trail if momentum continues.
+On listed names, acceleration into climax volume = first trim trigger, not hold signal.
+Climax volume near highs means the move is ending, not extending.
+
+Exits:
+Price action against thesis = exit immediately. No indicator can override this.
+VWAP loss after a reclaim = exit or reduce significantly.
+Morning spike after overnight hold: sell 25-30% in first 15 minutes regardless.
+If stock fades immediately after gap-up open = 100% out, no holding for recovery.
+Time stop on overnight: 10:30 AM ET maximum. After that, continuation must be
+actively proven, not assumed.
+
+Signs of a bad listed play in real time:
+High volume at HOD with no price expansion = absorption / distribution.
+VWAP reclaim attempt fails twice = supply is real.
+Spread widens at key resistance = institutional seller present.
+Price unable to close above breakout level after 2+ candle attempts = failed breakout.
+Sector ETF losing ground while individual stock holds = name-specific momentum only,
+not sector-supported. Downgrade to scalp-only, do not swing hold.
+
+
+========================================
+SECTION 6 -- RISK MANAGEMENT (LISTED ADAPTATION)
+========================================
+
+Stop placement:
+Below structural level: panic low, breakout price, VWAP, prior day close.
+On listed names stops must be placed before entry. Never defined after.
+Maximum stop on listed small-cap swing: 8-12% from entry.
+If required stop distance exceeds 12% = the setup is not clean. Pass.
+
+Sizing by regime:
+Hot bull market: full size per risk formula on highest-conviction setups.
+Mixed market: 50-75% size maximum. Sector must be confirmed hot.
+Bear market: no breakout trades. Dip buy and squeeze only. 25-50% size maximum.
+Slow market (summer, low RVOL environment): rest. Do not force trades.
+
+Sizing by dilution:
+Active ATM or 424B in last 60 days: reduce size by 50% minimum or skip.
+Shelf only (no active 424B): 75% size acceptable with Grade A catalyst.
+Clean cap table: full size per risk formula.
+This is the Grant AI Trading Desk overlay on the Kellogg model. His framework does
+not explicitly call this out for listed names, but the MMNFF cannabis liquidity
+disaster and his documented avoidance of small-float NASDAQ names both confirm the
+structural risk awareness is embedded in his practice.
+
+Drawdown response:
+After a large loss: size down immediately. Do not press harder.
+Do not return to normal size until multiple consecutive green days confirm
+recalibration is working.
+Quote: "He realized he had to size down his positions to limit his risk until he was
+more confident about the market environment."
+This is a regime re-entry protocol, not a willpower test.
+
+Liquidity rule (critical for listed names):
+Before any large-size entry on a listed small-cap: verify that the bid/ask spread
+and volume are sufficient to exit the full position within two minutes without
+material slippage. If exit is not liquid: reduce size until it is, or skip.
+The MMNFF $367K loss was predominantly slippage. That lesson directly applies
+to listed names with thin float or wide spread.
+
+Max concurrent positions:
+Normal markets: 2-3 highest-conviction setups.
+Hot market: can expand, but must maintain ability to monitor each position.
+Never hold 10+ positions without demonstrable hot market conditions confirmed
+by sector ETF behavior and multi-name momentum simultaneously.
+
+
+========================================
+SECTION 7 -- NO-TRADE CONDITIONS (LISTED SPECIFIC)
+========================================
+
+Do not trade listed small-cap long setups when any of these are true:
+
+Regime is bear. Quote: "I didn't trade breakouts at all in 2022."
+Sector ETF is below its 20-day SMA for the name's sector.
+Active ATM, active equity line, or 424B filed within 60 days.
+Catalyst is vague PR, LOI, MOU, or non-monetizable. No real demand driver.
+Float is too thin for intended size. Liquidity cannot support clean exit.
+Spread is wide. Wide spread = stop is fictional because slippage will eat it.
+Price is already extended 30%+ from the base without a pullback.
+VWAP is materially above the entry zone for a new long entry. Chasing.
+Stock is in confirmed downtrend (lower highs, lower lows on daily). No long.
+Panic is slow grind lower, not a sharp fast flush. Slow grind = distribution not panic.
+Breakout occurred in the last 30 minutes of session without overnight confirmation.
+Your last trade in this name was a loss. Take one session off from that ticker.
+
+
+========================================
+SECTION 8 -- PSYCHOLOGY AND PROCESS RULES
+========================================
+
+These rules are universal. None are OTC-specific. They apply directly to listed names.
+
+View money as numbers:
+The account balance is a working capital figure, not a personal finance number.
+This prevents the hesitation that creates late entries and late exits on listed names.
+
+Cut losses before they cut you:
+On listed names this is more urgent than OTC. Listed stocks can halt, gap against
+positions, and move faster on institutional order flow.
+If the thesis is wrong, exit. Do not negotiate with a losing position.
+
+Transparency as discipline:
+Log every trade. Win and loss. Know your actual edge and failure rate per setup type.
+You cannot improve what you do not measure.
+
+Stalk before trading:
+Two to five days of observation before trading a listed name.
+This prevents entering setups you have not seen behave as expected.
+Pattern familiarity is conviction. Conviction is the basis for appropriate size.
+
+Hot market vs slow market:
+The market controls your activity level. You do not control the market.
+In slow markets: rest, reduce, wait. Forcing trades in slow markets generates losses.
+In hot markets: deploy size on the cleanest setups. This is where accounts grow.
+
+Emotional cycle awareness:
+When euphoria is visible (massive climax volume, media coverage, social frenzy) =
+prepare to reduce. The move is ending, not starting.
+"He aims to identify when stocks are nearing peak excitement, indicating that the
+top is near. Accordingly, he waits for consolidation near these highs before
+taking positions."
+On listed small-caps: euphoria exits faster than OTC because institutional programs
+are participating and will distribute at the peak.
+
+Revenge trading:
+Zero tolerance. After a loss: step away from that name for a session.
+Revenge trades break position sizing rules, entry location rules, and stop rules
+simultaneously because the motivation is emotional, not analytical.
+
+
+========================================
+SECTION 9 -- REGIME DETECTION LAYER
+========================================
+
+Morning regime check (5 minutes before trading):
+Check IWM vs its 20-day SMA. Above = green. Below = yellow or red.
+Check QQQ trend. Both green = full operation.
+Check sector ETF for the name you intend to trade. ETF above 20 SMA = sector hot.
+Check VIX. Below 20 = low volatility, setups more reliable.
+VIX above 30 = reduce size on all long setups.
+
+Regime-to-setup map:
+Green regime (IWM + QQQ above 20 SMA, VIX below 20): All setups active.
+Yellow regime (one index below or VIX 20-30): Dip buys and squeeze only. No breakout.
+Red regime (both below 20 SMA or VIX above 30): No new swing entries. Scalp only.
+
+Breakout regime gate (hard rule from Kellogg's own words):
+Bull market: buy breakdowns, they get saved. Breakouts follow through. Trade long.
+Bear market: breakouts stuff. Do not trade them long. Short them if anything.
+This is not a guideline. It is a binary regime decision made before market open.
+
+
+========================================
+SECTION 10 -- RULES-BASED RECONSTRUCTION (LISTED SMALL-CAP)
+========================================
+
+SETUP ENTRY CRITERIA:
+Stock is on the top percent gainer scan with a confirmed named catalyst.
+Stock has been observed for 2+ prior sessions with pattern familiar.
+Regime check passed: sector ETF above 20-day SMA, IWM not in confirmed downtrend.
+VWAP is below the entry price (for dip buys and breakout holds).
+Volume on the setup candle is materially above 20-day average.
+Float and liquidity confirmed: can exit full intended size within 2 minutes.
+Dilution check passed: no active ATM, no 424B in last 60 days.
+Clear structural stop exists before entry is placed.
+
+ENTRY CHECKLIST:
+First entry: 10-15% of total planned position at trigger only.
+Second entry: 25% more if holds above trigger for 30 minutes.
+Third entry: 25% if next resistance broken.
+Final entry: Never more than 100% of planned total. Never add to losers.
+Spread acceptable. No wide spread entry.
+
+RISK CHECKLIST:
+Stop defined before entry. Below structural level only.
+Stop distance does not exceed 8-12% from entry.
+Regime confirmed green or yellow.
+Dilution clean or manageable.
+Liquidity confirmed.
+
+EXIT CHECKLIST:
+Price action against thesis: exit 100% immediately.
+VWAP reclaim attempt fails twice: exit or reduce to 25% max.
+Climax volume near HOD: trim 30-40% immediately.
+Sell into speedups, not into base price.
+Overnight hold: sell 25-30% at open. 100% exit if immediate fade on gap-up.
+Time stop on overnight: 10:30 AM ET.
+Sector ETF breaks 20-day SMA: exit all sector-linked swing holds.
+
+NO-TRADE CONDITIONS:
+Bear market / red regime active.
+Active ATM or 424B within 60 days.
+Catalyst is vague or promotional.
+Float too thin for intended size.
+Price already extended 30%+ without reset.
+Prior loss in this ticker same session.
+Slow market / low RVOL environment.
+Spread is wide.
+No structural stop level identifiable.
+
+
+========================================
+A. TOP 5 STRONGEST EVIDENCE-BACKED TAKEAWAYS
+(LISTED SMALL-CAP VERSION)
+========================================
+
+1. Regime is binary for breakout setups. Bull = trade breakouts long. Bear = do not.
+His 2022 behavior is the clearest evidence available. $1.7M in 2022 came from oil
+sector momentum and squeeze plays, not from breakouts. He confirmed this explicitly.
+
+2. Thick-float listed names are his preference for large size, not thin-float NASDAQ.
+"With the thick floats you have a very clear stop." Thin-float NASDAQ = avoided for
+large size due to halt risk, wide spread, and unpredictable L2.
+
+3. VWAP is the entry quality filter and first profit target. Not a buy signal.
+Buy below VWAP, sell toward VWAP or above it. This applies directly to listed names.
+
+4. Scaling into position is non-negotiable. 10-15% first, add only to winners.
+Frontloading on a listed name creates the same MMNFF liquidity trap risk.
+
+5. Dilution awareness is required even on listed plays.
+His biggest listed wins (GME, AMC, BBBY) were structurally clean at entry time.
+He does not chase listed names into active financing windows.
+
+
+========================================
+B. TOP 5 UNRESOLVED UNKNOWNS (LISTED VERSION)
+========================================
+
+1. Precise volume threshold that distinguishes a qualified morning panic from an ordinary
+pullback on a listed name. Not quantified in any public source.
+
+2. Exact regime rule for partial activity in yellow regime. He describes sizing down but
+not the specific size reduction formula.
+
+3. How he identifies sector momentum early enough to ride it vs late enough to avoid the
+distribution phase. Oil March 2022 was captured early. China pumps in 2022 were
+described as erratic wins and losses.
+
+4. Stop management rules for multi-day swing holds on listed names. Daily close below
+what level triggers exit? Not documented with precision.
+
+5. Whether his current 2024-2026 activity has shifted further toward swing trading and
+away from intraday. IBTimes 2024 article suggests swing holds grew in importance.
+Current setup catalog proportion is unknown.
+
+
+========================================
+C. TRUE OPERATING STYLE SUMMARY (LISTED SMALL-CAP)
+========================================
+
+On listed small-cap names, Kellogg operates as a catalyst-driven momentum trader who
+enters beaten-down or consolidating stocks at structurally defined low-risk levels,
+exploits short-covering or genuine buying pressure for a defined move, and exits into
+strength before the move exhausts. He does not use complex systems. He uses four simple
+indicators as confirmation filters, not as signals. His real edge on listed names is
+threefold: regime awareness that prevents him from trading setups that do not work in
+the current environment, liquidity discipline that prevents catastrophic single-trade
+losses, and entry timing at or below VWAP with a structural stop that makes the risk
+genuinely small relative to the potential reward. He expands aggression only in hot
+confirmed cycles and contracts to near-zero in slow or bear conditions.
+
+
+========================================
+D. COMPACT EDGE CHECKLIST (LISTED SMALL-CAP)
+========================================
+
+Regime confirmed green or yellow before any long entry.
+VWAP is at or above entry point on dip buys and reclaim plays.
+Catalyst is confirmed, not promotional. Named source, monetizable.
+Dilution check clean or watch. No active 424B in last 60 days.
+Float and liquidity support the intended size cleanly.
+Structural stop defined before entry. Below panic low, breakout level, or prior close.
+Start at 10-15% of intended size. Scale in only on confirmation.
+High volume near HOD = first trim signal, not hold signal.
+Sector ETF in uptrend. Name must align with sector, not trade against it.
+Breakout setups are bull regime only. No exceptions.
+Sell into speedups. Not into base or VWAP.
+After any large loss: size down until multiple green days confirm recalibration.
+
+--------
+END OF JACK KELLOGG PLAYBOOK -- SMALL-CAP LISTED ADAPTATION
+Generated by Grant AI Trading Desk
+--------

@@ -11,7 +11,7 @@ This is the source-of-truth file for your AIOS. Fill it in by typing, voice-past
 Identity, offer, ICP. One paragraph each is fine.
 
 ```
-[Your answer here]
+I'm Blaine — a small cap stock trader and beginner coder. Right now I do it for myself, but my goal is to build the best dashboards and products that help beginner traders learn faster and get profitable quicker. I also want to build apps and web tools for family, friends, and local businesses in my area, because AI isn't widely known or used where I live yet.
 ```
 
 ---
@@ -21,11 +21,37 @@ Identity, offer, ICP. One paragraph each is fine.
 An email, a LinkedIn post, a DM, a doc — anything that sounds like you when you're not trying. **Paste verbatim.** Do not type these mid-conversation with Claude — chat-shaped samples are worse than no samples (voice contamination).
 
 ```
-[Sample 1 — paste raw]
+Are Data Centers Worth the Noise to Local Communities?
+
+"Multiple cities of people have filed lawsuits and complaints against these data centers because of the noise."
+
+"The first question I ask myself is, are we gonna need data centers in America? Yes, if we wanna compete in the modern world, in the modern economy, we are going to need them. They are good for society and good for the economy."
+
+What politicians like Mamdani are missing in 2026. 
+
+In 1970, 85% of S&P 500 wealth was tied to tangible assets. Politicians could bully the wealthy because money couldn't move.
+
+Today, 90% is intangible: code, IP, capital.
+
+Wealth is now mobile. Push too hard & it leaves.
 ```
 
 ```
-[Sample 2 — paste raw]
+Corporate convinced an entire generation that:
+
+• Working 40+ hours = Success
+• Trading time for money = Wealth
+• Climbing ladders = Winning
+• Retirement at 65 = Freedom
+
+Meanwhile:
+
+• The HVAC guy makes 3x your salary
+• The laundromat owner works 5 hours/week
+• The boring business owner retired at 35
+• The plumber's kid will inherit millions
+
+We studied the wrong people.
 ```
 
 ---
@@ -35,9 +61,9 @@ An email, a LinkedIn post, a DM, a doc — anything that sounds like you when yo
 Quarterly priorities. Not yearly aspirations. Things that, if not done by July, would make you say "I wasted Q2."
 
 ```
-1. [Priority 1]
-2. [Priority 2]
-3. [Priority 3]
+1. Fix my losing P&L — cut losses down to 0.25–0.33% per trade by end of July.
+2. Finish my Trade Journal / backtest prototype.
+3. Build a working TOS (thinkorswim) profitable strategy backtester with a Dilution Tracker, Learning System, and Thinkscript-coded study filters for watchlist scans that produce tradeable tickers.
 ```
 
 ---
@@ -47,7 +73,7 @@ Quarterly priorities. Not yearly aspirations. Things that, if not done by July, 
 Multiple answers OK. Stripe? Skool? GoHighLevel? QuickBooks? A spreadsheet?
 
 ```
-[Your answer here]
+PayPal, multiple brokerage accounts (thinkorswim/TD Ameritrade), and several debit cards/bank accounts. No formal tracking system yet.
 ```
 
 ---
@@ -57,7 +83,7 @@ Multiple answers OK. Stripe? Skool? GoHighLevel? QuickBooks? A spreadsheet?
 Email (which one — Gmail / Outlook)? Slack? Teams? DMs (Skool / Discord / iMessage)? Phone?
 
 ```
-[Your answer here]
+Gmail, Twitter/X, Facebook, Instagram, Discord
 ```
 
 ---
@@ -67,7 +93,7 @@ Email (which one — Gmail / Outlook)? Slack? Teams? DMs (Skool / Discord / iMes
 Granola? Otter? Fireflies? Google Drive? Notion? Dropbox? A folder on your desktop you keep meaning to organize?
 
 ```
-[Your answer here]
+Obsidian
 ```
 
 ---
@@ -77,7 +103,7 @@ Granola? Otter? Fireflies? Google Drive? Notion? Dropbox? A folder on your deskt
 The single biggest time-suck or recurring drudgery. Plus where tasks/projects live (ClickUp / Asana / Linear / Notion / a notebook).
 
 ```
-[Your answer here]
+Everything competes for attention. Solo operator, 41, severe ADHD/OCD — staying organized and focused is the core struggle. No single tracking system in place yet. Working on it incrementally.
 ```
 
 ---

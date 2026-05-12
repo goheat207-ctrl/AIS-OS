@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unified Small-Cap Trading Operating System</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0d0d0d;--white:#ffffff;--offwhite:#f5f4f0;--gray:#6b7280;
+  --light-gray:#e5e7eb;--green:#059669;--green-bg:#ecfdf5;--green-light:#a7f3d0;
+  --red:#dc2626;--red-bg:#fef2f2;--red-light:#fecaca;--amber:#b45309;
+  --amber-bg:#fffbeb;--blue:#1e40af;--blue-bg:#eff6ff;--accent:#f59e0b;
+  --accent-dark:#92400e;--divider:#e2e0db;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--black);font-size:14px;line-height:1.65;}
+.cover{background:var(--black);color:var(--white);min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:60px;position:relative;overflow:hidden;}
+.cover-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 20%,rgba(245,158,11,.12) 0%,transparent 70%),repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,.025) 80px);}
+.cover-num{position:absolute;top:0;right:0;font-family:'Bebas Neue',cursive;font-size:clamp(200px,30vw,380px);color:rgba(255,255,255,.03);line-height:1;letter-spacing:-.02em;pointer-events:none;user-select:none;}
+.cover-eyebrow{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;position:relative;z-index:1;}
+.cover h1{font-family:'Bebas Neue',cursive;font-size:clamp(54px,7vw,100px);line-height:.92;letter-spacing:.01em;margin-bottom:24px;position:relative;z-index:1;}
+.cover h1 span{color:var(--accent);}
+.cover-desc{font-size:16px;color:rgba(255,255,255,.5);max-width:560px;margin-bottom:48px;line-height:1.55;position:relative;z-index:1;}
+.cover-pills{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;position:relative;z-index:1;}
+.cover-pill{border:1px solid rgba(255,255,255,.15);padding:8px 18px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.04em;}
+.cover-pill-gold{border-color:var(--accent);color:var(--accent);}
+.cover-stats{display:flex;gap:36px;flex-wrap:wrap;position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);padding-top:32px;}
+.c-stat{display:flex;flex-direction:column;gap:4px;}
+.c-stat-l{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.c-stat-v{font-family:'Bebas Neue',cursive;font-size:26px;letter-spacing:.02em;}
+.page{background:var(--white);max-width:1200px;margin:0 auto 2px;padding:56px 60px;border-bottom:1px solid var(--divider);}
+.page-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);border-top:2px solid var(--black);padding-top:6px;margin-bottom:36px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+h2{font-family:'Bebas Neue',cursive;font-size:48px;letter-spacing:.02em;line-height:1;margin-bottom:20px;}
+h2 span{color:var(--accent);}
+h3{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;margin-bottom:12px;letter-spacing:-.01em;}
+h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+p{margin-bottom:14px;color:#374151;}p:last-child{margin-bottom:0;}
+ul{padding-left:18px;}ul li{margin-bottom:6px;color:#374151;}
+ol{padding-left:20px;}ol li{margin-bottom:8px;color:#374151;}
+strong{font-weight:700;}
+.col-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.col-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;}
+.col-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px;}
+.divider{border:none;border-top:1px solid var(--divider);margin:36px 0;}
+.mt-8{margin-top:8px;}.mt-12{margin-top:12px;}.mt-16{margin-top:16px;}.mt-20{margin-top:20px;}.mt-24{margin-top:24px;}.mt-28{margin-top:28px;}.mt-32{margin-top:32px;}
+.mb-16{margin-bottom:16px;}.mb-20{margin-bottom:20px;}.mb-24{margin-bottom:24px;}
+.badge{display:inline-block;padding:5px 14px;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.badge-gold{background:var(--accent);color:var(--black);}.badge-green{background:var(--green);color:white;}
+.badge-red{background:var(--red);color:white;}.badge-black{background:var(--black);color:white;}
+.badge-blue{background:var(--blue);color:white;}.badge-outline{border:1.5px solid var(--black);color:var(--black);background:transparent;}
+.badge-orange{background:#ea580c;color:white;}
+.conf-high,.conf-med,.conf-low{padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;}
+.conf-high{background:var(--green-bg);color:var(--green);border:1px solid var(--green-light);}
+.conf-med{background:var(--amber-bg);color:var(--amber);border:1px solid #fde68a;}
+.conf-low{background:var(--red-bg);color:var(--red);border:1px solid var(--red-light);}
+.card{border:1px solid var(--divider);border-radius:8px;padding:20px 24px;background:var(--white);}
+.card-gold{background:#fffbeb;border-color:#fde68a;}.card-green{background:var(--green-bg);border-color:var(--green-light);}
+.card-red{background:var(--red-bg);border-color:var(--red-light);}.card-blue{background:var(--blue-bg);border-color:#bfdbfe;}
+.card-black{background:var(--black);color:var(--white);}.card-black p,.card-black li{color:rgba(255,255,255,.72);}
+.card-black h3,.card-black h4{color:var(--white);}
+.card-stripe{border-left:4px solid var(--accent);}.card-stripe-green{border-left:4px solid var(--green);}
+.card-stripe-red{border-left:4px solid var(--red);}.card-stripe-blue{border-left:4px solid var(--blue);}
+.card-stripe-orange{border-left:4px solid #ea580c;}
+.setup-card{border:1px solid var(--divider);border-radius:10px;overflow:hidden;margin-bottom:28px;}
+.setup-hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 22px;background:var(--black);color:var(--white);flex-wrap:wrap;}
+.setup-hdr-title{font-family:'Bebas Neue',cursive;font-size:22px;letter-spacing:.04em;}
+.setup-body{padding:22px;}
+.setup-grid{display:grid;grid-template-columns:1fr 1fr;}
+.setup-cell{padding:14px 18px;border-right:1px solid var(--divider);border-bottom:1px solid var(--divider);}
+.setup-cell:nth-child(2n){border-right:none;}
+.setup-cell:nth-last-child(-n+2){border-bottom:none;}
+.setup-cell-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-bottom:5px;}
+.setup-cell-val{font-size:13px;color:var(--black);}
+.checklist{list-style:none;padding:0;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--divider);color:#374151;}
+.checklist li:last-child{border-bottom:none;}
+.c-icon{min-width:20px;font-size:15px;margin-top:1px;}
+.c-green{color:var(--green);}.c-red{color:var(--red);}
+.t{width:100%;border-collapse:collapse;}
+.t th{background:var(--black);color:white;padding:10px 14px;text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;}
+.t td{padding:10px 14px;border-bottom:1px solid var(--divider);font-size:13px;color:#374151;vertical-align:top;}
+.t tr:nth-child(even) td{background:#fafaf8;}
+.callout{border-left:4px solid var(--black);padding:14px 18px;background:#fafaf8;margin:16px 0;}
+.callout-gold{border-left-color:var(--accent);background:var(--amber-bg);}
+.callout-green{border-left-color:var(--green);background:var(--green-bg);}
+.callout-red{border-left-color:var(--red);background:var(--red-bg);}
+.callout-blue{border-left-color:var(--blue);background:var(--blue-bg);}
+.regime-card{border-radius:10px;padding:22px;margin-bottom:16px;}
+.regime-title{font-family:'Bebas Neue',cursive;font-size:20px;letter-spacing:.04em;margin-bottom:8px;}
+.score-bar-wrap{background:var(--light-gray);border-radius:4px;height:8px;overflow:hidden;margin:6px 0;}
+.score-bar{height:100%;border-radius:4px;}
+.evidence-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--divider);}
+.evidence-row:last-child{border-bottom:none;}
+.evidence-num{min-width:30px;height:30px;background:var(--accent);color:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;}
+.evidence-num-red{background:var(--red);color:white;}
+.takeaway-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.takeaway-card{background:var(--black);color:white;border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:8px;}
+.takeaway-num{font-family:'Bebas Neue',cursive;font-size:40px;color:var(--accent);line-height:1;}
+.takeaway-text{font-size:12px;color:rgba(255,255,255,.68);line-height:1.5;}
+.pillar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.pillar-card{background:var(--black);color:var(--white);border-radius:8px;padding:16px 14px;text-align:center;}
+.pillar-num{font-family:'Bebas Neue',cursive;font-size:36px;color:var(--accent);line-height:1;}
+.pillar-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-top:8px;}
+.pillar-detail{font-size:11px;color:rgba(255,255,255,.55);margin-top:6px;line-height:1.4;}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.pros-col{background:var(--green-bg);padding:24px;border-radius:8px 0 0 8px;}
+.cons-col{background:var(--red-bg);padding:24px;border-radius:0 8px 8px 0;}
+.footer{background:var(--black);color:rgba(255,255,255,.3);text-align:center;padding:24px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+.number-circle{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
+.nc-gold{background:var(--accent);color:var(--black);}
+.nc-red{background:var(--red);color:white;}
+.nc-green{background:var(--green);color:white;}
+.nc-blue{background:var(--blue);color:white;}
+.nc-black{background:var(--black);color:white;}
+@media(max-width:820px){
+  .page{padding:36px 22px;}
+  .col-2,.col-3,.col-4,.setup-grid,.pros-cons,.takeaway-grid,.pillar-grid{grid-template-columns:1fr;}
+  .cover{padding:40px 28px;}
+}
+</style>
+</head>
+<body>
+
+
+<!-- ============================================================ COVER ============================================================ -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-num">OS</div>
+  <div class="cover-eyebrow">Unified Architecture · 5 Source Playbooks → 1 Operating System · U.S. Small Caps</div>
+  <h1>UNIFIED<br>SMALL-CAP<br><span>TRADING OS</span></h1>
+  <p class="cover-desc">A rules-based small-cap trading operating system built from the structural edge of Ross Cameron, Roland Wolf, The Ignition System, Mark Minervini VCP, and Jesse Livermore — stripped of personality-driven behavior, survivorship bias, and vague intuition. Every rule traces to a source playbook. Every conflict is resolved with a regime-based decision.</p>
+  <div class="cover-pills">
+    <div class="cover-pill cover-pill-gold">5 Integrated Setups</div>
+    <div class="cover-pill">6 Regime States</div>
+    <div class="cover-pill">Dilution-Aware Execution</div>
+    <div class="cover-pill">Catalyst-Driven Momentum</div>
+    <div class="cover-pill">Multi-Timeframe</div>
+    <div class="cover-pill">Survivability-First</div>
+  </div>
+  <div class="cover-stats">
+    <div class="c-stat"><span class="c-stat-l">Risk Per Trade</span><span class="c-stat-v">0.75–1.25%</span></div>
+    <div class="c-stat"><span class="c-stat-l">Max Portfolio Heat</span><span class="c-stat-v">4–6%</span></div>
+    <div class="c-stat"><span class="c-stat-l">Drawdown Hard Stop</span><span class="c-stat-v">-10–12%</span></div>
+    <div class="c-stat"><span class="c-stat-l">Source Playbooks</span><span class="c-stat-v">5</span></div>
+    <div class="c-stat"><span class="c-stat-l">Approved Setups</span><span class="c-stat-v">5</span></div>
+    <div class="c-stat"><span class="c-stat-l">Regime States</span><span class="c-stat-v">6</span></div>
+  </div>
+</div>
+
+<!-- ============================================================ SECTION 1: SETUP DECOMPOSITION ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 01 · Setup Decomposition — Structural Edge From Each Source Playbook</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>SETUP <span>DECOMPOSITION</span></h2>
+  <p>Each setup below is reverse-engineered from the source playbooks. Trader-specific personality, speed advantages, and institutional knowledge are removed. What remains is the transferable structural logic — the part that works because of market mechanics, not because of who is trading.</p>
+
+  <!-- SETUP 1 -->
+  <div class="setup-card mt-28">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 1 · GAP & GO / MOMENTUM BREAKOUT</div>
+      <span class="badge badge-gold">Source: Ross Cameron · Primary Intraday Setup</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>Core Thesis</h4>
+          <p>A stock gaps up significantly pre-market on a real news catalyst. After the open, buyers continue to press higher rather than immediately filling the gap. The structural edge is the combination of short sellers trapped pre-market who must cover, FOMO buyers entering at the open, and low float amplifying every directional move. The highest-quality version has no selling pressure at all — it simply goes and never looks back.</p>
+          <div class="callout callout-gold">
+            <strong>Why it works mechanically:</strong> Shorts who faded the gap are underwater the moment price holds pre-market highs. Forced covering + new buyers = momentum expansion. Float scarcity amplifies this into a multi-point move.
+          </div>
+          <h4 class="mt-16">Required Conditions (All Must Be Present)</h4>
+          <ul>
+            <li>Float under 20M shares preferred; hard ceiling at 50M for this setup</li>
+            <li>Price in $2–$20 range (above $20 reduces edge significantly per Cameron's data)</li>
+            <li>Relative volume 5x+ vs. 30-day average at time of setup</li>
+            <li>Intraday move 10%+ from prior close before entry</li>
+            <li>Verifiable news catalyst: earnings, FDA, partnership, contract, financing — NOT technical gap only</li>
+            <li>No confirmed dilution event: check authorized vs. outstanding shares, no ATM offering announced</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Ideal Market Regime</h4>
+          <p><strong>Risk-On Momentum only.</strong> IWM above 20-day MA. VIX below 22. Small-cap breadth positive (more small-cap stocks above 50MA than below). At least one other small-cap running the same session confirms momentum regime is active. If the market is mixed or risk-off, this setup's follow-through rate drops sharply.</p>
+          <h4 class="mt-16">Trigger</h4>
+          <p>First candle to make a new high after a clean consolidation above pre-market high, with volume expanding on the breakout candle. The consolidation must be 3–8 candles on a 1-minute chart with volume contracting. The breakout candle must be green and close near its high.</p>
+          <h4 class="mt-16">Invalidation</h4>
+          <ul>
+            <li>Gap fades immediately at the open — first candle is a large red engulfing</li>
+            <li>Volume is thin on the breakout candle (below average of the consolidation)</li>
+            <li>Large seller visible on Level 2 sitting at resistance</li>
+            <li>Broad market reverses sharply at open (SPY or IWM selling hard)</li>
+            <li>ATM offering or dilution news hits during pre-market</li>
+          </ul>
+        </div>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Failure Pattern</div>
+          <div class="setup-cell-val">Gap opens strong, consolidates, breaks out with one candle, then immediately stalls. Volume dries up on the second candle. Price slowly drifts back into consolidation. This is a fakeout — exit immediately below the consolidation low, not after it "might recover."</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Best Holding Profile</div>
+          <div class="setup-cell-val">Intraday only. Hold through first 1–2 continuation legs. Partial profit at 1.5R–2R. Trail with 1-minute structure after first partial. Hard exit before 11:30 AM unless still actively expanding. Never hold overnight unless it also qualifies as Setup 5 (VCP).</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Small-Cap Specific Risk</div>
+          <div class="setup-cell-val">Halt risk is real. If stock halts up on continuation, assess liquidity on resume — wide spreads after halt = reduce size or exit. ATM offering can print at any moment on a gap run. Crowded retail attention means everyone sees the same setup — fake breakouts are common when too many traders are watching.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Source Attribution</div>
+          <div class="setup-cell-val">Ross Cameron — 5-Pillar Framework, Gap and Go, breakout-or-bailout rule, Level 2 confirmation, RVOL requirement. Jesse Livermore — Pivotal point concept: the pre-market high is the exact pivot that must be broken to confirm the move.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP 2 -->
+  <div class="setup-card">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 2 · BULL FLAG / INTRADAY CONTINUATION</div>
+      <span class="badge badge-green">Source: Ross Cameron + Ignition System · Secondary Intraday Setup</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>Core Thesis</h4>
+          <p>After a strong initial directional move (the flagpole), price consolidates on declining volume before breaking to new highs. The structural edge is that impatient holders sell during the consolidation, reducing supply. When selling dries up and volume re-expands on the breakout, the move resumes because the only sellers have already exited. The Ignition System identifies the flat-top breakout variant as especially explosive: a large seller holds price at resistance until buyers overwhelm them, then that seller's removal causes a rapid squeeze of anyone with a stop just above.</p>
+          <div class="callout callout-green">
+            <strong>Why the flat-top variant is most powerful:</strong> When a visible seller has been absorbing bids at a specific price for 5–15 candles, every short seller who entered near that level is relying on that seller. Once they disappear, all those stops trigger simultaneously.
+          </div>
+        </div>
+        <div>
+          <h4>Required Conditions</h4>
+          <ul>
+            <li>Strong flagpole: 3–8 candles of aggressive buying, high volume</li>
+            <li>Flag consolidation: 3–10 candles, volume declining each candle</li>
+            <li>Price holds above VWAP during consolidation</li>
+            <li>Price holds above prior day's close during consolidation</li>
+            <li>No new lows during the flag — higher lows required</li>
+            <li>Consolidation depth: no more than 38% of the flagpole move retraced</li>
+            <li>Same catalyst and float conditions as Setup 1</li>
+          </ul>
+          <h4 class="mt-16">Trigger</h4>
+          <p>First candle to make a new high after the flag (breaking above the highs of the consolidation candles), with volume surging on the breakout candle. Do not enter mid-flag or on the first red candle of the consolidation — wait for the full pattern to complete.</p>
+        </div>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Invalidation</div>
+          <div class="setup-cell-val">Flag candles show heavy red volume (distribution, not consolidation). Price breaks below the flag low. VWAP breaks during the flag. Second consolidation forms without a new high — momentum exhausting. Large seller appears on Level 2 at resistance.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Failure Pattern</div>
+          <div class="setup-cell-val">Breakout triggers, but volume spike is one candle only. Second candle is weak. Price stalls below the prior high of day. This is a false breakout — classic retail trap. Exit on the second candle if it is red and closes in the lower half of its range.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Best Holding Profile</div>
+          <div class="setup-cell-val">Intraday. Target measured move (flagpole length added to breakout point). First partial at 1.5R. Trail using 1-minute structure lows after second partial. If it becomes a parabolic extension (3× the flagpole), take the third partial and use a wider structure trail.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Small-Cap Specific Risk</div>
+          <div class="setup-cell-val">Late-day flags (after 11:30 AM) on 1-minute charts have significantly lower follow-through. Switch to 5-minute chart after 11:30 AM — same pattern logic, different timeframe. Avoid flags that form on less than 50% of the opening volume rate.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP 3 -->
+  <div class="setup-card">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 3 · STRUCTURED DIP BUY / VWAP RECLAIM</div>
+      <span class="badge badge-blue">Source: Roland Wolf · Tertiary Intraday + Swing Setup</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>Core Thesis</h4>
+          <p>After a catalyst-driven run, the stock pulls back to a defined support level. Short sellers who were correct about the pullback begin to feel comfortable. That comfort is the trap. Roland Wolf's edge is entering the pullback <em>before</em> the breakout attempt — so when the squeeze begins, the position is already in profit. The "Dip & Rip" variant is the purest version: a gap-up stock flushes hard at the open, shaking out weak longs, then rips back through pre-market highs as trapped shorts cover. The structural edge is identical to a short squeeze — forced buying from people who bet on the fade.</p>
+          <div class="callout callout-blue">
+            <strong>Why this differs from Setup 1:</strong> Setup 1 buys <em>after</em> the breakout is confirmed. Setup 3 buys <em>at</em> the support level that precedes the breakout. Different risk/reward profile — wider initial stop, earlier entry, better average price.
+          </div>
+        </div>
+        <div>
+          <h4>Required Conditions</h4>
+          <ul>
+            <li>Stock has a real catalyst (not a "chart looks good" argument)</li>
+            <li>Initial move already happened — this is a pullback entry, not a first move</li>
+            <li>Support level is predefined and specific: prior-day high, VWAP, whole number ($5, $10, $15), or pre-market low</li>
+            <li>Volume declining as price approaches support (selling is exhausting)</li>
+            <li>Low float or confirmed short interest — squeeze fuel must exist</li>
+            <li>No dilution event during the pullback (check news on the red candles)</li>
+            <li>Minimum 2:1 risk-reward exists between support and next resistance</li>
+          </ul>
+          <h4 class="mt-16">Trigger</h4>
+          <p>Volume dries up at support level AND price produces a green candle with tail rejection off the support. Do not enter while selling is still active. Wait for the first sign of buying absorption — a candle that wicks down and closes in the upper half of its range on the support level.</p>
+        </div>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Invalidation</div>
+          <div class="setup-cell-val">Support level breaks with volume — not a dip, it's a breakdown. Catalyst proven false or walked back. No buyers show up at support (volume stays low with no green candle formation). Broad market selloff overrides individual catalyst.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Failure Pattern</div>
+          <div class="setup-cell-val">Support holds once, provides a small bounce, then fails on the second test. This is the "second test failure" — if price returns to support within 3–5 candles and breaks it, the structural thesis is invalidated. Exit immediately.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Best Holding Profile</div>
+          <div class="setup-cell-val">Intraday through to swing depending on catalyst strength. First target: reclaim of VWAP or prior consolidation zone. Second target: prior high of day. If catalyst is multi-day, this can become a swing hold — but requires qualifying as Setup 5 conditions on the daily chart.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Small-Cap Specific Risk</div>
+          <div class="setup-cell-val">Dilution risk is highest during pullbacks — companies have incentive to sell shares when price is elevated. Averaging down trap: if support breaks, do NOT add. The stock may be beginning a real reversal, not a deeper dip. One entry at support, not a scaling down strategy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP 4 -->
+  <div class="setup-card">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 4 · FIRST GREEN DAY (FGD) / FEAR EXHAUSTION REVERSAL</div>
+      <span class="badge badge-orange">Source: The Ignition System · Roland Wolf LOD Reversal · Catalyst Swing Setup</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>Core Thesis</h4>
+          <p>A stock has fallen for 2–5 consecutive days on fear, capitulation, or sector rotation. Short sellers are stacked at elevated prices and feeling confident. Then a credible catalyst arrives. The first day that price closes <em>above the prior day's close</em> is the First Green Day — the exact moment short sellers' P&L flips from green to red. Their collective panic covering, combined with momentum traders re-entering, creates a violent upside move. The Ignition System identifies this as the structural mirror of the First Red Day shorting setup — the same mechanics, opposite direction. The previous day's close is the single most important level.</p>
+          <div class="callout callout-gold">
+            <strong>Why the prior close matters more than any other level:</strong> Short sellers track their positions versus prior close in real time. A stock that closes green vs. yesterday creates immediate margin pressure on anyone short from the previous session. This is forced buying, not optional buying.
+          </div>
+        </div>
+        <div>
+          <h4>Required Conditions (All Must Be Present)</h4>
+          <ul>
+            <li>Minimum 2–3 consecutive red daily candles preceding the setup</li>
+            <li>30–50%+ decline from the recent swing high into the washout</li>
+            <li>Elevated short interest: above 10% of float preferred, above 15% ideal</li>
+            <li>Declining candle size into the lows (selling exhausting, not accelerating)</li>
+            <li>A verifiable, credible catalyst on the reversal morning — NOT just "oversold"</li>
+            <li>Float preference: under 20M; ceiling at 50M</li>
+            <li>No fundamental deterioration: check for going-concern warnings, toxic financing, bankruptcy risk</li>
+            <li>Dilution check: authorized vs. outstanding ratio must not suggest imminent offering</li>
+          </ul>
+          <h4 class="mt-16">Trigger (Choose One Based on Experience)</h4>
+          <p><strong>Standard:</strong> Price breaks above the prior day's close on expanding volume — enter on confirmation. <strong>Aggressive:</strong> Enter at predefined support level during the washout low with stop below LOD — better R/R, lower win rate. <strong>Conservative:</strong> Wait for breakout above prior close, then buy the first higher-low pullback — highest win rate, worst entry price.</p>
+        </div>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Ideal Market Regime</div>
+          <div class="setup-cell-val">Squeeze-Heavy or Risk-On Momentum. Short sellers must be actively present — check short interest before entry. Works poorly in risk-off or low-liquidity environments where there is no squeeze fuel. Requires at least moderate small-cap breadth.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Invalidation</div>
+          <div class="setup-cell-val">Price reclaims prior close intraday but fails to hold it on the close — failed FGD. Fundamental deterioration discovered (toxic financing, reverse split risk, going concern). No short interest to squeeze — the reversal has no fuel. Broad market in confirmed downtrend overrides the individual catalyst.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Failure Pattern</div>
+          <div class="setup-cell-val">Stock breaks above prior close with volume, looks like a confirmed FGD, then reverses sharply on news that validates the short sellers (e.g., dilutive offering, negative trial result follow-up, SEC investigation). This is the "false FGD" — the catalyst was real but the fundamental problem overrides it. Defend with: cap exposure at 1% even for A+ FGD setups.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Small-Cap Specific Risk</div>
+          <div class="setup-cell-val">FGD setups are the highest dilution risk window in this system. Companies in multi-day washouts have institutional pressure to raise capital. Check authorized shares, recent S-3 filings, and ATM agreement history before every FGD entry. Maximum exposure: 1% regardless of grade when dilution risk is present.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP 5 -->
+  <div class="setup-card">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 5 · VCP / VOLATILITY CONTRACTION (SWING)</div>
+      <span class="badge badge-black">Source: Minervini VCP + Livermore Normal Reaction · Swing Hold Setup</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>Core Thesis</h4>
+          <p>A stock in a Stage 2 uptrend (all moving averages stacked, price near 52-week highs) forms a base where each successive pullback is smaller than the last and volume dries up progressively. This is institutional accumulation leaving a footprint. Each tighter contraction proves fewer sellers remain. At the final pivot point — an extremely tight range with near-zero volume — even modest new demand sends price violently higher. Livermore's "Normal Reaction Continuation" is the same logic: a healthy pullback on light volume after a breakout is the add-to-winner opportunity. The pivot is Livermore's pivotal point applied to a multi-week structure.</p>
+          <div class="callout">
+            <strong>Key distinction from Setups 1–4:</strong> This setup requires Stage 2 trend alignment on the daily chart. It is the only setup in this system that uses fundamental pre-filters. It is the swing hold mechanism — it is not used intraday.
+          </div>
+        </div>
+        <div>
+          <h4>Required Conditions</h4>
+          <ul>
+            <li><strong>Stage 2 Check (Minervini 8-Point):</strong> Price above 150-day and 200-day MA; 150-day above 200-day; 200-day trending up 1+ month; 50-day above both; price above 50-day; price 30%+ above 52-week low; price within 25% of 52-week high</li>
+            <li>2–6 successive contractions, each smaller than the last in both price range and volume</li>
+            <li>No lower lows through the base — only higher lows</li>
+            <li>Volume declining on each successive contraction</li>
+            <li>Final pivot: price range tightens to less than 5–8% over 3–10 days</li>
+            <li>For small-cap application: catalyst history required (not just technical setup)</li>
+          </ul>
+          <h4 class="mt-16">Trigger</h4>
+          <p>Price breaks 1 cent above the pivot resistance on a volume surge (50%+ above 30-day average). Enter at the breakout, not before. Do not anticipate — the pivot must be broken to confirm supply exhaustion.</p>
+        </div>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Invalidation</div>
+          <div class="setup-cell-val">Breakout on light volume (below 30-day average) — institutional buyers are not participating. Price returns below the pivot within 3 days — supply not fully exhausted. Stage 2 criteria broken (price closes below 50-day MA with volume). Earnings deceleration reported.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Failure Pattern</div>
+          <div class="setup-cell-val">Pivot breakout occurs, price moves 3–5% higher, then reverses sharply on no news. This is distribution — institutions used the breakout to sell into buyers. Defend with: hard stop at 7–8% below entry and exit on first close below the 10-day MA.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Best Holding Profile</div>
+          <div class="setup-cell-val">Multi-day to multi-week. First partial at 2R. Trail with 10-day MA close (exit if daily close below 10-day MA). Full exit on abnormal reversal volume (2× average on a large red day). Livermore principle: sit through normal reactions; only exit on abnormal behavior.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Small-Cap Specific Risk</div>
+          <div class="setup-cell-val">Small-cap VCPs are noisier than Minervini's mid/large-cap applications. Require stricter float quality — avoid stocks with pending share offerings even in Stage 2. Reduce stop to 5–6% (tighter than Minervini's 7–8%) on stocks under $10 due to gap risk overnight.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ============================================================ SECTION 2: OVERLAP & CONFLICT MAP ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 02 · Overlap and Conflict Map — Where Setups Complement, Compete, and Override Each Other</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>OVERLAP &amp; <span>CONFLICT MAP</span></h2>
+  <p>This section tells you when two setups point at the same trade (alignment = higher conviction), when they point in opposite directions (conflict = pick one or stand down), and which setup overrides the other in each conflict. The most dangerous trading errors come from running two conflicting setups simultaneously without a tiebreaker rule. This map provides that rule explicitly.</p>
+
+  <div class="mt-28">
+    <h3>Where Setups Complement Each Other</h3>
+    <p>When two setups identify the same opportunity from different angles, conviction increases and you can justify the upper range of your risk (1.25% instead of 0.75%).</p>
+    <table class="t mt-16">
+      <thead><tr><th>Setup A</th><th>Setup B</th><th>Overlap Condition</th><th>Combined Signal Meaning</th><th>Size Adjustment</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Setup 1 (Gap & Go)</strong></td><td><strong>Setup 2 (Bull Flag)</strong></td><td>Same stock: gaps up, then forms a clean bull flag before continuing</td><td>Highest-quality intraday setup. Gap confirms catalyst urgency; flag confirms pattern continuation. Both Cameron and Ignition System identify this as the cleanest momentum sequence.</td><td>+25% above base size</td></tr>
+        <tr><td><strong>Setup 3 (Dip Buy)</strong></td><td><strong>Setup 4 (FGD)</strong></td><td>Stock washes out intraday AND closes above prior day close on a catalyst</td><td>Roland Wolf's dip mechanics confirm the entry. Ignition System's FGD confirms the psychological shift. Double confirmation — the dip held AND psychology flipped.</td><td>+25% above base size</td></tr>
+        <tr><td><strong>Setup 2 (Bull Flag)</strong></td><td><strong>Setup 5 (VCP)</strong></td><td>Multi-day VCP pivot breakout that also forms a 5-minute bull flag on the breakout day</td><td>Livermore + Minervini alignment: the pivotal point breakout has intraday structure confirmation. This is the cleanest swing entry signal.</td><td>+25% above base; qualifies for swing hold</td></tr>
+        <tr><td><strong>Setup 4 (FGD)</strong></td><td><strong>Setup 5 (VCP Stage 2)</strong></td><td>Stock has a Stage 2 base AND experiences a short-term washout with a FGD reversal catalyst</td><td>Stage 2 trend intact means FGD is a pullback-to-trend reversal, not a dead-cat bounce. Highest-quality swing entry in the system.</td><td>Use Setup 5 rules (swing hold); FGD is the timing trigger</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-32">
+    <h3>Where Setups Conflict — And Which Wins</h3>
+    <p>When two setups disagree about what to do with the same stock, one must be silenced. The rule is: the setup with the highest regime alignment wins. If both are in their best regime, the more defensive setup wins.</p>
+    <table class="t mt-16">
+      <thead><tr><th>Conflict</th><th>Setup A Says</th><th>Setup B Says</th><th>Resolution Rule</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Setup 1 vs Setup 3 (Same Stock)</strong></td><td>Chase the breakout now — momentum confirmed</td><td>Wait for the dip — don't buy strength</td><td><strong>Setup 1 wins in Risk-On regime. Setup 3 wins in Mixed/Rotational regime.</strong></td><td>In risk-on, breakouts follow through. In mixed markets, breakouts fake out constantly — dip buying avoids the fakeout.</td></tr>
+        <tr><td><strong>Setup 2 vs Setup 4 (Same Stock, Same Day)</strong></td><td>Flag is forming — continuation entry today</td><td>Wait for FGD — stock needs multi-day washout first</td><td><strong>Never run both simultaneously on one ticker. If the FGD washout is not yet complete (less than 2 red days), use Setup 2 logic only.</strong></td><td>Premature FGD entry is the most common error in the Ignition System — calling every green candle a FGD is specifically warned against.</td></tr>
+        <tr><td><strong>Setup 1 vs Setup 5 (Same Stock)</strong></td><td>Intraday breakout — buy today</td><td>The VCP pivot is days away — hold for the pivot</td><td><strong>These can coexist as separate positions with separate risk. Intraday entry = Setup 1 rules. Swing entry = Setup 5 rules. Never manage them as one trade.</strong></td><td>Minervini's daily-chart pivot and Cameron's intraday breakout are completely different holding durations. Conflating them is how you hold a day trade as a swing trade.</td></tr>
+        <tr><td><strong>Setup 3 vs Setup 5 (Stock Pulling Back)</strong></td><td>Dip buy here — support is defined</td><td>The VCP contraction is intact — do not disturb</td><td><strong>If the stock is still within a valid VCP contraction (no pivot breakout yet), treat the pullback as VCP normal reaction — NO new entry, just manage existing.</strong></td><td>Livermore: do not add on normal reactions. Only add on confirmed continuation after the pivot. Adding during contraction is premature and risks averaging into a failed pattern.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-32">
+    <h3>Which Setup to Disable When Another Is Active</h3>
+    <table class="t mt-16">
+      <thead><tr><th>Active Setup</th><th>Disable This</th><th>Until</th></tr></thead>
+      <tbody>
+        <tr><td>Setup 1 (Gap & Go) active on Stock X</td><td>Setup 3 (Dip Buy) on the same Stock X</td><td>Setup 1 trade is fully closed or the gap run has clearly ended</td></tr>
+        <tr><td>Setup 4 (FGD) in progress</td><td>Setup 1 (Gap & Go) on the same day for the same stock</td><td>FGD entry criterion confirmed — both cannot be triggered simultaneously by definition</td></tr>
+        <tr><td>Setup 5 (VCP) in progress, pre-pivot</td><td>Setups 1, 2, 3 on the same stock (intraday noise)</td><td>The VCP pivot breaks and the swing trade is active — then intraday management begins</td></tr>
+        <tr><td>Any setup active during dilution event</td><td>All 5 setups on the affected stock</td><td>48 hours minimum after dilution event resolves and new float is understood</td></tr>
+        <tr><td>Portfolio at -6% drawdown</td><td>Setups 1, 2 (highest risk/most aggressive)</td><td>Portfolio drawdown recovers to -3% and two consecutive winning trading days occur</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ SECTION 3: UNIFIED ARCHITECTURE ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 03 · Unified Trading Architecture — The Daily Operating System</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>UNIFIED TRADING <span>ARCHITECTURE</span></h2>
+
+  <div class="col-2">
+    <div>
+      <h3>Daily Decision Flow — Step by Step</h3>
+      <p>This is the sequence you run every morning before any trade is taken. Do not skip steps. Each step is a gate — if a gate fails, you do not proceed to the next one. This prevents trading in bad conditions.</p>
+
+      <div class="evidence-row mt-16">
+        <div class="number-circle nc-gold">1</div>
+        <div>
+          <strong>Pre-Market Regime Check (4:00–8:30 AM)</strong>
+          <p>Check VIX. Check IWM position relative to 20-day MA and 50-day MA. Count how many small-cap stocks are up 10%+ pre-market with real news. If VIX is above 28 AND IWM is below its 50MA: declare Risk-Off. No Setup 1 or 2 today. If you see zero legitimate small-cap runners pre-market: stand down on Setups 1–4. Only Setup 5 candidates remain active.</p>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-gold">2</div>
+        <div>
+          <strong>Scanner + Watchlist Build (6:00–9:00 AM)</strong>
+          <p>Run pre-market scanner: float under 50M, RVOL 3x+, pre-market change +5% to +40%, price $2–$20. Every alert gets a news check immediately. If no verifiable catalyst: delete from watchlist. Rank remaining by setup type. Mark prior-day highs, pre-market highs, VWAP, and key whole numbers on every name. This is your support/resistance map for the session.</p>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-gold">3</div>
+        <div>
+          <strong>Dilution Check (Before Open)</strong>
+          <p>For every stock on your watchlist: check authorized shares vs. outstanding. Check for recent S-3 or S-1 filings. Check for existing ATM agreement. Check for warrants near current price. If dilution risk is present: reduce maximum position size to 0.5R and place a warning flag. If fundamental deterioration is present (going concern, toxic financing): remove entirely.</p>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-gold">4</div>
+        <div>
+          <strong>Score Each Candidate (Section 5 Scoring Model)</strong>
+          <p>Apply the 10-criterion scoring model to each watchlist name. Minimum score to trade: 65 for intraday setups (1–4), 75 for swing setups (5). Names scoring below threshold go on "watch but no trade" list. Do not trade a setup just because you've been watching it all morning and "feel" ready — the score must qualify it.</p>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-gold">5</div>
+        <div>
+          <strong>Open Observation (9:30–9:50 AM)</strong>
+          <p>Do NOT enter any trade in the first 5 minutes on small caps unless you are pre-loaded from the pre-market. Observe how your watchlist names open: are they gapping and going, or fading? Are the strongest pre-market names holding their gains or selling off? This tells you whether the day's momentum regime is real. Two or more names following through = active momentum regime. Two or more names fading = rotation day, lean toward Setup 3 and 4.</p>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-gold">6</div>
+        <div>
+          <strong>First Trade Window (9:50 AM–11:30 AM)</strong>
+          <p>This is the primary intraday execution window. Setups 1, 2, 3, and 4 are all active. Take only the highest-scoring setup first. Apply full entry rules (Section 6). Maximum 2 simultaneous open positions during this window. After 11:30 AM: Setups 1 and 2 are disabled. Only Setup 3 (if structure holds), Setup 4 (if FGD has not yet triggered), and Setup 5 (daily management) remain.</p>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-gold">7</div>
+        <div>
+          <strong>Mid-Day Assessment (11:30 AM–2:00 PM)</strong>
+          <p>Switch all active intraday charts from 1-minute to 5-minute. Re-assess any open positions: are they still above key levels, or drifting? Swing setup candidates: check daily chart for VCP progress. No new intraday entries unless a Setup 4 FGD trigger occurs on a catalyst that just broke. Keep a hard mental stop on total day loss.</p>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-gold">8</div>
+        <div>
+          <strong>End of Day Review (After Close)</strong>
+          <p>Record every trade: setup type, score, entry, stop, exit, R multiple result, and one-line reason for entry. Check if daily loss limit was hit. If yes: log it and check whether loss was due to bad execution (rules broken) or valid setup that failed (outcome variance). Check current portfolio drawdown level vs. risk throttle thresholds.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Capital Allocation — Intraday vs. Swing</h3>
+      <p>The split between intraday and swing capital changes dynamically based on the regime and your current drawdown state. This prevents you from being fully intraday in a low-volatility environment or fully in swing trades during a trending momentum regime.</p>
+
+      <table class="t mt-16">
+        <thead><tr><th>Regime</th><th>Intraday Capital</th><th>Swing Capital</th><th>Logic</th></tr></thead>
+        <tbody>
+          <tr><td>Risk-On Momentum</td><td>70%</td><td>30%</td><td>Intraday setups are highest edge. Swing is secondary.</td></tr>
+          <tr><td>Mixed / Rotational</td><td>40%</td><td>60%</td><td>Intraday fake breakouts increase. Swing structure more reliable.</td></tr>
+          <tr><td>Squeeze-Heavy</td><td>50%</td><td>50%</td><td>FGD setups span both. Allocate equally.</td></tr>
+          <tr><td>Risk-Off</td><td>0%</td><td>100%</td><td>No intraday momentum. Only Setup 5 if conditions met.</td></tr>
+          <tr><td>Dilution-Heavy</td><td>25%</td><td>25%</td><td>50% cash. Reduce all exposure.</td></tr>
+          <tr><td>Low-Liquidity Trap</td><td>0%</td><td>50%</td><td>50% cash. No intraday. Only strongest VCP swing names.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-28">Setup Hierarchy — When Multiple Are Valid</h3>
+      <p>When multiple setups qualify on the same day, trade them in this priority order. Do not jump to a lower-priority setup if a higher one is setting up.</p>
+
+      <div class="card card-black mt-16">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:36px;color:var(--accent);line-height:1;flex-shrink:0;">1</span>
+            <div><p style="font-weight:700;color:white;margin-bottom:4px;">Setup 1 + Setup 2 Alignment (Gap & Go into Bull Flag)</p><p style="font-size:13px;">Highest edge. Only valid in Risk-On regime. Take this before anything else.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:36px;color:var(--accent);line-height:1;flex-shrink:0;">2</span>
+            <div><p style="font-weight:700;color:white;margin-bottom:4px;">Setup 4 + Setup 3 Alignment (FGD with Dip Confirmation)</p><p style="font-size:13px;">High squeeze potential. Valid in Risk-On or Squeeze-Heavy regime. Strong catalyst required.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:36px;color:var(--accent);line-height:1;flex-shrink:0;">3</span>
+            <div><p style="font-weight:700;color:white;margin-bottom:4px;">Setup 2 (Standalone Bull Flag)</p><p style="font-size:13px;">Valid in Risk-On or Squeeze-Heavy. Only if flagpole has significant RVOL.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:36px;color:var(--accent);line-height:1;flex-shrink:0;">4</span>
+            <div><p style="font-weight:700;color:white;margin-bottom:4px;">Setup 5 (VCP Pivot)</p><p style="font-size:13px;">Valid in all regimes except Risk-Off severe. Swing hold, different account allocation.</p></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:36px;color:var(--amber);line-height:1;flex-shrink:0;">5</span>
+            <div><p style="font-weight:700;color:rgba(255,255,255,.6);margin-bottom:4px;">Setup 3 (Standalone Dip Buy)</p><p style="font-size:13px;color:rgba(255,255,255,.45);">Only valid when Setup 1/2 fail on the same stock that day. Do not start with this — it is the fallback, not the plan.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-28">Watchlist Ranking Logic</h3>
+      <p>Each morning, rank your watchlist names using this priority sequence:</p>
+      <ol>
+        <li><strong>Score 75+:</strong> Primary focus. Allocate first attention and capital.</li>
+        <li><strong>Score 65–74:</strong> Secondary watch. Trade only if Score 75+ names fail to set up.</li>
+        <li><strong>Score below 65:</strong> Watch only. No trade regardless of how strong the move looks.</li>
+        <li><strong>Dilution flag present:</strong> Separate watchlist. Hard cap 0.5R. No exceptions.</li>
+        <li><strong>FGD candidates:</strong> Separate list with catalyst verification check every 15 minutes during washout sequence.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SECTION 4: REGIME ENGINE ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 04 · Regime Engine — How to Read Market Conditions and Route Your Setup Priority</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>REGIME <span>ENGINE</span></h2>
+  <p>The regime engine is the brain of the system. It tells you which setups are live, which are disabled, how large to trade, and how long to hold. A setup that has a 70% win rate in the right regime can have a 35% win rate in the wrong one. Regime classification happens pre-market and is re-assessed at 11:30 AM intraday.</p>
+
+  <div class="callout callout-gold mt-20">
+    <strong>The two regime inputs:</strong> (1) VIX level — measures market-wide fear/volatility. (2) IWM position relative to 20-day and 50-day MA — measures small-cap market health specifically. These two inputs classify every trading day into one of six regimes before you see a single stock.
+  </div>
+
+  <!-- REGIME 1 -->
+  <div class="card card-green mt-28" style="border-radius:10px;padding:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+      <span style="font-family:'Bebas Neue',cursive;font-size:26px;color:var(--green);">REGIME 1 · RISK-ON MOMENTUM</span>
+      <span class="badge badge-green">FULL ACTIVATION</span>
+    </div>
+    <div class="col-2">
+      <div>
+        <h4>Classification Criteria</h4>
+        <ul>
+          <li>VIX below 20</li>
+          <li>IWM above 20-day MA and 50-day MA (both)</li>
+          <li>Small-cap breadth: 60%+ of small-cap universe above 50-day MA</li>
+          <li>2+ legitimate small-cap runners visible pre-market with real catalysts</li>
+          <li>Setup follow-through in recent 5 sessions: at least 60% of setups reaching 1.5R+</li>
+        </ul>
+        <h4 class="mt-16">Active Setups (Priority Order)</h4>
+        <p>Setup 1 → Setup 2 → Setup 3 → Setup 4 → Setup 5. All setups active. Setups 1 and 2 are the primary focus.</p>
+      </div>
+      <div>
+        <h4>Operational Adjustments</h4>
+        <ul>
+          <li><strong>Size:</strong> Full base size (1.0–1.25% per trade)</li>
+          <li><strong>Hold time:</strong> Intraday through multi-day — let momentum run</li>
+          <li><strong>Confirmation threshold:</strong> Standard — no extra confirmation required beyond setup rules</li>
+          <li><strong>Profit-taking:</strong> First partial at 2R (not 1.5R). Let winners run further.</li>
+          <li><strong>Capital split:</strong> 70% intraday / 30% swing</li>
+        </ul>
+        <div class="callout callout-green mt-16">
+          <strong>Regime Behavior:</strong> Breakouts follow through. Dips are bought. Catalysts hold. This is when Ross Cameron's aggressive scaling and Livermore's "sit tight" principle both apply simultaneously.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIME 2 -->
+  <div class="card card-gold mt-16" style="border-radius:10px;padding:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+      <span style="font-family:'Bebas Neue',cursive;font-size:26px;color:var(--amber);">REGIME 2 · SQUEEZE-HEAVY</span>
+      <span class="badge badge-gold">SELECTIVE ACTIVATION</span>
+    </div>
+    <div class="col-2">
+      <div>
+        <h4>Classification Criteria</h4>
+        <ul>
+          <li>VIX 18–26 (elevated but not extreme)</li>
+          <li>IWM mixed — near 20-day MA, may be above or below</li>
+          <li>Multiple FGD-type setups appearing simultaneously (3+ in one week)</li>
+          <li>Short interest in small caps elevated (sector-wide or market-wide)</li>
+          <li>Recent failed breakouts + successful squeeze reversals confirm this regime</li>
+        </ul>
+        <h4 class="mt-16">Active Setups</h4>
+        <p>Setup 4 (FGD) primary. Setup 3 (Dip Buy) secondary. Setup 5 (VCP) for swing. Setups 1 and 2 active but reduced size — fake breakouts are common in this regime.</p>
+      </div>
+      <div>
+        <h4>Operational Adjustments</h4>
+        <ul>
+          <li><strong>Size:</strong> 75% of base on Setups 1–2. Full base on Setup 4.</li>
+          <li><strong>Hold time:</strong> FGD trades: allow multi-day if catalyst supports. Intraday momentum: tighter.</li>
+          <li><strong>Confirmation threshold:</strong> Require short interest confirmation before FGD entry (check in real time)</li>
+          <li><strong>Profit-taking:</strong> First partial at 1.5R. Tighter trail after second partial.</li>
+          <li><strong>Capital split:</strong> 50% intraday / 50% swing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIME 3 -->
+  <div class="card mt-16" style="border-radius:10px;padding:24px;background:#f8f9fa;border:1px solid var(--divider);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+      <span style="font-family:'Bebas Neue',cursive;font-size:26px;color:var(--blue);">REGIME 3 · MIXED / ROTATIONAL</span>
+      <span class="badge badge-blue">REDUCED ACTIVATION</span>
+    </div>
+    <div class="col-2">
+      <div>
+        <h4>Classification Criteria</h4>
+        <ul>
+          <li>VIX 20–26</li>
+          <li>IWM oscillating around 20-day MA — no clear trend</li>
+          <li>Small-cap breadth mixed: 40–60% above 50-day MA</li>
+          <li>Sector rotation visible — momentum shifts between sectors within single sessions</li>
+          <li>Breakouts from the last 5 sessions showing less than 50% follow-through to 1.5R</li>
+        </ul>
+        <h4 class="mt-16">Active Setups</h4>
+        <p>Setup 5 (VCP swing) primary. Setup 3 (Dip Buy) secondary. Setup 4 (FGD) if short interest extremely high. Setups 1 and 2 <strong>reduced to 50% size only</strong>. Do not chase breakouts in rotational regime.</p>
+      </div>
+      <div>
+        <h4>Operational Adjustments</h4>
+        <ul>
+          <li><strong>Size:</strong> 50% of base on all intraday setups. Full base on Setup 5 only.</li>
+          <li><strong>Hold time:</strong> Intraday only for Setups 1–4. No overnight holds on intraday momentum.</li>
+          <li><strong>Confirmation threshold:</strong> Higher bar — require two confirming factors vs. standard one</li>
+          <li><strong>Profit-taking:</strong> First partial at 1.25R. Do not hold for 2R in rotational regime.</li>
+          <li><strong>Capital split:</strong> 40% intraday / 60% swing</li>
+        </ul>
+        <div class="callout callout-blue mt-16">
+          <strong>Regime Warning:</strong> This is where over-engineering kills you. You will see setups everywhere. Most will fail. The discipline is to trade fewer, smaller, and demand more confirmation.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIME 4 -->
+  <div class="card card-red mt-16" style="border-radius:10px;padding:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+      <span style="font-family:'Bebas Neue',cursive;font-size:26px;color:var(--red);">REGIME 4 · RISK-OFF / FAILURE-PRONE</span>
+      <span class="badge badge-red">MINIMAL ACTIVATION</span>
+    </div>
+    <div class="col-2">
+      <div>
+        <h4>Classification Criteria</h4>
+        <ul>
+          <li>VIX above 28</li>
+          <li>IWM below 50-day MA</li>
+          <li>Small-cap breadth: under 40% above 50-day MA</li>
+          <li>Recent breakouts failing at rates above 70%</li>
+          <li>Multiple gap-up stocks reversing hard the same day</li>
+        </ul>
+        <h4 class="mt-16">Active Setups</h4>
+        <p>Setup 5 (VCP) only — and only highest-quality Stage 2 names. All intraday momentum setups (1, 2, 3, 4) are <strong>disabled</strong> until regime improves.</p>
+      </div>
+      <div>
+        <h4>Operational Adjustments</h4>
+        <ul>
+          <li><strong>Size:</strong> 50% of base on Setup 5 only</li>
+          <li><strong>Hold time:</strong> Swing holds only — no intraday</li>
+          <li><strong>Capital split:</strong> 0% intraday / 50% swing / 50% cash</li>
+          <li><strong>Priority:</strong> Preserve capital. Use this regime to study setups, refine your scoring model, and wait for conditions to improve.</li>
+        </ul>
+        <div class="callout callout-red mt-16">
+          <strong>Cameron's Trader Rehab Rule:</strong> In risk-off, reduce size, reduce frequency, return to best core setups only. Do not strategy-hop. Stand down is a position.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGIME 5 & 6 -->
+  <div class="col-2 mt-16">
+    <div class="card" style="border-radius:10px;padding:24px;border:2px solid var(--red);background:var(--red-bg);">
+      <span style="font-family:'Bebas Neue',cursive;font-size:22px;color:var(--red);display:block;margin-bottom:12px;">REGIME 5 · DILUTION-HEAVY</span>
+      <span class="badge badge-red" style="margin-bottom:12px;display:inline-block;">SYSTEM-WIDE OVERRIDE</span>
+      <h4>Trigger</h4>
+      <p>3+ dilution events (ATM offerings, convertible notes, secondary offerings) in small-cap stocks within a 5-day window. This signals that issuers are raising capital aggressively — and any stock you hold is at risk.</p>
+      <h4 class="mt-16">Rules</h4>
+      <ul>
+        <li>All new long entries reduced to 0.5R maximum regardless of setup quality</li>
+        <li>All swing holds re-examined for dilution risk — reduce or exit any with dilution exposure</li>
+        <li>Setups 1 and 4 (Gap & Go and FGD) are highest dilution risk — hard 0.5R cap</li>
+        <li>50% of trading capital moves to cash immediately</li>
+        <li>Return to normal when 5-day dilution event count drops below 1</li>
+      </ul>
+    </div>
+    <div class="card" style="border-radius:10px;padding:24px;border:2px solid var(--gray);background:#f8f9fa;">
+      <span style="font-family:'Bebas Neue',cursive;font-size:22px;color:var(--gray);display:block;margin-bottom:12px;">REGIME 6 · LOW-LIQUIDITY / TRAP-HEAVY</span>
+      <span class="badge badge-black" style="margin-bottom:12px;display:inline-block;">RESTRICTED</span>
+      <h4>Trigger</h4>
+      <p>Multiple stocks showing wide bid-ask spreads (above 1.5% of price), low daily dollar volume (below $5M), and intraday halt frequency above average. This is a "thin market" regime where every setup has higher fakeout probability.</p>
+      <h4 class="mt-16">Rules</h4>
+      <ul>
+        <li>Setups 1 and 2 disabled — cannot execute cleanly in thin markets</li>
+        <li>Setup 3 allowed only if spread is under 0.5% of price and daily dollar volume exceeds $3M</li>
+        <li>Setup 5 allowed if stock meets liquidity filter (Section 5 scoring)</li>
+        <li>No trades under $2 price regardless of catalyst or float</li>
+        <li>Capital split: 0% intraday / 50% swing / 50% cash</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- ============================================================ SECTION 5: SCORING MODEL ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 05 · Setup Scoring Model — Grade Every Candidate Before You Touch It</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>SETUP <span>SCORING MODEL</span></h2>
+  <p>This model translates the pre-trade checklist into a number. That number tells you whether to trade at all, how large to trade, and which setup module to activate. Minimum scores: <strong>65+ to trade intraday (Setups 1–4)</strong>, <strong>75+ to hold as swing (Setup 5)</strong>. Below the threshold: watch only, no trade.</p>
+  <p>Scores below 50 are never tradeable regardless of how compelling the story sounds. The story is not the edge — the structure is.</p>
+
+  <div class="mt-24">
+    <table class="t">
+      <thead>
+        <tr><th style="width:22%;">Criterion</th><th style="width:8%;">Max Pts</th><th>How to Score</th><th style="width:20%;">Why It Matters</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Catalyst Quality</strong></td>
+          <td style="text-align:center;"><strong>20</strong></td>
+          <td>
+            <strong>18–20:</strong> FDA approval, earnings massive beat + raised guidance, large government contract, buyout announcement<br>
+            <strong>13–17:</strong> Earnings beat, partnership announcement, major clinical trial milestone, sector-wide tailwind news<br>
+            <strong>7–12:</strong> Minor contract, small partnership, analyst upgrade, technical breakout with weak news<br>
+            <strong>0–6:</strong> No news / technical only / rumor / social media attention only
+          </td>
+          <td>Catalyst is the engine. Without it, the setup has no structural reason to follow through. A high catalyst score means forced buyers (covering shorts, chasing FOMO) are likely. Low catalyst = random walk.</td>
+        </tr>
+        <tr>
+          <td><strong>2. Float / Structure</strong></td>
+          <td style="text-align:center;"><strong>15</strong></td>
+          <td>
+            <strong>13–15:</strong> Float under 5M shares, confirmed low float<br>
+            <strong>9–12:</strong> Float 5M–20M shares<br>
+            <strong>5–8:</strong> Float 20M–50M shares<br>
+            <strong>0–4:</strong> Float above 50M or unknown/unverifiable
+          </td>
+          <td>Float determines amplification. Low float means every buyer moves price more. High float means even large buying produces small moves. Cameron's 5-pillar system and Ignition System both make float the first filter.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Liquidity Quality</strong></td>
+          <td style="text-align:center;"><strong>10</strong></td>
+          <td>
+            <strong>9–10:</strong> Daily dollar volume $10M+, spread under 0.3% of price, Level 2 shows multiple market makers<br>
+            <strong>6–8:</strong> Daily volume $3M–$10M, spread 0.3–0.7% of price<br>
+            <strong>3–5:</strong> Daily volume $1M–$3M, spread up to 1% of price<br>
+            <strong>0–2:</strong> Under $1M daily volume, wide spreads, single market maker dominating
+          </td>
+          <td>Illiquid stocks produce fake breakouts, halt risk, and inability to exit cleanly. You can identify the perfect setup but still lose because you can't get out at your intended price.</td>
+        </tr>
+        <tr>
+          <td><strong>4. Relative Volume</strong></td>
+          <td style="text-align:center;"><strong>10</strong></td>
+          <td>
+            <strong>9–10:</strong> RVOL 8x+ vs. 30-day average at time of setup<br>
+            <strong>7–8:</strong> RVOL 5x–8x<br>
+            <strong>4–6:</strong> RVOL 3x–5x<br>
+            <strong>0–3:</strong> RVOL below 3x (not confirmed momentum)
+          </td>
+          <td>Relative volume confirms that participation is real, not just price movement. A stock moving 20% on 1x volume is suspicious. A stock moving 20% on 10x volume is being validated by the market.</td>
+        </tr>
+        <tr>
+          <td><strong>5. Trend Quality</strong></td>
+          <td style="text-align:center;"><strong>10</strong></td>
+          <td>
+            <strong>9–10:</strong> Stage 2 uptrend confirmed (50 > 150 > 200 MA stacked and all rising)<br>
+            <strong>6–8:</strong> Above 50-day MA with positive intermediate trend<br>
+            <strong>3–5:</strong> Mixed trend — near moving averages, no clear direction<br>
+            <strong>0–2:</strong> Stage 3 or 4 — declining MAs or broken trend
+          </td>
+          <td>Trading with the trend, not against it, increases follow-through probability. Minervini's Stage 2 requirement and Livermore's "trade the leading sector leader" both express the same principle.</td>
+        </tr>
+        <tr>
+          <td><strong>6. Extension Risk</strong><br><em style="font-size:11px;color:var(--red);">(Subtract from score)</em></td>
+          <td style="text-align:center;"><strong>-10</strong></td>
+          <td>
+            <strong>0 pts deducted:</strong> Stock up 10–25% from prior close. Within normal catalyst range.<br>
+            <strong>-3 pts:</strong> Up 25–50% from prior close. Starting to extend.<br>
+            <strong>-6 pts:</strong> Up 50–100% from prior close. Elevated reversal risk.<br>
+            <strong>-10 pts:</strong> Up 100%+ from prior close. Chasing territory.
+          </td>
+          <td>Extension kills R/R. The higher a stock has already moved, the closer it is to a reversal and the further the stop must be placed. Both Cameron (don't chase extension) and Ignition System (sell into strength) warn against entering extended moves.</td>
+        </tr>
+        <tr>
+          <td><strong>7. Dilution Risk</strong><br><em style="font-size:11px;color:var(--red);">(Subtract from score)</em></td>
+          <td style="text-align:center;"><strong>-10</strong></td>
+          <td>
+            <strong>0 pts deducted:</strong> Authorized vs. outstanding ratio under 2:1. No recent S-3 or ATM filing. No recent history of dilution.<br>
+            <strong>-3 pts:</strong> Authorized/outstanding 2–5:1 with no recent offering activity<br>
+            <strong>-6 pts:</strong> ATM agreement exists or recent offering in last 90 days<br>
+            <strong>-10 pts:</strong> Active ATM offering, pending convertible notes, or going-concern language
+          </td>
+          <td>Dilution is the single largest structural killer of small-cap long trades. It is not reflected in the chart until it happens. Check the SEC filings before every trade. A high dilution risk score should override even a perfect catalyst.</td>
+        </tr>
+        <tr>
+          <td><strong>8. Setup Quality</strong></td>
+          <td style="text-align:center;"><strong>10</strong></td>
+          <td>
+            <strong>9–10:</strong> A+ setup — every required condition met, pattern is textbook clean, entry trigger is obvious<br>
+            <strong>6–8:</strong> B setup — most conditions met, one or two minor compromises<br>
+            <strong>3–5:</strong> C setup — minimum conditions barely met, messy chart, ambiguous trigger<br>
+            <strong>0–2:</strong> Pattern does not qualify — forced fit
+          </td>
+          <td>Setup quality is the difference between trading the system and trading the feeling that a setup exists. A pattern that has to be "interpreted generously" is a C setup at best and usually a skip.</td>
+        </tr>
+        <tr>
+          <td><strong>9. Regime Alignment</strong></td>
+          <td style="text-align:center;"><strong>10</strong></td>
+          <td>
+            <strong>9–10:</strong> Setup type matches the current regime exactly (e.g., Gap & Go in Risk-On regime)<br>
+            <strong>6–8:</strong> Setup type allowed in current regime but not the primary one<br>
+            <strong>3–5:</strong> Setup type is reduced-size only in current regime<br>
+            <strong>0–2:</strong> Setup type is disabled in current regime
+          </td>
+          <td>A 90-point setup in the wrong regime trades as a 45-point setup. Regime alignment is the multiplier. This prevents you from taking textbook-looking setups that have no structural follow-through probability given current conditions.</td>
+        </tr>
+        <tr>
+          <td><strong>10. Execution Clarity</strong></td>
+          <td style="text-align:center;"><strong>5</strong></td>
+          <td>
+            <strong>5 pts:</strong> Entry trigger, stop price, first target, and add price are all specific and pre-defined before entry<br>
+            <strong>3 pts:</strong> Entry and stop defined, targets approximate<br>
+            <strong>1 pt:</strong> Only a general entry zone, no specific trigger<br>
+            <strong>0 pts:</strong> Entering without a plan
+          </td>
+          <td>If you cannot state the exact trigger, stop price, and first target before entering, you are trading emotionally. This criterion forces you to plan the trade before taking it.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-2 mt-28">
+    <div>
+      <h3>Score Interpretation</h3>
+      <table class="t">
+        <thead><tr><th>Score Range</th><th>Action</th><th>Max Size</th></tr></thead>
+        <tbody>
+          <tr><td><strong>85–100</strong></td><td>Take the trade. Full size justified.</td><td>1.25% risk</td></tr>
+          <tr><td><strong>75–84</strong></td><td>Take the trade. Standard size.</td><td>1.0% risk</td></tr>
+          <tr><td><strong>65–74</strong></td><td>Take intraday only. Reduced size. Tighter profit target.</td><td>0.75% risk</td></tr>
+          <tr><td><strong>50–64</strong></td><td>Watch only. Do not trade. Wait for the score to improve or pass.</td><td>No trade</td></tr>
+          <tr><td><strong>Below 50</strong></td><td>Remove from watchlist. Not a setup.</td><td>No trade</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-gold mt-20">
+        <strong>Grading calibration:</strong> When you are new to this system, log the score for every trade you would have taken and compare to actual outcome over 50 trades. Adjust scoring weights based on what actually predicts follow-through in your specific universe.
+      </div>
+    </div>
+    <div>
+      <h3>Quick Scoring Template</h3>
+      <div class="card card-black">
+        <h4 style="color:var(--accent);">PRE-TRADE SCORING CARD</h4>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">1. Catalyst Quality</span><span style="color:var(--accent);font-weight:700;">/ 20</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">2. Float / Structure</span><span style="color:var(--accent);font-weight:700;">/ 15</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">3. Liquidity Quality</span><span style="color:var(--accent);font-weight:700;">/ 10</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">4. Relative Volume (RVOL)</span><span style="color:var(--accent);font-weight:700;">/ 10</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">5. Trend Quality</span><span style="color:var(--accent);font-weight:700;">/ 10</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">6. Extension Risk (subtract)</span><span style="color:var(--red);font-weight:700;">- / 10</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">7. Dilution Risk (subtract)</span><span style="color:var(--red);font-weight:700;">- / 10</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">8. Setup Quality</span><span style="color:var(--accent);font-weight:700;">/ 10</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);">
+            <span style="font-size:13px;">9. Regime Alignment</span><span style="color:var(--accent);font-weight:700;">/ 10</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.15);">
+            <span style="font-size:13px;">10. Execution Clarity</span><span style="color:var(--accent);font-weight:700;">/ 5</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0 0 0;">
+            <span style="font-size:15px;font-weight:700;color:white;">TOTAL SCORE</span><span style="color:var(--accent);font-family:'Bebas Neue',cursive;font-size:24px;">/ 100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SECTION 6: EXECUTION RULES ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 06 · Execution Rules — Exact Rules for Every Phase of a Trade</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>EXECUTION <span>RULES</span></h2>
+
+  <div class="col-2">
+    <div>
+      <h3>Starter Size Rules</h3>
+      <p>The first entry is never full size. This protects against entering a setup that immediately fails before you have time to reassess. A partial entry gives you information — if it moves immediately, you add. If it stalls, you exit with a fraction of the intended loss.</p>
+      <div class="card card-stripe mt-12">
+        <h4>Initial Position Sizing</h4>
+        <ul>
+          <li><strong>Score 85–100:</strong> Enter with 60% of planned position at the trigger</li>
+          <li><strong>Score 75–84:</strong> Enter with 50% of planned position at the trigger</li>
+          <li><strong>Score 65–74:</strong> Enter with 40% of planned position at the trigger</li>
+          <li><strong>Dilution flag present:</strong> Enter with 30% regardless of score</li>
+          <li><strong>First trade after a losing streak (3+ losses):</strong> Enter with 30% of planned position only</li>
+        </ul>
+        <div class="callout callout-gold mt-12">
+          <strong>Livermore's probe principle:</strong> The first entry is a probe. You are buying information, not just shares. If the market confirms your thesis immediately, you already have a position. If it contradicts your thesis immediately, your loss is small.
+        </div>
+      </div>
+
+      <h3 class="mt-24">Add Criteria — When to Complete the Position</h3>
+      <p>Adding to a position is only allowed when the trade is already working. You are adding into strength, not adding into a loss to average down. Roland Wolf's system, Minervini's system, and Livermore's pyramiding approach all share this identical rule.</p>
+      <div class="card card-stripe-green mt-12">
+        <h4>Add Rules (All Must Be Met)</h4>
+        <ul>
+          <li>The initial entry is at breakeven or profitable — not underwater</li>
+          <li>Price has made a new high since entry OR broken the key level that was the setup trigger</li>
+          <li>Volume is expanding, not contracting, on the add candle</li>
+          <li>The setup trigger remains valid — no invalidation has occurred</li>
+          <li>Adding does not cause total position to exceed the planned full-size risk</li>
+          <li>For Setup 5 (VCP): add only after a "normal reaction" pullback on light volume (Livermore rule)</li>
+        </ul>
+      </div>
+
+      <h3 class="mt-24">Stop Placement</h3>
+      <table class="t mt-12">
+        <thead><tr><th>Setup</th><th>Initial Stop Location</th><th>Stop Movement Rule</th></tr></thead>
+        <tbody>
+          <tr><td>Setup 1 (Gap & Go)</td><td>Below the lowest low of the pre-breakout consolidation on 1-min chart</td><td>Move to breakeven after first partial taken at 1.5R</td></tr>
+          <tr><td>Setup 2 (Bull Flag)</td><td>Below the flag low (lowest close during consolidation)</td><td>Move to below the last 1-min higher low after first partial</td></tr>
+          <tr><td>Setup 3 (Dip Buy)</td><td>Below the defined support level by 0.02–0.05 (avoid stop sweep)</td><td>Move to breakeven when price reclaims VWAP</td></tr>
+          <tr><td>Setup 4 (FGD)</td><td>Below the low of day on entry day (LOD)</td><td>Move to below prior close after FGD is confirmed on close</td></tr>
+          <tr><td>Setup 5 (VCP)</td><td>5–7% below entry pivot (tight version of Minervini's 7–8%)</td><td>Trail with 10-day MA close. Exit on close below 10-day MA.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-red mt-16">
+        <strong>Cameron's breakout-or-bailout rule (applied to all setups):</strong> If the setup does not work within 3–5 candles of entry (intraday), or within 2–3 days of entry (swing), exit and reassess. The best trades work almost immediately. Waiting for a trade to "come back" is how small losses become large losses.
+      </div>
+    </div>
+
+    <div>
+      <h3>Scaling Out — The Exit Ladder</h3>
+      <p>Scaling out is not optional — it is the mechanism that locks in realized profit while leaving exposure to further upside. The Ignition System's "sell into thirds" and Roland Wolf's "partial scaling discipline" are unified here into one rule set.</p>
+      <div class="card card-stripe mt-12">
+        <h4>Exit Ladder for Intraday Setups (1–4)</h4>
+        <ol>
+          <li><strong>First partial (1/3 of position):</strong> At 1.5R from entry. Locks in first confirmed gain. Move stop to breakeven on remaining 2/3.</li>
+          <li><strong>Second partial (1/3 of position):</strong> At 2R–2.5R. Or at a significant resistance level (prior high, round number) if that is below 2R.</li>
+          <li><strong>Final exit (remaining 1/3):</strong> On first candle that closes red after a strong move, OR at hard time-stop (11:30 AM for Setup 1/2), OR on Level 2 showing large seller appearing.</li>
+        </ol>
+        <div class="callout callout-gold mt-12">
+          <strong>Adjustment for strong momentum:</strong> In Risk-On regime, if the stock accelerates past 3R without a reversal signal, delay the second partial and trail the stop instead. Livermore: "The big money is made in the big moves."
+        </div>
+      </div>
+
+      <div class="card card-stripe mt-20">
+        <h4>Exit Ladder for Swing Setups (Setup 5)</h4>
+        <ol>
+          <li><strong>First partial (1/3):</strong> At 2R from pivot entry. Locks in profit on the first leg.</li>
+          <li><strong>Second partial (1/3):</strong> At 4R–5R or at a major resistance level. Move stop to 1R above entry on remaining shares.</li>
+          <li><strong>Final exit:</strong> Daily close below 10-day MA with volume. OR abnormal reversal: single day down 2×+ average volume on a large red candle. OR fundamental change (dilution, earnings deceleration).</li>
+        </ol>
+      </div>
+
+      <h3 class="mt-24">Chase Prevention Rules</h3>
+      <p>These rules have one job: prevent you from entering a setup after the optimal entry window has passed. Every one of these rules comes from painful documented mistakes in the source playbooks.</p>
+      <ul class="checklist">
+        <li><span class="c-icon c-red">✗</span><span>Do not enter Setup 1 if the stock has already moved more than 40% from its prior close before your entry</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Do not enter a bull flag that has been consolidating for more than 45 minutes on the 1-minute chart — the momentum is stale</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Do not enter any intraday setup after 11:30 AM on a 1-minute chart — switch to 5-minute or exit the watchlist</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Do not enter a Setup 4 FGD if the prior day's close has not been clearly broken AND held for at least 2 candles on the 5-minute chart</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Do not add to a losing position under any circumstances — averaging down is not in this system</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Do not enter a VCP pivot breakout on low volume (below 30-day average on the breakout day)</span></li>
+      </ul>
+
+      <h3 class="mt-24">Halt-Risk Adjustment</h3>
+      <div class="card card-stripe-orange mt-12">
+        <h4 style="color:#ea580c;">Before Any Entry</h4>
+        <p>Check if the stock is near a price level that typically triggers trading halts (circuit breakers at +10%, +20%, +50% intraday moves). If the stock is approaching a halt level and you are not already in the trade: wait for the resume and assess spread before entering. Do not chase into a halt.</p>
+        <h4 class="mt-12" style="color:#ea580c;">During a Halt</h4>
+        <ul>
+          <li>Do not assume direction. The halt could be up or down news.</li>
+          <li>On resume: check bid-ask spread immediately. If spread is above 2% of price, do not add — exit cleanly instead.</li>
+          <li>If you are already in the trade and the halt resumes against you: exit at market rather than waiting for your stop. Halts eliminate your stop placement entirely.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SECTION 7: RISK OS ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 07 · Risk Operating System — Hard Rules That Cannot Be Overridden</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>RISK <span>OPERATING SYSTEM</span></h2>
+  <p>The Risk OS is not a suggestion layer. It is a hard constraint system. Every rule in this section overrides every other consideration — including a "perfect" setup, a hot catalyst, or a strong conviction. The source for these rules: Cameron's daily max loss and trader rehab, Roland Wolf's defined risk per trade, Ignition System's position sizing by grade, and Livermore's explicit statements about the necessity of cash preservation above all else.</p>
+
+  <div class="col-2 mt-24">
+    <div>
+      <div class="card card-black">
+        <h3 style="color:white;margin-bottom:20px;">The Five Hard Limits</h3>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:40px;color:var(--accent);line-height:1;flex-shrink:0;">1</span>
+            <div>
+              <p style="font-weight:700;color:white;margin-bottom:4px;">Risk Per Trade: 0.75% to 1.25% of total account</p>
+              <p style="font-size:13px;">Calculated as (entry price − stop price) × shares ÷ account value. Never exceed 1.25% on any single trade regardless of score. In reduced-size regimes, never exceed 0.5%. Score determines where in the 0.75–1.25 range you land, not higher.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:40px;color:var(--accent);line-height:1;flex-shrink:0;">2</span>
+            <div>
+              <p style="font-weight:700;color:white;margin-bottom:4px;">Maximum Portfolio Heat: 4% to 6%</p>
+              <p style="font-size:13px;">The sum of all open trade risks at any moment cannot exceed 6%. In mixed/rotational regime: cap at 4%. In risk-off: cap at 2%. Calculate this before every new entry — if adding the new trade would exceed the heat limit, you do not enter until an existing position is reduced.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:40px;color:var(--accent);line-height:1;flex-shrink:0;">3</span>
+            <div>
+              <p style="font-weight:700;color:white;margin-bottom:4px;">Daily Maximum Loss: 2R (2× your standard single-trade risk)</p>
+              <p style="font-size:13px;">If you are risking 1% per trade, your daily max loss is 2% of account. Hit this limit and the trading day is over — not paused, not "I'll try one more." Cameron: once daily max is hit, stop for the day. No exceptions. Revenge trading begins exactly at this threshold.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:40px;color:var(--accent);line-height:1;flex-shrink:0;">4</span>
+            <div>
+              <p style="font-weight:700;color:white;margin-bottom:4px;">Weekly Drawdown Trigger: -4% of account</p>
+              <p style="font-size:13px;">If the account drops 4% in a single week, reduce risk per trade to 0.5% for the following week. Do not return to full size until you have a profitable week at reduced size. This is the "rehab" protocol — not punishment, just calibration.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:40px;color:var(--accent);line-height:1;flex-shrink:0;">5</span>
+            <div>
+              <p style="font-weight:700;color:white;margin-bottom:4px;">Portfolio Drawdown Hard Stop: -10% to -12%</p>
+              <p style="font-size:13px;">Full stand-down. All new trades suspended. No exceptions. Review every loss from the drawdown period. Identify: was the system broken (rules not followed) or were valid setups failing due to regime mismatch? Only re-enter when regime improves AND re-risk criteria are fully met.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Drawdown Throttling Protocol</h3>
+      <p>This is a staged response to increasing drawdown. The goal is to slow down during the periods when the system or the market is not working, while staying active enough to recover. Livermore described this principle in terms of staying solvent to capitalize on the big opportunities.</p>
+
+      <table class="t mt-16">
+        <thead><tr><th>Drawdown Level</th><th>Action</th><th>Reset Criteria</th></tr></thead>
+        <tbody>
+          <tr><td><strong>-3%</strong></td><td>Awareness flag. Review last 5 trades for execution errors. No size change.</td><td>Recovers above -3% automatically</td></tr>
+          <tr><td><strong>-4% to -6%</strong></td><td>Reduce risk per trade to 0.75% max. Cap portfolio heat at 3%. Setups 1 and 2 require score 75+ (stricter). No new swing entries.</td><td>Two consecutive profitable trading days + account above -3%</td></tr>
+          <tr><td><strong>-6% to -8%</strong></td><td>Reduce to 0.5% per trade. Cap heat at 2%. Only Setups 4 and 5. All intraday momentum setups disabled. Trade once per day maximum.</td><td>One full profitable week at reduced size</td></tr>
+          <tr><td><strong>-8% to -10%</strong></td><td>Reduce to 0.25% per trade. Setup 5 (VCP swing) only. One trade open maximum. Full review of all positions.</td><td>Full profitable week + regime improves to Risk-On</td></tr>
+          <tr><td><strong>-10% to -12%</strong></td><td><strong>FULL STAND-DOWN.</strong> No new trades. Paper trading only until re-risk criteria met.</td><td>Full review completed. Two profitable paper-trade weeks. Regime confirmed Risk-On or Squeeze-Heavy.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-24">Loss Streak Throttling</h3>
+      <p>A losing streak is a separate trigger from a drawdown, because you can lose 3 trades in a row while still being within your drawdown limit if they were small losses.</p>
+      <div class="card card-stripe-red mt-12">
+        <ul>
+          <li><strong>3 consecutive losses:</strong> Reduce next trade to 50% of planned size. Review the last 3 losses before taking the next trade — were they rule violations or valid setups that failed?</li>
+          <li><strong>5 consecutive losses:</strong> Stop for that trading day. No more entries. Review regime and confirm you're not in a deteriorating market.</li>
+          <li><strong>7 consecutive losses:</strong> Enter reduced-size protocol as if at -6% drawdown, regardless of actual P&L. Something is wrong with execution or regime alignment.</li>
+        </ul>
+      </div>
+
+      <h3 class="mt-24">Re-Risk Criteria After Drawdown</h3>
+      <p>Before returning to full size after a drawdown period, all four conditions must be met:</p>
+      <ul class="checklist mt-12">
+        <li><span class="c-icon c-green">✓</span><span><strong>Regime confirmation:</strong> Current regime is Risk-On or Squeeze-Heavy (not Mixed or Risk-Off)</span></li>
+        <li><span class="c-icon c-green">✓</span><span><strong>Setup validation:</strong> At least 3 setups in reduced size were profitable in the last 10 trading days</span></li>
+        <li><span class="c-icon c-green">✓</span><span><strong>Execution review complete:</strong> Every loss from the drawdown period reviewed and categorized as rule violation or regime failure</span></li>
+        <li><span class="c-icon c-green">✓</span><span><strong>No open positions:</strong> Return to full size only at the start of a new trading week, not mid-week during recovery</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- ============================================================ SECTION 8: FAILURE PREVENTION ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 08 · Small-Cap Failure Prevention — The 10 Ways This System Can Destroy You</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>SMALL-CAP <span>FAILURE PREVENTION</span></h2>
+  <p>Every rule in this section addresses a specific, documented failure mode in small-cap trading. These are not theoretical risks — each one has appeared in the source playbooks as a reason for real losses. Know them before they cost you.</p>
+
+  <div class="col-2 mt-24">
+    <div>
+      <div class="evidence-row">
+        <div class="number-circle nc-red">1</div>
+        <div>
+          <strong>Calling Every Green Candle a First Green Day</strong>
+          <p>The Ignition System explicitly identifies this as the most common FGD error. A single green candle in the middle of a downtrend is noise — not a setup. The FGD requires a complete multi-day washout sequence (minimum 2–3 consecutive red days) and a verifiable catalyst.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> Before labeling any setup a FGD, count the red days: must be 2 or more. Check for a catalyst: must be verifiable. If either fails, it is not a FGD — do not trade it as one.
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-red">2</div>
+        <div>
+          <strong>Ignoring Float and Short Interest (Entering Without the Squeeze Fuel)</strong>
+          <p>High-float stocks on weak catalysts produce the same chart patterns as low-float squeeze setups — but without the squeeze mechanics. Without trapped shorts, there is no forced covering. Without forced covering, there is no secondary fuel. The move will be weak.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> Float check is mandatory before every entry. No float data = no trade. Float above 50M on Setups 1–4 = reduce score by 10 points minimum.
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-red">3</div>
+        <div>
+          <strong>Dilution Ambush — Offering Announced During Your Trade</strong>
+          <p>A company running 30% on a catalyst will often use that elevated price to issue shares via an ATM offering or secondary. This is not coincidence — it is by design. The company's investment bankers are watching the price too. The offering drops the stock 20–40% instantly and your long position is trapped.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> Before every trade, check: (1) authorized vs. outstanding ratio, (2) existing ATM agreement, (3) recent S-3 filing activity. If any red flag is present, hard cap at 0.5R and widen your awareness of sudden news. Set a price alert for 8-K filings on every open position.
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-red">4</div>
+        <div>
+          <strong>Trading the Wrong Regime (Running Risk-On Setups in Risk-Off)</strong>
+          <p>Setup 1 (Gap & Go) can look identical in both Risk-On and Risk-Off regimes on a stock chart. The difference is that in Risk-Off, the follow-through rate collapses. You will take a series of technically valid setups that all fail. This is regime mismatch, not execution failure — but it destroys accounts the same way.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> Regime check is the first step every morning (Step 1 of the Daily Decision Flow). If regime is Risk-Off or Mixed, disable Setup 1 and 2 before looking at any individual stock setups.
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-red">5</div>
+        <div>
+          <strong>Averaging Down Into a Falling Knife</strong>
+          <p>The Ignition System identifies this as "the deadliest mistake in small-cap longs." A stock falling on no new catalyst is not "cheaper" — it may be going to zero. The only acceptable add to a small-cap position is into strength after the thesis is confirmed, never into a weakening position to reduce the average cost.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> If the stock breaks the defined stop: exit in full. No averaging down, no "giving it room," no "waiting for a bounce to get out." One entry, one stop, one exit. This rule has zero exceptions.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="evidence-row">
+        <div class="number-circle nc-red">6</div>
+        <div>
+          <strong>Holding an Intraday Setup Overnight as a Swing Trade</strong>
+          <p>A trade that qualifies as Setup 1 (Gap & Go intraday) is not automatically a Setup 5 (VCP swing) just because it's still moving at 3 PM. Overnight gap risk in small caps is extreme. A company can issue shares, receive negative news, or get halted between sessions. Holding a day trade overnight requires the stock to ALSO qualify on the daily chart as a swing setup.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> Before holding any intraday position overnight, run the full Setup 5 checklist on the daily chart. If it fails the Stage 2 or VCP criteria, exit before close regardless of P&L.
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-red">7</div>
+        <div>
+          <strong>Crowded Retail Attention — The "Everyone Sees It" Trap</strong>
+          <p>When a small-cap setup is visible on every retail trading forum simultaneously, the edge degrades. Every retail trader buying the bull flag simultaneously means the flag break is bought by everyone at once — and sold into by the institutional player who set up the pattern. The Ignition System warns that the cleanest-looking setups in crowded names often fail fastest.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> If a stock has been trending on social media for 6+ hours before you see the setup, reduce score by 5 points. The best setups are ones you found first — not ones that are already viral. Reduce size by 25% on any stock that was trending on retail platforms overnight.
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-red">8</div>
+        <div>
+          <strong>Fake Breakout Defense — Entering Before Confirmation</strong>
+          <p>Ross Cameron's breakout-or-bailout rule and Roland Wolf's "wait for the pattern to complete" are both responses to the same failure: entering a setup before the trigger is confirmed. Anticipating the trigger is a personality-driven behavior (you "feel" it's about to break). The system requires the actual trigger to fire.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> Define the exact trigger price before entering. If you are entering before that price is hit: you are anticipating, not confirming. Anticipatory entries are not permitted by this system. Wait for the candle to close past the trigger, then enter.
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-red">9</div>
+        <div>
+          <strong>Warrant and Conversion Overhang — Hidden Supply</strong>
+          <p>Warrants outstanding at prices near or below the current stock price represent future selling pressure that is invisible on the chart. When the stock rallies to or above warrant strike prices, warrant holders can convert and sell — creating a price ceiling that looks like "resistance" but is actually structured dilution.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> For any stock held more than intraday, check for outstanding warrants in the most recent 10-K or S-1. If warrant strike prices are within 20% of current price, flag as dilution risk and cap at 0.5R.
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-row">
+        <div class="number-circle nc-red">10</div>
+        <div>
+          <strong>Strategy Drift Under Pressure — Running the Wrong Setup in the Wrong Regime</strong>
+          <p>After a losing streak, traders often start using setups they weren't planning to use, in regimes those setups don't fit, at sizes they shouldn't be trading. This is not strategic adaptation — it is desperation. Cameron's trader rehab protocol, Minervini's focus on only Stage 2, and Livermore's explicit rule about staying out when conditions are unclear all address this: when your setup isn't working, the answer is fewer trades at smaller size — not different strategies at larger size.</p>
+          <div class="callout callout-red" style="margin-top:8px;">
+            <strong>Defense Rule:</strong> Maintain a written list of the currently active regime and the approved setups for that regime. Before any trade, verify you are trading an approved setup for the current regime. If you are considering a setup not on the approved list: stop, wait until the regime permits it or pass.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SECTION 9: FINAL PLAYBOOK ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 09 · Final Playbook — The Complete System You Can Actually Trade</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>FINAL <span>PLAYBOOK</span></h2>
+
+  <div class="col-2">
+    <div>
+      <h3>Core Philosophy</h3>
+      <div class="card card-black">
+        <p style="font-size:15px;line-height:1.7;color:rgba(255,255,255,.85);">This system's edge is not speed, not data access, and not a personality trait. The edge is <strong style="color:var(--accent);">structural clarity</strong> — knowing exactly which setups are live today, what regime the market is in, what score each candidate gets, and what the rules are for every phase of the trade. The system wins by staying active in the right conditions and standing down in the wrong ones. It wins by taking profits mechanically before hope sets in, and exiting losses before they become regime events. Survivability is the first priority. Profitability follows from survivability.</p>
+      </div>
+
+      <h3 class="mt-24">Strongest 2–3 Setups for Your Profile</h3>
+      <div class="card card-stripe mt-12">
+        <h4>Setup 1 + Setup 2 (Gap & Go into Bull Flag)</h4>
+        <p>Your primary momentum expansion bias, combined with your intraday momentum focus, maps directly to the Cameron-based Gap & Go with a bull flag continuation. This is where your structural thinking (you see the pattern forming pre-market), your risk-first mindset (you already know the stop before the open), and your partial scaling style (confirmed add on strength) all align perfectly. This is your highest-edge combination in Risk-On regime.</p>
+      </div>
+      <div class="card card-stripe-green mt-12">
+        <h4>Setup 4 (First Green Day)</h4>
+        <p>Your tolerance for catalyst-driven volatility and your comfort with halt risk when liquidity is present make you well-suited for FGD entries. Your system-builder mentality will score FGD candidates rigorously. Your frustration with fake breakouts is mitigated by the FGD's mechanical trigger (prior close must be broken) rather than a subjective chart pattern. This is your best swing-entry trigger.</p>
+      </div>
+      <div class="card card-stripe mt-12">
+        <h4>Setup 5 (VCP Swing)</h4>
+        <p>Your multi-day catalyst continuation bias and selective swing hold style match the Minervini/Livermore swing framework. You will appreciate the quantifiable criteria (8-point trend template, contraction sequence, pivot price). Your sensitivity to regime shifts is an advantage here — you will identify when Stage 2 breaks before most swing traders exit.</p>
+      </div>
+
+      <h3 class="mt-24">Weakest Setup to Remove or Limit</h3>
+      <div class="card card-stripe-red mt-12">
+        <h4 style="color:var(--red);">Setup 3 (Structured Dip Buy) as Standalone</h4>
+        <p>As a standalone setup, the structured dip buy requires discretionary judgment about when selling is truly exhausted — the kind of "feel" you explicitly want to remove from your system. It is valuable as a confirmation mechanism inside Setup 4 (dip + FGD = stronger entry) but dangerous as an independent setup because the stop is often wider and the "support" is more interpretive than the other setups. Keep it as a secondary confirmation tool, not a primary setup.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>What Should Be Mechanical vs. Discretionary</h3>
+      <table class="t mt-12">
+        <thead><tr><th>Decision</th><th>Mechanical or Discretionary</th><th>Rule or Judgment Criteria</th></tr></thead>
+        <tbody>
+          <tr><td>Regime classification</td><td><span class="conf-high">MECHANICAL</span></td><td>VIX + IWM levels. Binary criteria.</td></tr>
+          <tr><td>Setup scoring</td><td><span class="conf-high">MECHANICAL</span></td><td>10-criterion model. Sum the scores.</td></tr>
+          <tr><td>Entry trigger</td><td><span class="conf-high">MECHANICAL</span></td><td>Specific price level. Candle closes above it or it doesn't.</td></tr>
+          <tr><td>Stop price</td><td><span class="conf-high">MECHANICAL</span></td><td>Below specific level defined pre-entry. Never moved against you.</td></tr>
+          <tr><td>First partial exit</td><td><span class="conf-high">MECHANICAL</span></td><td>At 1.5R. Non-negotiable.</td></tr>
+          <tr><td>Starter size</td><td><span class="conf-high">MECHANICAL</span></td><td>Based on score range. Fixed percentages.</td></tr>
+          <tr><td>Add criteria</td><td><span class="conf-high">MECHANICAL</span></td><td>All 5 add rules must be met. No partial credit.</td></tr>
+          <tr><td>Final exit (trail)</td><td><span class="conf-med">DISCRETIONARY</span></td><td>Judgment: is this "normal reaction" or "abnormal reversal"? Use volume as the deciding factor.</td></tr>
+          <tr><td>Holding past 11:30 AM</td><td><span class="conf-med">DISCRETIONARY</span></td><td>Only if Setup 5 criteria also met. Otherwise exit at 11:30 AM mechanical rule.</td></tr>
+          <tr><td>Catalyst quality scoring</td><td><span class="conf-med">DISCRETIONARY</span></td><td>The scoring range is defined, but where exactly within it requires judgment. Verify the news carefully.</td></tr>
+          <tr><td>FGD grade (A/B/C)</td><td><span class="conf-med">DISCRETIONARY</span></td><td>Grading criteria are defined, but which grade to assign requires pattern recognition experience.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CHECKLISTS -->
+  <h2 class="mt-28">THE <span>CHECKLISTS</span></h2>
+  <div class="col-3 mt-20">
+    <div>
+      <h3>Pre-Market Checklist</h3>
+      <ul class="checklist mt-12">
+        <li><span class="c-icon c-green">✓</span><span>VIX level checked and regime classified</span></li>
+        <li><span class="c-icon c-green">✓</span><span>IWM vs. 20-day and 50-day MA noted</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Scanner run: float, RVOL, pre-market %, price filter</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Every alert cross-checked for verifiable catalyst</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Dilution check completed for all watchlist names</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Scoring model applied to top 3 candidates</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Key levels marked: PM high/low, prior day close, VWAP, whole numbers</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Current portfolio heat and drawdown level noted</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Daily max loss limit confirmed and set as mental hard stop</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Do not proceed without regime classification complete</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Do not trade any name with no verifiable catalyst</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Entry Checklist</h3>
+      <ul class="checklist mt-12">
+        <li><span class="c-icon c-green">✓</span><span>Setup score confirmed at 65+ (intraday) or 75+ (swing)</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Setup type approved for current regime</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Exact entry trigger price defined</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Exact stop price defined (below specific level)</span></li>
+        <li><span class="c-icon c-green">✓</span><span>First partial target price defined (1.5R)</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Starter size calculated correctly for score range</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Adding this trade doesn't exceed portfolio heat limit</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Daily max loss not yet hit</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Within the allowed trading window for the setup type</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Never enter if trigger has not fired yet</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Never enter with undefined stop or undefined target</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Never enter if regime disables this setup type</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Exit Checklist</h3>
+      <ul class="checklist mt-12">
+        <li><span class="c-icon c-green">✓</span><span>Take first partial at 1.5R — no exception regardless of conviction</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Move stop to breakeven after first partial</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Take second partial at 2R–2.5R or at nearest resistance</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Trail remaining position with structure (1-min lows intraday, 10-day MA close for swing)</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Exit full position if invalidation criteria hit (Level 2 weakens, tape turns, structure breaks)</span></li>
+        <li><span class="c-icon c-green">✓</span><span>Exit intraday positions before 11:30 AM unless qualifying for swing hold</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Never hold through a stop hit "waiting for a bounce"</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Never hold intraday Setup 1/2 overnight without Setup 5 qualification</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Never delay the first partial because you "think it'll go higher"</span></li>
+        <li><span class="c-icon c-red">✗</span><span>Never widen a stop to avoid being stopped out</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STAND-DOWN RULES -->
+  <h3 class="mt-28">Stand-Down Rules — When to Stop Trading Entirely</h3>
+  <div class="col-2 mt-16">
+    <div class="card card-red">
+      <h4 style="color:var(--red);">Daily Stand-Down Triggers</h4>
+      <ul>
+        <li>Daily max loss (2R) hit. Trading day is over immediately.</li>
+        <li>3 consecutive same-day losses. Stop and review before one more trade.</li>
+        <li>Any trade taken in violation of a rule. Stop for the day — rules violations compound into larger ones.</li>
+        <li>Emotional state: anger, frustration, or revenge-trade impulse detected. Stop.</li>
+      </ul>
+    </div>
+    <div class="card card-red">
+      <h4 style="color:var(--red);">Extended Stand-Down Triggers</h4>
+      <ul>
+        <li>Portfolio drawdown hits -10% to -12%. Full stand-down — all trading suspended.</li>
+        <li>Regime has been Risk-Off for 5+ consecutive sessions. Reduce to Setup 5 only.</li>
+        <li>Dilution-heavy regime active. Cap all new entries at 0.5R.</li>
+        <li>Personal review identifies consistent rules violations. Stand down until root cause is identified and corrected.</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WHAT TO IGNORE -->
+  <div class="col-2 mt-28">
+    <div>
+      <h3>What to Ignore</h3>
+      <ul>
+        <li>Stocks without verifiable catalysts, regardless of how compelling the chart looks</li>
+        <li>Any setup that requires "ignoring one of the conditions just this once"</li>
+        <li>Social media sentiment as a primary setup rationale (it can be one factor in catalyst quality, not the catalyst itself)</li>
+        <li>Breakouts that occur after the stock is already up 100%+ in a session without a prior consolidation</li>
+        <li>Mean reversion setups unless they meet the full FGD criteria — "it's oversold" is not a thesis</li>
+        <li>Stocks below $2 regardless of catalyst (liquidity is too unpredictable)</li>
+        <li>Any setup in a disabled regime</li>
+        <li>The P&L of any single trade — manage the process, not the outcome</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What Gives This System Real Edge</h3>
+      <ul>
+        <li><strong>Regime filtering:</strong> Most retail losses occur from trading momentum setups in non-momentum regimes. This system prevents that with a pre-market gate.</li>
+        <li><strong>Quantified scoring:</strong> Removes intuition from the go/no-go decision. Every candidate gets scored, not felt.</li>
+        <li><strong>Dilution awareness:</strong> The single biggest structural killer of small-cap long trades is built into the scoring model and the pre-trade checklist.</li>
+        <li><strong>Probe-then-confirm sizing:</strong> Livermore's most transferable insight: starter size = information purchase. You commit full size only when the market confirms your thesis.</li>
+        <li><strong>Regime-based capital allocation:</strong> The system is never fully deployed in bad conditions. Cash is a position.</li>
+        <li><strong>Mechanical partial profits:</strong> Taking the first partial at 1.5R regardless of conviction prevents the most common mistake — holding a winner until it becomes a loser because you "thought it would go higher."</li>
+        <li><strong>Hard stand-down rules:</strong> The system survives drawdowns because it decelerates automatically. Most traders blow up not because they had bad setups but because they pressed harder during losing streaks.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ SIMPLIFIED IMMEDIATE VERSION ============================================================ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 10 · Simplified System You Can Trade Immediately</span>
+    <span>Unified Small-Cap Trading OS</span>
+  </div>
+  <h2>SIMPLIFIED <span>IMMEDIATE SYSTEM</span></h2>
+  <p>This is the full system stripped to its minimum viable version. Trade this for 30 days before adding complexity. Use only these rules. Do not add back complexity until this version is consistently profitable.</p>
+
+  <div class="col-2 mt-24">
+    <div>
+      <h3>The Simplified Morning Routine</h3>
+      <ol style="display:flex;flex-direction:column;gap:12px;">
+        <li><strong>Check VIX.</strong> Above 28? Only Setup 5 today. Above 35? Stand down entirely.</li>
+        <li><strong>Check IWM.</strong> Below 50-day MA? Reduce all sizes by 50%.</li>
+        <li><strong>Find your stock.</strong> Float under 20M. Real news. Pre-market up 10%+. RVOL 5x+.</li>
+        <li><strong>Check dilution.</strong> Does the company have an ATM offering or authorized shares 5x+ outstanding? If yes: pass or max 0.5R.</li>
+        <li><strong>Mark your levels.</strong> Pre-market high. Prior day close. VWAP. Two whole numbers above and below.</li>
+        <li><strong>Score it quickly.</strong> Use a simplified version: Catalyst (strong/medium/weak). Float (good/ok/bad). RVOL (high/medium/low). 3 "goods" = trade. Anything less = reduce size or pass.</li>
+      </ol>
+
+      <h3 class="mt-24">The Simplified Entry</h3>
+      <div class="card card-stripe mt-12">
+        <p>Wait for the stock to break above the pre-market high OR the prior day's close (whichever is relevant to your setup). Wait for a candle to CLOSE above that level on the 1-minute chart — not just touch it. Enter with 50% of your planned size at that candle close. Set your stop below the low of that candle. Your plan is now locked in.</p>
+      </div>
+
+      <h3 class="mt-24">The Simplified Exit</h3>
+      <div class="card card-stripe-green mt-12">
+        <p><strong>First:</strong> When profit equals your stop distance (1R), sell half. Move your stop to breakeven. You cannot lose money on this trade anymore.<br><br>
+        <strong>Second:</strong> When profit equals 2× your stop distance (2R), sell another quarter. Trail the last quarter with the previous candle's low as your stop.<br><br>
+        <strong>Hard rule:</strong> If the trade doesn't show profit within 5 candles: exit in full. The best setups work immediately.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>Simplified Risk Rules</h3>
+      <div class="card card-black mt-12">
+        <ul style="display:flex;flex-direction:column;gap:12px;">
+          <li style="color:rgba(255,255,255,.85);">Risk no more than <strong style="color:var(--accent);">1% of your account</strong> on any single trade</li>
+          <li style="color:rgba(255,255,255,.85);">Maximum <strong style="color:var(--accent);">two trades open</strong> at the same time</li>
+          <li style="color:rgba(255,255,255,.85);">If you lose <strong style="color:var(--accent);">2%+ in one day</strong>: stop trading for the day</li>
+          <li style="color:rgba(255,255,255,.85);">If you lose <strong style="color:var(--accent);">3 trades in a row</strong>: stop and review before the next trade</li>
+          <li style="color:rgba(255,255,255,.85);">After <strong style="color:var(--accent);">11:30 AM</strong>: no new intraday entries unless a fresh catalyst just broke</li>
+          <li style="color:rgba(255,255,255,.85);"><strong style="color:var(--red);">Never</strong> average down into a losing position</li>
+          <li style="color:rgba(255,255,255,.85);"><strong style="color:var(--red);">Never</strong> hold a day trade overnight without deliberate review</li>
+        </ul>
+      </div>
+
+      <h3 class="mt-24">Quick-Reference Cheat Sheet</h3>
+      <div class="card card-gold mt-12">
+        <h4>BEFORE THE OPEN</h4>
+        <p>VIX → IWM → Find stock → Check news → Check float → Check dilution → Mark levels → Score it → Size it</p>
+        <hr class="divider" style="margin:12px 0;">
+        <h4>AT THE TRIGGER</h4>
+        <p>Candle closes above level? → Enter 50% size → Set stop below trigger candle low → Plan is locked</p>
+        <hr class="divider" style="margin:12px 0;">
+        <h4>DURING THE TRADE</h4>
+        <p>At 1R profit → Sell 50% → Move stop to breakeven. At 2R → Sell 25% more → Trail last 25%. Stalls in 5 candles → Exit all.</p>
+        <hr class="divider" style="margin:12px 0;">
+        <h4>AFTER THE TRADE</h4>
+        <p>Log: Setup type · Score · Entry · Stop · Exit · R multiple · One-line reason</p>
+      </div>
+
+      <div class="card card-stripe-green mt-16">
+        <h4>The Beginner Version (Start Here)</h4>
+        <p>For the first 30 days: trade <strong>Setup 2 (Bull Flag) only</strong>, in Risk-On regime only, on stocks with float under 10M and real catalyst, between 9:30 AM and 11 AM only. Use 50% planned size. Take profit at 1.5R only — no trailing. Exit at stop if wrong. Log everything. Master one setup before adding others.</p>
+      </div>
+
+      <div class="card card-stripe mt-16">
+        <h4>The Intermediate Version (Add After 30 Days of Profitability)</h4>
+        <p>Add Setup 1 (Gap & Go) and Setup 4 (FGD) when the bull flag is consistently profitable. Apply the full scoring model. Use the three-partial exit ladder. Start tracking regime and adjusting size dynamically. Begin evaluating Setup 5 (VCP) candidates on your watchlist for multi-day opportunities.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="takeaway-grid" style="max-width:1200px;margin:0 auto 2px;padding:56px 60px;background:var(--white);display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+  <div class="takeaway-card"><div class="takeaway-num">01</div><div class="takeaway-text">The regime engine runs before any setup analysis. Wrong regime = wrong edge, even on perfect setups.</div></div>
+  <div class="takeaway-card"><div class="takeaway-num">02</div><div class="takeaway-text">The scoring model is the only valid replacement for gut feel. Below 65 = no trade, regardless of how compelling the story sounds.</div></div>
+  <div class="takeaway-card"><div class="takeaway-num">03</div><div class="takeaway-text">Dilution is the most common structural killer of small-cap longs. It is not in the chart. Check the filings every time.</div></div>
+  <div class="takeaway-card"><div class="takeaway-num">04</div><div class="takeaway-text">The probe entry (50% starter) is not timidity — it is the professional execution model. Livermore, Wolf, and Minervini all use it.</div></div>
+  <div class="takeaway-card"><div class="takeaway-num">05</div><div class="takeaway-text">The first partial exit at 1.5R is non-negotiable. Taking profits mechanically prevents the single most common trading failure: turning winners into losers.</div></div>
+  <div class="takeaway-card"><div class="takeaway-num">06</div><div class="takeaway-text">Stand-down is a trade. The system survives by decelerating automatically when conditions deteriorate. Cash is always an open position.</div></div>
+</div>
+
+<div class="footer">Unified Small-Cap Trading Operating System · Built from: Ross Cameron (Warrior Trading), Roland Wolf (Wolf Trades), The Ignition System, Mark Minervini (SEPA/VCP), Jesse Livermore (How to Trade in Stocks 1940) · For Educational Research Purposes · Not Financial Advice · Past performance of any trader does not guarantee future results · Every trade involves risk of loss</div>
+
+</body>
+</html>

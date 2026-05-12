@@ -1,0 +1,971 @@
+================================================================================
+GRANT SWING SYSTEM v1.0
+LONG-SIDE SMALL CAP SWING TRADING -- OVERNIGHT / 1-3 DAY / 5-10 DAY
+HIGHEST WIN RATE CONFIGURATION -- ALL FLOAT TIERS -- ALL CATALYST TYPES
+PLAIN TEXT -- TOS SCRATCHPAD READY
+================================================================================
+Generated: 2026-03-30
+Author: Grant AI Trading Desk
+Output Format: TOS Scratchpad / plain text
+
+================================================================================
+SECTION 1 -- SYSTEM PHILOSOPHY
+================================================================================
+
+This system is built on one principle: catalyst-driven momentum with structural
+confirmation beats pure technicals every time in small-cap swing trading. The
+highest-probability swing trades occur when a real, verifiable catalyst forces
+institutional-level volume into a float that cannot absorb it cleanly -- producing
+multi-day continuation that is tradeable with a defined edge.
+
+Four non-negotiables that define this entire system:
+
+1. The catalyst must be graded before any technical work is done.
+   Technical setup without catalyst grade is noise in small caps.
+
+2. Dilution must be assessed relative to catalyst strength -- not blanket avoided.
+   A grade-A catalyst can overcome moderate dilution risk. Grade-C cannot.
+
+3. Volume quality -- not raw volume -- determines continuation probability.
+   Expansion on pushes and contraction on pullbacks = distribution of supply upward.
+   Churn (high volume, low net movement) = hidden supply. Exit immediately.
+
+4. Position hold duration is determined by float, catalyst grade, and structure --
+   not by a preferred timeframe. The setup picks the hold. Not the other way around.
+
+================================================================================
+SECTION 2 -- STOCK SELECTION MASTER CRITERIA
+================================================================================
+
+---UNIVERSAL HARD FILTERS (applies to all tiers and all hold durations)---
+
+1. Exchange: NYSE, NASDAQ, AMEX only. No OTC/Pink Sheet overnight holds.
+   OTC names allowed for intraday only and only with confirmed D-quote execution.
+
+2. Price: $0.50 minimum at time of entry. Below $0.50 = spread destruction + halt risk.
+   Upper end: no cap -- size adjusts for price not the reverse.
+
+3. Average Daily Volume (pre-catalyst): Minimum 200K shares/day 20-day avg.
+   Below 200K = insufficient liquidity for any multi-day hold.
+
+4. Relative Volume (RVOL) at time of scan: Minimum 2.5x for overnight consideration.
+   Minimum 4x for same-day entry on momentum plays.
+   Below 2.5x = no institutional attention = no continuation fuel.
+
+5. Reverse Split History: Any reverse split in the last 6 months = automatic skip.
+   Two reverse splits in 12 months = hard permanent avoid. Never re-enters watchlist.
+
+6. Float: See float-tiered criteria below.
+   No hard upper cap on float for 5-10 day holds when catalyst is grade A.
+
+7. Market Cap: $10M minimum to avoid OTC-level manipulation risk.
+   $5B maximum for this system -- above $5B small-cap edge disappears.
+
+8. No pending SEC trading suspension history in last 24 months.
+
+9. No confirmed active PIPE or registered direct offering live and unresolved.
+   If offering was announced within 60 days and shares not yet freely tradeable = skip.
+
+---FLOAT-TIERED SELECTION CRITERIA---
+
+TIER 1 -- MICRO FLOAT (Under 5M shares)
+Best for: Overnight and 1-3 day plays. Squeeze fuel and thin-float parabolic runs.
+Required: RVOL 5x+ minimum day of entry. Halt awareness mandatory.
+Risk: Extreme gap risk both directions. No partial entries -- size small.
+Dilution tolerance: Grade A catalyst required for any dilution overhang.
+Max hold: 3 days unless TTM Squeeze confirmed on daily with clear target.
+Best catalysts: FDA/Clinical, military/government contract, major PR with revenue impact.
+Exit trigger: First failed HOD test on any intraday timeframe = trim 50%.
+
+TIER 2 -- LOW FLOAT (5M to 20M shares)
+Best for: All three hold durations. The sweet spot for this system.
+Required: RVOL 3x+ day of entry. Daily chart must show clean base or breakout.
+Risk: Gap risk moderate. Stop distances wider than micro. Manageable.
+Dilution tolerance: Grade A or B catalyst allows up to moderate dilution.
+Max hold: 5-10 days if daily trend is intact and sector theme is active.
+Best catalysts: All four catalyst types viable. Technical breakout valid if volume confirmed.
+Exit trigger: Daily close below 9EMA = trim. Two daily closes below 9EMA = full exit.
+
+TIER 3 -- MID FLOAT (20M to 100M shares)
+Best for: 5-10 day holds. Requires clean base and real institutional catalyst.
+Required: RVOL 2.5x+ over 3 consecutive days minimum before entry consideration.
+Risk: Lower gap risk. Wider stops required. Expectation: 15-40% moves not 100%+.
+Dilution tolerance: Active ATM tolerable if it has not been active in 45+ days.
+Max hold: 10 days standard. Can extend to 15 if weekly chart trend is intact.
+Best catalysts: Earnings/Revenue beat, FDA PDUFA approval, major institutional PR.
+Exit trigger: Break below 20-day SMA = full position exit, no exceptions.
+
+---CATALYST GRADING SYSTEM---
+
+GRADE A -- Fundamentally changes the company's trajectory
+Examples: FDA approval or PDUFA date beat, large government/military contract confirmed,
+          earnings beat with raised guidance 20%+, major acquisition of revenue-generating
+          asset, NASDAQ compliance resolution after delisting notice resolved.
+Effect on dilution tolerance: Allows up to HIGH dilution if float not completely flooded.
+Swing hold duration unlocked: All three durations (overnight to 10-day).
+Target expansion: Measured move based on entire prior base height.
+
+GRADE B -- Significant one-time catalyst, sector attention, theme momentum
+Examples: Phase 2 or Phase 3 clinical data positive, revenue beat without guidance raise,
+          government contract announcement (not yet confirmed/funded), material PR from
+          known partner, analyst initiation with price target 30%+ above current price.
+Effect on dilution tolerance: Moderate dilution acceptable. Active ATM = reduce size only.
+Swing hold duration: Overnight to 3 days standard. 5-10 day only if base is clean.
+Target: 1-2 measured moves from base.
+
+GRADE C -- Minor catalyst, sector sympathy, technical catalyst only
+Examples: Product launch PR with no revenue data, earnings in-line (no beat), sector
+          sympathy run (stock in same sector as bigger mover), buyback announcement,
+          technical breakout with no fundamental catalyst, positive social media attention.
+Effect on dilution tolerance: No dilution tolerated at Grade C. Clean float required.
+Swing hold duration: Overnight only. Maximum 1-3 days if daily chart is pristine.
+Target: Conservative. Half the measured move from base. Trail stops tight.
+
+GRADE D -- No catalyst or negative catalyst misread as positive
+Examples: Press release with no substance, vague LOI, third-party unverified claims,
+          short squeeze suspected with no catalyst, volume spike with no news found.
+Effect on dilution tolerance: Irrelevant -- Grade D names are not swing traded long.
+Action: Monitor only. No entry. If strong technical breakout persists for 2+ days,
+        re-evaluate and reassign grade if catalyst emerges.
+
+================================================================================
+SECTION 3 -- DUE DILIGENCE CHECKLIST (PRE-TRADE MANDATORY)
+================================================================================
+
+Run every step in order. Do not skip steps for time. If a step cannot be completed,
+do not enter the trade until it is. Grade each item Pass / Flag / Fail.
+
+---STEP 1: CATALYST VERIFICATION (10 minutes)---
+
+1a. Find the original source of the catalyst. Stock Titan, SEC.gov, company IR page.
+    Not a news aggregator -- the original filing or press release.
+1b. Read the full text. Not the headline.
+1c. Confirm: Is there a dollar amount, approval number, agency name, or quantifiable metric?
+    Yes = catalyst has substance. No = downgrade catalyst grade by one level.
+1d. Check if catalyst was already known 24+ hours ago (stale catalyst).
+    Stale catalyst + price already moved 20%+ = entering late = Grade C at best.
+1e. Assign Catalyst Grade: A / B / C / D using criteria from Section 2.
+
+Pass criteria: Source confirmed. Catalyst substance confirmed. Grade assigned.
+Fail criteria: Cannot find original source. Headline only. Stale by 24+ hours.
+
+---STEP 2: DILUTION FORENSIC (15 minutes)---
+
+2a. Pull SEC EDGAR: https://www.sec.gov/cgi-bin/browse-edgar
+    Search ticker. Review last 6 months of filings.
+2b. Look for the following filings (red flags):
+    - S-3 or S-3ASR (shelf registration -- dilution on demand)
+    - 424B filings (prospectus supplement -- active offering)
+    - 8-K with "registered direct offering" or "PIPE" language
+    - S-1 amendments (secondary offering incoming)
+    - NT filings (missed reporting deadlines = financial stress)
+2c. If any red flag found: cross-reference with catalyst grade.
+    Grade A catalyst + S-3 only (no active offering): Watchable. Reduce size 30%.
+    Grade A catalyst + active PIPE or 424B within 60 days: Skip.
+    Grade B + any active offering: Size down 50%. Daily hard stop at -8%.
+    Grade C + any red flag: Hard avoid.
+2d. Check OS (Outstanding Shares) vs reported float. Large gap = warrant/convert overhang.
+    OS > Float by 30%+ = hidden dilution. Treat as one level worse.
+2e. Check recent reverse split history. See Section 2 hard filters.
+2f. Assign Dilution Classification: Clean / Watch / Moderate / Toxic
+
+Pass criteria: No active offering. S-3 allowed only if Grade A catalyst.
+Fail criteria: Active PIPE or 424B filed within 60 days. Reverse split in 6 months.
+
+---STEP 3: FLOAT QUALITY AND STRUCTURE (5 minutes)---
+
+3a. Confirm float from Finviz or EDGAR reported shares minus institutional lockups.
+3b. Calculate: Current day volume / reported float = float turnover ratio.
+    Float turnover below 0.5x = insufficient retail interest for swing hold.
+    Float turnover 1x-3x = ideal for 1-3 day hold.
+    Float turnover above 5x in single session = over-extended on day 1 = wait for pullback.
+3c. Check short interest % of float (Finviz, Nasdaq.com).
+    Short interest above 20% of float with Grade A catalyst = squeeze fuel present.
+    Short interest above 40% = potential squeeze, but also elevated borrow cost risk.
+3d. Check institutional ownership. Above 40% in small-cap with fresh catalyst = real.
+    Below 5% = entirely retail-driven = less reliable multi-day continuation.
+
+Pass criteria: Float confirmed. Turnover ratio appropriate for hold duration.
+Fail criteria: Float unclear or unavailable. Turnover above 5x on day 1 with no pullback plan.
+
+---STEP 4: CHART STRUCTURE ANALYSIS (10 minutes)---
+
+DAILY CHART FIRST:
+4a. Identify the most recent base. A base is a consolidation of 5+ days with
+    contracting volume and range. Flat base, cup, VCP, flag all qualify.
+4b. Measure the base depth. Base depth should not exceed 30% from peak to trough.
+    Over 30% = base too deep = buying at a weak point, not a pivot.
+4c. Confirm the stock is breaking out of or near the top of the base. Not mid-base.
+4d. Verify the 9EMA is above the 20EMA on the daily. This is the minimum trend stack.
+    For 5-10 day holds: 9EMA > 20EMA > 50SMA preferred.
+4e. Identify measured move target: base height added to breakout point.
+    Measured move must offer minimum 15% upside from current price to justify entry.
+4f. Mark all prior resistance levels: prior HOD, prior gap fill levels, warrant/offering prices.
+    These become structural ceilings. Risk/reward must clear the nearest ceiling by 1R minimum.
+
+60-MINUTE CHART:
+4g. Confirm intraday trend direction matches daily trend. 60-min 9EMA above 20EMA.
+4h. Look for consolidation on the 60-min chart. Tight range = coil = breakout fuel.
+4i. VWAP position: price above prior day VWAP and current VWAP = structural strength.
+
+15-MINUTE CHART (entry timing only):
+4j. Use 15-min for entry trigger only. Do not base hold decision on 15-min.
+4k. Entry trigger: 15-min candle close above the 60-min base high.
+    Or: 15-min VWAP reclaim after clean pullback to VWAP.
+    Or: 15-min red-to-green cross with volume expansion.
+
+Pass criteria: Daily base confirmed. 9EMA > 20EMA. Measured move 15%+ available.
+Fail criteria: No base identifiable. EMA stack inverted. Price mid-range with no pivot.
+
+---STEP 5: VOLUME QUALITY CONFIRMATION (5 minutes)---
+
+5a. Compare today's volume to 20-day average. Minimum 2.5x required.
+5b. Look at volume distribution throughout the session:
+    Expansion on green candles + contraction on red candles = buying pressure. Enter.
+    Expansion on red candles + contraction on green = distribution. Do not enter.
+    Same volume on red and green (churn) = uncertain. Wait for clarity.
+5c. For overnight consideration: volume in the final 30 minutes of session should
+    be above 20-day 30-minute average. Late volume = institutional accumulation.
+    Selling into close = stock may gap down. Do not hold overnight.
+5d. Review tape character if available:
+    Bids stacking > asks stacking = buyers in control.
+    Large prints above ask = aggressive buying.
+    Large prints at bid refreshing every print = distribution. Avoid.
+
+Pass criteria: RVOL confirmed. Volume expansion on pushes. Late-day volume positive.
+Fail criteria: Churn dominant. Selling into close. Volume one-sided toward distribution.
+
+---STEP 6: RISK/REWARD CALCULATION (3 minutes)---
+
+6a. Define entry price. Use trigger point from Step 4j -- not current price.
+6b. Define stop loss. Method: below the most recent structural support on the
+    timeframe being traded. For daily swing: below the base low or day's low + buffer.
+    For 60-min hold: below VWAP or 60-min base low.
+    Stop distance: 3-8% for micro/low float. 5-12% for mid float.
+    Never more than 12% stop on any swing trade. If structure requires 12%+ stop = no trade.
+6c. Define targets:
+    Target 1: 50% of measured move. Trim 30-40% of position here.
+    Target 2: Full measured move. Trim additional 40% here.
+    Target 3: Extended target if momentum and sector theme persist. Trail the remainder.
+6d. Calculate R:R ratio. Entry to Stop = 1R. Entry to T1 must be minimum 1.5R.
+    Entry to T2 must be minimum 2.5R. Do not enter if targets are below these thresholds.
+6e. Assign position size tier:
+    Grade A catalyst + Clean dilution: Full size (defined as your max position for account)
+    Grade A + Watch dilution: 75% size
+    Grade B + Clean: 75% size
+    Grade B + Watch: 50% size
+    Grade B + Moderate dilution: 25% size (scalp tier only)
+    Grade C + Clean: 25% size (scalp tier -- overnight only)
+    Any Grade C + any dilution flag: No trade.
+
+Pass criteria: R:R 1.5:1 minimum to T1. 2.5:1 minimum to T2. Stop defined.
+Fail criteria: Cannot define stop. R:R below 1.5:1 to any target. Targets blocked by ceiling.
+
+================================================================================
+SECTION 4 -- WATCHLIST DESIGN
+================================================================================
+
+Maintain three separate TOS watchlists. Each has a defined purpose, scoring system,
+and rotation schedule. Do not mix categories across watchlists.
+
+---WATCHLIST A: HOT LIST -- ACTIVE SWING CANDIDATES (Overnight ready)---
+
+Purpose: Stocks that have completed DD, passed all 6 steps, and are ready to trade
+         now or at the open tomorrow. Maximum 10 names at any time.
+Rotation: Remove any name that fails to trigger within 5 days. Reassess or drop.
+Columns in TOS: Symbol | Last | Change% | Volume | RVOL | Float | Catalyst Grade | Score
+
+SCORING SYSTEM (0-100 points):
+Catalyst Grade A = 30 pts | B = 20 pts | C = 10 pts | D = 0 pts
+Float RVOL above 5x = 20 pts | 3-5x = 15 pts | 2.5-3x = 10 pts | below 2.5x = 0 pts
+Float Tier Micro = 15 pts | Low = 15 pts | Mid = 10 pts
+Dilution Clean = 20 pts | Watch = 12 pts | Moderate = 5 pts | Toxic = 0 pts
+Daily Base Confirmed = 10 pts | No Base = 0 pts
+Short Interest above 15% = 5 pts bonus
+
+Minimum score to remain on watchlist: 55 points
+Minimum score for full-size entry: 75 points
+Minimum score for overnight hold: 70 points
+
+Name the TOS Watchlist: "HOT -- SWING"
+
+---WATCHLIST B: SETUP WATCH -- BUILDING (1-3 day setups in development)---
+
+Purpose: Names that have a confirmed catalyst and clean structure but have not yet
+         broken out or confirmed entry trigger. Monitoring for trigger.
+         Maximum 20 names. Wide universe of candidates.
+Rotation: If no trigger within 10 calendar days = remove.
+Columns in TOS: Symbol | Last | Change% | Volume | Catalyst Grade | Base Days | Notes
+
+SCORING SYSTEM:
+Same as Watchlist A, but lower threshold.
+Minimum score to remain on Setup Watch: 40 points
+Promote to HOT LIST when score reaches 60+ and trigger is within 5% of current price.
+
+Name the TOS Watchlist: "BUILD -- SWING"
+
+---WATCHLIST C: THEME LEADERS -- 5-10 DAY HOLDS---
+
+Purpose: Sector leaders in active theme rotation with institutional interest.
+         Names where a macro or sector catalyst is driving multiple-week attention.
+         These are the highest R:R setups in the system.
+         Maximum 8 names.
+Rotation: Replace only when sector theme breaks (sector ETF breaks below 20-day SMA).
+Columns in TOS: Symbol | Last | Change% | Week% | Volume | 20-Day SMA | Float | Grade
+
+SCORING SYSTEM:
+Catalyst Grade: A = 30 | B = 20 only (no C/D on this list)
+3-day RVOL above 2.5x average: 20 pts
+Sector ETF trending above 20 SMA: 15 pts
+Price above 20-day SMA: 15 pts
+Dilution Clean: 20 pts | Watch: 10 pts | any Moderate or worse: 0 pts (not on this list)
+RS Line making new highs vs SPY: 5 pts bonus
+Insider buying in last 30 days: 5 pts bonus
+
+Minimum score for this list: 65 points
+Name the TOS Watchlist: "THEME -- 5-10D"
+
+================================================================================
+SECTION 5 -- PLAYBOOK A: OVERNIGHT HOLD SETUP
+================================================================================
+
+Purpose: Enter EOD, hold through the night, exit next-morning gap or continuation.
+Win rate optimization target: 65%+
+Best conditions: Active catalyst, thin float, low supply overhead, sector momentum.
+
+---ELIGIBLE SETUP TYPES FOR OVERNIGHT HOLDS---
+
+1. EOD BREAKOUT HOLD
+   Stock breaks HOD in final 45-60 minutes of session with expanding volume.
+   Close at or near HOD (top 10% of day's range).
+   Volume in final 30 min above 20-day 30-min average.
+   No major resistance within 10% above closing price.
+   Catalyst is Grade A or B. Dilution is Clean or Watch only.
+
+2. VWAP RECLAIM LATE SESSION
+   Stock pulled back to VWAP midday, absorbed supply cleanly (volume declining on pull).
+   Reclaimed VWAP in afternoon session with expansion volume.
+   Closing above VWAP with a higher low than the midday low.
+   Same catalyst and dilution requirements as above.
+
+3. TIGHT FLAG INTO CLOSE (Low Float / Micro Float Only)
+   Stock made a big move early in session. Pulled back 30-50% of the move.
+   Held above key level (VWAP or prior resistance turned support) for 3+ hours.
+   Volume contracted during consolidation. Late-day squeeze forming.
+   Grade A catalyst required for micro float. B acceptable for low float.
+
+4. RED-TO-GREEN REVERSAL LATE SESSION
+   Stock was red for majority of session but closed green or at breakeven.
+   High-volume reversal candle in final 90 minutes.
+   Closed above both the VWAP and prior day's close.
+   Strongest setup type for the next-day gap up continuation.
+
+---ENTRY RULES FOR OVERNIGHT---
+
+Enter during the final 30 minutes of regular session (3:30-4:00 PM ET only).
+Do not enter overnight holds in pre-market or AH unless specific catalyst drops AH.
+AH catalyst exception: Grade A only (FDA approval, major earnings beat) -- size 50%.
+Entry trigger: 15-min candle close above the day's consolidation zone high.
+Do not chase. If price is more than 3% above the trigger point = do not enter.
+Use limit orders only for overnight entries. No market orders EOD.
+
+---STOP RULES FOR OVERNIGHT---
+
+Stop placement: Below the day's closing consolidation zone low.
+As a percentage: No more than 6% stop for micro/low float. 8% max for mid float.
+Trigger: If stock opens below the prior day's close gap-filled or below VWAP = exit immediately.
+Do not wait for stop to be hit if open is bearish gap below your stop level.
+Pre-market stop monitoring: Check pre-market by 8:00 AM ET minimum.
+If pre-market shows negative sentiment change or dilution news = exit at open, not at stop.
+
+---TARGET RULES FOR OVERNIGHT---
+
+Morning spike target: Prior day high + 5-15% (depends on float and RVOL).
+For micro floats: Plan for 20-50% morning spike if catalyst remains intact.
+Scale out plan:
+  Open + first 15 minutes pop: Trim 25-30% of position into morning strength.
+  If stock holds and consolidates at elevated level: Trail remaining position.
+  If stock fades immediately on open: Exit 100% within first 15 minutes. Do not hold.
+Never hold an overnight position past 10:30 AM without a confirmed continuation trigger.
+
+---OVERNIGHT RISK MANAGEMENT---
+
+Maximum overnight exposure: Never more than X% of total account in one position.
+For accounts under $25K: Maximum 1 overnight position at a time.
+For accounts $25K-$100K: Maximum 2 concurrent overnight positions.
+For accounts above $100K: Maximum 3-4 concurrent positions.
+If holding 2+ overnight positions: Both must be on separate catalysts/sectors.
+Never hold overnight into a binary event (FDA decision, earnings) unless that IS the catalyst.
+
+================================================================================
+SECTION 6 -- PLAYBOOK B: 1-3 DAY HOLD SETUP
+================================================================================
+
+Purpose: Enter on confirmed breakout or pullback, hold for 2-3 days of continuation.
+Win rate optimization target: 60-65%
+Best conditions: Day 2 continuation after confirmed Day 1 catalyst. Sector tailwind.
+Float preference: Low to mid float (5M-100M shares). Micro float tolerable if base is tight.
+
+---ELIGIBLE SETUP TYPES FOR 1-3 DAY HOLDS---
+
+1. DAY 2 CONTINUATION
+   Stock had a confirmed catalyst + volume on Day 1.
+   Day 1 closed strong (top 30% of day's range).
+   Day 2 opens flat to slightly positive (no gap-and-run -- that is a fade zone).
+   Day 2 first 30 minutes: Consolidates near HOD of Day 1 without giving back more than 50%.
+   Entry: Day 2 breakout above Day 1 HOD with volume expansion.
+   This is the single highest win rate setup in the 1-3 day category.
+
+2. FIRST PULLBACK IN UPTREND
+   Stock has been in an uptrend for 5+ days.
+   Pulls back for 2-3 days on lighter volume than the advance.
+   Pulls back to the 9EMA or 20EMA on the daily.
+   Entry: First green day off the EMA hold with volume expansion.
+   Requires catalyst grade B+ and clean dilution only.
+
+3. BASE BREAKOUT (daily chart)
+   Stock consolidated for 5-15 days in a tight range (less than 15% wide).
+   Breakout above range high on volume 2.5x+ above 20-day average.
+   Entry: On daily close above base high or intraday on 15-min confirmation.
+   Works best in sector momentum environments where the theme is active.
+
+4. POST-EARNINGS MOMENTUM
+   Earnings beat confirmed. EPS or revenue above estimates by 10%+.
+   Stock gaps up 10-30% on earnings. Not a 50%+ gap -- those fade.
+   Does not immediately fill the gap on Day 1.
+   Entry: Day 2 or Day 3 after a tight consolidation of the gap area.
+   Do not chase the gap-up candle on earnings day. Enter the base that forms after.
+
+---ENTRY RULES FOR 1-3 DAY---
+
+Entry window: Prefer entries in the first 90 minutes (9:30-11:00 AM ET).
+Or: Final 60 minutes of session (3:00-4:00 PM ET) on EOD breakout confirmation.
+Avoid midday entries (11:30 AM - 1:30 PM) -- liquidity drops, fakes increase.
+Use multiple scale-in for larger positions:
+  First entry: 50% of intended position at trigger confirmation.
+  Second entry: 25% more if stock holds above trigger for 30 minutes.
+  Third entry: Final 25% if stock breaks the next intraday resistance level.
+  Do not average down. Only scale up into strength.
+
+---STOP RULES FOR 1-3 DAY---
+
+Initial stop: Below the trigger level (HOD of prior day, base breakout level, EMA).
+Trail: After first 24 hours, trail stop to below the most recent higher low on 60-min chart.
+After 48 hours: Trail stop to below prior day's low.
+Use time-based stop rule: If no progress toward T1 after 3 full trading days = exit.
+A sideways stock is a losing position in small caps -- the float turns over, supply builds.
+
+---TARGET RULES FOR 1-3 DAY---
+
+Target 1 (25-35% of position): Prior resistance level or measured move 50%.
+Target 2 (35-40% of position): Full measured move from base.
+Remaining (25-30%): Trail with 60-min close below 9EMA.
+Hard exit no later than end of Day 3 unless setup has evolved into 5-10 day theme play.
+If stock is up 30%+ in 2 days and sector is cooling: Do not hold the runner. Bank it.
+If stock is up 50%+ in 2 days: Exit 80% immediately. Small cap 50% moves in 2 days fade.
+
+---SECTOR CONFIRMATION (required for 1-3 day holds)---
+
+Before entering any 1-3 day swing:
+Check: Is the sector ETF (XBI, IWM, XLK, relevant sector) above its 20-day SMA?
+Check: Has the sector shown positive price action in the last 3 days?
+If sector ETF is below 20-day SMA: Reduce size 30% and tighten stops by 1%.
+If sector ETF is in a confirmed downtrend: Grade C catalysts = no entry.
+If sector ETF is in uptrend: No adjustment. Full size per risk calculation.
+
+================================================================================
+SECTION 7 -- PLAYBOOK C: 5-10 DAY HOLD SETUP
+================================================================================
+
+Purpose: Hold a sector leader for a full multi-week move. Highest R:R potential.
+Win rate optimization target: 55-60% (lower win rate, higher R:R per trade)
+Best conditions: Confirmed sector rotation, institutional catalyst, clean float mid-cap.
+Float preference: Low float (5-20M) or mid float (20-100M). Micro float too volatile for 5-10D.
+
+The 5-10 day hold is a different psychological trade than the first two.
+You must accept larger intraday swings and not micromanage.
+The daily chart is the primary management tool. Intraday movement is noise.
+Managing off 5-min charts during a 5-10 day hold = destroying the trade.
+
+---ELIGIBLE SETUP TYPES FOR 5-10 DAY HOLDS---
+
+1. VCP (VOLATILITY CONTRACTION PATTERN) BREAKOUT
+   Stock has a base of 15-40 days with contracting price swings.
+   Each pivot low in the base is shallower than the prior. Volume also declining.
+   Final pivot (handle) is less than 8-10% deep.
+   Breakout: Price closes above the right side of the pivot on 3x+ volume.
+   This is the William O'Neil / Mark Minervini setup adapted for small caps.
+   Most reliable for 5-10 day holds when catalyst grade is A.
+
+2. STAGE 2 UPTREND PULLBACK
+   Stock has been in a sustained uptrend for 20+ days.
+   Pulls back for 4-7 days on declining volume to a key moving average (9 or 20 EMA).
+   Holds the moving average. Forms a tight consolidation (3-5 days under 10% range).
+   Re-entry: First daily close back above the 9 EMA with volume expansion.
+   Requires sector tailwind and Grade A or B catalyst still active.
+
+3. SECTOR LEADER IDENTIFICATION AND HOLD
+   Identify the top-performing stock in an active sector theme (AI, biotech, defense, etc.)
+   The leader is defined as: strongest 5-day return, highest RVOL sustained over 3 days,
+   multiple analyst or institutional mentions in the same week.
+   Enter the leader on a 1-3 day pullback to support.
+   Hold as long as: daily close above 20-day SMA, sector ETF in uptrend, volume supportive.
+
+4. POST-FDA APPROVAL CONTINUATION
+   FDA approval announced (Grade A catalyst -- highest tier).
+   Stock gaps up. Day 1-2 is volatile and distribution from early holders.
+   Wait for 3-5 day consolidation of the gap to form a base.
+   Enter the break above the gap consolidation high with tight stop at consolidation low.
+   These setups can run 40-100% over 5-10 days on true approval catalysts.
+
+---DAILY MANAGEMENT RULES FOR 5-10 DAY HOLDS---
+
+Review charts once -- at 4:30 PM ET after close. Do not manage intraday.
+Exception: Pre-market dilution news, sector ETF -5% or more, halt for investigation.
+Primary stop: Daily close below the 20-day SMA = exit 50%.
+             Two consecutive daily closes below 20-day SMA = exit remaining 50%.
+Do not exit on intraday dips to the 20-day SMA if the daily candle recovers and closes above.
+Trail stop rule: Each new higher low on the daily chart = trail stop to 1% below that low.
+
+---TARGET LADDER FOR 5-10 DAY HOLDS---
+
+Target 1 (20% of position): First resistance level above entry -- prior high or prior gap.
+Target 2 (30% of position): Measured move from base.
+Target 3 (30% of position): 1.5x measured move. Trail with 20-day SMA.
+Target 4 (20% runner): Let this run as long as: daily above 20 SMA, sector in trend.
+Hard close: Day 10 is the maximum unless the stock has made a higher-low structure above
+            the 20-day SMA and the move is still clearly intact.
+
+---SECTOR THEME PROTOCOL FOR 5-10 DAY---
+
+Define the sector theme explicitly before holding beyond Day 5.
+Example themes: "Small cap defense post-contract" / "Biotech post-FDA" / "AI hardware cycle"
+Monitor the sector ETF daily. If the ETF fails below its 20-day SMA = close all 5-10D holds.
+Find 2-3 names in the same theme. Spread risk across the theme leaders.
+If one name breaks down but sector is intact = it was a laggard. Hold the leaders.
+If the sector itself breaks = exit all theme positions regardless of individual stock charts.
+
+================================================================================
+SECTION 8 -- DILUTION CASE-BY-CASE MATRIX
+================================================================================
+
+Do not blanket avoid dilution. Use this matrix to size and gate entries.
+
+---DILUTION + CATALYST INTERACTION TABLE---
+
+                    | CATALYST A | CATALYST B | CATALYST C | CATALYST D
+Clean Float         | Full size  | 75% size   | 25% size   | No trade
+S-3 only (no 424B) | 75% size   | 50% size   | No trade   | No trade
+Active ATM (<90d)  | 50% size   | 25% size   | No trade   | No trade
+424B in 60 days    | No trade   | No trade   | No trade   | No trade
+PIPE/RD offer live | No trade   | No trade   | No trade   | No trade
+RS in last 6 mo    | No trade   | No trade   | No trade   | No trade
+2+ RS in 12 months | Hard avoid | Hard avoid | Hard avoid | Hard avoid
+
+---ACTIVE ATM IDENTIFICATION RULES---
+
+If company has a Sales Agreement (filed as 8-K) with an investment bank (e.g., B. Riley,
+Canaccord, H.C. Wainwright) = assume ATM is active until 90 days of no new 424B5 filings.
+ATM max offering size matters: If ATM capacity remaining > 50% of current market cap = toxic.
+If ATM capacity remaining < 10% of current market cap = manageable (reduced size only).
+ATM check shortcut: Search EDGAR for "[TICKER] prospectus supplement" -- sort by date.
+Most recent 424B5 date tells you when ATM was last used.
+
+---WARRANT CEILING IDENTIFICATION---
+
+Pull from EDGAR: warrants outstanding, exercise price, and expiration date.
+If warrant exercise price is within 20% above current price = hard ceiling.
+Size down 30% and set first partial target at warrant strike - 5%.
+If warrant exercise price is below current price and they are in-the-money:
+  These holders want to sell. Supply overhead is permanent until warrants expire.
+  Grade B or lower + in-the-money warrants = skip.
+  Grade A + in-the-money warrants = 25% size only, strict stop.
+
+================================================================================
+SECTION 9 -- POSITION SIZING FRAMEWORK (BUILDING FROM FLEXIBLE)
+================================================================================
+
+This framework builds a structured risk model from scratch. Adjust to your account size.
+
+---BASE UNIT DEFINITION---
+
+Step 1: Define your maximum acceptable loss per trade in dollar terms.
+        Recommended: 1-2% of total trading capital per swing trade.
+        Example: $30,000 account = $300-$600 max loss per trade.
+        This dollar amount = 1R (one unit of risk).
+
+Step 2: Define position size from stop distance.
+        Formula: Position Size = Max Loss ($) divided by Stop Distance ($)
+        Example: Max loss $400. Stop distance $0.80. Position size = 500 shares.
+        If position size requires more than 25% of account in one name = reduce max loss.
+
+Step 3: Apply the size tier from Step 6f of the DD Checklist:
+        Full size = 100% of formula position size.
+        75% size = 75% of formula position size. 50% = half. 25% = quarter.
+
+Step 4: Never exceed these portfolio concentration limits:
+        Single position: Max 20% of total account value.
+        Single sector: Max 40% of total account value.
+        Total overnight exposure: Max 50% of total account value.
+        Total exposure at any time: Max 80% of total account value (20% cash buffer minimum).
+
+---TIERED ACCOUNT THRESHOLDS---
+
+Under $10K account:
+  Maximum 1 active swing position at a time.
+  Use 1% risk per trade ($100 max loss on $10K).
+  Only Grade A catalysts. Only Clean dilution. No exceptions.
+  Micro float only for overnight. No 5-10 day holds.
+
+$10K-$50K account:
+  Maximum 2-3 active swing positions.
+  Use 1-1.5% risk per trade.
+  All setups available. All hold durations available.
+  No more than 2 positions in the same sector.
+
+$50K-$200K account:
+  Maximum 4-5 active swing positions.
+  Use 0.75-1.25% risk per trade.
+  All setups available.
+  Require minimum 3 of 6 DD steps confirmed before sizing above 50%.
+
+Above $200K account:
+  Maximum 6-8 active swing positions.
+  Use 0.5-1% risk per trade.
+  Liquidity becomes a constraint on micro-float names.
+  Micro float (<5M): Position size must be under 5% of average daily dollar volume.
+  Respect liquidity constraints -- size down or skip micro floats at this account level.
+
+================================================================================
+SECTION 10 -- THINKSCRIPT SCANNER CODE
+================================================================================
+
+Three scanners below. Use in TOS Scan tab > Add Study Filter > Edit ThinkScript.
+Run each scanner on Daily aggregation unless noted otherwise.
+All scanners output to TOS scan results. Review and manually DD each result.
+
+---SCANNER 1: OVERNIGHT MOMENTUM CANDIDATE---
+Name this scan: "SWING_OVERNIGHT_SCAN"
+Description: EOD breakout with volume expansion and above-average RVOL.
+Aggregation: Daily
+
+# GRANT SWING SYSTEM -- SCANNER 1: OVERNIGHT MOMENTUM
+# Run daily after 3:00 PM ET for next-day overnight candidates
+# Filters: Price, RVOL, volume expansion, trend, near HOD
+
+input RVOLThreshold = 2.5;
+input MinPrice = 0.50;
+input MaxPrice = 30.00;
+input MinVolume = 200000;
+input LookbackBars = 20;
+
+def avgVol = Average(volume, LookbackBars);
+def rvol = volume / avgVol;
+def priceInRange = close >= MinPrice and close <= MaxPrice;
+def volumeSufficient = volume >= MinVolume;
+def rvolPass = rvol >= RVOLThreshold;
+
+# Trend Filter: 9EMA above 20EMA
+def ema9 = ExpAverage(close, 9);
+def ema20 = ExpAverage(close, 20);
+def trendBullish = ema9 > ema20;
+
+# Near HOD filter: closing in top 25% of day's range
+def dayRange = high - low;
+def closePosition = (close - low) / dayRange;
+def nearHOD = closePosition >= 0.70;
+
+# Volume expansion: today's volume above 20-day average by 2.5x+
+def volExpansion = volume > (avgVol * RVOLThreshold);
+
+# Base: 9EMA above 20EMA for at least 3 of last 5 bars
+def ema9Dominant = Sum(if ema9[1] > ema20[1] then 1 else 0, 5) >= 3;
+
+plot SwingOvernightSignal = priceInRange
+    and volumeSufficient
+    and rvolPass
+    and trendBullish
+    and nearHOD
+    and volExpansion
+    and ema9Dominant;
+
+# Add to scan: Price between $0.50 and $30, Volume > 200K, RVOL > 2.5x
+# Add stock filter: US exchanges only. Exclude OTC.
+
+---SCANNER 2: 1-3 DAY CONTINUATION AND BASE BREAKOUT---
+Name this scan: "SWING_1_3_DAY_SCAN"
+Description: Day 2 continuation or base breakout with multi-day volume confirmation.
+Aggregation: Daily
+
+# GRANT SWING SYSTEM -- SCANNER 2: 1-3 DAY SWING SCAN
+# Identifies day 2 continuation, base breakouts, and first pullback entries
+# Run daily at open and after close
+
+input MinPrice2 = 1.00;
+input MaxPrice2 = 50.00;
+input BreakoutRVOL = 2.5;
+input PullbackRVOL = 1.5;
+input LookbackBars2 = 20;
+
+def avgVol2 = Average(volume, LookbackBars2);
+def rvol2 = volume / avgVol2;
+
+# EMA trend stack
+def ema9_2 = ExpAverage(close, 9);
+def ema20_2 = ExpAverage(close, 20);
+def sma50 = Average(close, 50);
+def trendStack = ema9_2 > ema20_2 and ema20_2 > sma50;
+
+# Base breakout: today's close above highest high of prior 10 bars
+def priorHighBreak = close > Highest(high[1], 10);
+
+# Day 2 continuation: yesterday was a strong green day, today opens flat or higher
+def priorDayStrong = (close[1] - low[1]) / (high[1] - low[1]) >= 0.65;
+def todayNotFading = close >= close[1] * 0.97;
+
+# First pullback entry: 3-5 bar pullback ending at 9EMA touch
+def pullbackToEMA = low <= ema9_2 * 1.02 and close > ema9_2 and close[1] < ema9_2[1];
+
+# Volume conditions
+def breakoutVolume = rvol2 >= BreakoutRVOL;
+def pullbackVolContraction = volume < avgVol2 * 1.0 and rvol2[1] < 1.0 and rvol2[2] < 1.0;
+
+# Price range filter
+def priceRange2 = close >= MinPrice2 and close <= MaxPrice2;
+
+# Minimum volume filter
+def minVol2 = volume >= 200000;
+
+# Final signal: breakout OR day 2 continuation OR first pullback
+def breakoutSignal = priorHighBreak and breakoutVolume and trendStack;
+def day2Signal = priorDayStrong and todayNotFading and rvol2 >= 2.0 and trendStack;
+def pullbackSignal = pullbackToEMA and pullbackVolContraction and trendStack;
+
+plot Swing1to3Signal = priceRange2
+    and minVol2
+    and (breakoutSignal or day2Signal or pullbackSignal);
+
+---SCANNER 3: 5-10 DAY THEME LEADER AND VCP BREAKOUT---
+Name this scan: "SWING_5_10_DAY_SCAN"
+Description: VCP breakout or stage 2 uptrend leader. Mid to low float.
+Aggregation: Daily
+
+# GRANT SWING SYSTEM -- SCANNER 3: 5-10 DAY SWING SCAN
+# VCP breakout approximation and stage 2 uptrend leader identification
+# Run once per week on Sundays and Monday pre-market
+
+input MinPrice3 = 2.00;
+input MaxPrice3 = 100.00;
+input TrendPeriod = 50;
+input BasePeriod = 20;
+input LongRVOL = 1.8;
+
+# Stage 2 uptrend: price above 20 SMA, 20 SMA above 50 SMA, 50 SMA above 200 SMA
+def sma20_3 = Average(close, 20);
+def sma50_3 = Average(close, 50);
+def sma200 = Average(close, 200);
+def stage2 = close > sma20_3 and sma20_3 > sma50_3 and sma50_3 > sma200;
+
+# RS Line proxy: relative strength vs SPX using recent 20-day returns
+def spxReturn = (close("SPX") - close("SPX")[20]) / close("SPX")[20];
+def stockReturn = (close - close[20]) / close[20];
+def outperformingSPX = stockReturn > spxReturn;
+
+# Volume contraction in base: last 10 bars average volume below last 30 bars average
+def recentAvgVol = Average(volume, 10);
+def baseAvgVol = Average(volume[10], 20);
+def volContracting = recentAvgVol < baseAvgVol;
+
+# Breakout: today's close above 20-bar high
+def breakoutHigh = close > Highest(high[1], BasePeriod);
+
+# RVOL on breakout day
+def avgVol3 = Average(volume, 30);
+def rvol3 = volume / avgVol3;
+def breakoutVolume3 = rvol3 >= LongRVOL;
+
+# VCP approximation: contracting range over 15 bars
+def highestHigh15 = Highest(high, 15);
+def lowestLow15 = Lowest(low, 15);
+def rangeWidth = (highestHigh15 - lowestLow15) / lowestLow15;
+def tightBase = rangeWidth <= 0.20;
+
+# Price filter
+def priceRange3 = close >= MinPrice3 and close <= MaxPrice3;
+def minVol3 = volume >= 300000;
+
+# Signal: stage 2 + RS leader + tight base + breakout + volume
+plot Swing5to10Signal = priceRange3
+    and minVol3
+    and stage2
+    and outperformingSPX
+    and (breakoutHigh and breakoutVolume3)
+    and (tightBase or volContracting);
+
+================================================================================
+SECTION 11 -- WATCHLIST SCORING REFERENCE (QUICK GRADE CARD)
+================================================================================
+
+Use this as a rapid score check when evaluating any candidate for the watchlists.
+Score each category, sum the total, assign to the appropriate watchlist.
+
+CATEGORY                         | SCORING CRITERIA              | MAX PTS
+---------------------------------|-------------------------------|--------
+Catalyst Grade                   | A=30 / B=20 / C=10 / D=0     | 30
+RVOL (on catalyst day)           | 5x+=20 / 3-5x=15 / <3x=5    | 20
+Float Tier Fit for Setup         | Best fit=15 / OK=10 / Poor=5  | 15
+Dilution Status                  | Clean=20 / Watch=12 / Mod=5  | 20
+Daily Base Confirmed             | Yes=10 / Partial=5 / No=0     | 10
+EMA Stack Bullish (9>20>50)      | Full=5 / Partial=3 / No=0     | 5
+Short Interest > 15% of Float    | Yes=5 / No=0                  | 5 (bonus)
+Sector ETF in Uptrend            | Yes=5 / Neutral=2 / No=0      | 5 (bonus)
+RS Line Making New Highs         | Yes=5 / No=0                  | 5 (bonus)
+---------------------------------|-------------------------------|--------
+BASE MAXIMUM (no bonuses)        |                               | 100
+MAXIMUM WITH ALL BONUSES         |                               | 115
+
+PLACEMENT GUIDE:
+90+ pts: Watchlist A (HOT). Full size. Priority monitoring.
+75-89 pts: Watchlist A (HOT). Reduced size (75%). Tighter stops.
+60-74 pts: Watchlist B (BUILD). Monitor for trigger. Do not enter yet.
+40-59 pts: Watchlist B (BUILD). Low priority. Remove after 10 days if no trigger.
+Under 40 pts: Do not add to any watchlist. Pass completely.
+
+MINIMUM SCORES BY HOLD DURATION:
+Overnight hold: 70 pts minimum. 
+1-3 day hold: 60 pts minimum.
+5-10 day hold: 75 pts minimum (higher due to time exposure).
+
+================================================================================
+SECTION 12 -- REGIME DETECTION (RUN BEFORE ANY SESSION)
+================================================================================
+
+Before entering any position on any given day, confirm the current market regime.
+Takes 5 minutes. Do this every morning at 9:00 AM ET.
+
+---REGIME INDICATORS---
+
+1. IWM (Russell 2000 ETF) position relative to 20-day SMA:
+   Above 20 SMA: Green regime. Full allocation available.
+   Within 2% of 20 SMA: Yellow regime. 75% allocation. Tighten stops 20%.
+   Below 20 SMA: Red regime. 25% allocation. Overnight holds only on Grade A catalysts.
+   Below 50 SMA: Danger zone. No new swing entries. Manage existing positions to exits only.
+
+2. QQQ position relative to 20-day SMA:
+   Use same framework as IWM. Both IWM and QQQ must be green for full allocation.
+   If IWM green but QQQ red: Yellow regime. Favor small-cap catalysts over tech names.
+   If QQQ green but IWM red: Small cap specific weakness. Focus on Grade A catalysts only.
+
+3. VIX level:
+   VIX below 18: Low volatility. Swing holds are safer. Plans working as expected.
+   VIX 18-25: Moderate volatility. Normal operation. Slightly wider stops acceptable.
+   VIX 25-35: Elevated. Use 50% normal size on all swings. Tighten trail stops.
+   VIX above 35: Crisis regime. No new overnight holds. No 5-10 day holds. Close all opens.
+
+4. Dollar volume in top movers:
+   If top 10 momentum stocks are averaging $50M+ dollar volume: Active tape, good for swings.
+   If top 10 are averaging under $15M dollar volume: Thin tape. Stick to Grade A catalysts only.
+
+---DAILY REGIME CLASSIFICATION---
+
+GREEN REGIME: IWM above 20 SMA + QQQ above 20 SMA + VIX below 25. Full operation.
+YELLOW REGIME: One index below 20 SMA OR VIX 25-35. 50-75% allocation. Tighter stops.
+RED REGIME: Both indices below 20 SMA OR VIX above 35. Preserve capital. Minimize exposure.
+
+All swing entries require GREEN or YELLOW regime classification.
+Red regime = no new entries. Existing positions: tighten stops and plan exits.
+
+================================================================================
+SECTION 13 -- FAILURE MODE MAP (WHAT KILLS THE TRADE)
+================================================================================
+
+Know these before you enter. If any trigger, the action is listed.
+
+FAILURE MODE 1 -- FALSE BREAKOUT
+Signs: Price breaks HOD or base high, immediately fades back below within 2 candles.
+Action: If 15-min candle closes back below breakout level = exit 100%. No averaging.
+Prevention: Wait for a full 15-min candle close above breakout before entering.
+
+FAILURE MODE 2 -- DILUTION SURPRISE
+Signs: 8-K filed with new offering. Price gaps down pre-market. Ask floods at open.
+Action: Exit pre-market at market open. Do not wait for stop to be hit.
+Prevention: DD Step 2 (EDGAR check) before every single entry.
+
+FAILURE MODE 3 -- SUPPLY CEILING HIT
+Signs: Price reaches a known warrant strike, prior offering price, or key resistance level.
+       Ask refreshes consistently at that level. Price cannot close above for 2+ candles.
+Action: Exit 50% immediately. Tight trail on remainder to 0.5% below current low.
+Prevention: Map all ceiling levels in DD Step 4. Never ignore a known ceiling.
+
+FAILURE MODE 4 -- SECTOR ROTATION OUT
+Signs: Sector ETF drops below 20-day SMA while individual stock is still elevated.
+Action: Accelerate exits. Do not wait for technical breakdown on the individual chart.
+Prevention: Check sector ETF daily as part of position management.
+
+FAILURE MODE 5 -- CHURN VOLUME
+Signs: High volume but price barely moves. Large candle wicks both directions.
+       Tape shows alternating large bids and asks at same level.
+Action: Exit 100%. Churn = hidden distribution. This stock is being sold, not bought.
+Prevention: Volume quality check (DD Step 5) before entry.
+
+FAILURE MODE 6 -- TIME STOP
+Signs: Position is flat or slightly down after 2x the expected hold duration.
+Action: Exit 100%. A stock that doesn't move in the expected time is using up capital.
+Prevention: Set time stops at the start of every swing: overnight by 10:30 AM.
+            1-3 day by end of Day 3. 5-10 day by end of Day 10.
+
+FAILURE MODE 7 -- HALT RISK (Micro Float)
+Signs: Stock halted intraday. Unknown reason (not circuit breaker pattern -- that is predictable).
+Action: Wait for reopen. Do not enter new orders during the halt.
+        If halted for SEC investigation or trading suspension = this is an exit, not a hold.
+Prevention: Avoid OTC names. Avoid stocks with pending SEC correspondence.
+            Check SEC.gov for any open investigation filings before entry on micro floats.
+
+================================================================================
+SECTION 14 -- QUICK REFERENCE CHECKLISTS (TOS SCRATCHPAD PASTE)
+================================================================================
+
+---PRE-TRADE CHECKLIST (copy this for each trade)---
+
+STOCK: ___________
+DATE: ___________
+CATALYST GRADE (A/B/C/D): ___________
+CATALYST SOURCE CONFIRMED (Y/N): ___________
+DILUTION STATUS (Clean/Watch/Moderate/Toxic): ___________
+EDGAR CHECKED (Y/N): ___________
+FLOAT: ___________ RVOL: ___________
+EMA STACK (9>20>50): ___________
+BASE CONFIRMED (Y/N): ___________
+CEILING LEVELS ABOVE: ___________
+ENTRY TRIGGER: ___________
+STOP LEVEL: $ ___________
+TARGET 1: $ ___________ (trim ___ %)
+TARGET 2: $ ___________ (trim ___ %)
+TARGET 3: $ ___________ (trail)
+R:R RATIO: ___________ (must be 1.5:1 minimum to T1)
+POSITION SIZE: ___________ shares
+HOLD DURATION: Overnight / 1-3 Day / 5-10 Day
+SCORE (0-100): ___________
+REGIME (Green/Yellow/Red): ___________
+TRADE APPROVED (Y/N): ___________
+
+---POST-TRADE DEBRIEF (fill after every exit)---
+
+STOCK: ___________
+ENTRY: $ ___________ EXIT: $ ___________
+P&L: $ ___________ R OUTCOME: ___________ R
+SETUP QUALITY: ___________
+ENTRY QUALITY: Good location / Extended / Anticipatory / Chased
+EXIT QUALITY: At target / Early / Late / Panic / Correct failure exit
+WHAT WORKED: ___________
+WHAT FAILED: ___________
+ROOT CAUSE: ___________
+RULE UPDATE (if needed): ___________
+PATTERN TAG: ___________
+
+================================================================================
+END OF GRANT SWING SYSTEM v1.0
+================================================================================
+Next update trigger: 25 completed swing trades logged. Review win rates by setup type.
+Reassign catalyst grade thresholds if win rate below 55% on any single setup category.
+================================================================================

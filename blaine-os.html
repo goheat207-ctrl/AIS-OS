@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLAINE OS — MISSION CONTROL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg:     #1c1b1a; --bg2:    #121111; --bg3:    #222222;
+  --border: #2a2a2a; --border2:#3d3939;
+  --orange: #da7756; --orange2:#e8875a; --oglow:  rgba(218,119,86,0.15);
+  --text:   #d5d5d5; --dim:    #666260; --bright: #ebebeb;
+  --grn:    #50c878;
+  --font:   'Open Sans', system-ui, sans-serif;
+  --mono:   'JetBrains Mono', monospace;
+}
+html, body { height:100%; background:var(--bg); color:var(--text); font-family:var(--font); font-size:16px; overflow:hidden; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width:4px; height:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background-color:var(--border2); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background-color:var(--dim); }
+
+/* HEADER */
+#header { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; border-bottom:1px solid var(--border); height:48px; flex-shrink:0; background:var(--bg2); }
+.logo { display:flex; align-items:center; gap:10px; }
+.logo-hex { width:26px; height:26px; background:var(--orange); clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%); display:flex; align-items:center; justify-content:center; font-size:13px; color:#fff; font-weight:700; font-family:var(--mono); }
+.logo-text { font-size:24px; font-weight:600; letter-spacing:3px; color:var(--bright); font-family:var(--mono); }
+.logo-text em { color:var(--orange); font-style:normal; }
+.header-links { font-size:12px; color:var(--dim); letter-spacing:1px; display:flex; gap:12px; align-items:center; font-family:var(--mono); }
+.header-links span { cursor:pointer; transition:color 0.15s; }
+.header-links span:hover { color:var(--orange); }
+.header-links .sep { color:var(--border2); }
+
+/* TABS */
+#tabs { display:flex; align-items:center; justify-content:space-between; padding:0 20px; border-bottom:1px solid var(--border); height:40px; flex-shrink:0; background:var(--bg2); }
+.tabs-left { display:flex; gap:4px; height:100%; align-items:center; }
+.tab { display:flex; align-items:center; gap:6px; padding:6px 14px; border:1px solid transparent; background:transparent; color:var(--dim); font-family:var(--mono); font-size:13px; letter-spacing:1px; cursor:pointer; text-transform:uppercase; transition:all 0.12s; height:28px; border-radius:4px; }
+.tab:hover { color:var(--text); border-color:var(--border2); }
+.tab.active { color:var(--bright); border:1px solid var(--border2); background:var(--bg3); }
+.tab .dot { width:6px; height:6px; background:var(--orange); border-radius:50%; }
+.tab .ico { color:var(--orange); font-size:14px; line-height:1; }
+.idle-badge { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--dim); letter-spacing:1px; font-family:var(--mono); }
+.idle-dot { width:6px; height:6px; background:var(--orange); border-radius:50%; animation:blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+/* LAYOUT */
+#body { display:flex; height:calc(100vh - 88px); overflow:hidden; }
+#left { flex:1; overflow-y:auto; border-right:1px solid var(--border); }
+#right { width:280px; flex-shrink:0; overflow-y:auto; background:var(--bg2); }
+.view { display:none; }
+.view.active { display:block; }
+
+/* METRICS */
+.metrics { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--border); }
+.metric { padding:14px 18px; border-right:1px solid var(--border); }
+.metric:last-child { border-right:none; }
+.metric-head { display:flex; justify-content:space-between; margin-bottom:10px; }
+.m-label { font-size:11px; letter-spacing:1.5px; color:var(--dim); text-transform:uppercase; font-family:var(--mono); }
+.m-reset { font-size:11px; letter-spacing:1px; color:var(--dim); font-family:var(--mono); }
+.pbar { height:4px; background:var(--border2); margin-bottom:12px; overflow:hidden; border-radius:2px; }
+.pbar-fill { height:100%; background:var(--orange); border-radius:2px; }
+.m-val { font-size:26px; font-weight:500; color:var(--bright); letter-spacing:-0.5px; margin-bottom:5px; font-family:var(--mono); }
+.m-sub { display:flex; justify-content:space-between; font-size:11px; color:var(--dim); letter-spacing:1px; font-family:var(--mono); }
+
+/* CHART */
+.chart-wrap { padding:16px 20px; border-bottom:1px solid var(--border); }
+.chart-head { display:flex; justify-content:space-between; margin-bottom:14px; }
+.chart-title { font-size:11px; letter-spacing:1.5px; color:var(--dim); text-transform:uppercase; font-family:var(--mono); }
+.chart-stat  { font-size:11px; letter-spacing:1px; color:var(--dim); font-family:var(--mono); }
+.chart-canvas { height:150px; position:relative; }
+
+/* INTEGRATIONS */
+.integrations { display:flex; align-items:center; gap:20px; padding:10px 20px; border-bottom:1px solid var(--border); background:var(--bg2); flex-wrap:wrap; }
+.int-label { font-size:11px; letter-spacing:1.5px; color:var(--orange); text-transform:uppercase; font-family:var(--mono); }
+.int-item { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--dim); letter-spacing:0.5px; font-family:var(--mono); }
+.int-dot { width:5px; height:5px; background:var(--orange); border-radius:50%; }
+.int-dot.pending { background:var(--dim); }
+
+/* READY */
+.ready-area { padding:28px 24px 20px; border-bottom:1px solid var(--border); }
+.ready-tag { font-size:11px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; margin-bottom:14px; font-family:var(--mono); }
+.ready-headline { font-size:40px; font-weight:600; color:var(--bright); letter-spacing:-1px; line-height:1.1; margin-bottom:12px; font-family:var(--mono); }
+.ready-headline .hl { color:var(--orange); }
+.cursor { display:inline-block; width:3px; height:0.78em; background:var(--orange); vertical-align:middle; margin-left:3px; animation:cur 1s step-end infinite; }
+@keyframes cur { 0%,100%{opacity:1} 50%{opacity:0} }
+.ready-sub { font-size:14px; color:var(--dim); letter-spacing:0.3px; }
+
+/* PROMPT */
+.prompt-wrap { padding:16px 20px; border-bottom:1px solid var(--border); }
+.prompt-lbl { font-size:11px; letter-spacing:3px; color:var(--orange); text-transform:uppercase; margin-bottom:8px; font-family:var(--mono); }
+textarea.prompt-in { width:100%; min-height:90px; background:var(--bg2); border:1px solid var(--border2); color:var(--bright); font-family:var(--mono); font-size:15px; padding:12px 14px; resize:vertical; outline:none; line-height:1.6; border-radius:6px; }
+textarea.prompt-in:focus { border-color:var(--orange); box-shadow:0 0 0 3px var(--oglow); }
+textarea.prompt-in::placeholder { color:var(--dim); }
+.btn-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+.btn-run, .btn-clr { padding:13px; font-family:var(--mono); font-size:14px; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; border:1px solid var(--border2); transition:all 0.15s; border-radius:6px; }
+.btn-run { background:var(--orange); color:#fff; border-color:var(--orange); font-weight:600; }
+.btn-run:hover { background:var(--orange2); box-shadow:0 4px 16px rgba(218,119,86,0.3); }
+.btn-clr { background:transparent; color:var(--dim); }
+.btn-clr:hover { color:var(--text); border-color:var(--dim); }
+
+/* SKILLS */
+.skills-wrap { padding:22px 20px 40px; }
+.s-category { margin-bottom:26px; }
+.s-cat-label { font-size:12px; letter-spacing:2px; color:var(--orange); text-transform:uppercase; margin-bottom:10px; font-family:var(--mono); font-weight:600; }
+.s-btns { display:flex; flex-wrap:wrap; gap:6px; }
+.s-btn { padding:9px 16px; background:var(--bg3); border:1px solid var(--border2); color:var(--text); font-family:var(--font); font-size:14px; cursor:pointer; transition:all 0.15s; white-space:nowrap; border-radius:6px; font-weight:500; }
+.s-btn:hover { border-color:var(--orange); background:var(--oglow); color:var(--orange); }
+.s-btn.active { border-color:var(--orange); background:var(--oglow); color:var(--orange); }
+
+/* VAULT VIEW */
+.vault-view { padding:24px 22px; }
+.v-tree { display:flex; flex-direction:column; gap:4px; }
+.v-root { font-size:15px; color:var(--bright); margin-bottom:8px; font-family:var(--mono); }
+.v-item { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--dim); padding:5px 0 5px 20px; border-left:1px solid var(--border); }
+.v-item:hover { color:var(--text); border-color:var(--border2); }
+.v-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+
+/* DAILY NOTE */
+.daily-view { padding:24px 22px; }
+.daily-hd { font-size:12px; letter-spacing:2px; color:var(--dim); margin-bottom:16px; font-family:var(--mono); text-transform:uppercase; }
+textarea.daily-in { width:100%; min-height:500px; background:var(--bg2); border:1px solid var(--border2); color:var(--bright); font-family:var(--mono); font-size:15px; padding:16px; resize:vertical; outline:none; line-height:1.8; border-radius:6px; }
+textarea.daily-in:focus { border-color:var(--orange); box-shadow:0 0 0 3px var(--oglow); }
+
+/* RIGHT SIDEBAR */
+.sb-section { border-bottom:1px solid var(--border); padding:14px 16px; }
+.sb-label { font-size:11px; letter-spacing:1.5px; color:var(--dim); text-transform:uppercase; margin-bottom:12px; font-family:var(--mono); }
+.sb-label em { color:var(--orange); font-style:normal; }
+.fc-stats { display:flex; justify-content:space-between; font-size:11px; color:var(--dim); letter-spacing:1px; margin-bottom:8px; font-family:var(--mono); }
+.fc-val { color:var(--orange); }
+.fc-bar-wrap { height:14px; background:var(--border); position:relative; overflow:hidden; margin-bottom:6px; border-radius:3px; }
+.fc-elapsed { position:absolute; left:0; top:0; bottom:0; background:var(--orange2); opacity:0.6; }
+.fc-proj    { position:absolute; top:0; bottom:0; background:var(--oglow); }
+.fc-legend { display:flex; justify-content:space-between; font-size:10px; color:var(--dim); margin-bottom:14px; font-family:var(--mono); }
+.fc-events { display:flex; flex-direction:column; gap:8px; }
+.fc-evt { display:flex; align-items:center; gap:8px; }
+.fc-time { color:var(--dim); width:40px; flex-shrink:0; font-size:12px; font-family:var(--mono); }
+.fc-name { color:var(--bright); flex:1; font-size:12px; font-family:var(--mono); }
+.fc-eta  { color:var(--orange); font-size:11px; white-space:nowrap; font-family:var(--mono); }
+.vp-item { display:flex; flex-direction:column; gap:3px; padding:8px 0; border-bottom:1px solid var(--border); }
+.vp-item:last-child { border-bottom:none; }
+.vp-top { display:flex; align-items:center; gap:7px; }
+.vp-badge { font-size:10px; padding:2px 6px; background:var(--orange); color:#fff; font-weight:600; flex-shrink:0; text-transform:uppercase; border-radius:3px; font-family:var(--mono); }
+.vp-badge.upd { background:transparent; border:1px solid var(--orange); color:var(--orange); }
+.vp-name { font-size:12px; color:var(--text); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.vp-path { font-size:11px; color:var(--dim); font-family:var(--mono); }
+.run-item { padding:7px 0; border-bottom:1px solid var(--border); font-size:12px; color:var(--dim); line-height:1.5; }
+.run-item:last-child { border-bottom:none; }
+.run-name { color:var(--text); }
+.no-runs { font-size:13px; color:var(--dim); }
+.bars { display:flex; align-items:flex-end; gap:5px; height:64px; padding-top:8px; }
+.bar-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; justify-content:flex-end; height:100%; }
+.bar-fill { width:100%; background:var(--orange); min-height:3px; border-radius:2px 2px 0 0; opacity:0.8; }
+.bar-lbl { font-size:10px; color:var(--dim); font-family:var(--mono); }
+.setup-item { display:flex; align-items:center; gap:8px; font-size:13px; padding:4px 0; }
+.s-check { color:var(--orange); font-family:var(--mono); }
+.s-done  { color:var(--text); }
+.s-pend  { color:var(--dim); }
+
+/* GRAIN */
+body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.015;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat; background-size:180px 180px; }
+
+/* WAR ROOM — full-width override */
+#body.warroom-mode #right { display:none; }
+#body.warroom-mode #left { border-right:none; overflow:hidden; }
+#view-warroom.active { display:flex !important; flex-direction:column; height:100%; }
+
+/* WAR ROOM — assembling screen */
+#warroom-assembling { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; transition:opacity 0.5s; }
+#warroom-assembling.hidden { opacity:0; pointer-events:none; }
+.wr-title { font-size:42px; font-weight:600; color:var(--bright); letter-spacing:-1px; margin-bottom:8px; text-align:center; font-family:var(--mono); }
+.wr-subtitle { font-size:11px; letter-spacing:4px; color:var(--dim); text-transform:uppercase; margin-bottom:48px; font-family:var(--mono); }
+.wr-agents { display:flex; gap:28px; margin-bottom:48px; flex-wrap:wrap; justify-content:center; }
+.wr-agent { display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0; transition:opacity 0.4s; }
+.wr-agent.visible { opacity:1; }
+.wr-agent-av { width:60px; height:60px; background:var(--bg3); border:1px solid var(--border2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; transition:box-shadow 0.4s; }
+.wr-agent.visible .wr-agent-av { box-shadow:0 0 16px var(--oglow); }
+.wr-agent-name { font-size:11px; color:var(--text); letter-spacing:0.5px; font-family:var(--mono); }
+.wr-agent-status { font-size:9px; letter-spacing:2px; color:var(--orange); text-transform:uppercase; font-family:var(--mono); }
+.wr-progress { width:280px; height:1px; background:var(--border2); margin-bottom:12px; overflow:hidden; }
+.wr-progress-fill { height:100%; background:var(--orange); width:0%; transition:width 0.8s ease; }
+.wr-progress-lbl { font-size:9px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; font-family:var(--mono); }
+
+/* WAR ROOM — active chat */
+#warroom-active { display:none; flex:1; overflow:hidden; }
+#warroom-active.visible { display:flex; }
+.wr-sidebar { width:200px; min-width:200px; background:var(--bg2); border-right:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; }
+.wr-sidebar-top { padding:12px 14px; border-bottom:1px solid var(--border); display:flex; align-items:center; }
+.wr-mode-lbl { font-size:9px; letter-spacing:2px; color:var(--dim); text-transform:uppercase; font-family:var(--mono); }
+.wr-size-btns { display:flex; gap:4px; margin-left:auto; }
+.wr-size-btn { background:transparent; border:1px solid var(--border2); color:var(--dim); font-family:var(--mono); font-size:10px; width:22px; height:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.wr-size-btn.active { color:var(--orange); border-color:rgba(218,119,86,0.4); }
+.wr-agents-list { flex:1; overflow-y:auto; }
+.wr-agents-list::-webkit-scrollbar { width:2px; }
+.wr-agents-list::-webkit-scrollbar-thumb { background:var(--border2); }
+.wr-agent-row { padding:10px 14px; border-bottom:1px solid var(--border); cursor:pointer; transition:background 0.12s; }
+.wr-agent-row:hover { background:var(--bg3); }
+.wr-agent-row.active { background:var(--oglow); border-left:2px solid var(--orange); }
+.war-av { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.war-av-ico { font-size:15px; }
+.war-av-name { font-size:12px; color:var(--bright); font-family:var(--mono); }
+.war-av-dot { width:6px; height:6px; background:var(--grn); border-radius:50%; margin-left:auto; }
+.war-last { font-size:11px; color:var(--dim); line-height:1.4; font-family:var(--mono); }
+.wr-chat { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+.wr-chat-header { padding:12px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:12px; background:var(--bg2); flex-shrink:0; }
+.wr-chat-title { font-size:13px; color:var(--bright); letter-spacing:0.5px; font-family:var(--mono); }
+.wr-chat-meta { font-size:11px; color:var(--dim); letter-spacing:1px; font-family:var(--mono); }
+.wr-messages { flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:16px; }
+.wr-messages::-webkit-scrollbar { width:3px; }
+.wr-messages::-webkit-scrollbar-thumb { background:var(--border2); }
+.wr-msg { display:flex; gap:12px; }
+.wr-msg-av { font-size:20px; flex-shrink:0; padding-top:2px; }
+.wr-msg-body { flex:1; }
+.wr-msg-top { display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+.wr-msg-name { font-size:11px; color:var(--orange); font-weight:600; font-family:var(--mono); }
+.wr-msg-time { font-size:11px; color:var(--dim); font-family:var(--mono); }
+.wr-msg-badge { font-size:9px; letter-spacing:1.5px; color:var(--dim); border:1px solid var(--border2); padding:1px 6px; font-family:var(--mono); }
+.wr-msg-badge.chiming { color:var(--orange); border-color:rgba(218,119,86,0.3); }
+.wr-msg-text { font-size:14px; color:var(--text); line-height:1.6; background:var(--bg3); border:1px solid var(--border); border-radius:4px; padding:10px 14px; }
+.wr-input-area { padding:14px 20px; border-top:1px solid var(--border); display:flex; gap:10px; flex-shrink:0; background:var(--bg2); }
+.wr-input { flex:1; background:var(--bg3); border:1px solid var(--border2); color:var(--text); font-family:var(--mono); font-size:14px; padding:10px 14px; border-radius:6px; outline:none; transition:border 0.12s; }
+.wr-input:focus { border-color:var(--orange); }
+.wr-input::placeholder { color:var(--dim); }
+.wr-send { background:var(--orange); border:none; color:#fff; font-family:var(--mono); font-size:12px; letter-spacing:1px; padding:10px 20px; cursor:pointer; border-radius:6px; transition:background 0.12s; }
+.wr-send:hover { background:var(--orange2); }
+.fade-in { animation:fadeIn 0.3s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+</style>
+</head>
+<body>
+
+<div id="header">
+  <div class="logo">
+    <div class="logo-hex">B</div>
+    <div class="logo-text"><em>BLAINE</em>OS</div>
+  </div>
+  <div class="header-links">
+    <span>CONTEXT</span><span class="sep">·</span>
+    <span>CONNECTIONS</span><span class="sep">·</span>
+    <span>SKILLS</span><span class="sep">·</span>
+    <span>/AUDIT</span><span class="sep">·</span>
+    <span>/LEVEL-UP</span>
+  </div>
+</div>
+
+<div id="tabs">
+  <div class="tabs-left">
+    <button class="tab active" onclick="setTab('main',this)"><span class="dot"></span> CLAUDE CODE</button>
+    <button class="tab" onclick="setTab('vault',this)"><span class="dot"></span> WORKSPACE</button>
+    <button class="tab" onclick="setTab('daily',this)"><span class="ico">§</span> DAILY NOTE</button>
+    <button class="tab" onclick="setTab('priorities',this)"><span class="ico">▸</span> Q2 PRIORITIES</button>
+    <button class="tab" onclick="setTab('runlog',this)"><span class="ico">≡</span> RUN LOG</button>
+    <button class="tab" onclick="setTab('warroom',this)"><span class="ico">⚔</span> WAR ROOM</button>
+  </div>
+  <div class="idle-badge"><div class="idle-dot"></div> IDLE</div>
+</div>
+
+<div id="body">
+<div id="left">
+
+  <!-- MAIN TAB -->
+  <div class="view active" id="view-main">
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-head"><span class="m-label">P&amp;L LOSS TARGET</span><span class="m-reset">PER TRADE MAX</span></div>
+        <div class="pbar"><div class="pbar-fill" style="width:0%"></div></div>
+        <div class="m-val">0.33%</div>
+        <div class="m-sub"><span>TARGET LOSS CAP</span><span>→ Q2</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-head"><span class="m-label">BUILD PROGRESS</span><span class="m-reset">JULY TARGET</span></div>
+        <div class="pbar"><div class="pbar-fill" style="width:15%"></div></div>
+        <div class="m-val">DAY 1</div>
+        <div class="m-sub"><span>AIOS LIVE</span><span>→ BUILDING</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-head"><span class="m-label">SKILLS INSTALLED</span><span class="m-reset">RUN /LEVEL-UP</span></div>
+        <div class="pbar"><div class="pbar-fill" style="width:20%"></div></div>
+        <div class="m-val">3 / 15+</div>
+        <div class="m-sub"><span>ONBOARD·AUDIT·LEVEL-UP</span><span>→ ADD</span></div>
+      </div>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-head">
+        <span class="chart-title">BLAINE OS · CUMULATIVE ACTIVITY · 30D</span>
+        <span class="chart-stat" id="chartStat">· 0 TOTAL</span>
+      </div>
+      <div class="chart-canvas"><canvas id="actChart"></canvas></div>
+    </div>
+
+    <div class="integrations">
+      <span class="int-label">INTEGRATIONS</span>
+      <div class="int-item"><div class="int-dot"></div> TOS / TD AMERITRADE</div>
+      <div class="int-item"><div class="int-dot"></div> SEC / EDGAR</div>
+      <div class="int-item"><div class="int-dot"></div> OBSIDIAN VAULT</div>
+      <div class="int-item"><div class="int-dot pending"></div> GMAIL</div>
+      <div class="int-item"><div class="int-dot pending"></div> DISCORD</div>
+      <div class="int-item"><div class="int-dot pending"></div> TWITTER/X</div>
+    </div>
+
+    <div class="ready-area">
+      <div class="ready-tag" id="readyTag">READY</div>
+      <div class="ready-headline" id="readyLine">RUN A <span class="hl">SKILL</span> TO BEGIN<span class="cursor"></span></div>
+      <div class="ready-sub" id="readySub">click a skill · press run · or type any prompt</div>
+    </div>
+
+    <div class="prompt-wrap">
+      <div class="prompt-lbl">PROMPT</div>
+      <textarea class="prompt-in" id="promptBox" rows="5" placeholder="type any prompt, or pick a skill below to load a template…"></textarea>
+      <div class="btn-row">
+        <button class="btn-run" id="runBtn" onclick="doRun()">RUN →</button>
+        <button class="btn-clr" onclick="doClear()">CLEAR</button>
+      </div>
+    </div>
+
+    <div class="skills-wrap">
+
+      <div class="s-category">
+        <div class="s-cat-label">MEMORY</div>
+        <div class="s-btns">
+          <button class="s-btn" onclick="pick(this,'vault-cleanup')">Vault Cleanup</button>
+          <button class="s-btn" onclick="pick(this,'trade-memory')">Trade Memory</button>
+          <button class="s-btn" onclick="pick(this,'kb-status')">KB Status</button>
+          <button class="s-btn" onclick="pick(this,'session-handoff')">Session Handoff</button>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-label">TRADING</div>
+        <div class="s-btns">
+          <button class="s-btn" onclick="pick(this,'premarket-scan')">Pre-Market Scan</button>
+          <button class="s-btn" onclick="pick(this,'trade-journal')">Trade Journal</button>
+          <button class="s-btn" onclick="pick(this,'risk-check')">Risk Check</button>
+          <button class="s-btn" onclick="pick(this,'pl-review')">P&amp;L Review</button>
+          <button class="s-btn" onclick="pick(this,'catalyst-brief')">Catalyst Brief</button>
+          <button class="s-btn" onclick="pick(this,'pattern-review')">Pattern Review</button>
+          <button class="s-btn" onclick="pick(this,'daily-trade-plan')">Daily Trade Plan</button>
+          <button class="s-btn" onclick="pick(this,'journal-analyzer')">Journal Analyzer</button>
+          <button class="s-btn" onclick="pick(this,'strategy-backtest')">Strategy Backtest</button>
+          <button class="s-btn" onclick="pick(this,'news-to-trade')">News to Trade</button>
+          <button class="s-btn" onclick="pick(this,'ta-analyze')" style="background:rgba(218,119,86,0.15);border-color:var(--orange);">TA Full Analysis</button>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-label">BUILD</div>
+        <div class="s-btns">
+          <button class="s-btn" onclick="pick(this,'tos-backtester')">TOS Backtester</button>
+          <button class="s-btn" onclick="pick(this,'dilution-tracker')">Dilution Tracker</button>
+          <button class="s-btn" onclick="pick(this,'tos-scanner-build')">Scanner Build</button>
+          <button class="s-btn" onclick="pick(this,'journal-prototype')">Journal Prototype</button>
+          <button class="s-btn" onclick="pick(this,'code-review')">Code Review</button>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-label">RESEARCH</div>
+        <div class="s-btns">
+          <button class="s-btn" onclick="pick(this,'edgar-search')">SEC / EDGAR</button>
+          <button class="s-btn" onclick="pick(this,'dilution-research')">Dilution Research</button>
+          <button class="s-btn" onclick="pick(this,'float-research')">Float Research</button>
+          <button class="s-btn" onclick="pick(this,'market-brief')">Market Brief</button>
+          <button class="s-btn" onclick="pick(this,'news-scan')">News Scan</button>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-label">OPS</div>
+        <div class="s-btns">
+          <button class="s-btn" onclick="pick(this,'morning-brief')">Morning Brief</button>
+          <button class="s-btn" onclick="pick(this,'weekly-report')">Weekly Report</button>
+          <button class="s-btn" onclick="pick(this,'inbox-triage')">Inbox Triage</button>
+          <button class="s-btn" onclick="pick(this,'finance-brief')">Finance Brief</button>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-label">AIOS</div>
+        <div class="s-btns">
+          <button class="s-btn" onclick="pick(this,'aios-audit')">/audit</button>
+          <button class="s-btn" onclick="pick(this,'aios-levelup')">/level-up</button>
+          <button class="s-btn" onclick="pick(this,'system-health')">System Health</button>
+          <button class="s-btn" onclick="pick(this,'standup')">/standup</button>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /view-main -->
+
+  <!-- WORKSPACE TAB -->
+  <div class="view" id="view-vault">
+    <div class="vault-view">
+      <div class="sb-label" style="margin-bottom:18px;">WORKSPACE — d:\AIS-OS\</div>
+      <div class="v-tree">
+        <div class="v-root">📁 d:\AIS-OS\</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> CLAUDE.md — root operating manual (filled in)</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> aios-intake.md — all 7 questions answered</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> connections.md — 7 tools registered</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> context\ — about-me · about-business · priorities</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> references\ — voice.md · 3ms-framework.md</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> decisions\log.md — first entry written today</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> .claude\skills\ — onboard · audit · level-up</div>
+        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\ — trading OS, scanners, risk, journal</div>
+        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\TRADING_SYSTEMS\ — core trading context</div>
+        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\THINKING_MODELS\ — decision frameworks</div>
+        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\MEMORY\ — session handoff template</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--dim)"></div> archives\ — old files. don't delete, move here.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAILY NOTE TAB -->
+  <div class="view" id="view-daily">
+    <div class="daily-view">
+      <div class="daily-hd">DAILY TRADING NOTE — <span id="dailyDate"></span></div>
+      <textarea class="daily-in" id="dailyNote" placeholder="# Daily Note
+
+## Pre-Market
+- Watchlist:
+- Top catalyst:
+- Key levels:
+- Market environment (active / cautious):
+
+## Trades
+| Ticker | Side | Entry | Exit | P&L | Loss % | Grade |
+|--------|------|-------|------|-----|--------|-------|
+|        |      |       |      |     |        |       |
+
+## End of Day Review
+- Win rate today:
+- Average loss %:
+- Biggest mistake:
+- Rule violations (Y/N):
+- Vs 0.33% target: UNDER / OVER
+
+## Notes / Lessons"></textarea>
+      <div style="margin-top:10px;">
+        <button class="btn-run" onclick="saveDaily()" style="width:100%">SAVE NOTE →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 PRIORITIES TAB -->
+  <div class="view" id="view-priorities">
+    <div style="padding:24px 22px;">
+      <div class="sb-label" style="margin-bottom:20px;">Q2 2026 PRIORITIES — TARGET: JULY 2026</div>
+
+      <div style="margin-bottom:28px;">
+        <div style="font-size:12px;letter-spacing:2px;color:var(--orange);margin-bottom:10px;font-family:var(--mono);font-weight:600;">PRIORITY 1 — P&amp;L</div>
+        <div style="font-size:16px;color:var(--bright);margin-bottom:10px;font-weight:600;">Cut per-trade losses to 0.25–0.33%</div>
+        <div style="font-size:14px;color:var(--dim);line-height:2.2;">
+          ● Log every trade — use the Trade Journal skill<br>
+          ● Run Risk Check before and after each session<br>
+          ● Weekly P&amp;L Review — track the trend<br>
+          ● If daily max loss hit → STOP immediately
+        </div>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <div style="font-size:12px;letter-spacing:2px;color:var(--orange);margin-bottom:10px;font-family:var(--mono);font-weight:600;">PRIORITY 2 — TRADE JOURNAL</div>
+        <div style="font-size:16px;color:var(--bright);margin-bottom:10px;font-weight:600;">Finish the Trade Journal / Backtest Prototype</div>
+        <div style="font-size:14px;color:var(--dim);line-height:2.2;">
+          ● Define done: what does the MVP include?<br>
+          ● One build session per day<br>
+          ● Ship MVP first, optimize later<br>
+          ● Use the Journal Prototype skill to start sessions
+        </div>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <div style="font-size:12px;letter-spacing:2px;color:var(--orange);margin-bottom:10px;font-family:var(--mono);font-weight:600;">PRIORITY 3 — TOS BACKTESTER</div>
+        <div style="font-size:16px;color:var(--bright);margin-bottom:10px;font-weight:600;">TOS strategy backtester + Dilution Tracker + Thinkscript scan filters</div>
+        <div style="font-size:14px;color:var(--dim);line-height:2.2;">
+          ● Step 1: scanner filters → get tradeable tickers<br>
+          ● Step 2: add dilution research layer<br>
+          ● Step 3: backtest logic<br>
+          ● Step 4: learning system (builds on all of above)
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:16px;">
+        <div style="font-size:12px;color:var(--dim);letter-spacing:1px;line-height:2.2;font-family:var(--mono);">
+          DEFAULT SHIFT RULE<br>
+          Before starting any task → ask: to what extent could AI be leveraged here?<br>
+          Even 10% helps. Start with the first 30% and go from there.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUN LOG TAB -->
+  <div class="view" id="view-runlog">
+    <div style="padding:24px 22px;">
+      <div class="sb-label" style="margin-bottom:16px;">RUN LOG — SKILL HISTORY</div>
+      <div id="fullRunLog">
+        <div style="font-size:14px;color:var(--dim);">No runs yet. Pick a skill and press RUN to log it here.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WAR ROOM -->
+  <div class="view" id="view-warroom">
+    <div id="warroom-assembling">
+      <div class="wr-title">THE WAR ROOM</div>
+      <div class="wr-subtitle">Assembling the team</div>
+      <div class="wr-agents" id="wrAgents"></div>
+      <div class="wr-progress"><div class="wr-progress-fill" id="wrProgress"></div></div>
+      <div class="wr-progress-lbl" id="wrProgressLbl">Initializing...</div>
+    </div>
+    <div id="warroom-active">
+      <div class="wr-sidebar">
+        <div class="wr-sidebar-top">
+          <span class="wr-mode-lbl">TEAM</span>
+          <div class="wr-size-btns">
+            <button class="wr-size-btn active" onclick="wrSize('S',this)">S</button>
+            <button class="wr-size-btn" onclick="wrSize('M',this)">M</button>
+            <button class="wr-size-btn" onclick="wrSize('L',this)">L</button>
+          </div>
+        </div>
+        <div class="wr-agents-list" id="wrAgentsList"></div>
+      </div>
+      <div class="wr-chat">
+        <div class="wr-chat-header">
+          <span class="wr-chat-title">War Room · TEXT MODE</span>
+          <span class="wr-chat-meta" id="wrTimer">0:00</span>
+        </div>
+        <div class="wr-messages" id="wrMessages"></div>
+        <div class="wr-input-area">
+          <input class="wr-input" id="wrInput" placeholder="Try /standup · /discuss [topic] · @trading · @research" onkeydown="if(event.key==='Enter')sendWarRoomMsg()">
+          <button class="wr-send" onclick="sendWarRoomMsg()">SEND</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /left -->
+
+<!-- RIGHT SIDEBAR -->
+<div id="right">
+
+  <div class="sb-section">
+    <div class="sb-label">TRADING DAY · <em>SCHEDULE</em></div>
+    <div class="fc-stats">
+      <span>MARKET <span class="fc-val">09:30 ET</span></span>
+      <span>SMALL-CAP</span>
+    </div>
+    <div class="fc-bar-wrap">
+      <div class="fc-elapsed" style="width:0%"></div>
+      <div class="fc-proj" style="left:0%;width:0%"></div>
+    </div>
+    <div class="fc-legend">
+      <span>■ PRE-MKT</span><span>■ OPEN</span><span>■ CLOSE</span><span>■ REVIEW</span>
+    </div>
+    <div class="fc-events">
+      <div class="fc-evt"><span class="fc-time">08:00</span><span class="fc-name">PRE-MARKET SCAN</span><span class="fc-eta">DAILY</span></div>
+      <div class="fc-evt"><span class="fc-time">08:30</span><span class="fc-name">MORNING BRIEF</span><span class="fc-eta">DAILY</span></div>
+      <div class="fc-evt"><span class="fc-time">09:30</span><span class="fc-name">MARKET OPEN</span><span class="fc-eta">DAILY</span></div>
+      <div class="fc-evt"><span class="fc-time">16:00</span><span class="fc-name">TRADE JOURNAL</span><span class="fc-eta">DAILY</span></div>
+      <div class="fc-evt"><span class="fc-time">16:30</span><span class="fc-name">P&amp;L REVIEW</span><span class="fc-eta">DAILY</span></div>
+      <div class="fc-evt"><span class="fc-time">FRI 4P</span><span class="fc-name">PATTERN REVIEW</span><span class="fc-eta">WEEKLY</span></div>
+      <div class="fc-evt"><span class="fc-time">MON 8A</span><span class="fc-name">WEEKLY REPORT</span><span class="fc-eta">WEEKLY</span></div>
+    </div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-label">VAULT PULSE</div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">context/about-me.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">CONTEXT</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">context/priorities.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">CONTEXT</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">references/voice.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">REFERENCES</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge upd">UPDATED</span><span class="vp-name">CLAUDE.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">ROOT</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">decisions/log.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">DECISIONS</div></div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-label">RECENT RUNS</div>
+    <div id="recentRuns"><span class="no-runs">no runs yet</span></div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-label">LAST <em>SEVEN</em> DAYS</div>
+    <div class="bars" id="sevenBars"></div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-label">SETUP STATUS</div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">CLAUDE.md filled in</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Onboarding complete</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">context/ files (3)</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">references/ populated</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">decisions/log.md</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">3 skills installed</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">AI_OS workspace loaded</span></div>
+    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">API keys (.env)</span></div>
+    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Obsidian MCP connected</span></div>
+    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Gmail connected</span></div>
+    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Trade Journal prototype done</span></div>
+    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">TOS backtester v1 done</span></div>
+    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Dilution Tracker built</span></div>
+    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">P&amp;L loss target hit (0.33%)</span></div>
+    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Day 7 /audit run</span></div>
+  </div>
+
+</div><!-- /right -->
+</div><!-- /body -->
+
+<script>
+const TODAY = new Date().toISOString().split('T')[0];
+
+const SKILLS = {
+'vault-cleanup':`Review my vault at d:\\AIS-OS\\ and identify:
+1. Files that may be outdated (check context/ dates)
+2. Duplicate information across CLAUDE.md and context/
+3. Files in wrong location
+4. archives/ items older than 30 days
+
+Output: cleanup action list, sorted by priority.`,
+
+'trade-memory':`Review my recent trade journal entries and extract:
+1. Patterns in winning trades (setup type, time of day, catalyst)
+2. Patterns in losing trades (what triggered the loss)
+3. Rule violations (stop bypassed, oversized, chased entry)
+4. Key lessons worth saving to references/
+
+Format: structured memory update.`,
+
+'kb-status':`Audit my knowledge base (AI_OS/ folder):
+1. What trading topics are documented?
+2. What's missing (small-cap trading, TOS/Thinkscript, coding)?
+3. Which files are outdated?
+4. What should be added for Q2 priorities?
+
+Output: audit with priority additions list.`,
+
+'session-handoff':`Session Handoff — ${TODAY}
+
+Fill out AI_OS/MEMORY/session_handoff.md:
+1. What was completed this session?
+2. What decisions were made (log to decisions/log.md)?
+3. What files were modified?
+4. What should the next session start with?
+5. Any open questions or blockers?
+
+Keep it short. Future sessions load this first.`,
+
+'premarket-scan':`Pre-Market Scanner — ${TODAY}
+
+1. Top 5 small-cap movers (>5% pre-market, volume >100k)
+2. For each: float, catalyst type, key levels (HOD pre-market, prior close)
+3. Grade each: PRIMARY / SECONDARY / SKIP
+4. Flag FDA or earnings catalyst (highest priority)
+5. Flag any dilution risk (S-1 or S-3 filed recently?)
+
+Output: formatted watchlist.`,
+
+'trade-journal':`Trade Journal Entry — ${TODAY}
+
+Ticker:
+Side (LONG / SHORT):
+Entry price + time ET:
+Exit price + time ET:
+Shares:
+P&L: +$  / -$
+Loss % of account:
+Catalyst:
+Setup type (gap-and-go / VWAP reclaim / HOD break / reversal / other):
+Entry reason:
+Exit reason (target / stop / thesis broken):
+Grade (A / B / C / D):
+Rule violations? (Y/N — if Y, what):
+Notes:
+
+[Fill in above — I'll format and save to your trade journal]`,
+
+'risk-check':`Risk Check — ${TODAY}
+
+Current standing:
+1. Drawdown today: $X = X% (STOP if >3% daily max)
+2. Per-trade loss so far today: max X% (TARGET: ≤0.33%)
+3. Trades taken today: N
+4. Largest single loss today: $X
+5. Are we clear to keep trading? YES / NO
+
+Flag any violations in RED.
+If daily max hit → output STOP TRADING.`,
+
+'pl-review':`P&L Review — Week of ${TODAY}
+
+From trade journal this week:
+1. Gross P&L | Net P&L
+2. Average loss per losing trade — tracking toward 0.33% target?
+3. Win rate
+4. Best trade — what made it work?
+5. Worst trade — what went wrong?
+6. Rule violations this week (count)
+7. Trend: are losses shrinking week over week?
+
+Q2 target: cut per-trade losses to 0.25–0.33%. Where are we?`,
+
+'catalyst-brief':`Catalyst Research — Ticker: [TICKER]
+
+1. SEC EDGAR — any 8-K filings last 48 hours?
+2. Catalyst type + strength (FDA / Earnings / Contract / PR / Social)
+3. Float + short interest %
+4. Pre-market price and volume
+5. Dilution risk: any S-1, S-3, or ATM offering recently?
+6. Key levels: HOD pre-market, prior day close, key resistance
+7. Watch rating: PRIMARY / SECONDARY / SKIP`,
+
+'pattern-review':`Friday Pattern Review — Week of ${TODAY}
+
+From trade journal this week:
+1. Total trades | Win rate | Avg R:R
+2. Best setup this week — what worked and why
+3. Worst trade — what went wrong
+4. Grade distribution (A / B / C / D count)
+5. Rule violations (stop ignored, oversized, chased)
+6. Loss % trend — tracking toward 0.33% target?
+7. ONE focus area for next week`,
+
+'tos-backtester':`TOS Strategy Backtester — Build Session
+
+Current status: [describe where we left off, or type "start fresh"]
+
+Full system needs:
+[ ] Thinkscript strategy script (entry + exit conditions)
+[ ] Backtest parameters (lookback, position size)
+[ ] Performance output (net P&L, win rate, max drawdown)
+[ ] Integration with watchlist scan filters
+
+Today's ONE task (pick one):
+[ ] Write the base strategy script
+[ ] Add entry signal logic
+[ ] Add exit / stop logic
+[ ] Test on historical data
+[ ] Other: ___`,
+
+'dilution-tracker':`Dilution Tracker — Build Session
+
+Purpose: track dilution risk for small-cap watchlist tickers.
+
+Data to track per ticker:
+- Outstanding shares + float
+- Recent S-1 / S-3 / ATM filings
+- Shelf registration amount
+- Warrant overhang
+- Historical dilution events + price impact
+
+Today's ONE task:
+[ ] Design the data structure
+[ ] Build SEC EDGAR query for dilution filings
+[ ] Build tracking template (Obsidian or spreadsheet)
+[ ] Automate daily refresh for active watchlist
+[ ] Other: ___`,
+
+'tos-scanner-build':`TOS Scanner Build / Update
+
+Scanner type:
+[ ] Pre-Market Gapper (>5% pre-market, vol >100k)
+[ ] HOD Breakout (new intraday high with volume surge)
+[ ] VWAP Reclaim (price reclaiming VWAP after dip)
+[ ] Running Scanner (real-time momentum)
+[ ] Float Filter (under 10M or 50M float)
+[ ] Custom: [describe]
+
+Specify:
+- Price range: $___  to  $___
+- Volume minimum: ___k
+- Float filter: under ___M
+
+I'll generate the complete Thinkscript column config.`,
+
+'journal-prototype':`Trade Journal Prototype — Build Session
+
+Current status: [describe where we left off, or type "start fresh"]
+
+MVP requirements:
+[ ] Trade entry form (ticker, side, entry, exit, P&L, grade)
+[ ] Daily summary view
+[ ] Weekly P&L trend
+[ ] Mistake pattern tracker
+[ ] Rule violation counter
+[ ] Backtest input: strategy + date range → results
+
+Today's ONE task:
+[ ] Define the full data schema
+[ ] Build the entry form
+[ ] Build the daily summary
+[ ] Build P&L chart
+[ ] Build mistake tracker
+[ ] Other: ___`,
+
+'code-review':`Code Review
+
+Paste the code below. I'll check:
+1. Logic errors or bugs
+2. Risk of unintended side effects
+3. Missing error handling
+4. Readability (ADHD-friendly: clear names, short functions)
+5. One specific improvement suggestion
+
+[Paste code here]`,
+
+'edgar-search':`SEC / EDGAR Research — Ticker: [TICKER]
+
+Search for:
+1. 8-K filings last 7 days (material events)
+2. S-1 or S-3 (dilution risk — flag if present)
+3. Form 4 (insider buying or selling)
+4. ATM offering agreements
+5. Shelf registration statements
+
+Flag any dilution risk in RED.`,
+
+'dilution-research':`Dilution Research — [TICKER]
+
+Full dilution analysis:
+1. Current shares outstanding + float
+2. Recent S-1 / S-3 / ATM filings? (Y/N)
+3. Warrant overhang: warrants outstanding? Strike price?
+4. Convertible notes outstanding?
+5. Has this company diluted before? How often?
+6. Price impact of past dilution events
+7. Dilution risk: LOW / MEDIUM / HIGH`,
+
+'float-research':`Float Research — [TICKER]
+
+1. Total shares outstanding
+2. Float (publicly traded shares)
+3. Short interest % of float
+4. Institutional ownership %
+5. Days to cover
+6. Is this low-float (<10M)? Ultra-low (<5M)?
+7. Float rotation count today (volume / float)`,
+
+'market-brief':`Market Brief — ${TODAY}
+
+1. Pre-market futures: SPY / QQQ / IWM
+2. VIX level (<15 low / 15-25 normal / >25 high)
+3. Small-cap sentiment: IWM vs SPY
+4. Sector leaders and laggards
+5. Economic data releases today
+6. Plan: Active day (follow momentum) or Cautious day (stay small)?`,
+
+'news-scan':`Morning News Scan — ${TODAY}
+
+1. Any FDA decisions today or this week?
+2. Any small-cap earnings surprises?
+3. Any major contracts or partnerships?
+4. Which sector is in play today?
+5. Macro catalysts? (Fed, CPI, jobs)
+
+Flag anything that could create a momentum trade.`,
+
+'morning-brief':`Morning Brief — ${TODAY}
+
+TRADING
+- Pre-market movers worth watching?
+- Any catalysts today?
+- Market environment?
+
+BUILD
+- ONE build task for today
+
+END WITH: TODAY'S ONE PRIORITY`,
+
+'weekly-report':`Weekly Report — ${TODAY}
+
+1. Trading: P&L summary + loss% trend (vs 0.33% target)
+2. Build: progress on TOS backtester + journal prototype
+3. Rule violations this week
+4. Top insight from the week
+5. Next week's one priority`,
+
+'inbox-triage':`Inbox Triage
+
+1. Flag URGENT (respond today)
+2. Flag CAN WAIT (this week)
+3. Flag ARCHIVE
+
+Keep responses short. Direct. No fluff.`,
+
+'finance-brief':`Finance Brief — ${TODAY}
+
+1. Trading P&L this week
+2. Win rate + avg winner / avg loser
+3. Account value + weekly return %
+4. Available capital
+5. Any loss streaks? (3+ losing days = take a break)`,
+
+'aios-audit':`/audit
+
+Run the Four-Cs audit:
+- Context (25): does it know who I am and what I'm building?
+- Connections (25): which tools can it reach?
+- Capabilities (25): what skills exist?
+- Cadence (25): what runs automatically?
+
+Score each /25. Show top 3 gaps with concrete next steps.`,
+
+'aios-levelup':`/level-up
+
+Weekly 3Ms interview:
+- Mindset: what manual task have I done 3+ times this week?
+- Method: is it worth automating? EAD analysis.
+- Machine: if yes, spec the skill and build it.
+
+One automation per week.`,
+
+'system-health':`System Health Check — ${TODAY}
+
+1. AIOS FILES: CLAUDE.md filled? context/ current? decisions/log.md active?
+2. SKILLS: onboard / audit / level-up present?
+3. AI_OS TRADING: trading_operating_system.md / scanner_development.md / risk_framework.md readable?
+4. CONNECTIONS: which tier-1 domains are actually reachable?
+
+Output: GREEN / YELLOW / RED per component`,
+
+'standup':`Standup — ${TODAY}
+
+TRADING: Any trades planned? Open positions?
+BUILD: ONE build task for today?
+AIOS: Any skills to add or update?
+MOOD: How are we feeling today? (1-10 — matters for risk)
+
+TODAY'S ONE PRIORITY → [single most important thing]`,
+
+'news-to-trade':`News-to-Trade Converter — [TICKER or SECTOR]
+
+1. Summarize the most recent news related to [company/sector]
+2. Convert it into actionable trading insights:
+   - Short-term impact (today / this week)
+   - Long-term impact (this quarter)
+   - Expected price movement range
+   - Suggested positioning (long / short / avoid)
+3. Catalyst strength: STRONG / MODERATE / WEAK
+4. Trade recommendation: ENTER / WATCH / SKIP`,
+
+'journal-analyzer':`Trading Journal Analyzer
+
+Paste or describe your last 10-20 trades below, then I'll identify:
+1. Recurring errors (stops ignored, sized wrong, chased entries)
+2. Missed opportunities (what setups should you have taken?)
+3. Behavioral biases (revenge trading, FOMO, scared money)
+4. 3 personalized rules to improve consistency immediately
+
+[Paste trades: ticker, entry, exit, P&L, grade — or I'll pull from journal API]`,
+
+'strategy-backtest':`Strategy Backtester
+
+Strategy: [e.g., gap-and-go, VWAP reclaim, HOD breakout, RSI divergence]
+Ticker / Index: [e.g., NVDA, SPY, small-cap basket]
+Time period: [e.g., last 6 months, 2025]
+
+Output requested:
+[ ] Win rate
+[ ] Profit factor
+[ ] Maximum drawdown
+[ ] Average winner / average loser
+[ ] Improvement suggestions
+
+Run via fincept_tools backtesting module, or paste historical data for manual analysis.`,
+
+'ta-analyze':`TradingAgents Full Analysis — [TICKER]
+
+Run the 10-agent TradingAgents pipeline on this ticker:
+  - Fundamentals Analyst (financials, balance sheet)
+  - News Analyst (macro + ticker-specific news)
+  - Sentiment Analyst (StockTwits + Reddit + Yahoo)
+  - Market Analyst (MACD, RSI, moving averages, key levels)
+  - Bull Researcher vs Bear Researcher (structured debate)
+  - Trader (BUY/HOLD/SELL proposal)
+  - Risk Team x3 (conservative / neutral / aggressive)
+  - Portfolio Manager (final approval)
+
+Command (run from d:\AIS-OS):
+  python scripts/run_trading_agents.py [TICKER] ${TODAY}
+
+Or use CLI:
+  cd d:\AIS-OS\TradingAgents && python -m cli.main
+
+After the analysis, cross-check:
+  1. Float size — under 50M float for relevance to Blaine's style
+  2. Dilution risk — any S-1/S-3 flagged by news analyst?
+  3. Historical performance — goheat207.pythonanywhere.com/api/trades?ticker=[TICKER]
+
+Output the final decision in this format:
+  DECISION: BUY / HOLD / SELL
+  CATALYST: [what's driving it]
+  SENTIMENT: [Bullish/Bearish/Mixed]
+  BULL CASE: [top 2 points]
+  BEAR CASE: [top 2 points]
+  RISK FLAGS: [anything that should reduce size or cause a skip]
+  ACTION: [what to do and when]`,
+
+'daily-trade-plan':`Daily Trade Plan — ${TODAY}
+
+Create a structured trading plan including:
+
+PRE-MARKET (8:00–9:30 ET)
+- Top watchlist tickers + catalyst check
+- Key levels to watch (HOD pre-market, prior close, gap fill)
+- Market environment read (risk-on / risk-off)
+
+OPEN (9:30–10:30 ET)
+- Opening execution strategy
+- First 30-min rule: observe before trading?
+- Entry triggers for A-tier setups
+
+MIDDAY (10:30–2:00 ET)
+- Adjustment criteria (add / cut / sit out)
+- Max trades allowed if morning was rough
+
+CLOSE (2:00–4:00 ET)
+- Closing approach
+- EOD P&L review trigger
+
+Present as a time-stamped checklist.`
+};
+
+let activeBtn = null;
+let runHistory = [];
+
+function pick(btn, id) {
+  const text = SKILLS[id];
+  if (!text) return;
+  document.getElementById('promptBox').value = text;
+  if (activeBtn) activeBtn.classList.remove('active');
+  btn.classList.add('active');
+  activeBtn = btn;
+  document.getElementById('readyTag').textContent = 'SKILL LOADED';
+  document.getElementById('readyLine').innerHTML = btn.textContent.trim().toUpperCase() + ' <span class="hl">READY</span><span class="cursor"></span>';
+  document.getElementById('readySub').textContent = 'edit if needed · then press RUN';
+  document.getElementById('promptBox').scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function setTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('view-' + id).classList.add('active');
+  const body = document.getElementById('body');
+  if (id === 'warroom') {
+    body.classList.add('warroom-mode');
+    if (!window._wrStarted) { startWarRoom(); window._wrStarted = true; }
+  } else {
+    body.classList.remove('warroom-mode');
+  }
+}
+
+function doRun() {
+  const text = document.getElementById('promptBox').value.trim();
+  if (!text) return;
+  const btn = document.getElementById('runBtn');
+  const name = activeBtn ? activeBtn.textContent.trim() : 'Custom Prompt';
+  const now = new Date().toLocaleTimeString('en-US', { hour12:false, hour:'2-digit', minute:'2-digit' });
+
+  const runsEl = document.getElementById('recentRuns');
+  const noRuns = runsEl.querySelector('.no-runs');
+  if (noRuns) noRuns.remove();
+  const item = document.createElement('div');
+  item.className = 'run-item';
+  item.innerHTML = `<span class="run-name">${name}</span><br>${now}`;
+  runsEl.insertBefore(item, runsEl.firstChild);
+
+  runHistory.unshift({ name, time: now, preview: text.slice(0, 80) });
+  document.getElementById('fullRunLog').innerHTML = runHistory.map(r =>
+    `<div style="border-bottom:1px solid var(--border);padding:10px 0;font-size:13px;">
+      <div style="color:var(--orange);margin-bottom:2px;">${r.name}</div>
+      <div style="color:var(--dim);margin-bottom:4px;font-family:var(--mono);">${r.time}</div>
+      <div style="color:var(--text);opacity:0.6;">${r.preview}${r.preview.length===80?'…':''}</div>
+    </div>`).join('');
+
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'COPIED ✓';
+    btn.style.cssText = 'background:var(--orange2);color:#fff;border-color:var(--orange2);';
+    setTimeout(() => { btn.textContent = 'RUN →'; btn.style.cssText = ''; }, 1800);
+  }).catch(() => { btn.textContent = 'RUN →'; });
+}
+
+function doClear() {
+  document.getElementById('promptBox').value = '';
+  if (activeBtn) { activeBtn.classList.remove('active'); activeBtn = null; }
+  document.getElementById('readyTag').textContent = 'READY';
+  document.getElementById('readyLine').innerHTML = 'RUN A <span class="hl">SKILL</span> TO BEGIN<span class="cursor"></span>';
+  document.getElementById('readySub').textContent = 'click a skill · press run · or type any prompt';
+}
+
+function saveDaily() {
+  const btn = event.target;
+  btn.textContent = 'SAVED ✓';
+  setTimeout(() => btn.textContent = 'SAVE NOTE →', 2000);
+}
+
+document.getElementById('dailyDate').textContent = TODAY;
+
+/* ── WAR ROOM DATA ───────────────────────────────── */
+const WR_AGENTS = [
+  { id:'main',        name:'AIOS',         icon:'🎯', role:'Orchestrator',           last:'Routing morning tasks. Journal metrics pulled. System GREEN.' },
+  { id:'trading',     name:'Trading',      icon:'📈', role:'Small-Cap Momentum',     last:'Pre-market scan queued. Watchlist from top gappers ready.' },
+  { id:'journal',     name:'Journal',      icon:'📓', role:'Trade Journal',          last:'242 trades in DB. Win rate 30.6%. Pulling per-symbol breakdown.' },
+  { id:'research',    name:'Research',     icon:'🔬', role:'Catalyst Research',      last:'EDGAR 8-K pull ready. Float/SI data on request.' },
+  { id:'level2',      name:'Level2',       icon:'📊', role:'L2 Lab Trainer',         last:'Local only. Bug fixes queued for tomorrow.' },
+  { id:'ops',         name:'Ops',          icon:'⚙️',  role:'Business Admin',         last:'Weekly ops report generated. Connections registry updated.' },
+  { id:'ta-analyst',  name:'TA Analyst',   icon:'📰', role:'News + Sentiment + Tech', last:'TradingAgents crew standing by. Run: python scripts/run_trading_agents.py TICKER DATE' },
+  { id:'ta-research', name:'TA Research',  icon:'⚖️',  role:'Bull vs Bear Debate',    last:'Bull/Bear researchers ready. Full debate on any ticker in 1 round.' },
+  { id:'ta-trader',   name:'TA Trader',    icon:'💹', role:'Trade Decision Engine',   last:'Synthesizes analyst + researcher reports → BUY/HOLD/SELL proposal.' },
+  { id:'ta-risk',     name:'TA Risk',      icon:'🛡️', role:'Risk Mgmt + Portfolio',   last:'3-debator risk team + Portfolio Manager final approval.' },
+];
+
+const WR_RESPONSES = {
+  '/standup': [
+    {agent:'main',        text:'Morning routing complete. Journal is live on PythonAnywhere — 242 trades, 30.6% win rate, -$141.81 total P&L. Current streak is -6. Research and Trading are queued for pre-market. No blockers. System GREEN.'},
+    {agent:'trading',     text:'Pre-market scan ready. Watching for HOD breakout setups on small-cap gappers with relative volume > 5x. Pattern review shows your best edge is VWAP reclaim on news catalysts. Queued: midday scan at 11:30.'},
+    {agent:'journal',     text:'Live data pulled from goheat207.pythonanywhere.com. 242 trades loaded. Your biggest drag is a 30.6% win rate — you need 40%+ at your current 1.3:1 ratio to break even. Per-symbol breakdown available on request.'},
+    {agent:'research',    text:'Ready for catalyst pulls. Give me a ticker and I\'ll pull float, short interest, and any recent 8-K filings. EDGAR access active. Finviz screen ready on demand.'},
+    {agent:'level2',      text:'Local only — not deployed yet. Bug fixes scheduled for tomorrow. L2 log has 2 entries, 1 T&S entry, 3 classifications. Accuracy rate pending more data.'},
+    {agent:'ops',         text:'Connections registry updated — Trade Journal now wired. Level2 Lab registered as local. Gmail still pending OAuth setup. Weekly ops report clean. No failed tasks this week.'},
+    {agent:'ta-analyst',  text:'TradingAgents crew installed and configured for Claude. News + Sentiment (StockTwits/Reddit/Yahoo) + Technical analysts ready. Run: python scripts/run_trading_agents.py TICKER DATE'},
+    {agent:'ta-research', text:'Bull and Bear researchers standing by. Give me a ticker and I run a structured debate — best case vs worst case, with specific supporting evidence from the analyst reports.'},
+    {agent:'ta-trader',   text:'Synthesizing analyst + researcher reports → BUY/HOLD/SELL proposal. Decision memory active — learning from prior ticker runs automatically.'},
+    {agent:'ta-risk',     text:'Three risk perspectives loaded: conservative, neutral, aggressive. Portfolio Manager reviews all three before final approval. Nothing executes without sign-off.'},
+  ],
+  '/discuss': [
+    {agent:'main',        text:'The most urgent thing is fixing the win rate. At 30.6% you\'re losing on expectancy no matter how tight the losses are. I\'d focus Trading on identifying which specific setups have a 40%+ hit rate before adding size.'},
+    {agent:'trading',     text:'Agree with AIOS. Your avg hold on wins is 51 minutes vs 24 minutes on losses — that tells me you\'re cutting winners early and holding losers longer than you should. Time-based exit rules could help.'},
+    {agent:'journal',     text:'From the data: your worst losses are your biggest P&L damage. Best trade is +$19, worst is -$16.48. The loss magnitude isn\'t the problem — frequency is. 167 losses vs 74 wins in 242 trades.'},
+    {agent:'research',    text:'Worth researching: what\'s the catalyst quality on your winning trades vs losing trades? If wins cluster around specific event types (earnings, FDA, etc.) that\'s actionable — filter to only those setups.'},
+    {agent:'level2',      text:'My take: if you can\'t read L2 reliably, you\'re guessing entries. Even 2-3 L2 classification sessions a day builds the pattern library fast. Recommend logging every setup you observe, win or lose.'},
+    {agent:'ops',         text:'From an ops angle: the Trade Journal is connected and live, which is the key infrastructure win today. Next priority: wire Gmail so I can surface anything business-critical without you checking manually.'},
+    {agent:'ta-analyst',  text:'Run TradingAgents on your top 3 recent losers. Look for divergences — was the news analyst flagging risk you missed? Was sentiment already turning before your entry? Pattern in the analysis = pattern in your misses.'},
+    {agent:'ta-research', text:'Bull/Bear debate is most useful pre-trade, not post. Run it the night before on any A-tier setup. If the bear case is stronger than you expected, that\'s your signal to size down.'},
+    {agent:'ta-trader',   text:'Your 30.6% win rate suggests the entry thesis isn\'t holding. My BUY/HOLD/SELL is only valid at the moment the team runs — check if macro or sentiment shifted between analysis and your actual entry.'},
+    {agent:'ta-risk',     text:'At -6 losing streak, the conservative debator says stop after trade 2. Neutral says one more if the setup is A-grade. Aggressive says trade the setup regardless. Blaine: conservative wins here.'},
+  ],
+};
+
+/* ── WAR ROOM FUNCTIONS ──────────────────────────── */
+let _wrTimerInterval, _wrSeconds = 0;
+
+function startWarRoom() {
+  const agentsEl = document.getElementById('wrAgents');
+  agentsEl.innerHTML = '';
+  WR_AGENTS.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'wr-agent';
+    div.id = 'wra-' + a.id;
+    div.innerHTML = '<div class="wr-agent-av">' + a.icon + '</div><div class="wr-agent-name">' + a.name + '</div><div class="wr-agent-status">ONLINE</div>';
+    agentsEl.appendChild(div);
+  });
+  buildWrSidebar();
+  const steps = ['Initializing agents...','Loading context...','Injecting domain knowledge...','Warming up the room...','Ready.'];
+  let stepIdx = 0, agentIdx = 0;
+  const iv = setInterval(() => {
+    if (agentIdx < WR_AGENTS.length) {
+      const el = document.getElementById('wra-' + WR_AGENTS[agentIdx].id);
+      if (el) el.classList.add('visible');
+      agentIdx++;
+      document.getElementById('wrProgress').style.width = ((agentIdx / WR_AGENTS.length) * 80) + '%';
+    } else {
+      document.getElementById('wrProgress').style.width = '100%';
+      clearInterval(iv);
+      setTimeout(() => {
+        document.getElementById('wrProgressLbl').textContent = 'Ready.';
+        setTimeout(() => transitionWrToChat(), 800);
+      }, 500);
+    }
+    document.getElementById('wrProgressLbl').textContent = steps[Math.min(stepIdx++, steps.length - 1)];
+  }, 400);
+}
+
+function transitionWrToChat() {
+  const assembling = document.getElementById('warroom-assembling');
+  assembling.classList.add('hidden');
+  setTimeout(() => {
+    assembling.style.display = 'none';
+    const active = document.getElementById('warroom-active');
+    active.classList.add('visible');
+    startWrTimer();
+    addWrMsg('main', 'War Room active. All agents online.\n\n/standup — get a status report from every agent\n/discuss [topic] — open group discussion\n@agent [message] — talk directly to one agent');
+  }, 500);
+}
+
+function buildWrSidebar() {
+  const list = document.getElementById('wrAgentsList');
+  list.innerHTML = '';
+  WR_AGENTS.forEach((a, i) => {
+    const el = document.createElement('div');
+    el.className = 'wr-agent-row' + (i === 0 ? ' active' : '');
+    el.innerHTML = '<div class="war-av"><div class="war-av-ico">' + a.icon + '</div><div class="war-av-name">' + a.name + '</div><div class="war-av-dot"></div></div><div class="war-last">' + a.last.substring(0,52) + '...</div>';
+    el.onclick = () => { document.querySelectorAll('.wr-agent-row').forEach(r => r.classList.remove('active')); el.classList.add('active'); };
+    list.appendChild(el);
+  });
+}
+
+function addWrMsg(agentId, text, label) {
+  const msgs = document.getElementById('wrMessages');
+  const a = WR_AGENTS.find(x => x.id === agentId) || {icon:'🤖', name:agentId};
+  const ts = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false});
+  const div = document.createElement('div');
+  div.className = 'wr-msg fade-in';
+  div.innerHTML = '<div class="wr-msg-av">' + a.icon + '</div><div class="wr-msg-body"><div class="wr-msg-top"><span class="wr-msg-name">' + a.name.toUpperCase() + '</span><span class="wr-msg-time">' + ts + '</span>' + (label ? '<span class="wr-msg-badge chiming">' + label + '</span>' : '') + '</div><div class="wr-msg-text">' + text.replace(/\n/g,'<br>') + '</div></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addWrUserMsg(text) {
+  const msgs = document.getElementById('wrMessages');
+  const ts = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false});
+  const div = document.createElement('div');
+  div.className = 'wr-msg fade-in';
+  div.innerHTML = '<div class="wr-msg-av">🧑</div><div class="wr-msg-body"><div class="wr-msg-top"><span class="wr-msg-name" style="color:var(--bright)">BLAINE</span><span class="wr-msg-time">' + ts + '</span></div><div class="wr-msg-text" style="border-color:rgba(218,119,86,0.3);background:var(--oglow)">' + text + '</div></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function sendWarRoomMsg() {
+  const input = document.getElementById('wrInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addWrUserMsg(text);
+  const lower = text.toLowerCase();
+  if (lower === '/standup') {
+    WR_RESPONSES['/standup'].forEach((r, i) => setTimeout(() => addWrMsg(r.agent, r.text, 'STANDUP'), (i + 1) * 900));
+  } else if (lower.startsWith('/discuss')) {
+    WR_RESPONSES['/discuss'].forEach((r, i) => setTimeout(() => addWrMsg(r.agent, r.text, 'CHIMING IN'), (i + 1) * 900));
+  } else if (lower.startsWith('@')) {
+    const parts = text.split(' ');
+    const agentId = parts[0].substring(1).toLowerCase();
+    const msg = parts.slice(1).join(' ');
+    const a = WR_AGENTS.find(x => x.id === agentId || x.name.toLowerCase() === agentId);
+    if (a) {
+      setTimeout(() => addWrMsg(a.id, 'On it. ' + (msg || text) + '\n\nI\'ll work through this and report back. If you need me to pull live data, specify the source and I\'ll fetch it.', 'DIRECT'), 700);
+    } else {
+      setTimeout(() => addWrMsg('main', 'Agent "' + agentId + '" not found. Available: @aios, @trading, @journal, @research, @level2, @ops', ''), 500);
+    }
+  } else {
+    setTimeout(() => addWrMsg('main', 'Received. Triaging now — I\'ll delegate to the right agent.\n\nTry /standup for a full status report, /discuss [topic] for a group session, or @agent to speak directly to a specific team member.', 'CHIMING IN'), 600);
+  }
+}
+
+function startWrTimer() {
+  _wrSeconds = 0;
+  clearInterval(_wrTimerInterval);
+  _wrTimerInterval = setInterval(() => {
+    _wrSeconds++;
+    const m = Math.floor(_wrSeconds / 60);
+    const s = String(_wrSeconds % 60).padStart(2,'0');
+    const el = document.getElementById('wrTimer');
+    if (el) el.textContent = m + ':' + s;
+  }, 1000);
+}
+
+function wrSize(size, btn) {
+  document.querySelectorAll('.wr-size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const sidebar = document.querySelector('.wr-sidebar');
+  if (size === 'S') sidebar.style.width = '180px';
+  else if (size === 'M') sidebar.style.width = '220px';
+  else sidebar.style.width = '280px';
+}
+
+(function buildChart() {
+  const labels = [], data = [];
+  const start = new Date(); start.setDate(start.getDate() - 29);
+  let cum = 0;
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(start); d.setDate(d.getDate() + i);
+    labels.push(d.toLocaleDateString('en-US', { month:'short', day:'2-digit' }));
+    cum += i === 29 ? 8 : Math.floor(Math.random() * 2);
+    data.push(cum);
+  }
+  document.getElementById('chartStat').textContent = `· ${cum} TOTAL · ${cum} LAST 30`;
+  new Chart(document.getElementById('actChart').getContext('2d'), {
+    type: 'line',
+    data: { labels, datasets: [{ data, borderColor:'#da7756', borderWidth:2,
+      backgroundColor: ctx => {
+        const { ctx: c, chartArea } = ctx.chart;
+        if (!chartArea) return 'rgba(218,119,86,0.1)';
+        const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+        g.addColorStop(0, 'rgba(218,119,86,0.4)'); g.addColorStop(1, 'rgba(218,119,86,0.02)');
+        return g;
+      }, fill:true, tension:0.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:'#da7756'
+    }]},
+    options: { responsive:true, maintainAspectRatio:false, interaction:{ mode:'index', intersect:false },
+      plugins: { legend:{ display:false },
+        tooltip: { backgroundColor:'#1e1d1c', borderColor:'#da7756', borderWidth:1, titleColor:'#da7756', bodyColor:'#d5d5d5',
+          titleFont:{ family:'JetBrains Mono', size:11 }, bodyFont:{ family:'JetBrains Mono', size:11 }, padding:10 }},
+      scales: {
+        x: { grid:{ color:'#252423' }, ticks:{ color:'#555', font:{ family:'JetBrains Mono', size:10 }, maxTicksLimit:7 }, border:{ color:'#2a2a2a' }},
+        y: { grid:{ color:'#252423' }, ticks:{ color:'#555', font:{ family:'JetBrains Mono', size:10 }}, border:{ color:'#2a2a2a' }}
+      }
+    }
+  });
+})();
+
+(function buildBars() {
+  const days = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
+  const vals = [0,0,0,0,0,0,100];
+  const el = document.getElementById('sevenBars');
+  days.forEach((d,i) => {
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+    col.innerHTML = `<div class="bar-fill" style="height:${Math.max(vals[i],3)}%"></div><div class="bar-lbl">${d}</div>`;
+    el.appendChild(col);
+  });
+})();
+</script>
+</body>
+</html>

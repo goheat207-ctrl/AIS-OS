@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Small Cap Long Playbook — The Ignition System</title>
+<style>
+  :root {
+    --green-dark: #1a5c2e;
+    --green-mid: #27a04e;
+    --green-light: #d4f0de;
+    --green-faint: #f0faf4;
+    --amber: #c87c0e;
+    --amber-light: #fdf3dc;
+    --red: #c0392b;
+    --red-light: #fdf0ee;
+    --blue: #1a4e8c;
+    --blue-light: #e8f0fb;
+    --gray-dark: #2c2c2c;
+    --gray-mid: #555;
+    --gray-light: #f7f7f5;
+    --border: #ddd;
+    --text: #1e1e1e;
+    --text-muted: #666;
+    --white: #fff;
+    --card-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text);
+    background: #fafaf8;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: linear-gradient(160deg, #0d3320 0%, #1a5c2e 60%, #27a04e 100%);
+    color: white;
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 40%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .cover-tag {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-size: 52px;
+    font-weight: normal;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: white;
+  }
+  .cover h1 span { color: #7deca5; }
+  .cover .subtitle {
+    font-size: 20px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 24px;
+  }
+  .cover-meta strong { color: rgba(255,255,255,0.85); display: block; font-size: 15px; }
+
+  /* ── Layout ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+
+  /* ── Section headers ── */
+  .section-header {
+    border-left: 5px solid var(--green-mid);
+    padding: 10px 0 10px 20px;
+    margin: 60px 0 30px;
+  }
+  .section-header .label {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 4px;
+  }
+  .section-header h2 {
+    font-size: 30px;
+    font-weight: normal;
+    color: var(--gray-dark);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: normal;
+    color: var(--gray-dark);
+    margin: 36px 0 14px;
+    border-bottom: 1px solid #e8e8e4;
+    padding-bottom: 8px;
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--green-dark);
+    margin: 24px 0 10px;
+  }
+
+  p { margin-bottom: 16px; }
+
+  /* ── Callout boxes ── */
+  .callout {
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    position: relative;
+  }
+  .callout.green { background: var(--green-faint); border: 1px solid #b8e4c8; }
+  .callout.amber { background: var(--amber-light); border: 1px solid #f5d89a; }
+  .callout.red   { background: var(--red-light);   border: 1px solid #f5c0bb; }
+  .callout.blue  { background: var(--blue-light);  border: 1px solid #b8cef0; }
+  .callout.gray  { background: var(--gray-light);  border: 1px solid var(--border); }
+  .callout-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .callout.green .callout-title { color: var(--green-dark); }
+  .callout.amber .callout-title { color: var(--amber); }
+  .callout.red   .callout-title { color: var(--red); }
+  .callout.blue  .callout-title { color: var(--blue); }
+  .callout.gray  .callout-title { color: var(--gray-mid); }
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ── Criteria lists ── */
+  .criteria-list { list-style: none; padding: 0; margin: 14px 0 20px; }
+  .criteria-list li {
+    padding: 10px 0 10px 28px;
+    border-bottom: 1px solid #ececea;
+    position: relative;
+    font-size: 15px;
+  }
+  .criteria-list li:last-child { border-bottom: none; }
+  .criteria-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green-mid);
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .criteria-list.red li::before { content: '✕'; color: var(--red); }
+  .criteria-list.amber li::before { content: '△'; color: var(--amber); }
+
+  /* ── Grade cards ── */
+  .grade-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .grade-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .grade-card.a { background: var(--green-faint); border: 1.5px solid var(--green-mid); }
+  .grade-card.b { background: var(--amber-light); border: 1.5px solid #e8a020; }
+  .grade-card.c { background: #f8f4ff; border: 1.5px solid #9b7ed4; }
+  .grade-card .letter {
+    font-size: 40px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .grade-card.a .letter { color: var(--green-dark); }
+  .grade-card.b .letter { color: var(--amber); }
+  .grade-card.c .letter { color: #6b4ea8; }
+  .grade-card .grade-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .grade-card.a .grade-title { color: var(--green-dark); }
+  .grade-card.b .grade-title { color: var(--amber); }
+  .grade-card.c .grade-title { color: #6b4ea8; }
+  .grade-card p { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+  /* ── Entry method cards ── */
+  .entry-methods { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .entry-card {
+    border-radius: 8px;
+    padding: 18px 22px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .entry-card.aggressive { background: var(--green-faint); border: 1px solid #b8e4c8; }
+  .entry-card.standard  { background: var(--blue-light);  border: 1px solid #b8cef0; }
+  .entry-card.conservative { background: var(--gray-light); border: 1px solid var(--border); }
+  .entry-num {
+    font-family: 'Arial', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    min-width: 36px;
+    text-align: center;
+    color: var(--green-mid);
+    opacity: 0.6;
+  }
+  .entry-card .entry-title {
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: var(--gray-dark);
+  }
+  .entry-card p { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+  /* ── Mirror comparison table ── */
+  .mirror-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+  .mirror-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .mirror-table th:nth-child(1) { background: #f9eded; color: var(--red); }
+  .mirror-table th:nth-child(2) { background: var(--green-faint); color: var(--green-dark); }
+  .mirror-table td { padding: 11px 16px; border-bottom: 1px solid #ececea; vertical-align: top; }
+  .mirror-table tr:nth-child(even) td { background: #fafaf8; }
+  .mirror-table td:first-child { color: #922; font-style: italic; }
+  .mirror-table td:last-child { color: var(--green-dark); font-weight: 500; }
+
+  /* ── Regime banner ── */
+  .regime-banner {
+    background: linear-gradient(135deg, #0d3320, #1a5c2e);
+    color: white;
+    padding: 32px 36px;
+    border-radius: 12px;
+    margin: 36px 0;
+  }
+  .regime-banner h3 {
+    color: #7deca5;
+    border: none;
+    padding: 0;
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 14px;
+    margin-top: 0;
+  }
+  .regime-banner p { color: rgba(255,255,255,0.82); font-size: 15px; margin-bottom: 10px; }
+  .regime-banner p:last-child { margin-bottom: 0; }
+  .regime-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .regime-stat strong {
+    display: block;
+    font-size: 26px;
+    color: #7deca5;
+    font-family: 'Arial', sans-serif;
+  }
+  .regime-stat span { font-size: 12px; color: rgba(255,255,255,0.55); }
+
+  /* ── Setup pill ── */
+  .setup-pill {
+    display: inline-block;
+    background: var(--green-mid);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .setup-pill.secondary { background: var(--blue); }
+  .setup-pill.tertiary  { background: #7b5cb8; }
+
+  /* ── Scanner filter row ── */
+  .scanner-filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .scanner-filter {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .scanner-filter .filter-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .scanner-filter .filter-value {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--green-dark);
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* ── Risk rules ── */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .risk-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .risk-card h4 { margin-top: 0; }
+  .risk-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 0; }
+
+  /* ── Trade breakdown ── */
+  .trade-breakdown {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: var(--card-shadow);
+  }
+  .trade-header {
+    background: var(--green-dark);
+    color: white;
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .trade-header h3 { color: white; border: none; padding: 0; margin: 0; font-size: 18px; }
+  .trade-grade {
+    background: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #7deca5;
+  }
+  .trade-body { padding: 24px 28px; }
+  .trade-phase {
+    border-left: 3px solid var(--green-mid);
+    padding: 4px 0 4px 16px;
+    margin: 16px 0;
+  }
+  .trade-phase .phase-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 4px;
+  }
+  .trade-phase p { margin: 0; font-size: 15px; }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid #e0e0da;
+    margin: 40px 0;
+  }
+
+  /* ── Psychology section ── */
+  .psych-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .psych-card {
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .psych-card.short { background: #fdf0ee; border: 1px solid #f5c0bb; }
+  .psych-card.long  { background: var(--green-faint); border: 1px solid #b8e4c8; }
+  .psych-card .psych-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .psych-card.short .psych-label { color: var(--red); }
+  .psych-card.long  .psych-label { color: var(--green-dark); }
+  .psych-card p { font-size: 14px; margin-bottom: 8px; }
+  .psych-card p:last-child { margin-bottom: 0; }
+
+  /* ── Mistakes ── */
+  .mistake-list { counter-reset: mistakes; list-style: none; padding: 0; }
+  .mistake-list li {
+    counter-increment: mistakes;
+    padding: 14px 14px 14px 52px;
+    border-bottom: 1px solid #ececea;
+    position: relative;
+    font-size: 15px;
+  }
+  .mistake-list li::before {
+    content: counter(mistakes);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 26px; height: 26px;
+    background: var(--red-light);
+    color: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 26px;
+  }
+  .mistake-list li:last-child { border-bottom: none; }
+  .mistake-list li strong { color: var(--gray-dark); }
+
+  /* ── Page footer ── */
+  .page-footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 28px;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    margin-top: 60px;
+  }
+  .page-footer strong { color: rgba(255,255,255,0.85); }
+
+  /* ── Print-friendly ── */
+  @media print {
+    .cover { -webkit-print-color-adjust: exact; }
+    .regime-banner { -webkit-print-color-adjust: exact; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 700px) {
+    .cover { padding: 50px 28px 40px; }
+    .cover h1 { font-size: 36px; }
+    .container { padding: 40px 20px; }
+    .grade-grid { grid-template-columns: 1fr; }
+    .scanner-filters { grid-template-columns: 1fr 1fr; }
+    .risk-grid { grid-template-columns: 1fr; }
+    .psych-grid { grid-template-columns: 1fr; }
+    .mirror-table { font-size: 12px; }
+    .regime-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <p class="cover-tag">Small Cap Trading Playbook · Long-Side Edition</p>
+  <h1>The <span>Ignition</span><br>System</h1>
+  <p class="subtitle">A complete re-engineering of momentum exhaustion theory — from the short side to the long side. Built for every level of trader.</p>
+  <div class="cover-meta">
+    <div><strong>3 Core Setups</strong>First Green Day · Parabolic Long · Gap Up Continuation</div>
+    <div><strong>2026 Regime</strong>Built for the current small-cap bull rotation</div>
+    <div><strong>All Levels</strong>Beginner to professional — one unified system</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 0 — CURRENT MARKET REGIME
+═══════════════════════════════════════════════════════════════ -->
+<div class="container">
+
+  <div class="section-header">
+    <p class="label">Section 0 · Context</p>
+    <h2>Why This Strategy. Why Right Now.</h2>
+  </div>
+
+  <p>This playbook was built by taking a proven short-side momentum exhaustion framework and inverting it — mirror-reflecting every principle, every trigger, every psychological dynamic — into a long-side system designed to <em>capture the ignition phase</em> of small-cap moves rather than their collapse.</p>
+
+  <p>But re-engineering alone isn't enough. The strategy must fit the current market regime. Strategies that worked in 2022's bear regime — where shorting was dominant — are now fighting the tape. Markets change. Playbooks must change with them.</p>
+
+  <div class="regime-banner">
+    <h3>The 2026 Small-Cap Regime: Structural Bull Rotation</h3>
+    <p>For the first time in over a decade, the structural winds are firmly at the back of small-cap longs. Three consecutive Federal Reserve rate cuts in late 2025 brought the federal funds rate to 3.50–3.75%, directly reducing borrowing costs for small-cap companies — which carry 40–50% floating-rate debt, unlike the bond-funded mega-caps. Simultaneously, the Russell 2000 staged its longest winning streak against the S&P 500 since 1996. Hedge funds that had been running large short-small-cap books are now being forced to cover — adding structural buying pressure to every squeeze setup.</p>
+    <p>The "One Big Beautiful Bill Act" of 2025 supercharged domestically-focused small caps through tax incentives for small-business investment. Russell 2000 companies derive roughly 80% of revenue domestically — making them the direct beneficiaries of "Buy American" policy.</p>
+    <p><strong>The bottom line: the long side now has both the macro wind and the micro mechanics in its favor. Trapped shorts are the new trapped longs.</strong></p>
+    <div class="regime-stats">
+      <div class="regime-stat"><strong>17–22%</strong><span>Small-cap earnings growth projected 2026</span></div>
+      <div class="regime-stat"><strong>30%</strong><span>Valuation discount to large caps at year-start</span></div>
+      <div class="regime-stat"><strong>15 sessions</strong><span>Russell 2000 dominance streak vs S&P 500</span></div>
+      <div class="regime-stat"><strong>3.50–3.75%</strong><span>Current Fed funds rate — a tailwind for leveraged small caps</span></div>
+    </div>
+  </div>
+
+  <p>This does not mean every small-cap trade is a winner. It means the <em>probability distribution</em> now tilts bullish. A well-structured long setup in this regime carries higher expected value than it did in 2022 or 2023. That edge compounds. Use it.</p>
+
+
+  <!-- ── THE MIRROR TABLE ── -->
+  <div class="section-header">
+    <p class="label">The Framework</p>
+    <h2>The Complete Mirror: Short → Long</h2>
+  </div>
+
+  <p>Every principle in the short strategy has an exact long-side equivalent. The physics of crowd psychology are identical — only the direction of the move and the emotion driving it change. Below is the complete concept mirror that forms the foundation of this playbook.</p>
+
+  <table class="mirror-table">
+    <thead>
+      <tr>
+        <th>Short-Side Concept</th>
+        <th>Long-Side Mirror (This Playbook)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Euphoria exhaustion — stock can no longer go up</td><td>Fear exhaustion — stock can no longer go down</td></tr>
+      <tr><td>First Red Day (FRD) — breakdown after multi-day run-up</td><td>First Green Day (FGD) — breakout after multi-day washout</td></tr>
+      <tr><td>Parabolic short — intraday compression at the top</td><td>Parabolic long — intraday compression at the bottom (coil)</td></tr>
+      <tr><td>Overextended gap-down variation</td><td>Overextended gap-up continuation</td></tr>
+      <tr><td>Trapped late buyers — entered at highs, now underwater</td><td>Trapped short sellers — entered at lows, now being squeezed</td></tr>
+      <tr><td>SSR triggers after −10% — restricts shorting</td><td>Short squeeze mechanics — forced covering drives price up</td></tr>
+      <tr><td>Selling pressure becomes real below prior close</td><td>Buying pressure becomes real above prior close</td></tr>
+      <tr><td>VWAP as magnet downward for parabolics</td><td>VWAP reclaim as magnet upward for recovering stocks</td></tr>
+      <tr><td>Previous day's close = the psychological loss trigger</td><td>Previous day's close = the psychological win trigger</td></tr>
+      <tr><td>Cover into weakness (don't wait for the bottom)</td><td>Sell into strength (don't wait for the top)</td></tr>
+      <tr><td>Short the expansion phase, cover into collapse</td><td>Long the ignition phase, sell into the parabola</td></tr>
+      <tr><td>Max 3–5 attempts — over-shorting kills capital</td><td>Max 3–5 attempts — over-buying fakeouts kills capital</td></tr>
+      <tr><td>Grade setups A/B/C — only play A+ with full size</td><td>Grade setups A/B/C — only play A+ with full size</td></tr>
+      <tr><td>Catalyst = news driving retail euphoria upward</td><td>Catalyst = news reversing institutional fear downward</td></tr>
+      <tr><td>Low float = amplified downside from exhausted buyers</td><td>Low float = amplified upside from shortage of available shares</td></tr>
+    </tbody>
+  </table>
+
+
+  <!-- ═══ CORE PHILOSOPHY ═══ -->
+  <div class="section-header">
+    <p class="label">Section 1 · Philosophy</p>
+    <h2>Core Philosophy</h2>
+  </div>
+
+  <div class="callout green">
+    <p class="callout-title">The Foundational Edge</p>
+    <p style="font-size: 18px; font-style: italic; color: var(--green-dark);">"The best signal that a stock is ready to go UP is when it can no longer continue going down."</p>
+    <p>Just as the short strategy waited for the moment a stock failed to make new highs, this system waits for the moment a stock refuses to make new lows. That refusal — that stubborn defense of a level — is where the ignition signal lives.</p>
+  </div>
+
+  <p>This strategy is built around five pillars:</p>
+
+  <ul class="criteria-list">
+    <li><strong>Fear exhaustion</strong> — multi-day washouts end. Panic sellers run out of shares to dump. A floor forms.</li>
+    <li><strong>Psychological shift from red to green</strong> — when a beaten-down stock first closes above the prior day's close, it flips psychology from "it's still falling" to "wait, is this turning?"</li>
+    <li><strong>Trapped short sellers</strong> — just as the short strategy exploited trapped longs, this strategy exploits shorts caught in a stock that refuses to go lower. Their forced covering is rocket fuel.</li>
+    <li><strong>Catalyst-driven ignition</strong> — fear exhaustion alone is not enough. A credible catalyst (earnings beat, FDA approval, partnership announcement, buyout rumor) is the match that lights the fuse.</li>
+    <li><strong>Momentum acceleration</strong> — once ignited, low-float small caps move violently due to share scarcity. The same mechanics that caused 1,400% runs (like BYND in the short example) also produce them from the long side when the direction reverses.</li>
+  </ul>
+
+  <p>Small caps produce these reversal ignitions <em>weekly</em>. The goal of this playbook is to identify them before they run, not after.</p>
+
+  <div class="psych-grid">
+    <div class="psych-card short">
+      <p class="psych-label">Short Psychology (Original)</p>
+      <p>Stock runs up 500%+ in 3 days on hype. Retail FOMO buyers are trapped at the top. When it finally closes red vs. prior close — they panic sell. Fear replaces euphoria. The flush begins.</p>
+    </div>
+    <div class="psych-card long">
+      <p class="psych-label">Long Psychology (This Playbook)</p>
+      <p>Stock falls 70%+ in 3 days on fear. Short sellers pile in expecting zero. Then a catalyst hits. When it closes green vs. prior close — they panic cover. Greed replaces fear. The squeeze begins.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══ SETUP 1: FIRST GREEN DAY ═══ -->
+  <div class="section-header">
+    <p class="label">Section 2 · Primary Setup</p>
+    <h2>Setup 1: First Green Day (FGD)</h2>
+  </div>
+
+  <p class="setup-pill">Primary Setup — Highest Priority</p>
+
+  <p>The First Green Day is not simply "a green candle." It is the first meaningful recovery after a clean, extended, multi-day fear-driven washout. The stock must qualify as having completed a genuine compression or collapse phase — not just a mild pullback.</p>
+
+  <div class="callout amber">
+    <p class="callout-title">Critical Definition</p>
+    <p>The FGD is the first time a stock closes <strong>above the previous day's close</strong> after a multi-day red sequence. This is the exact psychological inflection point. It is not the opening price. It is not a green candle on a 5-minute chart. It is the first daily close that flips the stock from red to green versus yesterday's settlement. That flip changes everything — shorts re-evaluate, retail momentum traders re-enter, and the narrative shifts.</p>
+  </div>
+
+  <h3>Minimum Criteria (Non-Negotiable)</h3>
+
+  <p>Before considering the trade, ALL of the following must be present:</p>
+
+  <ul class="criteria-list">
+    <li>Minimum 2–3 consecutive red days (the "compression" or "washout" phase)</li>
+    <li>30–50%+ decline from the recent swing high or catalyst spike</li>
+    <li>Elevated short interest OR expanding volume on the down days (confirming real shorting, not just light selling)</li>
+    <li>A credible, verifiable catalyst to ignite the reversal (earnings surprise, FDA decision, partnership announcement, buyout rumor, sector tailwind)</li>
+    <li>Low float preferred — under 50M shares outstanding, under 20M is ideal</li>
+  </ul>
+
+  <p>If these are not met, it is not the setup. Move on.</p>
+
+  <h3>Ideal Characteristics — Higher Grade Factors</h3>
+
+  <p>The best FGD setups show:</p>
+
+  <ul class="criteria-list">
+    <li>Daily candles <em>decreasing</em> in size as price falls — sellers are exhausting themselves</li>
+    <li>Volume declining into the lows — capitulation is finishing, not starting</li>
+    <li>No green days during the washout (cleaner psychology — more shorts are trapped)</li>
+    <li>A "doji" or "hammer" candle on the last red day — the tail rejection signals a floor forming</li>
+    <li>Price holding a meaningful technical level (prior support, VWAP, round number)</li>
+    <li>High short interest (&gt;15% of float) — more fuel for the squeeze</li>
+    <li>Pre-market gap up on the catalyst morning, held at open</li>
+  </ul>
+
+  <h3>Red Flags — Downgrade Factors</h3>
+
+  <ul class="criteria-list red">
+    <li>Expanding candles downward — the sell-off is still accelerating, not exhausting</li>
+    <li>No identifiable catalyst — just "chart looks oversold." Not enough.</li>
+    <li>Choppy multi-green-day structure during the washout — unclear who is trapped</li>
+    <li>Fundamental deterioration (bankruptcy risk, going-concern warnings, toxic financing) — the short sellers may be right</li>
+    <li>Very wide spread on the ask — illiquidity creates false moves that reverse immediately</li>
+    <li>High dilution risk — authorized share increases, ATM offerings pending</li>
+  </ul>
+
+  <h3>Why Multiple Red Days Matter</h3>
+
+  <p>More red days equals more shorts entering at elevated prices from the top. When the stock finally closes green vs. the previous close:</p>
+
+  <ul class="criteria-list">
+    <li>More short sellers become instantly underwater on their positions</li>
+    <li>Fear of unlimited loss (short sellers have no theoretical ceiling) replaces confidence</li>
+    <li>Margin calls from brokers begin triggering on the weakest short positions</li>
+    <li>Buying pressure from covering compounds with new long entries — creating explosive moves</li>
+  </ul>
+
+  <p>If the washout had no prior green days, the psychological shift is cleaner, sharper, and more violent. That is what produces the "face-ripping" short squeeze the playbook is designed to catch.</p>
+
+  <h3>The Importance of the Previous Day's Close</h3>
+
+  <p>Exactly as in the short strategy, the previous day's close remains the most important level — but now it is a <em>ceiling to break through</em>, not a floor to break below.</p>
+
+  <p>Short sellers track their P&amp;L in real time versus prior close. A stock that closes red feels like validation. A stock that claws back to flat versus prior close creates anxiety. A stock that closes <em>green</em> versus prior close creates panic.</p>
+
+  <div class="callout blue">
+    <p class="callout-title">The Psychological Trigger — Exact Mirror</p>
+    <p>Short strategy: "A stock can gap up, sell off heavily, and still appear green on the day. The true shift occurs when price breaks <em>below</em> the previous close."</p>
+    <p style="margin-top: 12px;"><strong>Long strategy mirror:</strong> "A stock can gap down, bounce partially, and still appear red on the day. The true shift occurs when price breaks <em>above</em> the previous close. That is the moment shorts must act."</p>
+  </div>
+
+  <h3>Entry Methods — From Aggressive to Conservative</h3>
+
+  <div class="entry-methods">
+    <div class="entry-card aggressive">
+      <div class="entry-num">1</div>
+      <div>
+        <p class="entry-title">Pre-Green Entry (Highest R:R, Lower Win Rate)</p>
+        <p>Enter before price breaks above prior close — looking for the failure to make new lows intraday. Best executed at a meaningful support level (VWAP, round number, prior day's low) on diminishing volume. Risk is defined against the low of the day. Best reward potential — but more false starts. Suitable for experienced traders with clear stops and small initial size.</p>
+      </div>
+    </div>
+    <div class="entry-card standard">
+      <div class="entry-num">2</div>
+      <div>
+        <p class="entry-title">Standard Entry (Break of Previous Close — The Core Setup)</p>
+        <p>Wait for price to crack above the prior day's close on expanding volume. Add size on the first pullback that holds above the now-support level (prior close). Risk is defined against today's low of day. The most balanced approach — the signal is confirmed, the stop is clear, and the squeeze dynamic is now actively in play. This is the default entry for most traders.</p>
+      </div>
+    </div>
+    <div class="entry-card conservative">
+      <div class="entry-num">3</div>
+      <div>
+        <p class="entry-title">Higher High Confirmation (Conservative — Best for Beginners)</p>
+        <p>Wait for the breakout above prior close. Wait for the first pullback. Buy the first higher-low that holds. Risk is against the pullback low. Higher win rate, worse R:R — you're giving up the first 5–10% of the move for the comfort of a confirmed structure. Ideal for new traders building pattern recognition without destroying their accounts.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Setup Grading System</h3>
+
+  <div class="grade-grid">
+    <div class="grade-card a">
+      <span class="letter">A+</span>
+      <p class="grade-title">Full Size — Maximum Conviction</p>
+      <p>All minimum criteria met. Multiple ideal characteristics present. Strong, verifiable catalyst. Short interest &gt;15%. Low float &lt;20M. Clean 3+ day washout. Pre-market gap up held at open. This is the only setup that justifies maximum position size.</p>
+    </div>
+    <div class="grade-card b">
+      <span class="letter">B</span>
+      <p class="grade-title">Reduced Size — Good Setup</p>
+      <p>All minimum criteria met. Some ideal characteristics present. Good catalyst but not perfectly clean structure. Short interest moderate. Trade it, but with 50% of maximum size. Good setups still make money.</p>
+    </div>
+    <div class="grade-card c">
+      <span class="letter">C</span>
+      <p class="grade-title">Skip or Tiny Size</p>
+      <p>Minimum criteria barely met. Weak or unverified catalyst. Messy structure with multiple red flags. If you must trade it, use 25% size maximum. Most losses come from over-trading C setups. Waiting for A+ while watching C setups is a skill — develop it.</p>
+    </div>
+  </div>
+
+  <h3>Exit Rules</h3>
+
+  <ul class="criteria-list">
+    <li><strong>Sell into strength</strong> — do not wait for the exact top. Begin scaling out as price accelerates upward. The final 10% of a move produces the worst entries for new buyers and the highest reversal risk for you.</li>
+    <li><strong>Target minimum +10–15% from entry</strong> on small-cap FGD setups. Larger, more liquid names: 3–5% is a win.</li>
+    <li><strong>Use VWAP as a general target magnet</strong> — stocks recovering from deep washouts often have a "VWAP reclaim" as the first natural target. Once above VWAP, the next target is the prior day's high.</li>
+    <li><strong>Scale out in thirds</strong> — sell ⅓ at first target, trail stop to breakeven on the remaining ⅔, sell another ⅓ at VWAP reclaim, let the final ⅓ run with a trailing 15-minute low stop.</li>
+    <li><strong>First candle to close red after a strong move</strong> — consider it a signal to exit any remaining position.</li>
+  </ul>
+
+
+  <!-- ═══ SETUP 2: PARABOLIC LONG ═══ -->
+  <div class="section-header">
+    <p class="label">Section 3 · Secondary Setup</p>
+    <h2>Setup 2: Parabolic Long (Intraday Compression Breakout)</h2>
+  </div>
+
+  <p class="setup-pill secondary">Secondary Setup</p>
+
+  <p>This is the intraday mirror of the short strategy's "Parabolic Short." Instead of shorting the parabolic top after a blow-off, you are buying the <em>base</em> that forms before the next parabolic leg upward. It requires identifying when intraday compression (a bull flag, flat top, or tight consolidation) is about to resolve to the upside.</p>
+
+  <h3>True Intraday Coil Characteristics</h3>
+
+  <ul class="criteria-list">
+    <li>Initial strong opening move (the "flagpole") — a sharp, catalyst-driven spike in the first 30 minutes</li>
+    <li>Followed by a controlled, <em>shallow</em> pullback — 3 to 5 red candles on shrinking volume (not a reversal, a pause)</li>
+    <li>Price holding above VWAP and above the prior day's close during the consolidation</li>
+    <li>Volume contracting during the base — sellers are drying up, not expanding</li>
+    <li>Pattern types: Bull Flag, Flat Top Breakout, or Pennant</li>
+  </ul>
+
+  <div class="callout green">
+    <p class="callout-title">The Flat Top Breakout — Why It Can Be Explosive</p>
+    <p>A flat top forms when a large seller sits at a specific price, holding the stock at resistance. Every bounce into that price is absorbed. Eventually, buyers outpace the seller and break through. The moment they do, short sellers who placed stops just above the resistance are triggered — a cascade of buy orders sends the stock sharply higher. This is the long-side equivalent of a short squeeze trap level.</p>
+  </div>
+
+  <h3>What This Is NOT</h3>
+
+  <ul class="criteria-list red">
+    <li>A one-candle news spike with no build — that is a trap, not a setup</li>
+    <li>A sideways drift for 2+ hours that slowly loses volume — that is a stock running out of momentum, not compressing before a move</li>
+    <li>A pullback that breaks below VWAP and the prior close — that invalidates the thesis</li>
+    <li>A gap-and-go on no volume — volume is the oxygen of momentum moves. Without it, the fire dies</li>
+  </ul>
+
+  <h3>Entry Methods</h3>
+
+  <div class="entry-methods">
+    <div class="entry-card aggressive">
+      <div class="entry-num">1</div>
+      <div>
+        <p class="entry-title">Aggressive (Tape Reader)</p>
+        <p>Watch Level 2 and the time &amp; sales for velocity changes. As volume contracts to near-zero and the bid starts stacking — enter before the breakout candle prints. Risk against the low of the base. Best R:R but requires real-time tape reading skill. Not suitable for beginners.</p>
+      </div>
+    </div>
+    <div class="entry-card standard">
+      <div class="entry-num">2</div>
+      <div>
+        <p class="entry-title">Standard (First Green Candle After Base)</p>
+        <p>Wait for the first candle to make a new high after the consolidation period — confirming the breakout. Enter on that candle with a stop below the base low. This is the default entry. Volume should spike at the breakout moment — that spike is tens of thousands of traders entering simultaneously.</p>
+      </div>
+    </div>
+    <div class="entry-card conservative">
+      <div class="entry-num">3</div>
+      <div>
+        <p class="entry-title">Conservative (Breakout + First Pullback)</p>
+        <p>Let the breakout happen. Wait for the first pullback to the breakout level (now support). Enter the bounce. Risk against the low of that pullback. Highest win rate — you're confirming the level has held. Worst R:R. Appropriate for beginners or when the overall market is choppy.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Target and Exit</h3>
+
+  <p>VWAP is the primary magnet on intraday parabolic longs — but in the upward direction. A stock compressing below VWAP that breaks out should target a VWAP reclaim as the first exit. A stock already above VWAP compressing targets the prior day's high, then round numbers above.</p>
+
+  <h3>Maximum Attempts Rule</h3>
+
+  <div class="callout red">
+    <p class="callout-title">Hard Rule — No Exceptions</p>
+    <p><strong>Maximum 3–5 long attempts on any single stock per day.</strong> If you've tried 5 times and been stopped out, the trade is not working. Phantom levels, hidden sellers, broken catalysts — the stock is telling you something. Walk away. Repeated attempts after failures turns a mechanical strategy into gambling. This rule exists because over-trading one name destroys both mental capital and financial capital before the A+ setup arrives later in the day.</p>
+  </div>
+
+
+  <!-- ═══ SETUP 3: GAP UP CONTINUATION ═══ -->
+  <div class="section-header">
+    <p class="label">Section 4 · Tertiary Setup</p>
+    <h2>Setup 3: Overextended Gap-Up Continuation</h2>
+  </div>
+
+  <p class="setup-pill tertiary">Tertiary Setup</p>
+
+  <p>The mirror of the "Overextended Gap Down Variation" from the short playbook. After multiple consecutive gap-downs into a washout, the <em>first gap-up</em> is a significant event. Many traders will immediately attempt to fade it, expecting it to fail. Those fade attempts create the squeeze fuel that drives the continuation.</p>
+
+  <h3>The Setup Conditions</h3>
+
+  <ul class="criteria-list">
+    <li>Stock has gapped down 2–3+ consecutive days into a clear washout</li>
+    <li>First gap-up morning arrives on a verifiable catalyst (not just a bounce attempt)</li>
+    <li>Do NOT chase if the stock has already opened up &gt;15–20% — the R:R has collapsed</li>
+    <li>Wait for the morning dip (the first 15–30 minutes often see a "shakeout" as weak hands are flushed)</li>
+    <li>Enter on the first higher-low or VWAP hold after the open — with a stop below the morning low</li>
+    <li>Risk: the prior day's close (if the stock re-breaks that level, the gap-up has failed)</li>
+  </ul>
+
+  <div class="callout amber">
+    <p class="callout-title">The Morning Shakeout — Do Not Be Shaken</p>
+    <p>Gap-up opens on small caps are frequently followed by an immediate 5–10% pullback in the first 15 minutes. Weak longs who chased pre-market are being flushed. Market makers are testing support. This pullback — if it holds above the prior close — is often the single best entry point of the entire move. The traders who survive the shakeout capture the rest of the run.</p>
+  </div>
+
+
+  <!-- ═══ SCANNER & WATCHLIST METHODOLOGY ═══ -->
+  <div class="section-header">
+    <p class="label">Section 5 · Finding the Setups</p>
+    <h2>Pre-Market Scanner &amp; Watchlist Methodology</h2>
+  </div>
+
+  <p>The short strategy required scanning for euphoric runners. The long strategy requires scanning for: (1) beaten-down stocks with new catalysts, and (2) low-float momentum names with unusual pre-market activity. A powerful scanner is non-negotiable. This is how you find the A+ setups before they move, not after.</p>
+
+  <h3>Scanner 1: Catalyst Washout Reversal (FGD Finder)</h3>
+
+  <p>Run this scan pre-market and at the open:</p>
+
+  <div class="scanner-filters">
+    <div class="scanner-filter">
+      <div class="filter-label">Price</div>
+      <div class="filter-value">$1 – $20</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Float</div>
+      <div class="filter-value">&lt; 50M shares</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Relative Volume</div>
+      <div class="filter-value">&gt; 3×</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Pre-market % Change</div>
+      <div class="filter-value">+5% to +30%</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Short Interest</div>
+      <div class="filter-value">&gt; 10% of float</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Prior Days Performance</div>
+      <div class="filter-value">–20% or worse (3-day)</div>
+    </div>
+  </div>
+
+  <p>Every alert from this scanner must immediately be cross-referenced with a <strong>real-time news feed</strong>. If there is no verifiable catalyst — ignore the alert entirely. A stock gapping up without news is almost always a low-float manipulation trap, not a genuine reversal setup.</p>
+
+  <h3>Scanner 2: Intraday Bull Flag / Parabolic Long (Momentum Continuation)</h3>
+
+  <div class="scanner-filters">
+    <div class="scanner-filter">
+      <div class="filter-label">Intraday % Change</div>
+      <div class="filter-value">+10% to +40%</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Float</div>
+      <div class="filter-value">&lt; 20M shares</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Volume vs Average</div>
+      <div class="filter-value">&gt; 5× (surge)</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Intraday Pullback</div>
+      <div class="filter-value">3–5 red candles</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">VWAP Relationship</div>
+      <div class="filter-value">Above VWAP</div>
+    </div>
+    <div class="scanner-filter">
+      <div class="filter-label">Catalyst</div>
+      <div class="filter-value">Verified news present</div>
+    </div>
+  </div>
+
+  <h3>Catalyst Hierarchy — Best to Worst</h3>
+
+  <ul class="criteria-list">
+    <li><strong>FDA Approval (BLA/NDA) or Positive Phase Trial Data</strong> — the most violent catalyst. Biotech reversals from failed-trial washouts, when approvals land, can move 200–1,000%+ in a single session.</li>
+    <li><strong>Earnings Surprise Beat + Raised Guidance</strong> — particularly powerful for stocks that have been shorted on earnings fear. The short squeeze compounds with genuine fundamental buyers.</li>
+    <li><strong>Government Contract or Large Customer Win</strong> — especially powerful in the 2026 "Buy American" / reshoring regime. Domestic small caps winning federal contracts are directly in the policy tailwind.</li>
+    <li><strong>Buyout / Merger Announcement</strong> — creates an instant price anchor at the deal price. Note: buyout targets do not typically trade away from the deal price, so these are less useful for day-trade momentum plays.</li>
+    <li><strong>Short Squeeze Catalyst (Social Media + Technical)</strong> — GME-style events. Rare, violent, and not repeatable. Can be played on the first day only. By day two, the risk of being the last buyer is very high.</li>
+    <li><strong>Technical Breakout Only (No News)</strong> — lowest quality. Only play if all other criteria are exceptional. Avoid in weak market conditions.</li>
+  </ul>
+
+
+  <!-- ═══ RISK MANAGEMENT ═══ -->
+  <div class="section-header">
+    <p class="label">Section 6 · The Rules That Keep You In the Game</p>
+    <h2>Risk Management</h2>
+  </div>
+
+  <p>Everything above is worthless without this section. More traders are destroyed by position sizing and stop discipline than by bad setups. The rules below are not suggestions.</p>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <h4>Primary Stop Level</h4>
+      <p>The low of the day at entry. If the stock makes a new intraday low after you've entered, the thesis is invalid — exit immediately without hesitation. The "it'll come back" mentality is how accounts blow up in low-float stocks. They don't always come back.</p>
+    </div>
+    <div class="risk-card">
+      <h4>Invalidation Level (Daily)</h4>
+      <p>The previous day's close. If you enter on an FGD setup and the stock re-breaks back below the prior close, the psychological trigger has been un-triggered. The squeeze is failing. Exit — do not average down into a broken thesis.</p>
+    </div>
+    <div class="risk-card">
+      <h4>Position Sizing by Grade</h4>
+      <p>A+ setup: up to 100% of your planned risk. B setup: 50% of planned risk. C setup: 25% or skip entirely. Never let excitement over a story override the grade. The grading system exists to protect you from your own enthusiasm.</p>
+    </div>
+    <div class="risk-card">
+      <h4>Daily Loss Limit</h4>
+      <p>Define a maximum daily loss before the market opens — expressed as a dollar amount or percentage of account. When you hit it, the trading day is over. Not paused. Over. This rule alone separates professional traders from traders who blow up.</p>
+    </div>
+    <div class="risk-card">
+      <h4>No Late-Day New Entries</h4>
+      <p>Avoid entering new positions in the final 30–60 minutes of the regular session. Gap risk overnight in small caps is real and unpredictable. The best FGD setups resolve in the first two hours of trading, not at 3:45 PM.</p>
+    </div>
+    <div class="risk-card">
+      <h4>The Dilution Check</h4>
+      <p>Before every long entry on a small cap: check authorized shares vs. outstanding shares. If a company has 500M authorized but only 50M outstanding — they can issue 10× more stock at any moment, crashing your position. This is the long-side equivalent of an all-time high run — it's a structural risk, not a technical one.</p>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <p class="callout-title">The Averaging Down Trap — The Deadliest Mistake in Small-Cap Longs</p>
+    <p>The short strategy's equivalent was "over-shorting a strong fundamental runner." The long-side trap is <strong>averaging down into a falling knife</strong>. A stock falling on no catalyst is not "cheaper" — it may be going to zero. Small-cap washouts can continue far longer than anyone expects. Only add to a position if: (1) the thesis is intact, (2) a new catalyst has emerged, and (3) the risk management math still works. Otherwise, one bad position must be exited — full stop.</p>
+  </div>
+
+
+  <!-- ═══ COMMON MISTAKES ═══ -->
+  <div class="section-header">
+    <p class="label">Section 7 · What Will Destroy You</p>
+    <h2>Common Mistakes — Long Side Edition</h2>
+  </div>
+
+  <ul class="mistake-list">
+    <li><strong>Calling any green candle an FGD.</strong> A single green candle in the middle of a downtrend is noise. The FGD requires a multi-day red sequence that is genuinely ending — confirmed by a catalyst and volume.</li>
+    <li><strong>Ignoring float and short interest.</strong> A stock with 500M float cannot squeeze like a stock with 5M float. The mechanics are completely different. Low float is the prerequisite, not an afterthought.</li>
+    <li><strong>Buying the spike instead of the pullback.</strong> The short strategy warned against "shorting spikes instead of parabolics." The long mirror: do not BUY spikes. Buy the controlled pullback after the spike. Chasing a 20% opener that gaps and goes usually results in buying within 10 minutes of the top.</li>
+    <li><strong>Trading stories, not setups.</strong> "I love this company's technology." Irrelevant. The setup grades it. The float sizes it. The catalyst validates it. Your enthusiasm for the business is the enemy of disciplined execution.</li>
+    <li><strong>Using the opening price instead of the prior close.</strong> The psychological level is the prior close — not today's open. A stock that opens at $5 and trades to $4.90 before the prior close is $4.50 is NOT a First Green Day candidate. The prior close is the only line that matters to short sellers managing their P&amp;L.</li>
+    <li><strong>Overtrading C setups.</strong> The market's job is to present you with endless B and C setups to keep you busy and unprofitable while you wait for the A+ that actually pays. Recognize the trap. Wait.</li>
+    <li><strong>Not tracking setup grade performance separately.</strong> Keep a trading journal that records every trade's setup grade. Over time, the data will show you exactly what your A+ win rate is versus your C win rate. This forces discipline because the numbers don't lie.</li>
+    <li><strong>Averaging down into broken setups.</strong> If the thesis breaks, the position size is zero — not doubled. Exit, reassess with fresh eyes, and re-enter only if the setup re-qualifies at a better risk level.</li>
+    <li><strong>Ignoring sector and macro conditions.</strong> In a broad market sell-off day (S&amp;P –2%+), individual small-cap long setups have a dramatically lower probability of working. The regime matters. Check the macro before the micro.</li>
+    <li><strong>Holding overnight without a defined reason.</strong> Small-cap overnight gaps — both up and down — are unpredictable and can be devastating. If you hold overnight, it must be a deliberate swing-trade decision with explicit risk defined, not an accident because you forgot to exit.</li>
+  </ul>
+
+
+  <!-- ═══ BEGINNERS GUIDE ═══ -->
+  <div class="section-header">
+    <p class="label">Section 8 · For New Traders</p>
+    <h2>The Beginner's Path — Building From Zero</h2>
+  </div>
+
+  <p>This playbook is designed to be universal. If you've just started, the complexity above may feel overwhelming. Here is the simplified version of the system for your first 90 days of trading.</p>
+
+  <div class="callout green">
+    <p class="callout-title">The Beginner's Single Rule System</p>
+    <p><strong>Find a small-cap stock with: (1) real news, (2) 3+ prior red days, (3) a gap-up pre-market. Wait until 10:00 AM. If the stock is still above the prior close and holding its gains, buy a small position. Stop below the prior close. Sell half when you're up 10%. Trail the rest.</strong></p>
+    <p style="margin-top: 10px;">That's it. That is the entire system simplified to its core. Master this one pattern before adding complexity. Nothing else matters until this is consistently profitable.</p>
+  </div>
+
+  <h3>Learning Progression — Stage by Stage</h3>
+
+  <ul class="criteria-list">
+    <li><strong>Stage 1 (Months 1–2):</strong> Paper trade only. Identify FGD setups in real time using a scanner. Do not use real money. Track every "trade" in a journal. Grade every setup. Measure your accuracy. Aim for 70%+ correct setup identification before risking capital.</li>
+    <li><strong>Stage 2 (Months 2–4):</strong> Real money, but micro-size. Risk no more than $25–$50 per trade. The goal is not to make money — it is to learn execution under real emotional pressure. The emotions you feel with $50 at risk are the same emotions you'll feel with $5,000 at risk. Learning to control them now is priceless.</li>
+    <li><strong>Stage 3 (Months 4–6):</strong> Standard size but only A+ setups. Skip everything that isn't clearly graded A+. Frustration tolerance is the skill being developed here. Most beginning traders fail because they over-trade C setups in slow periods, then are mentally exhausted when the A+ arrives.</li>
+    <li><strong>Stage 4 (Month 6+):</strong> Add Setup 2 (Parabolic Long) and begin scaling into winners. Review your journal quarterly. Your data will show you your personal edge — specific setups, specific times of day, specific catalysts where your win rate is highest. Build your trading plan around your own strengths.</li>
+  </ul>
+
+  <div class="callout amber">
+    <p class="callout-title">For Experienced Traders — Adding This to Your Playbook</p>
+    <p>If you already have a profitable strategy, the FGD setup integrates naturally as a <em>counter-trend entry layer</em>. Use your existing technical framework (moving averages, support/resistance, sector analysis) to pre-screen which FGD candidates have the strongest macro backing — then apply the FGD entry rules for timing. The combination of a technical framework <em>and</em> a momentum timing trigger is more powerful than either alone. The 2026 small-cap rotation means your existing longs now have an additional tailwind. FGD setups in sectors aligned with the reshoring theme (industrials, domestic manufacturing, defense tech) carry the highest base-rate probability in the current regime.</p>
+  </div>
+
+
+  <!-- ═══ TRADE BREAKDOWN ═══ -->
+  <div class="section-header">
+    <p class="label">Section 9 · Anatomy of a Trade</p>
+    <h2>Sample Trade Breakdown: Hypothetical A+ FGD Setup</h2>
+  </div>
+
+  <div class="trade-breakdown">
+    <div class="trade-header">
+      <div>
+        <h3>Hypothetical Small-Cap Biotech — FGD Setup</h3>
+        <p style="color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 4px; font-family: Arial, sans-serif;">Structural anatomy of an A+ First Green Day trade</p>
+      </div>
+      <div class="trade-grade">Grade: A+</div>
+    </div>
+    <div class="trade-body">
+
+      <div class="trade-phase">
+        <p class="phase-title">Phase 1 — The Washout (Days 1–4)</p>
+        <p>The stock falls from $8.00 to $2.80 over four consecutive red days following a negative FDA trial update. Short interest builds to 28% of the float (12M shares float, 3.4M shares short). Volume expands on day 1–2, then contracts on days 3–4 — a classic capitulation pattern. Daily candles are shrinking. Sellers are exhausting. This checks all minimum criteria.</p>
+      </div>
+
+      <div class="trade-phase">
+        <p class="phase-title">Phase 2 — The Catalyst (Pre-Market, Day 5)</p>
+        <p>Pre-market: FDA grants Breakthrough Therapy Designation for a related indication. Stock gaps to $4.20 pre-market on 8× relative volume. This is a verifiable, significant catalyst — not a press release about a licensing agreement. The gap represents a 50% move from the prior close of $2.80. This triggers your scanner. Cross-reference confirms the news. Grade: A+. The setup is on.</p>
+      </div>
+
+      <div class="trade-phase">
+        <p class="phase-title">Phase 3 — The Morning Shakeout (9:30–9:50 AM)</p>
+        <p>Stock opens at $4.10. Immediately sells off to $3.40 in the first 15 minutes — a 17% pullback from the open. Many traders panic and sell or don't enter. But the prior close was $2.80. The stock is still 21% above the prior close. The thesis is intact. Volume is contracting on the dip. This is the shakeout — not a reversal.</p>
+      </div>
+
+      <div class="trade-phase">
+        <p class="phase-title">Phase 4 — Entry (9:55 AM)</p>
+        <p>At 9:55 AM, the stock holds $3.30 on diminishing volume and begins printing higher lows. Level 2 shows a thick bid stacking at $3.25. Entry: $3.45 as the stock makes a new high after the morning base. Stop: $3.20 (below the base low). Risk per share: $0.25. Position sized to risk $250 → 1,000 shares. The prior close of $2.80 is the broader invalidation — if price re-breaks that, the entire thesis is wrong.</p>
+      </div>
+
+      <div class="trade-phase">
+        <p class="phase-title">Phase 5 — The Squeeze Develops (10:00–11:30 AM)</p>
+        <p>Once the morning base resolves, buying pressure compounds. Short sellers covering their 28% short interest can't all exit simultaneously without driving the price higher. New momentum buyers enter on the breakout. The stock reclaims VWAP at $3.80. First target hit — sell ⅓ at $3.80. Trail stop to breakeven ($3.45) on the remainder. Stock pushes to $4.50. Sell another ⅓. Trail remaining ⅓ with a 15-minute low stop.</p>
+      </div>
+
+      <div class="trade-phase">
+        <p class="phase-title">Phase 6 — Exit (12:15 PM)</p>
+        <p>The first 15-minute candle to close red hits at 12:15 PM at $4.20. Final ⅓ exits here. Total trade: entry $3.45, exits at $3.80 (⅓), $4.50 (⅓), $4.20 (⅓). Blended exit: ~$4.17. Gain per share: $0.72 (20.9%). Total P&amp;L on 1,000 shares: +$720. Risk taken: $250. R:R achieved: 2.88:1. This is the target profile for an A+ FGD setup.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══ QUICK REFERENCE ═══ -->
+  <div class="section-header">
+    <p class="label">Section 10 · Quick Reference</p>
+    <h2>Pre-Trade Checklist — Use This Every Day</h2>
+  </div>
+
+  <div class="callout gray">
+    <p class="callout-title">FGD Pre-Trade Checklist</p>
+    <ul class="criteria-list">
+      <li>Has the stock had 2–3+ consecutive red days? (Minimum qualification)</li>
+      <li>Is there a verifiable, significant catalyst this morning? (News confirmed?)</li>
+      <li>Is the float under 50M shares? Under 20M preferred?</li>
+      <li>Is relative volume above 3× average? (Volume is the oxygen — no volume, no move)</li>
+      <li>Is the stock trading above the prior day's close? (The psychological trigger)</li>
+      <li>Have I defined my stop before entering? (Low of the day, or prior close?)</li>
+      <li>Have I checked short interest? (Higher = more squeeze potential)</li>
+      <li>Have I checked for dilution risk? (Authorized shares, shelf offerings, ATM filings?)</li>
+      <li>Have I graded the setup? (A+ = full size, B = half, C = skip)</li>
+      <li>Is this an A+ setup, or am I rationalizing a B/C because I'm bored?</li>
+    </ul>
+  </div>
+
+  <div class="callout red">
+    <p class="callout-title">Hard Rules — These Cannot Be Broken</p>
+    <ul class="criteria-list red">
+      <li>No trade without a verifiable catalyst. Charts alone are insufficient.</li>
+      <li>No trade without a pre-defined stop level. Undefined risk = undefined account.</li>
+      <li>No averaging down into a position that has broken its invalidation level.</li>
+      <li>No more than 3–5 attempts on any one stock per day.</li>
+      <li>No new entries in the final 30 minutes of the session (gap risk).</li>
+      <li>Daily loss limit reached = trading day over. No exceptions.</li>
+    </ul>
+  </div>
+
+
+  <hr class="divider">
+
+  <p style="font-style: italic; color: var(--text-muted); font-size: 15px; text-align: center;">The market provides an endless supply of setups. Your job is not to trade all of them — it is to trade the right ones with the right size at the right time. Patience and discipline are the strategy. The setups are just the vehicle.</p>
+
+</div>
+
+<div class="page-footer">
+  <p><strong>The Ignition System — Small Cap Long Playbook</strong></p>
+  <p style="margin-top: 6px;">Re-engineered from momentum exhaustion theory · Built for the 2026 small-cap bull regime · For educational purposes only — not financial advice</p>
+</div>
+
+</body>
+</html>

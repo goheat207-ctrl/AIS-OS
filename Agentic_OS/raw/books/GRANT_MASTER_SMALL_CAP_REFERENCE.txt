@@ -1,0 +1,1145 @@
+==========================================================================================
+GRANT MASTER REFERENCE --- SMALL CAP HIGH WIN RATE FRAMEWORK
+LIVE DAILY WORKFLOW + STANDALONE REFERENCE DOC
+ALL SESSIONS --- ALL FLOAT TIERS --- LONG + SHORT AWARENESS
+==========================================================================================
+Generated: March 2026
+Format: Plain text --- TOS Scratchpad / Copy-paste optimized
+Lines: Max 120 chars --- No markdown --- No bullets --- Dash headers
+==========================================================================================
+
+
+==========================================================================================
+SECTION 1 --- TIM SYKES 7-STEP PENNYSTOCKING LIFECYCLE (STANDALONE REFERENCE)
+==========================================================================================
+
+Overview: The Sykes Lifecycle is the overarching pattern beneath every small cap momentum
+move. It is not a single setup --- it is the full arc from accumulation to collapse.
+All session setups in this document map to specific lifecycle stages.
+Understanding WHERE in the lifecycle a stock sits changes everything about risk, edge,
+and side (long vs. short).
+
+------------------------------------------------------------------------------------------
+STAGE 1 --- QUIET ACCUMULATION / BASE
+------------------------------------------------------------------------------------------
+What happens: Stock is dormant. Low volume. Low volatility. Sleeper. Often trading below
+prior highs for weeks or months. Float is thin, news is absent.
+
+Characteristics:
+- ADV below normal. Volume drying up. Price compressing.
+- May sit near 52-week lows or in a range for days/weeks.
+- Promoters, insiders, or early buyers accumulating quietly.
+- No media, no alerts, no social activity.
+
+Your role (long): Watch list only. No trade yet. Identify it early, add to PM scanner.
+Your role (short): N/A. No edge yet.
+
+Sykes Lifecycle Position: PRE-SETUP. This is stage 0 before the 7 stages fire.
+
+------------------------------------------------------------------------------------------
+STAGE 2 --- THE CATALYST / NEWS DROP
+------------------------------------------------------------------------------------------
+What happens: A real or manufactured catalyst hits. This ignites the move.
+News drops pre-market, AH, or intraday. Volume explodes. Price gaps or spikes.
+
+Top catalyst types that fire Stage 2 (ranked by average % move --- see Section 7):
+1. FDA/PDUFA approval or clinical trial data (biotech --- +50% to +500% potential)
+2. Government / DoD / DTRA contract award
+3. Short squeeze trigger (SI > 15%, thin float + HOD break + halt)
+4. Merger/acquisition announcement (premium to market)
+5. Earnings beat with revenue acceleration
+6. Licensing deal or major partnership
+7. Sector hype / narrative alignment (AI, defense, clean energy, etc.)
+8. Index inclusion (Russell 2000/3000 adds)
+9. Reverse split with clean float reset (short-term only)
+10. Social media viral / influencer mention (lowest quality / shortest duration)
+
+Characteristics at Stage 2:
+- Halt on first spike (L1 circuit breaker). This is normal and bullish on day 1.
+- Pre-market volume 5x-50x avg daily volume.
+- Price already up 20%-100%+ before 9:30am.
+- Catalyst confirmed in press release or 8-K (not rumor).
+
+Your role (long): This is FRONT-SIDE. Buy the first pullback post-halt.
+Your role (short): DO NOT short yet. You will get squeezed. Locates will be gone.
+
+Sykes Lifecycle Position: STAGE 2 --- CATALYST IGNITION.
+
+------------------------------------------------------------------------------------------
+STAGE 3 --- THE FIRST PARABOLIC RUN / SUPERNOVA
+------------------------------------------------------------------------------------------
+What happens: The stock makes its most explosive move. Multiple halts up.
+Retail FOMO kicks in. Social media volume spikes. Shorts caught, covering hard.
+This is the most violent phase for longs (biggest gains) and the most dangerous for shorts.
+
+Characteristics:
+- Multiple halt-resume sequences going UP (Level 2 circuit breakers).
+- Volume is the highest it will be on this entire move.
+- Price may triple or 10x in a single session (nano-cap, sub-5M float).
+- Chart looks near-vertical. 1-minute chart is nearly parabolic.
+- Bid/ask spread widens. Slippage brutal for latecomers.
+
+Your role (long): FRONT-SIDE only. Enter early (Stage 2 entry or first post-halt pullback).
+Sell INTO strength. Scale out before the parabola steepens.
+Never chase into Stage 3 late. You become the bag for Stage 4 sellers.
+
+Your role (short): Tempting but dangerous. Locates scarce or unavailable.
+The ONLY legitimate short here is a FAILED HALT --- stock resumes and immediately breaks
+opening range low of the halt candle. Otherwise, wait for Stage 4/5.
+
+Sykes Lifecycle Position: STAGE 3 --- SUPERNOVA / PARABOLIC PEAK.
+
+------------------------------------------------------------------------------------------
+STAGE 4 --- THE CLIFF DIVE / FIRST RED DAY
+------------------------------------------------------------------------------------------
+What happens: The stock reverses hard. Catalyst exhausted. Smart money distributed.
+FOMO buyers from Stage 3 are now bag holders. Stock may drop 30%-70% in a session.
+
+Characteristics:
+- Gaps up or opens near HOD, then immediately fades below VWAP.
+- Multiple halt-resume sequences going DOWN (L2 circuit breakers).
+- Volume stays elevated but is now dominated by sellers.
+- First meaningful red candle on 5-minute chart (Red-to-Green failed attempt).
+- Opening range HIGH fails to hold. Stock cannot reclaim.
+
+Your role (long): EXIT any remaining long. Do not hold through Stage 4.
+One more push possible early (opening range push) --- scalp only with tight stop.
+
+Your role (short): THIS IS THE PRIMARY SHORT ENTRY ZONE.
+First Red Day setup initiates here. Entry criteria:
+- Prior multi-day run of 300%+ (small cap) or 50%+ (large cap) already in.
+- Day 1 (Stage 3) closed strong. Day 2 opens flat/up then fails.
+- VWAP breakdown confirmed on 5-minute candle.
+- Opening range low breaks.
+- Stop at HOD or reclaim of VWAP.
+
+Sykes Lifecycle Position: STAGE 4 --- FIRST RED DAY / CLIFF DIVE.
+
+------------------------------------------------------------------------------------------
+STAGE 5 --- THE DEAD CAT BOUNCE
+------------------------------------------------------------------------------------------
+What happens: After the cliff dive, price bounces. This traps second-wave buyers.
+Shorts cover. Bag holders get relief. Sometimes bounces 20%-50% off the low.
+This looks like the stock "recovering." It rarely does.
+
+Characteristics:
+- Price action looks constructive but volume is declining (churn).
+- Every HOD made during Stage 5 is LOWER than the Stage 3 high.
+- VWAP from the prior high day acts as resistance.
+- Often coincides with social media wishful thinking ("it's coming back").
+
+Your role (long): SCALP ONLY. Small size. Bounce target = 50% retrace of Stage 4 drop.
+Must exit before VWAP from stage 3 day. Do not hold overnight expecting return to highs.
+
+Your role (short): Re-enter short on VWAP or prior resistance rejection after the bounce.
+Lower high confirmation = go again. Target prior Stage 4 low.
+
+Sykes Lifecycle Position: STAGE 5 --- DEAD CAT / SECONDARY BOUNCE.
+
+------------------------------------------------------------------------------------------
+STAGE 6 --- SECONDARY LOWER HIGHS / GRIND DOWN
+------------------------------------------------------------------------------------------
+What happens: Multiple more bounce attempts, each failing at a lower level.
+Volume declining each bounce. Momentum crowd exiting. ATM or shelf kicks in here.
+Company often takes advantage of elevated price to sell shares.
+
+Characteristics:
+- Pattern of lower highs, lower lows.
+- Volume shrinking on each bounce.
+- Dilution risk actively materializing (ATM sales, shelf drawdown, toxic converts).
+- Company may issue PR to support price (no substance).
+
+Your role (long): NO TRADE. This is a short seller's playground, not a long entry zone.
+Your role (short): Continue shorting bounces at overhead resistance / prior lows become
+resistance. High-probability, lower volatility fades. Best risk/reward in the lifecycle.
+
+Sykes Lifecycle Position: STAGE 6 --- SECONDARY FADES / DISTRIBUTION.
+
+------------------------------------------------------------------------------------------
+STAGE 7 --- DEATH SPIRAL / FADE TO IRRELEVANCE
+------------------------------------------------------------------------------------------
+What happens: The stock fades entirely. Volume dries up. Price grinds toward zero or
+gets delisted. Bag holders finally capitulate. Company may do reverse split to survive.
+
+Characteristics:
+- ADV returns to below pre-catalyst levels.
+- No more halts. No more momentum.
+- If biotech: failed trial may trigger, -90% in a session.
+- If it was a pump: goes to zero quietly.
+
+Your role: None. Move on. Do not trade dead tickers.
+
+LIFECYCLE SUMMARY TABLE:
+Stage 1 = Base = No trade
+Stage 2 = Catalyst = Long front-side or watch
+Stage 3 = Supernova = Long early / exit into strength
+Stage 4 = Cliff dive = Short primary entry (First Red Day)
+Stage 5 = Dead cat = Scalp long or re-short at VWAP rejection
+Stage 6 = Lower highs = Short bounces, declining volatility
+Stage 7 = Death = No trade
+
+
+==========================================================================================
+SECTION 2 --- PRE-MARKET MOMENTUM SCALPING (7:00AM - 9:28AM)
+==========================================================================================
+SESSION TAG: PRE-MARKET SCALP
+SYKES LIFECYCLE MAPPING: Stage 2 Catalyst Ignition / Early Stage 3 Front-Side
+TIME WINDOW: 7:00am - 9:28am (2 minutes before bell)
+BEST FLOAT RANGE: Under 10M shares (nano to micro)
+BEST PRICE RANGE: $1.00 - $20.00
+
+------------------------------------------------------------------------------------------
+HIGHEST WIN RATE SETUP 1 --- PRE-MARKET HOD BREAKOUT (PMHOD)
+------------------------------------------------------------------------------------------
+What it is: Stock has been running in pre-market and approaches or sets a new pre-market
+high on expanding volume with a confirmed catalyst.
+
+Stock selection criteria:
+- Float under 10M preferred (under 5M optimal)
+- Pre-market volume at least 10x daily ADV before 8am
+- Catalyst confirmed: actual PR, 8-K, or contract notice (not rumor)
+- Price above all pre-market moving levels
+- No active ATM / no equity line / no known offering priced above
+- If previous day had a halt --- this is a continuation candidate (Stage 2/3)
+
+Entry trigger: Price consolidates at or just below pre-market HOD for 2+ candles on the
+2-minute chart, then breaks above with expanding volume on the next candle.
+Confirmation = NEW pre-market HOD printed with volume above prior candle.
+
+Stop: Below the consolidation base that formed under the PMHOD.
+Target: Round number above, prior multi-day high, or next halt level if stock has halted.
+
+Win rate context: Pre-market HOD breakouts with confirmed catalysts and thin floats
+produce the highest win rates of any small cap setup --- estimated 60%-70%+ on A+ setups.
+Key degrades: Catalyst quality drop, float expansion via offering, volume churn not expansion.
+
+------------------------------------------------------------------------------------------
+HIGHEST WIN RATE SETUP 2 --- PRE-MARKET VWAP RECLAIM (PM VWAP)
+------------------------------------------------------------------------------------------
+What it is: Stock gapped up on news, pulled back below PM VWAP, and is now reclaiming it.
+This is a RED-TO-GREEN setup in the pre-market session.
+
+Stock selection criteria:
+- Same as above plus: initial spike already happened, pullback to VWAP confirmed
+- Volume contracting during pullback (healthy)
+- VWAP slope still pointing up
+
+Entry trigger: Stock reclaims PM VWAP on a 2-minute candle close above with volume expansion.
+Hold: Look for the candle to stay above VWAP for at least 1 full 2-minute bar.
+
+Stop: Below the PM low of the pullback (not below VWAP --- below the swing low).
+Target: Retest of PM HOD, then prior day high if still open gap.
+
+------------------------------------------------------------------------------------------
+HIGHEST WIN RATE SETUP 3 --- PRE-MARKET LOD REVERSAL (PM LOD REVERSAL)
+------------------------------------------------------------------------------------------
+What it is: Stock dropped hard in early pre-market and is showing signs of exhaustion /
+bottom formation at key support. Rare in true momentum plays --- more common in sympathy
+names or stocks with late-breaking positive news reversing early selling.
+
+Stock selection criteria:
+- Stock already declined 15%+ from pre-market high
+- Volume spiking on reversal candle (capitulation)
+- Catalyst still intact (news hasn't been retracted)
+- No dilution event pending (offering priced below current level, for example)
+
+Entry trigger: First green 2-minute candle after 2+ consecutive red candles at LOD.
+Volume on the green candle must exceed the prior red candle.
+
+Stop: Below the LOD by 3-5 cents (tight on nano-cap, wider on higher-priced names).
+Target: 50% retrace to pre-market high, then VWAP.
+
+Win rate note: LOD reversals have LOWER win rates than HOD breakouts pre-market.
+Use reduced size. Best in biotech names where catalyst fundamentally revalues the stock.
+
+------------------------------------------------------------------------------------------
+PRE-MARKET REGIME CHECK (DO BEFORE EVERY TRADE)
+------------------------------------------------------------------------------------------
+1. Is the catalyst CONFIRMED (PR/8-K/EDGAR)? If not --- B or C grade maximum.
+2. Has the stock already halted? If yes: post-halt first candle volume expansion required.
+3. Is the float clean? Run Dilution Tracker check. Any active S-3 shelf? ATM? = reduce size.
+4. Is there a competitor name or sympathy play in the same sector? Splits momentum.
+5. What is the broad market doing? (SPY/QQQ pre-market direction filters regime.)
+6. Is this a brand new name or a known recycler (stock that has run 3+ times before)?
+   Known recyclers have lower continuation rates and higher dilution probability.
+
+
+==========================================================================================
+SECTION 3 --- MARKET OPEN DAY TRADING (9:30AM - 11:30AM)
+==========================================================================================
+SESSION TAG: OPEN DAY TRADE
+SYKES LIFECYCLE MAPPING: Stage 3 Supernova (early) / Stage 2 Continuation / Stage 4 (short)
+TIME WINDOW: 9:30am - 11:30am
+BEST FLOAT RANGE: Under 15M for momentum, 5M-50M for VWAP / structure plays
+BEST PRICE RANGE: $1.00 - $50.00
+
+------------------------------------------------------------------------------------------
+OPEN SESSION SETUP 1 --- HOD BREAKOUT AT OPEN (HIGHEST WIN RATE IN SESSION)
+------------------------------------------------------------------------------------------
+What it is: Pre-market high holds as support through the open. Stock consolidates 9:30-9:45
+then breaks above PMHOD on the first major volume impulse.
+
+Best stock characteristics:
+- Float under 10M
+- Pre-market gap up 20%+ on real news
+- PMHOD holding as support through 9:30-9:45 consolidation
+- Market regime: risk-on (SPY green, QQQ green, no broad selloff)
+- No offering / no shelf draw below current price
+
+Opening range rule: Define opening range as the HIGH and LOW of the first 5 or 15-minute
+candle. HOD breakout setup fires when price breaks the 5-minute high of the opening candle
+with volume at least 1.5x the opening candle's volume.
+
+Entry: Break above the 5-minute opening candle high (or PMHOD if higher).
+Stop: Below the low of the consolidation before the break (not the opening candle low ---
+the most recent swing low within the 9:30-9:45 range).
+Target 1: Prior multi-day high or round number above.
+Target 2: Next halt zone if stock has been halting up.
+
+Win rate context: Opening HOD breakouts with catalyst + thin float + expanding volume on
+break are the single highest win rate intraday setup in small caps. Win rates on A+ criteria
+can reach 65%-75%. Most failures come from: lack of catalyst, float already expanded by
+dilution, or broad market sell off killing risk appetite.
+
+------------------------------------------------------------------------------------------
+OPEN SESSION SETUP 2 --- RED-TO-GREEN REVERSAL (9:30AM - 10:00AM WINDOW)
+------------------------------------------------------------------------------------------
+What it is: Stock opens in the red (below prior day close or below VWAP from prior day),
+then makes a decisive reclaim of that level on volume.
+
+Best stock characteristics:
+- Float under 15M
+- Stock was a prior day runner that is retesting / consolidating
+- No new negative catalyst (dilution news, failed trial, etc.)
+- Broad market neutral to green
+- Volume on the green reclaim candle must exceed the prior red candle (not just equal)
+
+Entry: Candle CLOSES above prior day close or above intraday VWAP with volume expansion.
+Do not enter on a wick above --- wait for the full candle close.
+Stop: Below the LOD at the time of entry.
+Target 1: Prior day HOD. Target 2: Multi-week highs if structure allows.
+
+Note: Red-to-Green in the first 30 minutes carries higher win rate than the same setup
+later in the day. The open brings the most institutional and algorithmic order flow,
+making VWAP levels more respected and level breaks more decisive.
+
+------------------------------------------------------------------------------------------
+OPEN SESSION SETUP 3 --- VWAP RECLAIM (9:45AM - 11:00AM WINDOW)
+------------------------------------------------------------------------------------------
+What it is: Stock broke VWAP early in the session, pulled below, then reclaims it with
+a higher low structure forming below the VWAP.
+
+Key distinction: This is NOT the same as a stock flailing above and below VWAP repeatedly.
+A valid VWAP reclaim requires:
+1. One clear break below VWAP (not just a wick --- a candle CLOSE below)
+2. A clear pullback and higher low formed BELOW VWAP
+3. The reclaim candle closes ABOVE VWAP with volume expansion (not on low volume)
+4. VWAP is sloping UP at the time of reclaim
+
+Entry: Candle close above VWAP on the reclaim.
+Stop: Below the higher low that formed before the reclaim.
+Target 1: PMHOD or prior HOD. Target 2: Next structural resistance.
+
+Best in: Stocks that already have a clear catalyst and opened strong but pulled back
+normally (profit-taking, not structural failure). The higher low is critical --- it
+signals buyers defending the pullback zone.
+
+------------------------------------------------------------------------------------------
+OPEN SESSION SETUP 4 --- FIRST PULLBACK (MOMENTUM CONTINUATION)
+------------------------------------------------------------------------------------------
+What it is: A strong trending stock has its first consolidation candle (red candle or
+tight range candle) after an extended run from the open. Entry on the next break to HOD.
+
+Best in: Momentum runners that are clearly Stage 3 (multiple green candles, each new HOD).
+Criteria: First red candle on 5-minute chart. Candle must hold above VWAP or prior HOD.
+Entry: Break above the red candle high on next candle.
+Stop: Below the low of the first pullback candle.
+Target: Measured move (height of prior move from VWAP to HOD, projected up).
+
+Win rate note: FIRST pullback only. Second, third, fourth pullbacks have dramatically lower
+win rates as the front-side momentum exhausts. If you missed the first pull, skip the setup.
+
+------------------------------------------------------------------------------------------
+OPEN SESSION RISK FRAMEWORK
+------------------------------------------------------------------------------------------
+Volume quality hierarchy (highest to lowest win rate):
+1. Volume expansion on breakout candle (buying aggression confirmed)
+2. Volume contraction during pullback + expansion on next HOD break (healthy rhythm)
+3. Flat volume on break (uncertain --- reduce size)
+4. Volume spike with no price progression (absorption --- likely supply --- exit)
+
+Time of day risk degradation:
+9:30 - 10:00 = Maximum edge. Highest institutional order flow. Highest win rate.
+10:00 - 11:00 = Strong edge. Most setups still valid. Slightly more chop.
+11:00 - 11:30 = Declining edge. Setup quality drops. Use smaller size or skip unless A+.
+11:30 and beyond = See Section 4 (Afternoon Swing). Different rules apply.
+
+Key levels that matter MOST at the open (ranked by importance):
+1. Pre-market HOD (PM session high) --- most watched by momentum traders
+2. Prior day close --- institutional baseline, triggers algo buy/sell programs
+3. Prior day HOD --- first structural resistance for continuation
+4. VWAP (live, intraday) --- institutional fair value benchmark
+5. Opening range high/low (first 5 or 15 min) --- the battle range
+6. Round numbers ($1, $2, $5, $10, $20, $50) --- crowd psychology magnets
+
+
+==========================================================================================
+SECTION 4 --- AFTERNOON SWING SETUPS / GAP UP SELECTION (12PM - 4PM)
+==========================================================================================
+SESSION TAG: AFTERNOON SWING / OVERNIGHT / 1-3 DAY
+SYKES LIFECYCLE MAPPING: Stage 2/3 Continuation (overnight) / Stage 5 Dead Cat (AH bounce)
+TIME WINDOW: 12:00pm - 4:00pm (entry zone)
+HOLD TOLERANCE: Flexible --- Overnight only / 1-3 day / Into catalyst event
+
+------------------------------------------------------------------------------------------
+TIER 1 --- OVERNIGHT HOLD (HIGHEST WIN RATE OF THE THREE TIERS)
+------------------------------------------------------------------------------------------
+Target: Gap up next morning. 1-day hold maximum.
+Best setup: Close near HOD (within 5% of HOD) with catalyst still fresh.
+
+Selection criteria (all must pass):
+1. Catalyst is ACTIVE and NOT fully priced in (new news in last 24 hours)
+2. Float under 15M (the thinner the better for overnight continuation)
+3. Stock closed in the top 25% of day's range (near HOD, not mid-range)
+4. Volume on the close session was EXPANDING (not contracting --- not just churning)
+5. No dilution event announced or expected in next 24 hours
+6. Day 1 of a multi-day move (Stage 2-3, not Stage 5 dead cat)
+7. No earnings announcement before next open
+8. Short interest elevated but not extreme (SI 10%-30% = squeeze fuel)
+   Very high SI (30%+) adds squeeze risk but also halting risk --- reduce size
+9. Broad market neutral to bullish heading into close
+
+Best sectors for overnight gap continuation:
+- Biotech (PDUFA next day, trial readout pending, contract win same day)
+- Defense / Government contracts (hard catalysts, no dilution typical)
+- AI / Tech plays with institutional validation (named partnership / contract)
+- Short squeeze situations (high SI + thin float + catalyst + HOD close)
+
+Target on next day open: Pre-market HOD break from close zone.
+Stop on next day open: Below prior day close (rule-based, not emotional).
+
+Win rate context: Day 1 close near HOD + thin float + real catalyst + clean dilution profile
+= estimated 60%+ continuation rate to a higher next-day open in active market regimes.
+
+------------------------------------------------------------------------------------------
+TIER 2 --- 1-3 DAY HOLD
+------------------------------------------------------------------------------------------
+Target: Multi-day momentum continuation. Stage 3 extended run.
+Best setup: Bull flag or tight consolidation on daily chart after a Day 1 catalyst move.
+
+Selection criteria (all must pass):
+1. Day 1 move was 30%+ and closed above VWAP (not a spike and fade)
+2. Day 2-3 shows tight consolidation (range under 10% of Day 1 move) on DECREASING volume
+3. No new negative catalyst
+4. Float still thin (no major offering between Day 1 and now)
+5. Pattern: Bull flag, pennant, or flat top consolidation below prior HOD
+6. Anchored VWAP from Day 1 catalyst is being respected as support
+
+Entry: Day 2 or 3 breakout above the consolidation high with volume expansion.
+Stop: Below the consolidation low.
+Target: Measured move from Day 1 base to HOD, projected from breakout point.
+Trail: Trail stop under each new higher low once in profit.
+
+Risk note: Multi-day holds dramatically increase dilution exposure. Re-run EDGAR check
+each morning. Companies routinely file S-3 supplements or ATM drawdowns after price spikes.
+If any offering surfaces --- exit the swing immediately, do not hold through.
+
+------------------------------------------------------------------------------------------
+TIER 3 --- INTO CATALYST EVENT (HIGHEST RISK / HIGHEST REWARD)
+------------------------------------------------------------------------------------------
+Target: Pre-catalyst run-up, then exit BEFORE the event (not through it).
+Best setup: Biotech with known PDUFA date, earnings with whisper, contract announcement pending.
+
+Selection criteria (all must pass):
+1. Catalyst date known and confirmed (PDUFA date, earnings date, contract decision date)
+2. Stock has been making higher lows leading into the event (run-up pattern)
+3. Volume increasing daily on the run-up (distribution not yet happening)
+4. Float thin or short interest elevated (squeeze potential if event is positive)
+5. Risk is BINARY --- you MUST exit before the event unless you are taking a specific thesis
+   trade on the outcome (not a momentum scalp)
+
+Strategy: BUY the run-up. SELL INTO the event. Let someone else hold the binary.
+Exit rule: Exit minimum 1 hour before catalyst event. Never hold through an FDA decision
+or binary clinical trial result as a momentum trader --- the downside is -50% to -90%
+and no stop loss protects you from an after-hours gap on a failed trial.
+
+Exception: If you have done fundamental diligence and are taking a directional bet on the
+outcome --- size appropriately (1-2% of account maximum) and accept full loss potential.
+
+
+==========================================================================================
+SECTION 5 --- AFTER-HOURS STOCK SELECTION (HIGHEST CONTINUATION %)
+==========================================================================================
+SESSION TAG: AFTER-HOURS / CONTINUATION
+SYKES LIFECYCLE MAPPING: Stage 2/3 AH catalyst / Overnight continuation qualifier
+TIME WINDOW: 4:00pm - 8:00pm
+
+------------------------------------------------------------------------------------------
+AH SETUP 1 --- CATALYST-DRIVEN AH SPIKE (HIGHEST CONTINUATION RATE)
+------------------------------------------------------------------------------------------
+What it is: Company releases material news post-close (earnings, contract, FDA, partnership).
+Stock spikes 20%+ in AH. The question is whether it continues next morning.
+
+Continuation rate is highest when:
+1. AH volume is at least 3x-5x the stock's normal full-day volume
+2. News is FUNDAMENTAL and HARD (not promotional --- actual revenue, approval, contract)
+3. AH price action consolidates ABOVE the spike level (tight range, not fading)
+4. The stock is not a known serial dilutor (check EDGAR before close next morning)
+5. Float under 20M
+6. Short interest elevated (short covering will fuel next morning gap continuation)
+
+Watch for in AH:
+- Does the initial spike HOLD? If yes = strong continuation signal.
+- Does it FADE back toward close = weak. Pre-market may not gap further.
+- Does it go VERTICAL with no pause? = Likely short-lived. Halts may occur at open.
+
+AH monitoring levels to mark:
+- AH HOD (will act as resistance or breakout target at open)
+- AH LOD (key support; if broken next morning, continuation thesis is dead)
+- AH VWAP (institutional fair value for the AH session)
+
+------------------------------------------------------------------------------------------
+AH SETUP 2 --- AH HALT/RESUME CONTINUATION
+------------------------------------------------------------------------------------------
+What it is: Stock halts in AH (Level 3 or news halt) then resumes higher.
+This is the HIGHEST continuation signal in AH because it indicates institutional
+buying is so aggressive that exchanges had to pause to clear the imbalance.
+
+Criteria: Resume after halt is AT OR ABOVE prior halt level.
+If resume is significantly below halt level = exhaustion signal, not continuation.
+
+------------------------------------------------------------------------------------------
+AH CONTINUATION KILLER SIGNALS (EXIT OVERNIGHT HOLD IF THESE APPEAR)
+------------------------------------------------------------------------------------------
+1. Company files S-3 supplement or prospectus in AH or early pre-market
+2. AH HOD is selling LOWER HIGHS (each AH high is lower than prior)
+3. Volume in AH is extremely low (spike was on thin liquidity, not real demand)
+4. A competing news story or sympathy name is stealing AH momentum
+5. Sector turns against overnight (e.g., FDA issues a sector-wide warning)
+6. Stock is already up 300%+ over prior 5 days and catalyst is not transformational
+
+
+==========================================================================================
+SECTION 6 --- TOP-DOWN KEY LEVELS: WHAT RETAIL AND INSTITUTIONS WATCH
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+INSTITUTIONAL LEVELS (MOST RESPECTED BY ALGORITHMS AND LARGE PLAYERS)
+------------------------------------------------------------------------------------------
+These levels are NOT just technical. They are execution benchmarks for large players.
+Knowing where institutions execute = knowing where supply and demand walls form.
+
+Rank 1 --- VWAP (Volume-Weighted Average Price --- intraday daily anchor)
+What it is: The single most important intraday level watched by every institutional
+algorithm. Institutions benchmark order fills against VWAP. Algos are programmed to
+buy below VWAP and sell into VWAP. THIS IS THE LEVEL THAT MATTERS MOST intraday.
+
+Rules for reading VWAP:
+- Price above VWAP = bulls in control = bias long
+- Price below VWAP = bears in control = bias short
+- VWAP reclaim on volume = momentum shift = buy signal
+- VWAP rejection after test = continued downtrend = short entry or exit longs
+- VWAP in choppy / low-volume sessions = neutral pivot, not a trend signal
+
+Rank 2 --- ANCHORED VWAP (From catalyst date or major pivot)
+Used to identify: where institutional buyers are still "in the money" from a major event.
+Anchor from: Day 1 catalyst candle. Any major high or low that preceded a large move.
+When price returns to anchored VWAP = institutional cost basis defense / give-up zone.
+
+Rank 3 --- PRE-MARKET HOD/LOD (Session-specific)
+Pre-market high = THE primary resistance / breakout target for momentum traders at open.
+Pre-market low = The floor. Break of PM low = significant bearish signal.
+Every serious momentum scanner and day trader has PM high/low marked before 9:30am.
+
+Rank 4 --- PRIOR DAY CLOSE
+Institutional baseline. Program trading often triggers at this level.
+Red-to-Green (reclaim of prior day close) is the most universally recognized
+momentum signal in small caps. Short sellers often cover on this reclaim.
+
+Rank 5 --- PRIOR DAY HOD/LOD
+First structural resistance / support above/below the current day's action.
+Breakout of prior day HOD on volume = first confirmation of continuation.
+Break of prior day LOD = structural breakdown = long thesis dead.
+
+Rank 6 --- ROUND NUMBERS / PSYCHOLOGICAL LEVELS
+$1.00, $2.00, $5.00, $10.00, $20.00, $50.00, $100.00
+These are crowd psychology magnets. NOT coincidental. Shorts place hard stops here.
+Breakouts above round numbers bring in new retail buyers (FOMO trigger).
+Round numbers also act as warrant strike clustering zones on many small caps.
+
+Rank 7 --- WEEKLY VWAP (Rolling weekly average)
+Watched by swing traders and some institutions for multi-day trend context.
+Price above weekly VWAP = multi-day bullish bias.
+Price below weekly VWAP = multi-day bearish bias.
+
+Rank 8 --- 9 EMA / 20 EMA (5-minute chart)
+Not institutional per se, but universally used by momentum retail traders.
+9 EMA = fastest trend line. Stock holding above 9 EMA on 5-minute = trending up.
+Break below 9 EMA with volume = first warning of trend change on intraday.
+20 EMA = first real support in a healthy intraday uptrend.
+Price below BOTH 9 and 20 EMA and rejecting them from below = full bear control.
+
+Rank 9 --- DAILY 20 EMA and 50 SMA
+Multi-day support for swing holds. Institutions defend these in trending names.
+Small caps breaking above 20 EMA daily on heavy volume = swing long entry zone.
+Price below 50 SMA daily = swing short bias or avoid longs entirely.
+
+Rank 10 --- FIBONACCI RETRACEMENTS (38.2%, 50%, 61.8%)
+Used by retail swing traders and some algorithmic systems for pullback entries.
+38.2% = shallow pullback, strong trend --- buy here on volume confirmation
+50% = moderate pullback, most common bounce zone
+61.8% = deep pullback, final support before trend invalidation
+
+
+==========================================================================================
+SECTION 7 --- CATALYST KEYWORDS RANKED BY AVERAGE MOVE SIZE
+==========================================================================================
+Rankings are based on observed average post-announcement move in small cap names
+(under $2B market cap). All session types covered.
+
+------------------------------------------------------------------------------------------
+TIER 1 --- TRANSFORMATIONAL CATALYSTS (Avg move: +50% to +500%+)
+------------------------------------------------------------------------------------------
+These are the HIGHEST-MAGNITUDE catalysts. One of these on a sub-5M float name can produce
+a 10x same-day move. These fire Stage 2-3 of the Sykes Lifecycle.
+
+Keyword categories:
+FDA Approval / PDUFA Decision Positive --- "FDA grants approval" / "NDA approved"
+  Best context: Rare disease approval, first-in-class drug, fast-track designation granted
+  Average move: +50% to +300%+ on day of announcement
+  Modifier: "Breakthrough therapy designation" = secondary catalyst for run-up
+
+DoD / U.S. Army / DARPA / DTRA Contract Award --- "awarded contract" / "$X million contract"
+  Best context: Small cap defense/biotech company receives hard government funding
+  Average move: +30% to +200% depending on contract size vs. market cap ratio
+  Key check: Is contract size material relative to company's current revenue?
+
+Short Squeeze + Thin Float + Catalyst --- multiple criteria converging
+  "Short interest exceeds X%" + news catalyst + halt up sequence
+  Average move: +100% to +1000%+ in extreme cases (see MEME era and post-2020 names)
+  Key check: SI% of float, not just SI% of outstanding shares
+
+Merger/Acquisition Announcement (Acquiree) --- "agrees to be acquired" / "merger"
+  Best context: Premium to market price, clean float, motivated strategic acquirer
+  Average move: +20% to +80% on announcement (moves toward deal price)
+
+------------------------------------------------------------------------------------------
+TIER 2 --- HIGH-QUALITY CATALYSTS (Avg move: +20% to +100%)
+------------------------------------------------------------------------------------------
+These are strong catalysts that regularly produce significant single-day moves.
+Best combined with thin float for maximum % gain.
+
+Keyword categories:
+Clinical Trial Positive Data --- "Phase 2/3 results" / "statistically significant"
+  "Meets primary endpoint" --- Avg +30% to +200% depending on trial phase and disease
+  "Positive topline data" = high quality, often initiates multi-day run
+
+Index Inclusion (Russell 2000/3000) --- "added to Russell" / "index inclusion"
+  Forces passive funds to buy. Avg +15% to +40%. Best when combined with thin float.
+
+Revenue Acceleration / Earnings Beat --- "revenue grew X%" / "record quarterly revenue"
+  Best in: Nano/micro caps with low expectations. Avg +20% to +60% on beat
+  Must-have: Revenue growth YoY, not just beat vs. depressed estimate
+
+Major Partnership / Licensing Deal --- "exclusive license" / "strategic partnership with..."
+  Quality matters: Named large partner (Fortune 500, government agency) = higher move
+  Generic "MOU" or "letter of intent" = lower quality, fade risk high
+
+------------------------------------------------------------------------------------------
+TIER 3 --- MODERATE CATALYSTS (Avg move: +10% to +30%)
+------------------------------------------------------------------------------------------
+These produce real moves but require thin float or short interest to amplify.
+On names with float above 20M, these may produce 5%-10% moves, not 30%+.
+
+Keyword categories:
+Analyst Upgrade / Price Target Increase --- "upgraded to Buy" / "price target raised"
+  Best context: Small firm upgrading micro-cap name few analysts cover
+  Low quality if: Large bank upgrading already-extended name
+
+Capital Raise (Clean Terms) --- "upsized offering" / "oversubscribed at premium"
+  NOTE: Most capital raises are NEGATIVE for the stock. Only this specific case is positive:
+  - Raise priced ABOVE market or at market with no warrants = institutional confidence
+  - Raise oversubscribed = demand exceeds supply
+
+Product Launch / Commercial Milestone --- "begins commercial launch" / "first shipment"
+  Only high quality if: Revenue-generating immediately, not just "pipeline" update
+
+Sector Tailwind / Regulatory Change --- "new regulation favors" / "executive order"
+  Broad sector catalysts. Lifts all boats but no single name gets maximum benefit.
+  Best trades: First-mover named micro-cap in the sector theme.
+
+------------------------------------------------------------------------------------------
+TIER 4 --- WEAK / UNRELIABLE CATALYSTS (Avg move: +5% or less / fade risk)
+------------------------------------------------------------------------------------------
+These frequently produce initial spikes followed by fades. Short traps.
+
+Keyword categories:
+"Memorandum of Understanding" (MOU) --- Non-binding. No revenue. Classic pump material.
+"Letter of Intent" (LOI) --- Same as MOU. Non-binding. Watch for exploitation.
+"Strategic Review" / "Exploring Options" --- Vague. Company has not committed to anything.
+Social media mention / influencer callout --- Very short duration. Low quality.
+"AI Integration" (without specifics) --- Sector hype with no revenue impact.
+Press release with no named partner / client / contract value --- Vague PR, suspect.
+Reverse split announcement --- NEGATIVE catalyst masquerading as structural.
+  Exception: Reverse split that simultaneously announces clean float + buyback = neutral.
+
+------------------------------------------------------------------------------------------
+SECTOR HEURISTICS (Combined with Tier 1-2 catalysts)
+------------------------------------------------------------------------------------------
+Biotech/Pharma = Highest move magnitude, highest binary risk
+  Best played: Pre-PDUFA run-up entry, exit BEFORE the decision
+  Avoid: Post-trial-failure stocks, any name with toxic converts outstanding
+
+Defense/Government = Cleanest catalysts, lowest dilution risk historically
+  Best played: Contract announcement on thin-float names, DoD/Army/Air Force keywords
+  Keyword triggers: "DTRA," "DoD contract," "prime contractor," "Army award"
+
+AI/Quantum/Tech = Highest hype, moderate move quality, dilution risk elevated
+  Best played: First day of narrative pivot on a name with no prior AI exposure
+  Avoid: Names that have already run 10x on AI hype without revenue to show for it
+
+Energy/EV/Clean = Moderate move quality, requires policy catalyst or merger
+  Best played: Executive order or regulatory change that benefits specific named company
+
+Cannabis = Low move quality unless federal legalization news breaks
+  Currently: Rescheduling progress (DEA review) = sector catalyst
+
+Mining/Crypto = High volatility, high dilution risk
+  Best played: Strategic acquisition of key asset or partnership with major miner
+
+
+==========================================================================================
+SECTION 8 --- TOS SCANNER CODES FOR HOD MOMENTUM (NO DEAD TICKERS)
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+SCANNER 1 --- PRE-MARKET HOD MOMENTUM GAPPER
+------------------------------------------------------------------------------------------
+Purpose: Finds stocks making new pre-market highs with volume expansion.
+Returns: Live pre-market movers, not dead tickers from prior sessions.
+Use: Run from 7:00am - 9:28am on 2-minute aggregation.
+
+TOS Stock Hacker Settings (no custom ThinkScript required):
+--- STOCK FILTERS ---
+Scan In: NASDAQ + NYSE (exclude OTC/Pink Sheets to avoid dead names)
+Price: Greater than $1.00 AND Less than $50.00
+Average Volume (30 day): Greater than 100,000
+Market Cap: Less than $2,000,000,000
+
+--- STUDY FILTERS ---
+Filter 1: Percentage Change (DAY) --- Greater than 10%
+Filter 2: Volume (1 minute / current): Greater than built-in 10x relative volume
+  (In TOS: Add Study Filter > Volume > Current Volume / Average Volume > set to 5.0+)
+Filter 3: Price is greater than yesterday's close (mandatory --- eliminates dead tickers)
+
+Custom ThinkScript --- Pre-Market HOD Break + Volume Filter:
+Paste into Study Filter > Custom ThinkScript:
+
+def pmHigh = high(period = AggregationPeriod.DAY)[0];
+def prevClose = close(period = AggregationPeriod.DAY)[1];
+def relVol = volume / Average(volume, 20);
+plot signal = (close >= pmHigh * 0.98) and (relVol > 5) and (close > prevClose);
+
+Explanation:
+- close >= pmHigh * 0.98 --- price is within 2% of day's high (near HOD)
+- relVol > 5 --- relative volume is 5x or greater vs. 20-period average
+- close > prevClose --- eliminates stocks below prior day close (dead tickers)
+
+Aggregation: Set to 2-minute or 5-minute for pre-market scanning.
+Sort by: % Change (descending) --- highest movers at top.
+
+------------------------------------------------------------------------------------------
+SCANNER 2 --- INTRADAY HOD BREAKOUT LIVE SCANNER
+------------------------------------------------------------------------------------------
+Purpose: Finds stocks making new intraday highs with volume confirmation.
+Returns: Active momentum names making NEW HODs right now.
+Use: 9:30am - 11:30am session.
+
+TOS Stock Hacker Settings:
+--- STOCK FILTERS ---
+Same as Scanner 1 (NASDAQ + NYSE, $1-$50, ADV > 100k, MCap < $2B)
+
+--- STUDY FILTERS ---
+Filter 1: % Change (Day) Greater than 5%
+Filter 2: Relative Volume > 3x
+Filter 3: Price within 1% of Intraday HOD
+
+Custom ThinkScript --- HOD Proximity + Relative Volume:
+
+def todayHigh = high(period = AggregationPeriod.DAY);
+def intraRV = volume / Average(volume, 20);
+def nearHOD = close >= todayHigh * 0.99;
+plot signal = nearHOD and (intraRV > 3) and (close > open);
+
+Explanation:
+- todayHigh = current intraday high
+- nearHOD = price is within 1% of HOD (about to break or just broke)
+- intraRV > 3 = at least 3x relative volume
+- close > open = current candle is green (bullish confirmation)
+- Aggregation: 5-minute
+
+------------------------------------------------------------------------------------------
+SCANNER 3 --- VWAP RECLAIM MOMENTUM SCANNER
+------------------------------------------------------------------------------------------
+Purpose: Finds stocks that just reclaimed VWAP from below with volume.
+Use: 9:45am - 11:30am.
+
+Custom ThinkScript:
+
+def vwapVal = VWAP(period = AggregationPeriod.DAY).VWAP;
+def prevCandle = close[1];
+def currCandle = close;
+def volumeExpand = volume > Average(volume, 10) * 1.5;
+def reclaim = (prevCandle < vwapVal) and (currCandle >= vwapVal);
+plot signal = reclaim and volumeExpand;
+
+Explanation:
+- prevCandle < vwapVal --- prior candle was BELOW VWAP
+- currCandle >= vwapVal --- current candle is AT OR ABOVE VWAP (reclaim)
+- volumeExpand = current bar volume is 1.5x 10-bar average (confirms real buying)
+- Aggregation: 5-minute
+
+------------------------------------------------------------------------------------------
+SCANNER 4 --- PRE-MARKET RELATIVE VOLUME SPIKE (CATALYST FINDER)
+------------------------------------------------------------------------------------------
+Purpose: Finds stocks with extreme relative volume in pre-market (7am-9:28am).
+This is the widest net to catch any name with potential catalyst before you verify it.
+Use: Run at 8:00am and 9:00am.
+
+TOS Settings:
+Filter 1: Pre-Market % Change > 15%
+Filter 2: Relative Volume (pre-market): Custom Study Below
+
+Custom ThinkScript:
+
+def pmVol = Volume(period = AggregationPeriod.DAY)[0];
+def avgVol30 = Average(Volume(period = AggregationPeriod.DAY), 30);
+def rvol = pmVol / avgVol30;
+plot signal = (rvol > 5) and (close > open);
+
+Note: TOS pre-market scanner runs on extended hours data. Make sure your account settings
+have "Extended Trading Hours" enabled in the scan configuration.
+Aggregation: DAY for pre-market context. Volume comparison is cross-session.
+
+------------------------------------------------------------------------------------------
+SCANNER NOTES --- DEAD TICKER PREVENTION RULES
+------------------------------------------------------------------------------------------
+These filters in combination prevent dead tickers from appearing in results:
+
+1. Always include: close > close[1] (today's close above prior day close)
+   This eliminates anything fading from yesterday's move.
+
+2. Always include: Relative Volume > 3x MINIMUM (5x preferred for pre-market)
+   Dead tickers have relative volume under 1x. This eliminates them.
+
+3. Price filter: $1.00 minimum (eliminates sub-penny OTC shells)
+   $50.00 maximum (keeps focus on small caps with high % move potential)
+
+4. Market cap: Under $2B (keeps institutional small-cap and micro-cap focus)
+   Under $300M for nano-cap focus (tightest float, highest % moves)
+
+5. Scan In: NASDAQ + NYSE only --- DO NOT include OTC or Pink Sheets
+   OTC names have the highest dead ticker and dilution risk.
+
+
+==========================================================================================
+SECTION 9 --- WHERE SHORTS HAVE HIGHEST WIN RATE VS. LONGS
+==========================================================================================
+This section maps the specific conditions where SHORT-SIDE trades have a structural edge
+over long-side trades. Critical for trap avoidance and for knowing when to flip.
+
+------------------------------------------------------------------------------------------
+SHORT SETUP 1 --- FIRST RED DAY (HIGHEST WIN RATE SHORT IN SMALL CAPS)
+------------------------------------------------------------------------------------------
+Sykes Lifecycle mapping: Stage 3 to 4 transition.
+
+When shorts WIN here:
+- Stock already up 300%+ (small cap) or 50%+ (large cap) over prior 3-5 days
+- Day of short is the FIRST day it opens flat or slightly up THEN FAILS
+- Opening range high cannot be taken out (rejected at open)
+- VWAP from prior days acts as resistance (anchored VWAP reference)
+- Volume on the opening push is DECLINING vs. prior days (exhaustion)
+- Stock cannot halt UP in the first 30 minutes despite trying (energy failing)
+
+Entry: Short the break of the opening range LOW of the short session.
+Alternative entry: Short the VWAP rejection after the bounce off LOD.
+Stop: HOD of the current short session. If HOD is taken out = thesis dead.
+Target: 30%-40% below the short session open. Prior multi-day support. Anchored VWAP.
+
+Win rate context: First Red Day on qualitatively strong setups (multi-day run, thin float,
+confirmed exhaustion) produces some of the highest win rates in all of small cap trading.
+Estimated 65%-75% win rate on A-tier First Red Day setups.
+
+------------------------------------------------------------------------------------------
+SHORT SETUP 2 --- PARABOLIC EXHAUSTION SHORT (INTRADAY)
+------------------------------------------------------------------------------------------
+What it is: Stock accelerates VERTICALLY on the 5-minute chart, forming nearly vertical
+candles. This signals final-stage buying (FOMO buyers chasing, shorts covering).
+
+When shorts WIN here:
+- Prior upside move is +100% to +1000% for small cap in current session / multi-session
+- 5-minute candle bodies getting LARGER with each new high (acceleration = exhaustion)
+- Volume exploding on vertical candles (climactic buying = distribution)
+- Gap on current candle is large (exhaustion gap)
+- Stock cannot hold the open of the current largest candle for 2+ candles after
+
+Entry: Short the VWAP breakdown (5-minute candle close below VWAP) after the parabolic
+top candle. If missed: Short the break of the opening range low of the top candle.
+Stop: Current day HOD. Tight on high-quality setups.
+Target: -30% to -40% from entry. VWAP from prior day. Measured move of the parabola.
+
+Key rule: Small caps up 300%+ can correct 40%-70% in a single session.
+Large caps up 50%+ tend to correct 10%-20% in a session.
+Scale expectations to the magnitude of the prior run.
+
+------------------------------------------------------------------------------------------
+SHORT SETUP 3 --- DEAD CAT FADE (STAGE 5 RE-SHORT)
+------------------------------------------------------------------------------------------
+What it is: Stock that has already done Stage 4 cliff dive bounces to VWAP or prior
+resistance. The bounce is on declining volume. This is the re-entry short.
+
+When shorts WIN here:
+- Price bounces to VWAP from Stage 4 close
+- Volume on the bounce is DECLINING (weak hands covering, not new buyers)
+- VWAP from Stage 3 high day acts as resistance (anchored VWAP resistance)
+- HOD of the bounce is LOWER than Stage 3 HOD (lower high confirmed)
+- 2+ consecutive red candles after the bounce peak
+
+Entry: Short the failure at VWAP / prior support-turned-resistance.
+Stop: Above bounce HOD.
+Target: Stage 4 LOD, then measured move below.
+
+------------------------------------------------------------------------------------------
+WHERE SHORTS LOSE --- TRAP ZONES FOR SHORT SELLERS
+------------------------------------------------------------------------------------------
+Understanding where shorts lose = understanding where longs WIN (and vice versa).
+
+Short sellers LOSE in these conditions:
+1. Shorting BEFORE halts on a front-side momentum name (Stage 2/3)
+   The halt mechanism traps shorts who enter too early. The stock gaps above their stops.
+   Rule: Never short a halting stock before it shows exhaustion (failed halt resume).
+
+2. Shorting VWAP reclaim on a stock with confirmed catalyst
+   If the news is real and the float is thin, shorts who fade VWAP reclaims get squeezed.
+   Rule: Don't short VWAP reclaims on Day 1 catalyst plays with thin float.
+
+3. Shorting into a known short squeeze (High SI + thin float + catalyst combined)
+   The squeeze can run 10x before exhausting. Locates vanish. Borrow cost destroys P&L.
+   Rule: Never short a stock with SI above 30% on Day 1 of a catalyst. Wait for Stage 4/5.
+
+4. Shorting after a multi-day downtrend at LOD (Stage 6/7 bottom fade)
+   Stocks in Stage 6/7 can bounce violently when dilution clears. Short at LOD is trapped.
+   Rule: Fade bounces in Stage 6, not new lows.
+
+5. Shorting based only on fundamentals (company is "bad")
+   Bad companies can run 500% in a week on hype before the fundamentals matter.
+   Rule: Short the TECHNICALS and LIFECYCLE STAGE, not the fundamentals alone.
+
+
+==========================================================================================
+SECTION 10 --- DILUTION EVENTS RANKED BY DANGER LEVEL
+==========================================================================================
+
+------------------------------------------------------------------------------------------
+DANGER TIER 1 --- MAXIMUM THREAT (Hard Avoid on any long thesis)
+------------------------------------------------------------------------------------------
+These events create immediate, severe, and often irreversible downward pressure.
+No long position should be held through confirmed active Tier 1 events.
+
+1. TOXIC CONVERTIBLE NOTES / VARIABLE RATE CONVERTS
+   What it is: Debt that converts to shares at a DISCOUNT to market price.
+   The lower the stock goes, the more shares the note converts to.
+   Classic "death spiral" financing. The lender is actively incentivized to short the stock.
+   Detection: EDGAR --- 8-K for convertible note with variable or floating conversion rate.
+   Keywords to search in filing: "variable conversion," "lowest trading price," "discount to VWAP"
+   Action: Hard Avoid. No long under any circumstances while active.
+
+2. EQUITY LINE OF CREDIT (ELOC) / COMMITTED EQUITY FACILITY
+   What it is: Company can sell shares to a single buyer (often a predatory fund) on demand
+   over time. The buyer ALWAYS hedges by shorting. Creates permanent downward supply.
+   Detection: 8-K for "Equity Distribution Agreement" / "Committed Equity Facility"
+   Action: Hard Avoid.
+
+3. ACTIVE ATM WITH KNOWN ACTIVE SALES ABOVE CURRENT PRICE
+   What it is: At-the-market program with confirmed ongoing share sales into volume spikes.
+   Detection: Most recent 10-Q or prospectus supplement showing shares sold under ATM.
+   Action: Hard Avoid for sustained holds. Scalp only with immediate exit on volume dry-up.
+
+4. S-1 REGISTRATION OF PIPE SHARES AT A DISCOUNT TO CURRENT PRICE
+   What it is: PIPE investors received shares at a discount (e.g., $0.50 when stock is $2.00).
+   When the S-1 or S-3 becomes effective, those investors can immediately sell.
+   Effective date = Supply wall unlocked. Price often drops to the PIPE price level.
+   Detection: S-1/S-3 filing for "resale of shares" --- check the conversion/issue price.
+   Action: Hard Avoid after registration becomes effective until supply absorbed.
+
+------------------------------------------------------------------------------------------
+DANGER TIER 2 --- HIGH THREAT (Reduce size / limit hold time / tighter stops)
+------------------------------------------------------------------------------------------
+These create meaningful downward pressure but may not be immediate.
+Manageable with strict position sizing and defined exit rules.
+
+5. ACTIVE ATM WITH NO RECENT CONFIRMED SALES
+   Active S-3 shelf + registered ATM but no evidence of active selling in latest filing.
+   The CAPACITY for dilution is live but not confirmed as actively selling right now.
+   Threshold trigger: ATM capacity exceeds 20% of current float = meaningful ceiling.
+   Action: Reduce size to 50% of normal. Exit on any sign of volume dry-up after a pop.
+
+6. WARRANTS WITH STRIKE PRICE WITHIN 10-20% OF CURRENT PRICE
+   Warrant holders are incentivized to exercise if stock is near or above strike.
+   Exercise creates new shares = supply. Strike price acts as a STRUCTURAL CEILING.
+   Common in: PIPE-financed companies, recent IPOs, reverse merger shells.
+   Detection: Latest 10-Q or prospectus for "warrant exercise price" table.
+   Action: Recognize the strike as a resistance level. Do not hold target above warrant strike
+   without confirming strike-level ask is not refreshing.
+
+7. S-3 SHELF WITH LARGE CAPACITY RELATIVE TO MARKET CAP
+   Large shelf = option for company to raise capital at any time.
+   If shelf capacity exceeds 25% of market cap = high threat to price.
+   Not an immediate trigger but signals company is planning future dilution.
+   Action: Treat any spike as potential selling opportunity for the company.
+
+8. UNDERWRITTEN OFFERING (TRADITIONAL OR RDO)
+   Company announces new share issuance through underwriters.
+   Classic response: Gap down to the offering price. Offering price = new near-term floor.
+   Duration of pressure: 1-5 trading days post-announcement.
+   Exception: Oversubscribed offering, no warrants, premium pricing = SHORT-TERM bullish.
+   Action: Avoid long through offering announcement. Buy after price stabilizes at offering price.
+
+------------------------------------------------------------------------------------------
+DANGER TIER 3 --- MODERATE THREAT (Be aware / no immediate action required)
+------------------------------------------------------------------------------------------
+These are real but slower-acting risks that don't create immediate supply walls.
+
+9. AUTHORIZED SHARE INCREASE (PENDING OR APPROVED)
+   Company seeks shareholder approval to increase authorized shares.
+   Not immediate dilution --- just removes the structural cap on how many shares can be issued.
+   Action: Note it. Combined with shelf or ATM = elevated threat. Alone = background risk.
+
+10. WARRANTS WITH STRIKE PRICE 50%+ ABOVE CURRENT PRICE (FAR OUT OF THE MONEY)
+    These warrants have almost no near-term dilution pressure.
+    Holders cannot profitably exercise. Not a ceiling at current prices.
+    Action: Track them but don't penalize the trade. Monitor if stock approaches strike.
+
+11. STOCK-BASED COMPENSATION (EMPLOYEE/DIRECTOR GRANTS)
+    Dilutive over time but not a significant near-term supply pressure.
+    Most employee grants have vesting schedules and lockup periods.
+    Action: Note in background analysis. Not a trade filter.
+
+12. SHELF REGISTRATION WITH SMALL CAPACITY (UNDER 10% OF MARKET CAP)
+    Company has the ability to raise but limited capacity.
+    Low near-term threat unless they activate it with an offering announcement.
+    Action: No immediate impact. Monitor for S-3 supplement filing.
+
+------------------------------------------------------------------------------------------
+WHEN DILUTION IS PRICED IN / NOT A THREAT
+------------------------------------------------------------------------------------------
+These conditions suggest dilution risk is reduced or irrelevant to current setup:
+
+1. Offering was announced AND priced ALREADY, stock stabilized at offering price.
+   The supply is known and absorbed. New buyers are post-dilution buyers.
+   The stock often makes its next momentum move UP from the offering price once absorbed.
+
+2. ATM is EXHAUSTED (all registered shares under ATM have been sold).
+   Check: Latest prospectus supplement shows "all shares sold" or ATM terminated.
+   If ATM capacity is fully used, the ongoing supply pressure ends.
+
+3. Warrants are EXPIRED or exercise window has closed.
+   Check EDGAR for warrant expiration dates. Expired warrants = no more ceiling.
+
+4. Convertible note has been FULLY CONVERTED to shares.
+   Once converted: principal is gone, no more conversion dilution.
+   Check: Latest 10-Q for "converted in full" note disclosures.
+
+5. STRONG CATALYST OVERRIDES DILUTION TEMPORARILY (short-term window).
+   A Tier 1 catalyst (FDA approval, DoD contract) can override active dilution pressure
+   for a SHORT WINDOW (1 session to 3 days) as new demand overwhelms supply.
+   Rule: Use this window to TRADE, not to HOLD. Exit before the dilution resumes.
+
+6. Clean balance sheet + no financing need.
+   Company has sufficient cash runway (12+ months confirmed).
+   Has no active shelf, no convertibles, no ATM, no ELOC.
+   This is the ideal long candidate. Prioritize these names when found.
+
+------------------------------------------------------------------------------------------
+DILUTION THRESHOLD TRIGGERS (EXACT NUMBERS)
+------------------------------------------------------------------------------------------
+These are specific numeric thresholds that change the threat level in real-time:
+
+- ATM capacity > 20% of current float = High Threat (Tier 2 escalates to Tier 1 territory)
+- Warrant overhang > 30% of current float = Structural ceiling, hard avoid above strike
+- Authorized shares > 3x outstanding shares = Company has significant dilution runway
+- Cash runway < 6 months + active shelf = Near-certain capital raise incoming
+- Session volume > 5x reported OS = Float is wrong, real-time issuance likely active
+- Reverse split count in trailing 12 months = 3 or more = Hard Avoid permanently
+- PIPE discount > 30% below current market = S-1/S-3 effective date = supply wall incoming
+- Offering priced below 90-day VWAP = Institutional confidence absent = avoid
+- Convertible note principal > 20% of market cap = Dilution risk severe
+
+
+==========================================================================================
+SECTION 11 --- TIM SYKES LIFECYCLE MAPPED INTO EACH SETUP (CROSS-REFERENCE)
+==========================================================================================
+
+Pre-Market HOD Breakout = Stage 2 Catalyst Ignition or Early Stage 3 Continuation
+Pre-Market VWAP Reclaim = Stage 2/3 (healthy early pullback in active move)
+Pre-Market LOD Reversal = Stage 5 Dead Cat Bounce (lower win rate --- scalp only)
+
+Market Open HOD Breakout = Stage 3 Supernova (highest win rate window)
+Market Open Red-to-Green = Stage 2/3 transition (strong catalyst day 2 entry)
+Market Open VWAP Reclaim = Stage 3 (healthy pullback entry in trending name)
+Market Open First Pullback = Stage 3 front-side momentum (declining after 1st pull)
+
+Afternoon Overnight Swing = Stage 2/3 (Day 1 close strong, Day 2 continuation)
+Afternoon 1-3 Day Hold = Stage 3 extended (bull flag in multi-day runner)
+Afternoon Into Event = Stage 3 run-up, exit before binary event
+
+After-Hours Continuation = Stage 2 catalyst (news breaks AH, pre-market follow-through)
+
+First Red Day Short = Stage 3 to 4 transition (primary short entry zone)
+Parabolic Exhaustion Short = End of Stage 3 / Beginning of Stage 4
+Dead Cat Fade = Stage 5 to 6 transition
+Lower High Short = Stage 6 (distribution continues)
+
+
+==========================================================================================
+SECTION 12 --- QUICK REFERENCE DECISION TREE (DAILY WORKFLOW USE)
+==========================================================================================
+
+PRE-MARKET (7:00AM - 9:28AM)
+Step 1: Run Scanner 1 (Pre-Market HOD Gapper) at 7:30am and 9:00am
+Step 2: Check catalyst quality on top 3-5 names (verified PR / 8-K / EDGAR)
+Step 3: Run dilution check on each name (Dilution Tracker / EDGAR search)
+Step 4: Assign Sykes Lifecycle Stage to each name
+Step 5: Mark key levels on chart (PMHOD, prior day close, prior day HOD, round numbers)
+Step 6: Rank setup quality (A+ = thin float + verified catalyst + clean dilution)
+
+MARKET OPEN (9:30AM - 11:30AM)
+Step 1: Watch top 2-3 names from pre-market list
+Step 2: Define opening range (first 5-minute candle high and low)
+Step 3: Wait for the trigger (HOD break, VWAP reclaim, or Red-to-Green confirmation)
+Step 4: Execute only on confirmed signals --- not anticipated signals
+Step 5: Trail stop under each new higher low
+
+AFTERNOON (12:00PM - 4:00PM)
+Step 1: Assess which open session names are holding structure (closing near HOD)
+Step 2: Apply overnight / swing selection criteria from Section 4
+Step 3: Size appropriately for the hold tier (overnight = smaller than intraday)
+Step 4: Set risk parameters and mark invalidation level BEFORE end of session
+
+SHORT AWARENESS (ALL SESSIONS)
+Step 1: Is this stock in Stage 3 (front-side)? If yes = do not short.
+Step 2: Is this the First Red Day? If yes = short entry zone opens.
+Step 3: Is the opening range high holding? If yes = no short yet. Wait for ORL break.
+Step 4: VWAP reject after bounce = short trigger. Stop above HOD.
+
+DILUTION CHECK (EVERY TRADE BEFORE ENTRY)
+Step 1: Active toxic convertible or ELOC? Hard Avoid.
+Step 2: Active ATM with evidence of selling? Reduce size.
+Step 3: Warrants within 10-20% of current price? Treat as ceiling.
+Step 4: Clean balance sheet, no financing? Full size available.
+
+==========================================================================================
+END OF GRANT MASTER SMALL CAP REFERENCE
+Generated for: Live Daily Workflow + Standalone Reference
+All outputs: Plain text / TOS Scratchpad compatible
+==========================================================================================

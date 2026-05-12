@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jesse Livermore – Institutional Playbook Analysis</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0d0d0d;
+      --white: #ffffff;
+      --offwhite: #f5f4f0;
+      --gray: #6b7280;
+      --light-gray: #e5e7eb;
+      --green: #059669;
+      --green-bg: #ecfdf5;
+      --green-light: #a7f3d0;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --red-light: #fecaca;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --blue: #1e40af;
+      --blue-bg: #eff6ff;
+      --accent: #f59e0b;
+      --accent-dark: #92400e;
+      --divider: #e2e0db;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--offwhite);
+      color: var(--black);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 20%, rgba(245,158,11,.12) 0%, transparent 70%),
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,.025) 80px);
+    }
+
+    .cover-num {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(200px, 30vw, 380px);
+      color: rgba(255,255,255,.03);
+      line-height: 1;
+      letter-spacing: -.02em;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .cover-eyebrow {
+      font-size: 11px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(64px, 9vw, 120px);
+      line-height: .92;
+      letter-spacing: .01em;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover h1 span { color: var(--accent); }
+
+    .cover-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,.5);
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-pill {
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    .cover-pill-gold { border-color: var(--accent); color: var(--accent); }
+
+    .cover-stats {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 32px;
+    }
+
+    .c-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .c-stat-l {
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+    }
+
+    .c-stat-v {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 28px;
+      letter-spacing: .02em;
+    }
+
+    .page {
+      background: var(--white);
+      max-width: 1200px;
+      margin: 0 auto 2px;
+      padding: 56px 60px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .page-label {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      border-top: 2px solid var(--black);
+      padding-top: 6px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 48px;
+      letter-spacing: .02em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    h2 span { color: var(--accent); }
+
+    h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -.01em;
+    }
+
+    h4 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 10px;
+    }
+
+    p { margin-bottom: 14px; color: #374151; }
+    p:last-child { margin-bottom: 0; }
+    ul { padding-left: 18px; }
+    ul li { margin-bottom: 6px; color: #374151; }
+    ol { padding-left: 20px; }
+    ol li { margin-bottom: 8px; color: #374151; }
+    strong { font-weight: 700; }
+
+    .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+    .divider { border: none; border-top: 1px solid var(--divider); margin: 36px 0; }
+    .mt-8 { margin-top: 8px; }
+    .mt-12 { margin-top: 12px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-20 { margin-top: 20px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-28 { margin-top: 28px; }
+    .mt-32 { margin-top: 32px; }
+    .mb-16 { margin-bottom: 16px; }
+    .mb-20 { margin-bottom: 20px; }
+    .mb-24 { margin-bottom: 24px; }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .badge-gold { background: var(--accent); color: var(--black); }
+    .badge-green { background: var(--green); color: white; }
+    .badge-red { background: var(--red); color: white; }
+    .badge-black { background: var(--black); color: white; }
+    .badge-blue { background: var(--blue); color: white; }
+    .badge-outline { border: 1.5px solid var(--black); color: var(--black); background: transparent; }
+
+    .conf-high,
+    .conf-med,
+    .conf-low {
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .conf-high {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green-light);
+    }
+
+    .conf-med {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border: 1px solid #fde68a;
+    }
+
+    .conf-low {
+      background: var(--red-bg);
+      color: var(--red);
+      border: 1px solid var(--red-light);
+    }
+
+    .card {
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      padding: 20px 24px;
+      background: var(--white);
+    }
+
+    .card-gold { background: #fffbeb; border-color: #fde68a; }
+    .card-green { background: var(--green-bg); border-color: var(--green-light); }
+    .card-red { background: var(--red-bg); border-color: var(--red-light); }
+    .card-blue { background: var(--blue-bg); border-color: #bfdbfe; }
+    .card-black { background: var(--black); color: var(--white); }
+    .card-black p, .card-black li { color: rgba(255,255,255,.72); }
+    .card-black h3, .card-black h4 { color: var(--white); }
+
+    .card-stripe { border-left: 4px solid var(--accent); }
+    .card-stripe-green { border-left: 4px solid var(--green); }
+    .card-stripe-red { border-left: 4px solid var(--red); }
+
+    .setup-card {
+      border: 1px solid var(--divider);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .setup-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 22px;
+      background: var(--black);
+      color: var(--white);
+      flex-wrap: wrap;
+    }
+
+    .setup-hdr-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 22px;
+      letter-spacing: .04em;
+    }
+
+    .setup-body { padding: 22px; }
+
+    .setup-grid { display: grid; grid-template-columns: 1fr 1fr; }
+
+    .setup-cell {
+      padding: 14px 18px;
+      border-right: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .setup-cell:nth-child(2n) { border-right: none; }
+    .setup-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+    .setup-cell-lbl {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 5px;
+    }
+
+    .setup-cell-val { font-size: 13px; color: var(--black); }
+
+    .pillar-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+
+    .pillar-card {
+      background: var(--black);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .pillar-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 36px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .pillar-name {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-top: 8px;
+    }
+
+    .pillar-detail {
+      font-size: 11px;
+      color: rgba(255,255,255,.55);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .evidence-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .evidence-row:last-child { border-bottom: none; }
+
+    .evidence-num {
+      min-width: 30px;
+      height: 30px;
+      background: var(--accent);
+      color: var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .checklist { list-style: none; padding: 0; }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--divider);
+      color: #374151;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .c-icon { min-width: 20px; font-size: 15px; margin-top: 1px; }
+    .c-green { color: var(--green); }
+    .c-red { color: var(--red); }
+
+    .t {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .t th {
+      background: var(--black);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .t td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--divider);
+      font-size: 13px;
+      color: #374151;
+      vertical-align: top;
+    }
+
+    .t tr:nth-child(even) td { background: #fafaf8; }
+
+    .callout {
+      border-left: 4px solid var(--black);
+      padding: 14px 18px;
+      background: #fafaf8;
+      margin: 16px 0;
+    }
+
+    .callout-gold { border-left-color: var(--accent); background: var(--amber-bg); }
+    .callout-green { border-left-color: var(--green); background: var(--green-bg); }
+    .callout-red { border-left-color: var(--red); background: var(--red-bg); }
+
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .pros-col { background: var(--green-bg); padding: 24px; border-radius: 8px 0 0 8px; }
+    .cons-col { background: var(--red-bg); padding: 24px; border-radius: 0 8px 8px 0; }
+
+    .rating-wrap {
+      background: var(--light-gray);
+      border-radius: 4px;
+      height: 8px;
+      overflow: hidden;
+      margin: 6px 0;
+    }
+
+    .rating-bar { height: 100%; border-radius: 4px; background: var(--green); }
+    .rating-bar-gold { background: var(--accent); }
+
+    .takeaway-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .takeaway-card {
+      background: var(--black);
+      color: white;
+      border-radius: 8px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .takeaway-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 40px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .takeaway-text {
+      font-size: 12px;
+      color: rgba(255,255,255,.68);
+      line-height: 1.5;
+    }
+
+    .unknown-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+
+    .unknown-card {
+      background: var(--red-bg);
+      border: 1px solid var(--red-light);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .unknown-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 32px;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .unknown-text {
+      font-size: 12px;
+      color: #7f1d1d;
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center; }
+    .vs-divider { display: flex; align-items: center; justify-content: center; width: 56px; }
+
+    .vs-circle {
+      width: 40px;
+      height: 40px;
+      background: var(--black);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      background: var(--black);
+      color: rgba(255,255,255,.3);
+      text-align: center;
+      padding: 24px;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 820px) {
+      .page { padding: 36px 22px; }
+      .col-2, .col-3, .setup-grid, .pros-cons, .takeaway-grid, .unknown-grid, .pillar-grid, .vs-grid {
+        grid-template-columns: 1fr;
+      }
+      .cover { padding: 40px 28px; }
+      .vs-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const REPORT = {
+      documentTitle: "Jesse Livermore – Institutional Playbook Analysis",
+      footerText:
+        "Jesse Livermore Playbook Analysis · Compiled from Primary Public Sources Only: Reminiscences of a Stock Operator (1923), How to Trade in Stocks (1940), Trade Like Jesse Livermore (Smitten 2004), Wyckoff's Jesse Livermore Methods (1922) · For Educational Research Purposes · Not Financial Advice · Past performance of historical figures does not guarantee future results.",
+
+      cover: {
+        bgInitials: "JL",
+        eyebrow: "Institutional-Grade Research Analysis · 1877–1940 · The Greatest Speculator Who Ever Lived",
+        titleHtml: "JESSE<br><span>LIVERMORE</span><br>PLAYBOOK",
+        description:
+          "A reverse-engineered analysis of Jesse Livermore's real trading strategy, setups, execution logic, risk framework, and decision process — built exclusively from primary sources: his own 1940 book, Reminiscences of a Stock Operator, Wyckoff's 1922 Methods document, and Smitten's authorized biography.",
+        pills: [
+          { text: "Long & Short Swing Speculation", gold: true },
+          { text: "Stocks & Commodities" },
+          { text: "$100M Peak Fortune (1929)" },
+          { text: "Pivotal Point Breakout System" }
+        ],
+        stats: [
+          { label: "Strategy Type", value: "Swing Speculator" },
+          { label: "Primary Instruments", value: "Stocks & Commodities" },
+          { label: "Peak Verified Fortune", value: "$100M (1929)" },
+          { label: "Primary Hold Duration", value: "Weeks to Months" },
+          { label: "Reconstructability", value: "Partially High" }
+        ]
+      },
+
+      overview: {
+        labelLeft: "Section 01 · Playbook Overview & Core Foundation",
+        labelRight: "Jesse Livermore · Primary Sources: Reminiscences (1923) & How to Trade in Stocks (1940)",
+        leftTitleHtml: "PLAYBOOK <span>OVERVIEW</span>",
+        leftParagraphs: [
+          "Jesse Livermore's strategy was built on a single principle: read the condition of the market first, identify the leading stocks in the leading sector second, then wait for a pivotal point to confirm the direction before committing capital.",
+          "This was not a day-trading system. Livermore explicitly warned against trading for small daily fluctuations. His target was the big swing — a major directional move lasting weeks or months. Patience, he insisted, was the most profitable skill a speculator could develop.",
+          "His method evolved over four decades, beginning with pure tape reading in bucket shops and maturing into a top-down macro framework combining market internals, sector analysis, pivotal point entries, and disciplined pyramiding into winners."
+        ],
+        callout: {
+          tone: "gold",
+          title: "Core Principle (Confirmed — How to Trade in Stocks, 1940):",
+          text:
+            "Study general conditions first. Size them up. Then wait for the pivotal point that confirms your thesis before you act. The highest profits are made in trades that show a profit right from the start."
+        },
+        rulesTitle: "The Strategy in 5 Rules",
+        rules: [
+          "Determine the general market direction — bull or bear — before entering any position.",
+          "Identify the leading sector and the leading stock within that sector.",
+          "Wait for a pivotal point: a price level where the stock must show its hand.",
+          "Enter with a small probe position, then add only when price confirms the move.",
+          "Sit tight through normal reactions; exit only when abnormal behavior signals the move is over."
+        ],
+        rightTitle: "Core Foundation",
+        quote:
+          "It was never my thinking that made the big money for me. It was my sitting. — Jesse Livermore",
+        logicRows: [
+          { badgeClass: "badge-gold", label: "Market First", text: "No trade without confirming overall market direction" },
+          { badgeClass: "badge-green", label: "Sector Leaders", text: "Trade the strongest stock in the strongest group" },
+          { badgeClass: "badge-blue", label: "Pivotal Points", text: "Enter only at price levels that prove or disprove the thesis" },
+          { badgeClass: "badge-red", label: "Big Swings", text: "Target multi-week to multi-month trend moves, not daily noise" }
+        ],
+        timeframesTitle: "Timeframes & Instruments Used",
+        timeframes: [
+          "Primary: daily and weekly price action — NOT intraday charts",
+          "Instruments: U.S. equities (NYSE), commodity futures (cotton, wheat, grain)",
+          "Both long and short — equally willing to short bear markets",
+          "Macro cycles: positioned for major market-wide moves (1907, 1929 crash trades)"
+        ],
+        sourceNote:
+          "Source Confidence: Directly stated in How to Trade in Stocks (1940) and Reminiscences of a Stock Operator (1923).",
+        sourceConfidence: "high"
+      },
+
+      pillars: {
+        labelLeft: "Section 02 · The Top-Down Framework & Market Focus",
+        labelRight: "Jesse Livermore · How to Trade in Stocks (1940) — The Market Key",
+        titleHtml: "THE TOP-DOWN <span>FRAMEWORK</span>",
+        intro:
+          "Livermore's stock selection process was explicitly top-down. He called the overall framework the 'Market Key' — a system for reading market internals to determine macro direction before touching individual stocks.",
+        cards: [
+          { num: "01", name: "Market Direction", detail: "Bull or bear? No trade without this confirmed. Confirmed — How to Trade in Stocks." },
+          { num: "02", name: "Sector / Group", detail: "Find the leading industry group. Stocks move with their sector. Confirmed — Reminiscences." },
+          { num: "03", name: "Leader Selection", detail: "Trade the strongest stock in the strongest group, not laggards." },
+          { num: "04", name: "Pivotal Point", detail: "Identify the specific price level that will confirm or deny the move." },
+          { num: "05", name: "Tape / Price Action", detail: "Read volume, speed, and price behavior at the pivotal level before committing." }
+        ],
+        leftTitle: "Market Conditions & Regime",
+        leftText:
+          "Livermore explicitly changed strategy depending on market regime. He was long in bull markets, short in bear markets, and explicitly recommended staying flat in trendless or choppy conditions.",
+        table: {
+          headers: ["Market Type", "Livermore's Approach", "Evidence"],
+          rows: [
+            ["Confirmed Bull Market", "Go long the leaders; pyramid aggressively", "High — Reminiscences"],
+            ["Confirmed Bear Market", "Go short the weakest leaders; hold short through panic", "High — 1929 trade"],
+            ["Early Trend — Unconfirmed", "Small probe position only; wait for confirmation", "High — How to Trade in Stocks"],
+            ["Trendless / Choppy", "Stay in cash. Do not trade.", "High — Reminiscences"],
+            ["Post-Exhaustion", "Exit the position on abnormal behavior; do not re-enter until new pivot forms", "High — Price patterns document"]
+          ]
+        },
+        conditionCallout: {
+          tone: "gold",
+          title: "Confirmed Rule (Reminiscences of a Stock Operator):",
+          text:
+            "There is nothing new in Wall Street. Whatever happens in the stock market today has happened before and will happen again. The conditions repeat. Study them."
+        },
+        rightTitle: "Record-Keeping System — The Livermore Market Key",
+        sessionRows: [
+          ["Step 1", "Record daily price changes for leading stocks in notebooks"],
+          ["Step 2", "Identify which stocks are in uptrend, downtrend, or pivot zone"],
+          ["Step 3 ★", "Compare price behavior to prior pivotal levels — the setup window", true],
+          ["Step 4", "Confirm sector-wide alignment before entry", "green"],
+          ["Step 5", "Use commodity prices and macro signals as additional confirmation"],
+          ["Ongoing", "Review records for repetitions, parallelisms, and breakdowns"]
+        ],
+        scannerTitle: "Instruments & Universe",
+        scannerList: [
+          "U.S. large-cap stocks — most active and liquid names of the era",
+          "Cotton, wheat, corn, and grain futures",
+          "Focus on the most prominent, most active stocks — NOT obscure names",
+          "Both sides: long in uptrends, short in downtrends with equal emphasis",
+          "Never traded every day — only when clear conditions presented themselves",
+          "Maintained very large cash reserves to capitalize on rare high-conviction setups"
+        ]
+      },
+
+      setups: {
+        labelLeft: "Section 03 · Setup Catalog",
+        labelRight: "Jesse Livermore · Sourced from How to Trade in Stocks (1940) & jesse-livermore.com price patterns",
+        titleHtml: "SETUP <span>CATALOG</span>",
+        intro:
+          "All confirmed setups use the same underlying logic: wait for a pivotal point where price must commit directionally, enter small to test, then add into confirmed strength only.",
+        large: [
+          {
+            title: "SETUP 1: PIVOTAL POINT BREAKOUT",
+            badgeText: "Primary Setup · Long & Short · Core Method",
+            badgeClass: "badge-gold",
+            leftTitle: "Concept",
+            leftParagraphs: [
+              "A pivotal point is a specific price level — often a prior high, low, consolidation boundary, or significant round number — where the stock must demonstrate whether buyers or sellers are in control.",
+              "The breakout above a pivotal point with expanding volume is the primary entry signal. The best pivotals are preceded by a period of consolidation. The longer the consolidation, the more significant the breakout."
+            ],
+            leftCallout: {
+              tone: "gold",
+              title: "Directly Stated (How to Trade in Stocks, 1940):",
+              text:
+                "When a speculator can determine the Pivotal Point of a stock and interpret the action at that point, he may make a commitment with the positive assurance of being right from the start."
+            },
+            rightTitle: "Rules",
+            rightList: [
+              "Identify the pivotal level in advance — do not improvise",
+              "Round numbers (50, 100, 200, 300) historically produce the strongest reactions",
+              "Wait for price to CROSS the pivot, not just approach it",
+              "Volume must expand on the breakout to confirm participation",
+              "Enter with a probe position first; do not commit full size immediately",
+              "If the move stalls immediately, exit — the pattern may be failing"
+            ],
+            whyTitle: "Why This Works",
+            whyList: [
+              "Trapped participants at old highs/lows must cover, adding fuel",
+              "Round numbers concentrate psychological attention from all market participants",
+              "Breakout timing aligns entry with momentum rather than fighting it"
+            ],
+            grid: [
+              ["Entry Trigger", "Price crosses the pivotal level with expanding volume — confirmed breakout, not a test."],
+              ["Stop Logic", "Mental stop just below the pivotal level. If price returns to or through the pivot, the thesis is broken."],
+              ["Target / Exit", "No predefined target. Sit through normal reactions. Exit on abnormal reversal behavior only."],
+              ["Confidence", "High — named explicitly and demonstrated with the Anaconda 100-level example in How to Trade in Stocks."]
+            ]
+          },
+          {
+            title: "SETUP 2: NORMAL REACTION CONTINUATION",
+            badgeText: "Trend Continuation · Post-Breakout",
+            badgeClass: "badge-green",
+            leftTitle: "Concept",
+            leftParagraphs: [
+              "After an initial breakout move, price typically pulls back on lighter volume before resuming. Livermore described this explicitly as the 'Normal Reaction' — a healthy pause that confirms the move is real.",
+              "The normal reaction is buyable. A continuation after it — with volume expanding again — is the signal to add to the position."
+            ],
+            rightTitle: "Anatomy of the Pattern",
+            rightList: [
+              "Initial breakout: high volume, strong directional thrust",
+              "Normal reaction: lower volume pullback — price eases, not collapses",
+              "Continuation: volume re-expands, price resumes trend direction",
+              "Abnormal volume on the pullback = warning signal, not continuation",
+              "Add to position on confirmed continuation, not on the pullback itself",
+              "Failure: price breaks back through the original pivot level with volume"
+            ],
+            whyTitle: "Failure Mode",
+            whyList: [
+              "Heavy volume on the reaction candle (distribution signal)",
+              "Price fails to resume trend after the reaction",
+              "Price breaks back through the pivotal support level"
+            ],
+            grid: [
+              ["Volume Signal", "Heavy on the pole, light on the reaction, heavy again on the continuation."],
+              ["Entry Timing", "Add to the position on the continuation after the normal reaction — not during the pullback."],
+              ["Scaling Rules", "Start small at the pivot, add on the continuation, add again on the next confirmation."],
+              ["Confidence", "High — explicitly described as a price pattern with volume criteria in How to Trade in Stocks."]
+            ]
+          }
+        ],
+        sideBySide: [
+          {
+            title: "SETUP 3: ROUND NUMBER PIVOTAL",
+            badgeText: "Structural · Psychological Level",
+            badgeClass: "badge-blue",
+            paragraphs: [
+              "Livermore documented that stocks crossing major round numbers — 50, 100, 200, 300 — produced fast, straight moves almost invariably. He considered these the simplest and most reliable pivotal points.",
+              "The Anaconda at 100 example in How to Trade in Stocks is the most documented instance of this principle in action."
+            ],
+            list: [
+              "Entry: stock crosses the round number with volume",
+              "Stop: close back below the round number",
+              "Target: measured continuation based on the prior leg",
+              "Works for both longs above round numbers and shorts below"
+            ],
+            confidence: "high",
+            confidenceText: "Confirmed with a named stock example directly in How to Trade in Stocks (1940)."
+          },
+          {
+            title: "SETUP 4: ONE-DAY REVERSAL (EXIT SIGNAL)",
+            badgeText: "Abnormal Behavior · Exit Trigger",
+            badgeClass: "badge-black",
+            paragraphs: [
+              "A one-day reversal — a sharp up or down day that violently reverses into the opposite direction by the close — was considered by Livermore as a major danger signal, not a new entry.",
+              "This pattern typically marks exhaustion. It was used as an exit cue, not a continuation entry."
+            ],
+            list: [
+              "Unusually large range day that closes near the opposite extreme",
+              "Heavy volume on the reversal day = strong distribution or absorption signal",
+              "If in a long position: this is a sell signal, not a hold",
+              "If in cash: wait for new pivot formation before re-entering"
+            ],
+            confidence: "high",
+            confidenceText: "Explicitly named and described as an important signal — TradingCenter.org citing primary source."
+          }
+        ],
+        finalLarge: {
+          title: "SETUP 5: TANDEM / SISTER STOCK CONFIRMATION",
+          badgeText: "Sector Confirmation · Multi-Stock Method",
+          badgeClass: "badge-gold",
+          leftParagraphs: [
+            "Livermore advised never trading only one stock in a sector. He recommended watching a second stock in the same group — a 'sister stock' — to confirm the sector move was genuine.",
+            "If the leading stock makes a pivotal breakout but the sister stock fails to confirm, the signal is weaker and the position size should be reduced or the trade avoided entirely."
+          ],
+          leftList: [
+            "Select two stocks from the same sector",
+            "Enter the leader first; watch the sister for confirmation",
+            "If both confirm: full position size is justified",
+            "If only one confirms: reduce size or stay flat",
+            "If both fail: the sector move is not real — do not force it"
+          ],
+          rightTitle: "Why Tandem Trading Works",
+          rightParagraph:
+            "Stocks in the same industry group move together because they share the same macro and fundamental drivers. A sector move confirmed by two leaders simultaneously is far less likely to be a false breakout than a solo breakout in one name.",
+          rightCallout: {
+            tone: "gold",
+            title: "Confirmed Concept (How to Trade in Stocks, 1940):",
+            text:
+              "Stocks in the same group move together. If one has already moved, the other twin will move very soon. Use this to confirm the sector direction."
+          }
+        }
+      },
+
+      execution: {
+        labelLeft: "Section 04 · Execution Framework",
+        labelRight: "Jesse Livermore · Reminiscences (1923) & How to Trade in Stocks (1940)",
+        leftTitleHtml: "EXECUTION <span>FRAMEWORK</span>",
+        leftParagraphs: [
+          "Livermore's execution framework was built around patience before the trade and decisiveness during it. He was explicit that the most expensive mistake was entering too early, before market confirmation.",
+          "Once a pivotal breakout confirmed, however, he acted immediately. Hesitation after confirmation was equally fatal — it resulted in chasing the move or missing the optimal entry window."
+        ],
+        entryTitle: "The Probe Trade Method — Technical Specifics",
+        entryCard: {
+          tone: "stripe",
+          confidence: "high",
+          list: [
+            "Never enter full size at the first pivotal break",
+            "Enter with a partial position — a probe — to test the thesis",
+            "If price moves immediately in your favor: that is confirmation",
+            "Add to the position in stages as the trend confirms further",
+            "Never add to a losing position — add only when right",
+            "Each addition should be smaller than the prior — pyramiding, not averaging up blindly"
+          ]
+        },
+        l2Title: "Tape Reading — The Original Market Microstructure Tool",
+        l2List: [
+          "Watch the speed and character of transactions on the tape",
+          "Heavy selling into strength signals distribution — act on it",
+          "A stock that refuses to follow its group leader is a warning",
+          "The tape told Livermore when the character of buying changed — the signal to exit",
+          "Do not ask the tape why. Just respond to what it shows."
+        ],
+        addTitle: "Pyramiding — Adding to Winners",
+        addCallout: {
+          tone: "green",
+          title: "Confirmed Rule (Reminiscences of a Stock Operator):",
+          text:
+            "The moment the tape told me I was on the right track, my business duty was to increase my line. I never add to a losing position. I add only when right."
+        },
+        rightTitle: "The Patience Principle — The Core Behavioral Rule",
+        rightBlackTitle: "MONEY IS MADE BY SITTING, NOT BY TRADING.",
+        rightBlackText:
+          "Livermore was explicit that most traders destroy their edge through overtrading. The desire for constant action irrespective of underlying conditions is responsible for many losses even among professionals.",
+        trimTitle: "Scaling Out — Confirmed Exit Logic",
+        trimCard: {
+          tone: "green-stripe",
+          confidence: "high",
+          steps: [
+            "Do not exit at the first target — let the big swing develop",
+            "Hold through normal reactions as long as volume confirms trend continuation",
+            "Begin reducing when the character of the move changes",
+            "Exit the majority on abnormal reversal behavior or one-day reversal",
+            "Exit the full position if price breaks back through the prior pivotal support",
+            "Do not try to catch the last eighth — these are the most expensive points"
+          ]
+        },
+        stopTitle: "Stop Logic — Confirmed Rules",
+        stopList: [
+          "Mental stops below the pivotal level — not hard stop orders in the era",
+          "The return of price to the pivotal point after breakout is a warning signal",
+          "Never meet a margin call — the market is telling you that you are wrong",
+          "The inability to hold a breakout is itself the stop signal"
+        ],
+        avoidTitle: "Signs of a Low-Quality Trade — Directly Stated",
+        avoidCards: [
+          {
+            tone: "red",
+            title: "Market & Context Failures",
+            items: [
+              "No confirmed market direction",
+              "Trading against the trend",
+              "Trendless or choppy market",
+              "Sector not confirming the stock",
+              "Sister stock failing to confirm"
+            ]
+          },
+          {
+            tone: "red",
+            title: "Timing & Execution Failures",
+            items: [
+              "Entering before pivotal confirmation",
+              "Trading on tips or rumors",
+              "Averaging into a losing position",
+              "Meeting a margin call",
+              "Chasing an already-extended move"
+            ]
+          },
+          {
+            tone: "red",
+            title: "Behavioral Failures",
+            items: [
+              "Overtrading — seeking daily activity",
+              "Holding losers while cutting winners",
+              "Letting a speculation become an investment",
+              "Acting on hope rather than tape evidence",
+              "Trying to recoup losses immediately"
+            ]
+          }
+        ]
+      },
+
+      risk: {
+        labelLeft: "Section 05 · Risk Management Model",
+        labelRight: "Jesse Livermore · Confirmed from Both Primary Books",
+        leftTitleHtml: "RISK <span>MANAGEMENT</span>",
+        leftParagraphs: [
+          "Livermore's risk rules are among the clearest elements of his playbook. Several are stated as absolute rules, not guidelines. The most important ones appear repeatedly and consistently across both primary books and the Wyckoff methods document."
+        ],
+        blackBoxTitle: "The Four Absolute Risk Rules",
+        blackBoxItems: [
+          {
+            num: "1",
+            title: "Never Average Down on a Losing Position",
+            text:
+              "This is stated as an ironclad rule across both primary sources with no exceptions. Adding to a loser signals the thesis is wrong."
+          },
+          {
+            num: "2",
+            title: "Never Meet a Margin Call — Exit Immediately",
+            text:
+              "A margin call means the market is telling you that you are wrong. Get out. Staying in compounds both the financial and psychological damage."
+          },
+          {
+            num: "3",
+            title: "Never Let a Speculation Become an Involuntary Investment",
+            text:
+              "If the trade is not working, it is a speculation that failed — not an investment. Exit and preserve capital for better conditions."
+          },
+          {
+            num: "4",
+            title: "Cut Losses Short. Hold Winners Long.",
+            text:
+              "The asymmetry of the system depends entirely on keeping losers small. Without this, the big winners cannot compensate for accumulated losses."
+          }
+        ],
+        giveBackTitle: "Capital Preservation in Drawdown",
+        giveBackCallout: {
+          tone: "gold",
+          title: "Confirmed (Reminiscences of a Stock Operator):",
+          text:
+            "After major losses, Livermore returned to small speculation first, rebuilt his bankroll methodically, and never risked his full capital in one position again — at least not until he had re-established a winning baseline."
+        },
+        pnlTitle: "Cash Reserve Philosophy",
+        pnlList: [
+          "Maintain significant cash reserves — never be fully invested",
+          "Cash allows you to capitalize on rare, high-conviction setups",
+          "Capital concentration on high-conviction trades only",
+          "During uncertain or trendless markets, stay entirely flat",
+          "The speculator who is always in the market misses the best moves"
+        ],
+        rightTitle: "Position Sizing Philosophy",
+        rightCards: [
+          {
+            tone: "default",
+            title: "Initial Position Sizing",
+            items: [
+              "Start with a probe — never full size at first entry",
+              "Limit risk on initial probe to a small fraction of capital",
+              "Full size built through pyramiding into confirmed winners",
+              "Each subsequent add is smaller than the prior — inverted pyramid size",
+              "At peak conviction: Livermore concentrated in very few positions"
+            ]
+          },
+          {
+            tone: "stripe",
+            title: "Pyramiding Protocol — Confirmed",
+            paragraph:
+              "Livermore's documented example from How to Trade in Stocks: on a 500-share target at 100, he would buy 300 at 100, add 100 at 105, and the final 100 at 110. This validates the thesis with each add.",
+            items: [
+              "First entry: largest block, at pivotal breakout",
+              "Second add: after normal reaction clears",
+              "Third add: on further confirmation of trend",
+              "Never add to declining positions"
+            ],
+            confidence: "high"
+          }
+        ],
+        metricsTitle: "Record Keeping as Risk Intelligence",
+        metricsList: [
+          "Livermore maintained detailed notebooks tracking price changes daily",
+          "Records revealed patterns and repetitions that were not visible trade-by-trade",
+          "His own statement: My records began to talk to me",
+          "Used records to identify when pivot logic was failing",
+          "Tracked time as well as price — the Livermore Market Key merged both"
+        ]
+      },
+
+      psychology: {
+        labelLeft: "Section 06 · Psychology & Process Rules",
+        labelRight: "Jesse Livermore · Primarily from Reminiscences (1923)",
+        leftTitleHtml: "PSYCHOLOGY & <span>PROCESS</span>",
+        leftParagraphs: [
+          "Psychology was not a secondary concern for Livermore — it was central to the entire framework. He identified human nature as the primary enemy of the speculator, and he developed explicit rules to contain it."
+        ],
+        evidenceRows: [
+          {
+            num: "1",
+            title: "The Market Never Lies — Opinions Do",
+            text: "Do not act until market action confirms your thesis. Your judgment is not worth acting on until the tape or price validates it."
+          },
+          {
+            num: "2",
+            title: "The Sitting Rule — Patience Is the Real Edge",
+            text: "Most traders overtrade. The big money is made in holding through the big swing, not in constant action. Patience is the hardest skill to develop."
+          },
+          {
+            num: "3",
+            title: "The Human Side Is the Greatest Enemy",
+            text: "Livermore explicitly named fear, greed, hope, and impatience as the forces that destroy most speculators — not lack of technical knowledge."
+          },
+          {
+            num: "4",
+            title: "Never Trade on Tips or Rumors",
+            text: "Few people make money on inside information. If someone is handing you easy money, ask why they are not keeping it themselves."
+          },
+          {
+            num: "5",
+            title: "Invert the Natural Impulse",
+            text: "Most people hold losers and cut winners. Livermore explicitly reversed this: hold what works, cut what does not, immediately."
+          }
+        ],
+        rightTitle: "Discipline Rules — Confirmed",
+        checklist: [
+          { ok: true, text: "Confirm market direction before any position" },
+          { ok: true, text: "Identify the leading sector and the leading stock" },
+          { ok: true, text: "Enter at the pivotal point, not before it" },
+          { ok: true, text: "Use a probe trade first" },
+          { ok: true, text: "Add only when position is profitable and trend confirms" },
+          { ok: true, text: "Hold through normal reactions — sit tight" },
+          { ok: true, text: "Exit on abnormal behavior, not on noise" },
+          { ok: false, text: "Never trade on tips or rumors" },
+          { ok: false, text: "Never average down a losing trade" },
+          { ok: false, text: "Never meet a margin call — exit immediately" },
+          { ok: false, text: "Never let a speculation become an involuntary investment" },
+          { ok: false, text: "Never trade every day — only in clear conditions" }
+        ],
+        processTitle: "Livermore's Daily Process",
+        processSteps: [
+          "Morning: review price record notebooks; identify which stocks are at or near pivotal levels",
+          "Macro check: assess general market conditions — is the trend still intact?",
+          "Sector check: are leading stocks in the leading sector still confirming?",
+          "Watchlist: identify 2–3 leading stocks with imminent pivotal breakout potential",
+          "Trade day: act only if a pivotal breakout triggers with volume and tape confirmation",
+          "Ongoing: hold winners through normal reactions; exit on abnormal behavior",
+          "Record review: update price notebooks; note pattern repetitions or warnings"
+        ],
+        simTitle: "Learning Philosophy",
+        simCallout: {
+          tone: "gold",
+          title: "Directly Stated (Reminiscences):",
+          text:
+            "The training of a stock trader is like a medical education. Learn the theory. Then spend your life practicing it. The practice is the hard part — and it cannot be skipped."
+        }
+      },
+
+      contradictions: {
+        labelLeft: "Section 07 · Contradictions, Edge Assessment & Historical Context",
+        labelRight: "Jesse Livermore · Critical Analysis",
+        leftTitleHtml: "CONTRADICTIONS & <span>TENSIONS</span>",
+        leftCards: [
+          {
+            tone: "amber-stripe",
+            title: "1. Preached Discipline; Violated It Repeatedly",
+            paragraphs: [
+              "Livermore made and lost fortunes four or five times. His own documented history includes at least one case where impatience cost him a million dollars on the cotton trade — he entered too early, before confirmation, violating his own rules.",
+              "The gap between what he said and what he did is not trivial. His greatest rules were learned the hard way, through repeated violations of them."
+            ],
+            concern: "High Significance"
+          },
+          {
+            tone: "amber-stripe",
+            title: "2. Market Manipulation — Not Just Speculation",
+            paragraphs: [
+              "In the 1920s, Livermore engaged in pool operations and market manipulation — charging fees of 25% of market value for driving stocks up artificially. This was not illegal at the time but it was a material source of his wealth.",
+              "His playbook is only partly 'pure speculation.' Some of his documented wins came from controlling price action, not reading it — which modern traders cannot replicate."
+            ],
+            concern: "High Concern for Modern Replication"
+          },
+          {
+            tone: "amber-stripe",
+            title: "3. Extreme Leverage — System Amplified Wins and Wipeouts",
+            paragraphs: [
+              "Livermore used enormous leverage throughout his career. His losses were not the result of a bad strategy alone — they were amplified by leverage that eliminated his ability to sit through adverse moves.",
+              "His risk rules advocate cutting losses quickly, but his own account sizes suggest he did not always size conservatively relative to his capital."
+            ],
+            concern: "Medium Concern"
+          }
+        ],
+        rightTitleHtml: "REAL EDGE <span>ASSESSMENT</span>",
+        rightIntro:
+          "Separating Livermore's genuine structural edge from the mythology and the historical context of pre-SEC markets.",
+        edgeItems: [
+          {
+            title: "1. Top-Down Framework Before It Had a Name",
+            text: "Livermore's insistence on reading macro and sector before touching a stock predated modern framework thinking by decades. This is a genuine, replicable structural edge."
+          },
+          {
+            title: "2. The Pivotal Point Method",
+            text: "Waiting for price to prove direction at a defined level is a time-tested entry philosophy. It directly avoids the most expensive error: entering too early before confirmation."
+          },
+          {
+            title: "3. Pyramiding Into Confirmed Winners",
+            text: "Adding to winning positions as price confirms the thesis is a mathematically sound approach to building size only when right, never when wrong."
+          },
+          {
+            title: "4. Pattern Recognition Through Record Keeping",
+            text: "His notebooks gave him a structured, data-driven view of price behavior over time. The patterns he identified were not intuition — they were documented observations refined over years."
+          },
+          {
+            title: "5. Patience as a Position",
+            text: "The willingness to stay flat in trendless markets is a genuine edge that most traders still cannot execute. Sitting on cash when conditions are unclear preserves capital for high-conviction entries."
+          }
+        ],
+        brandingCallout: {
+          tone: "gold",
+          title: "Historical Caveat:",
+          text:
+            "Pre-SEC markets were less regulated, more manipulable, and less liquid. Some of Livermore's edge came from an environment that no longer exists. The framework transfers. The exact conditions do not."
+        }
+      },
+
+      prosCons: {
+        labelLeft: "Section 08 · Strategy Assessment",
+        labelRight: "Jesse Livermore · Evidence-Based Evaluation",
+        titleHtml: "PROS & CONS OF <span>THE STRATEGY</span>",
+        intro:
+          "The conceptual framework is highly sound and has stood the test of time. The execution is extremely difficult — requiring patience, emotional control, and the ability to hold through adverse moves that most traders cannot sustain.",
+        pros: [
+          "Top-down framework filters out most bad trades before execution begins",
+          "Pivotal point entries align position with momentum rather than fighting it",
+          "Pyramiding protocol builds size only when you are right — never when wrong",
+          "Cash preservation philosophy protects capital during trendless regimes",
+          "Never averaging down keeps individual losses manageable",
+          "Applicable to both long and short — works in any macro regime",
+          "Record-keeping system creates a feedback loop for continuous improvement"
+        ],
+        cons: [
+          "Requires extreme patience that most traders demonstrably lack",
+          "Livermore himself violated his rules repeatedly — survivorship bias risk",
+          "Probe-to-pyramid sizing is psychologically very hard to execute in real time",
+          "No quantified stop levels — all 'mental' which creates execution inconsistency",
+          "Historical manipulation context is not replicable in modern markets",
+          "Extreme leverage use amplified wipeouts as much as wins",
+          "The system eventually failed Livermore — he died bankrupt in 1940"
+        ],
+        compareTitle: "Livermore vs. Modern Interpretation",
+        compareIntro:
+          "There is a meaningful gap between what Livermore's system actually was and how it is often taught today.",
+        compareLeft: {
+          title: "ACTUAL LIVERMORE SYSTEM",
+          items: [
+            "Top-down macro analysis first",
+            "Weeks to months hold times",
+            "Small probe, then pyramid into strength",
+            "Both long and short equally",
+            "Cash is a default, not a fallback",
+            "Exit on abnormal behavior — no fixed targets"
+          ]
+        },
+        compareRight: {
+          title: "COMMON MODERN MISREADING",
+          items: [
+            "Reduced to just 'pivotal point breakout entries'",
+            "Applied to day trading contexts",
+            "Full size entries on breakouts without probe discipline",
+            "Often taught as long-only",
+            "Trading frequency mistaken for edge",
+            "Fixed percentage targets applied — contradicts his holding philosophy"
+          ]
+        }
+      },
+
+      rules: {
+        labelLeft: "Section 09 · Rules-Based Reconstruction",
+        labelRight: "Jesse Livermore · Converted to Executable Format",
+        titleHtml: "RULES-BASED <span>RECONSTRUCTION</span>",
+        intro:
+          "This page converts Livermore's documented method into a clean, repeatable checklist — as close to executable as the primary source material allows.",
+        leftCards: [
+          {
+            tone: "gold",
+            title: "Pre-Trade Setup Criteria",
+            items: [
+              "Market direction confirmed — bull or bear",
+              "Leading sector identified and trending clearly",
+              "Leading stock in that sector selected",
+              "Sister stock selected for tandem confirmation",
+              "Pivotal point identified in advance — specific price level",
+              "Volume pattern aligns with breakout preparation",
+              "General conditions supportive — not trendless or choppy"
+            ]
+          },
+          {
+            tone: "default",
+            title: "Entry Checklist",
+            checklist: [
+              { ok: true, text: "Market and sector both confirmed" },
+              { ok: true, text: "Price crosses the pivotal level with volume" },
+              { ok: true, text: "Tape / price action confirms buyers in control" },
+              { ok: true, text: "Sister stock confirming the sector move" },
+              { ok: true, text: "Begin with a probe position — partial size only" },
+              { ok: true, text: "Trade shows a profit immediately after entry" },
+              { ok: false, text: "Do not enter before pivotal confirmation" },
+              { ok: false, text: "Do not act on tips, rumors, or anyone else's opinion" },
+              { ok: false, text: "Do not enter full size at the first signal" }
+            ]
+          }
+        ],
+        rightCards: [
+          {
+            tone: "red",
+            title: "Risk Checklist",
+            items: [
+              "Stop: return of price to or through the pivotal level",
+              "Never average down — exit if thesis fails",
+              "Never meet a margin call — exit first, ask questions later",
+              "Do not commit more capital than you can hold through a normal reaction",
+              "Reserve cash for adding to winners — not rescuing losers",
+              "If unsure: do nothing. Cash is a position."
+            ]
+          },
+          {
+            tone: "default",
+            title: "Exit Checklist",
+            checklist: [
+              { ok: true, text: "Hold through normal reaction (volume decreasing)" },
+              { ok: true, text: "Add to position on continuation after normal reaction" },
+              { ok: true, text: "Exit on abnormal reversal behavior with heavy volume" },
+              { ok: true, text: "Exit on one-day reversal pattern" },
+              { ok: true, text: "Exit if price breaks back through the pivotal level" },
+              { ok: false, text: "Do not try to catch the last eighth of a move" },
+              { ok: false, text: "Do not hold a speculation that has become a loss out of hope" }
+            ]
+          },
+          {
+            tone: "red",
+            title: "No-Trade Conditions",
+            items: [
+              "Market direction is unclear or trendless",
+              "Sector is not confirming the stock",
+              "No clear pivotal level identifiable",
+              "Sister stock is failing to confirm",
+              "Price is not at or near a pivotal level",
+              "You are acting on a tip, rumor, or emotion",
+              "You would be averaging down an existing loss"
+            ]
+          }
+        ]
+      },
+
+      final: {
+        labelLeft: "Section 10 · Final Analysis & Reliability Rating",
+        labelRight: "Jesse Livermore · Synthesis",
+        takeawaysTitleHtml: "TOP 5 STRONGEST <span>TAKEAWAYS</span>",
+        takeaways: [
+          "The top-down framework — market, then sector, then stock — is the most replicable and consistently documented element of the entire playbook.",
+          "The pivotal point entry method is the single most original and influential contribution Livermore made to technical trading; it directly pre-dates and parallels modern breakout theory.",
+          "Never averaging down is stated as an absolute rule across all primary sources with no exceptions — the single most consistent risk rule in the playbook.",
+          "The pyramiding protocol — enter small at the pivot, add only into confirmed strength — is explicitly documented with a specific numeric example in How to Trade in Stocks.",
+          "Patience and sitting in cash during trendless conditions is not a passive state in this system — it is an active edge, and Livermore argued it was the hardest skill to develop."
+        ],
+        unknownsTitleHtml: "TOP 5 UNRESOLVED <span>UNKNOWNS</span>",
+        unknowns: [
+          "Exact position size as a percentage of capital at each pyramid add — never quantified",
+          "Precise stop-loss distance from pivotal level — described qualitatively, never as a specific percentage",
+          "How much of the 1929 fortune was manipulation-driven vs. pure speculation",
+          "His commodity trading rules in full detail — mentioned but never systematically documented",
+          "Whether the final bankruptcy was strategy failure or personal and financial circumstance failure"
+        ],
+        summaryTitleHtml: "TRUE OPERATING <span>STYLE</span>",
+        summaryText:
+          "Jesse Livermore operated as a top-down macro swing speculator. His edge was not chart pattern recognition alone — it was the combination of macro-first thinking, sector analysis, patience before entry, precision at pivotal points, and the discipline to pyramid into confirmed winners while ruthlessly cutting losers. The framework is highly reconstructable on paper. The execution is exceptionally difficult in practice because it demands emotional qualities — patience, discipline, and the ability to hold through pain — that most traders permanently lack. His own repeated violations of his own rules, and his eventual bankruptcy, confirm that knowing the system is not the same as executing it.",
+        checklistTitleHtml: "EDGE <span>CHECKLIST</span>",
+        checklist: [
+          { ok: true, text: "Structural edge: top-down macro filtering before any entry" },
+          { ok: true, text: "Entry edge: pivotal point precision — enter only when price proves direction" },
+          { ok: true, text: "Sizing edge: probe trade minimizes initial risk exposure" },
+          { ok: true, text: "Pyramid edge: adds size only into confirmed wins — never into losses" },
+          { ok: true, text: "Behavioral edge: cash as default in trendless markets" },
+          { ok: true, text: "Pattern edge: sector confirmation through tandem stock method" }
+        ],
+        ratingTitle: "Final Reliability Rating",
+        ratingValue: "PARTIALLY HIGHLY RECONSTRUCTABLE",
+        ratingText:
+          "The conceptual framework, rules, and specific setups are among the most documented in trading history. The quantified execution parameters — exact stop distance, exact add sizes, exact capital allocation — remain partially inferred. The gap between the clean rules and Livermore's own execution history is a major unresolved tension."
+      }
+    };
+
+    /*
+    ============================================================
+    RENDER ENGINE — DO NOT EDIT
+    ============================================================
+    */
+
+    const app = document.getElementById("app");
+    document.title = REPORT.documentTitle;
+
+    function esc(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function confClass(value) {
+      if (value === "high") return "conf-high";
+      if (value === "med") return "conf-med";
+      if (value === "low") return "conf-low";
+      return "conf-high";
+    }
+
+    function renderParagraphs(items = []) {
+      return items.map(p => `<p>${esc(p)}</p>`).join("");
+    }
+
+    function renderList(items = []) {
+      return `<ul>${items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
+    }
+
+    function renderChecklist(items = []) {
+      return `
+        <ul class="checklist">
+          ${items.map(item => `
+            <li>
+              <span class="c-icon ${item.ok ? 'c-green' : 'c-red'}">${item.ok ? '✓' : '✗'}</span>
+              <span>${esc(item.text)}</span>
+            </li>
+          `).join("")}
+        </ul>
+      `;
+    }
+
+    function renderCallout(callout) {
+      if (!callout) return "";
+      const tone =
+        callout.tone === "gold" ? "callout-gold" :
+        callout.tone === "green" ? "callout-green" :
+        callout.tone === "red" ? "callout-red" : "";
+      return `
+        <div class="callout ${tone}">
+          <strong>${esc(callout.title)}</strong> ${esc(callout.text)}
+        </div>
+      `;
+    }
+
+    function renderCardClass(tone) {
+      if (tone === "gold") return "card card-gold";
+      if (tone === "green") return "card card-green";
+      if (tone === "red") return "card card-red";
+      if (tone === "blue") return "card card-blue";
+      if (tone === "black") return "card card-black";
+      if (tone === "stripe") return "card card-stripe";
+      if (tone === "green-stripe") return "card card-stripe-green";
+      if (tone === "red-stripe") return "card card-stripe-red";
+      return "card";
+    }
+
+    function renderPageLabel(left, right) {
+      return `
+        <div class="page-label">
+          <span>${esc(left)}</span>
+          <span>${esc(right)}</span>
+        </div>
+      `;
+    }
+
+    function renderCover() {
+      return `
+        <div class="cover">
+          <div class="cover-bg"></div>
+          <div class="cover-num">${esc(REPORT.cover.bgInitials)}</div>
+          <div class="cover-eyebrow">${esc(REPORT.cover.eyebrow)}</div>
+          <h1>${REPORT.cover.titleHtml}</h1>
+          <p class="cover-desc">${esc(REPORT.cover.description)}</p>
+          <div class="cover-pills">
+            ${REPORT.cover.pills.map(pill => `
+              <div class="cover-pill ${pill.gold ? 'cover-pill-gold' : ''}">${esc(pill.text)}</div>
+            `).join("")}
+          </div>
+          <div class="cover-stats">
+            ${REPORT.cover.stats.map(stat => `
+              <div class="c-stat">
+                <span class="c-stat-l">${esc(stat.label)}</span>
+                <span class="c-stat-v">${esc(stat.value)}</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderOverview() {
+      const s = REPORT.overview;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${renderParagraphs(s.leftParagraphs)}
+              ${renderCallout(s.callout)}
+              <h3 class="mt-24">${esc(s.rulesTitle)}</h3>
+              <ol style="display:flex; flex-direction:column; gap:10px;">
+                ${s.rules.map(rule => `<li>${esc(rule)}</li>`).join("")}
+              </ol>
+            </div>
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              <div class="card card-black mt-16 mb-24">
+                <p style="font-family:'Bebas Neue',cursive; font-size:18px; letter-spacing:.03em; color:white; margin-bottom:0;">
+                  ${esc(s.quote)}
+                </p>
+              </div>
+              <h4 style="margin-top:20px;">Market Logic</h4>
+              <ul style="list-style:none; padding:0;">
+                ${s.logicRows.map(row => `
+                  <li style="display:flex; gap:10px; margin-bottom:10px; align-items:flex-start;">
+                    <span class="badge ${row.badgeClass}">${esc(row.label)}</span>
+                    <span>${esc(row.text)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+              <hr class="divider">
+              <h3>${esc(s.timeframesTitle)}</h3>
+              ${renderList(s.timeframes)}
+              <div class="callout callout-gold mt-20">
+                <strong>${esc(s.sourceNote)}</strong> Overall:
+                <span class="${confClass(s.sourceConfidence)}">${esc(s.sourceConfidence.toUpperCase())}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPillars() {
+      const s = REPORT.pillars;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <h2>${s.titleHtml}</h2>
+          <p>${esc(s.intro)}</p>
+          <div class="pillar-grid mt-32">
+            ${s.cards.map(card => `
+              <div class="pillar-card">
+                <div class="pillar-num">${esc(card.num)}</div>
+                <div class="pillar-name">${esc(card.name)}</div>
+                <div class="pillar-detail">${esc(card.detail)}</div>
+              </div>
+            `).join("")}
+          </div>
+          <hr class="divider">
+          <div class="col-2 mt-24">
+            <div>
+              <h3>${esc(s.leftTitle)}</h3>
+              <p>${esc(s.leftText)}</p>
+              <table class="t mt-16">
+                <thead>
+                  <tr>${s.table.headers.map(h => `<th>${esc(h)}</th>`).join("")}</tr>
+                </thead>
+                <tbody>
+                  ${s.table.rows.map(row => `
+                    <tr>
+                      <td><strong>${esc(row[0])}</strong></td>
+                      <td>${esc(row[1])}</td>
+                      <td>${esc(row[2])}</td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+              ${renderCallout(s.conditionCallout)}
+            </div>
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              <div class="card mt-16">
+                <div style="display:flex; flex-direction:column; gap:0;">
+                  ${s.sessionRows.map((row, idx) => {
+                    const isGold = row[2] === true;
+                    const isGreen = row[2] === "green";
+                    const bg = isGold ? "background:#fffbeb; margin:0 -8px; padding:10px 8px;" : "";
+                    const color = isGold ? "var(--amber)" : isGreen ? "var(--green)" : "inherit";
+                    const detailColor = isGold ? "var(--amber)" : isGreen ? "var(--green)" : "var(--gray)";
+                    const weight = isGold ? "800" : isGreen ? "700" : "600";
+                    const detailWeight = isGold ? "700" : isGreen ? "600" : "400";
+                    return `
+                      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; ${idx < s.sessionRows.length - 1 ? 'border-bottom:1px solid var(--divider);' : ''} ${bg}">
+                        <span style="font-weight:${weight}; color:${color};">${esc(row[0])}</span>
+                        <span style="color:${detailColor}; font-weight:${detailWeight}; font-size:13px;">${esc(row[1])}</span>
+                      </div>
+                    `;
+                  }).join("")}
+                </div>
+              </div>
+              <h3 class="mt-24">${esc(s.scannerTitle)}</h3>
+              ${renderList(s.scannerList)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLargeSetup(setup) {
+      return `
+        <div class="setup-card mt-28">
+          <div class="setup-hdr">
+            <div class="setup-hdr-title">${esc(setup.title)}</div>
+            <span class="badge ${setup.badgeClass}">${esc(setup.badgeText)}</span>
+          </div>
+          <div class="setup-body">
+            <div class="col-2 mb-20">
+              <div>
+                <h4>${esc(setup.leftTitle)}</h4>
+                ${renderParagraphs(setup.leftParagraphs)}
+                ${renderCallout(setup.leftCallout)}
+              </div>
+              <div>
+                <h4>${esc(setup.rightTitle)}</h4>
+                ${renderList(setup.rightList)}
+                <h4 class="mt-16">${esc(setup.whyTitle)}</h4>
+                ${renderList(setup.whyList)}
+              </div>
+            </div>
+            <div class="setup-grid">
+              ${setup.grid.map(cell => `
+                <div class="setup-cell">
+                  <div class="setup-cell-lbl">${esc(cell[0])}</div>
+                  <div class="setup-cell-val">${esc(cell[1])}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSmallSetup(setup) {
+      return `
+        <div class="setup-card" style="margin-bottom:0;">
+          <div class="setup-hdr">
+            <div class="setup-hdr-title">${esc(setup.title)}</div>
+            <span class="badge ${setup.badgeClass}">${esc(setup.badgeText)}</span>
+          </div>
+          <div class="setup-body">
+            ${renderParagraphs(setup.paragraphs)}
+            ${renderList(setup.list)}
+            <div class="mt-16">
+              <span class="${confClass(setup.confidence)}">${esc(setup.confidence.toUpperCase())}</span>
+              — ${esc(setup.confidenceText)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSetups() {
+      const s = REPORT.setups;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <h2>${s.titleHtml}</h2>
+          <p>${esc(s.intro)}</p>
+          ${s.large.map(renderLargeSetup).join("")}
+          <div class="col-2">
+            ${s.sideBySide.map(renderSmallSetup).join("")}
+          </div>
+          <div class="setup-card mt-28">
+            <div class="setup-hdr">
+              <div class="setup-hdr-title">${esc(s.finalLarge.title)}</div>
+              <span class="badge ${s.finalLarge.badgeClass}">${esc(s.finalLarge.badgeText)}</span>
+            </div>
+            <div class="setup-body">
+              <div class="col-2">
+                <div>
+                  ${renderParagraphs(s.finalLarge.leftParagraphs)}
+                  ${renderList(s.finalLarge.leftList)}
+                </div>
+                <div>
+                  <h4>${esc(s.finalLarge.rightTitle)}</h4>
+                  <p>${esc(s.finalLarge.rightParagraph)}</p>
+                  ${renderCallout(s.finalLarge.rightCallout)}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderExecution() {
+      const s = REPORT.execution;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${renderParagraphs(s.leftParagraphs)}
+              <h3 class="mt-24">${esc(s.entryTitle)}</h3>
+              <div class="${renderCardClass(s.entryCard.tone)} mt-12">
+                ${renderList(s.entryCard.list)}
+                <div class="mt-16"><span class="${confClass(s.entryCard.confidence)}">${esc(s.entryCard.confidence.toUpperCase())}</span></div>
+              </div>
+              <h3 class="mt-24">${esc(s.l2Title)}</h3>
+              ${renderList(s.l2List)}
+              <h3 class="mt-24">${esc(s.addTitle)}</h3>
+              ${renderCallout(s.addCallout)}
+            </div>
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              <div class="card card-black mt-16">
+                <p style="font-family:'Bebas Neue',cursive; font-size:18px; color:var(--accent); letter-spacing:.04em; margin-bottom:12px;">
+                  ${esc(s.rightBlackTitle)}
+                </p>
+                <p>${esc(s.rightBlackText)}</p>
+              </div>
+              <h3 class="mt-24">${esc(s.trimTitle)}</h3>
+              <div class="${renderCardClass(s.trimCard.tone)} mt-12">
+                <ol style="display:flex; flex-direction:column; gap:10px;">
+                  ${s.trimCard.steps.map(step => `<li>${esc(step)}</li>`).join("")}
+                </ol>
+                <div class="mt-16"><span class="${confClass(s.trimCard.confidence)}">${esc(s.trimCard.confidence.toUpperCase())}</span></div>
+              </div>
+              <h3 class="mt-24">${esc(s.stopTitle)}</h3>
+              ${renderList(s.stopList)}
+            </div>
+          </div>
+          <hr class="divider">
+          <h3>${esc(s.avoidTitle)}</h3>
+          <div class="col-3 mt-16">
+            ${s.avoidCards.map(card => `
+              <div class="${renderCardClass(card.tone)}">
+                <h4 style="color:${card.tone === 'red' ? 'var(--red)' : 'inherit'};">${esc(card.title)}</h4>
+                ${renderList(card.items)}
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRisk() {
+      const s = REPORT.risk;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${renderParagraphs(s.leftParagraphs)}
+              <div class="card card-black mt-24">
+                <h3 style="color:white; margin-bottom:16px;">${esc(s.blackBoxTitle)}</h3>
+                <div style="display:flex; flex-direction:column; gap:16px;">
+                  ${s.blackBoxItems.map(item => `
+                    <div style="display:flex; gap:14px; align-items:flex-start;">
+                      <span style="font-family:'Bebas Neue',cursive; font-size:36px; color:var(--accent); line-height:1; flex-shrink:0;">${esc(item.num)}</span>
+                      <div>
+                        <p style="font-weight:700; color:white; margin-bottom:4px;">${esc(item.title)}</p>
+                        <p style="font-size:13px;">${esc(item.text)}</p>
+                      </div>
+                    </div>
+                  `).join("")}
+                </div>
+              </div>
+              <h3 class="mt-32">${esc(s.giveBackTitle)}</h3>
+              ${renderCallout(s.giveBackCallout)}
+              <h3 class="mt-24">${esc(s.pnlTitle)}</h3>
+              ${renderList(s.pnlList)}
+            </div>
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              ${s.rightCards.map(card => `
+                <div class="${renderCardClass(card.tone)} mt-16">
+                  <h4>${esc(card.title)}</h4>
+                  ${card.paragraph ? `<p>${esc(card.paragraph)}</p>` : ""}
+                  ${renderList(card.items || [])}
+                  ${card.confidence ? `<div class="mt-16"><span class="${confClass(card.confidence)}">${esc(card.confidence.toUpperCase())}</span></div>` : ""}
+                </div>
+              `).join("")}
+              <h3 class="mt-24">${esc(s.metricsTitle)}</h3>
+              ${renderList(s.metricsList)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPsychology() {
+      const s = REPORT.psychology;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${renderParagraphs(s.leftParagraphs)}
+              <h3 class="mt-24">Core Mental Models</h3>
+              ${s.evidenceRows.map(row => `
+                <div class="evidence-row">
+                  <div class="evidence-num">${esc(row.num)}</div>
+                  <div>
+                    <strong>${esc(row.title)}</strong>
+                    <p>${esc(row.text)}</p>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              <div class="card mt-16">
+                ${renderChecklist(s.checklist)}
+              </div>
+              <h3 class="mt-24">${esc(s.processTitle)}</h3>
+              <ol class="mt-12" style="display:flex; flex-direction:column; gap:10px;">
+                ${s.processSteps.map(step => `<li>${esc(step)}</li>`).join("")}
+              </ol>
+              <h3 class="mt-24">${esc(s.simTitle)}</h3>
+              ${renderCallout(s.simCallout)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderContradictions() {
+      const s = REPORT.contradictions;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${s.leftCards.map(card => `
+                <div class="card card-stripe mt-24" style="border-left-color:var(--amber);">
+                  <h4 style="color:var(--amber);">${esc(card.title)}</h4>
+                  ${card.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}
+                  <p style="margin-top:8px;"><span class="conf-med">${esc(card.concern)}</span></p>
+                </div>
+              `).join("")}
+            </div>
+            <div>
+              <h2>${s.rightTitleHtml}</h2>
+              <p>${esc(s.rightIntro)}</p>
+              <div class="card card-black mt-24">
+                <h3 style="color:white; margin-bottom:16px;">The Actual Edge</h3>
+                <div style="display:flex; flex-direction:column; gap:14px;">
+                  ${s.edgeItems.map(item => `
+                    <div>
+                      <p style="font-weight:700; color:var(--accent); margin-bottom:4px;">${esc(item.title)}</p>
+                      <p style="font-size:13px;">${esc(item.text)}</p>
+                    </div>
+                  `).join("")}
+                </div>
+              </div>
+              ${renderCallout(s.brandingCallout)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProsCons() {
+      const s = REPORT.prosCons;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <h2>${s.titleHtml}</h2>
+          <p>${esc(s.intro)}</p>
+          <div class="pros-cons mt-28">
+            <div class="pros-col">
+              <h4 style="color:var(--green);">✓ &nbsp; Pros</h4>
+              <ul style="list-style:none; padding:0; margin-top:16px;">
+                ${s.pros.map(item => `
+                  <li style="display:flex; gap:10px; margin-bottom:12px;">
+                    <span style="color:var(--green); font-weight:800;">+</span>
+                    <span>${esc(item)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+            <div class="cons-col">
+              <h4 style="color:var(--red);">✗ &nbsp; Cons / Awareness Points</h4>
+              <ul style="list-style:none; padding:0; margin-top:16px;">
+                ${s.cons.map(item => `
+                  <li style="display:flex; gap:10px; margin-bottom:12px;">
+                    <span style="color:var(--red); font-weight:800;">−</span>
+                    <span>${esc(item)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+          </div>
+          <hr class="divider">
+          <h3 class="mt-32">${esc(s.compareTitle)}</h3>
+          <p style="margin-bottom:20px;">${esc(s.compareIntro)}</p>
+          <div class="vs-grid">
+            <div class="card card-gold" style="border-radius:8px 0 0 8px;">
+              <h4 style="color:var(--accent-dark);">${esc(s.compareLeft.title)}</h4>
+              ${renderList(s.compareLeft.items)}
+            </div>
+            <div class="vs-divider">
+              <div class="vs-circle">VS</div>
+            </div>
+            <div class="card" style="border-radius:0 8px 8px 0; border-left:none;">
+              <h4 style="color:var(--black);">${esc(s.compareRight.title)}</h4>
+              ${renderList(s.compareRight.items)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRules() {
+      const s = REPORT.rules;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <h2>${s.titleHtml}</h2>
+          <p>${esc(s.intro)}</p>
+          <div class="col-2 mt-28">
+            <div>
+              ${s.leftCards.map(card => `
+                <div class="${renderCardClass(card.tone)} mb-20">
+                  <h3>${esc(card.title)}</h3>
+                  ${card.items ? renderList(card.items) : ""}
+                  ${card.checklist ? renderChecklist(card.checklist) : ""}
+                </div>
+              `).join("")}
+            </div>
+            <div>
+              ${s.rightCards.map(card => `
+                <div class="${renderCardClass(card.tone)} mb-20">
+                  <h3>${esc(card.title)}</h3>
+                  ${card.items ? renderList(card.items) : ""}
+                  ${card.checklist ? renderChecklist(card.checklist) : ""}
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFinal() {
+      const s = REPORT.final;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <h2>${s.takeawaysTitleHtml}</h2>
+          <div class="takeaway-grid mt-24">
+            ${s.takeaways.map((item, index) => `
+              <div class="takeaway-card">
+                <div class="takeaway-num">${String(index + 1).padStart(2, "0")}</div>
+                <div class="takeaway-text">${esc(item)}</div>
+              </div>
+            `).join("")}
+          </div>
+          <hr class="divider">
+          <h2 class="mt-32">${s.unknownsTitleHtml}</h2>
+          <div class="unknown-grid mt-24">
+            ${s.unknowns.map((item, index) => `
+              <div class="unknown-card">
+                <div class="unknown-num">?${index + 1}</div>
+                <div class="unknown-text">${esc(item)}</div>
+              </div>
+            `).join("")}
+          </div>
+          <hr class="divider">
+          <div class="col-2 mt-32">
+            <div>
+              <h2>${s.summaryTitleHtml}</h2>
+              <div class="callout callout-gold mt-16" style="padding:24px;">
+                <p>${esc(s.summaryText)}</p>
+              </div>
+            </div>
+            <div>
+              <h2>${s.checklistTitleHtml}</h2>
+              <div class="card mt-16">
+                ${renderChecklist(s.checklist)}
+              </div>
+              <div class="card card-black mt-16">
+                <h4 style="color:rgba(255,255,255,.5);">${esc(s.ratingTitle)}</h4>
+                <p style="font-family:'Bebas Neue',cursive; font-size:22px; color:var(--accent); margin:8px 0; letter-spacing:.03em;">
+                  ${esc(s.ratingValue)}
+                </p>
+                <p style="font-size:13px; color:rgba(255,255,255,.65);">${esc(s.ratingText)}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    app.innerHTML = [
+      renderCover(),
+      renderOverview(),
+      renderPillars(),
+      renderSetups(),
+      renderExecution(),
+      renderRisk(),
+      renderPsychology(),
+      renderContradictions(),
+      renderProsCons(),
+      renderRules(),
+      renderFinal(),
+      `<div class="footer">${esc(REPORT.footerText)}</div>`
+    ].join("");
+  </script>
+</body>
+</html>

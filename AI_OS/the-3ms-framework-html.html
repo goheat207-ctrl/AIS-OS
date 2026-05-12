@@ -1,0 +1,1650 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Three Ms of AI™ — Mindset, Method, Machine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..900,0..100,0..1;1,9..144,200..900,0..100,0..1&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink-1000:#060E1C;
+    --ink-950:#0A1628;
+    --ink-900:#0F1B30;
+    --ink-800:#152340;
+    --ink-700:#1E2F50;
+    --ink-600:#293D63;
+    --paper-50:#F5F1EA;
+    --paper-100:#E8EEF7;
+    --paper-200:#C4D0E0;
+    --paper-300:#7B8AA3;
+    --paper-400:#4F5E78;
+    --accent:#4A9EFF;
+    --accent-hot:#82B7FF;
+    --signal:#FFB347;
+    --warn:#FF6B6B;
+    --grow:#4AFF8F;
+    --grid:rgba(255,255,255,0.035);
+    --hairline:rgba(255,255,255,0.08);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  ::selection{ background:var(--accent); color:var(--ink-1000); }
+
+  body{
+    font-family:'Manrope', system-ui, sans-serif;
+    font-weight:300;
+    background:var(--ink-950);
+    color:var(--paper-100);
+    line-height:1.55;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(74,158,255,0.10), transparent 60%),
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 100% 100%, 64px 64px, 64px 64px;
+    background-attachment: fixed, fixed, fixed;
+    min-height:100vh;
+  }
+
+  /* film-grain noise overlay */
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:1;
+    opacity:.035;
+    background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .frame{
+    position:relative; z-index:2;
+    max-width:1320px;
+    margin:0 auto;
+    padding:0 56px;
+  }
+
+  /* ───────── HERO ───────── */
+  .hero{
+    padding:96px 0 72px;
+    position:relative;
+  }
+
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    padding-bottom:64px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .topbar .left{ display:flex; align-items:center; gap:14px; }
+  .topbar .left::before{
+    content:''; width:8px; height:8px; border-radius:50%;
+    background:var(--signal);
+    box-shadow:0 0 12px var(--signal);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%, 100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:.5; transform:scale(.85); }
+  }
+  .topbar .right{ display:flex; gap:32px; }
+  .topbar .right span:not(:last-child)::after{
+    content:'/'; margin-left:32px; color:var(--paper-400);
+  }
+
+  .eyebrow{
+    margin-top:72px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{
+    content:''; width:32px; height:1px; background:var(--accent);
+  }
+
+  h1.title{
+    margin-top:32px;
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 144, 'wght' 360, 'SOFT' 0, 'WONK' 1;
+    font-size:clamp(56px, 9.2vw, 148px);
+    line-height:.92;
+    letter-spacing:-.035em;
+    color:var(--paper-100);
+  }
+  h1.title .ital{
+    font-style:italic;
+    font-variation-settings:'opsz' 144, 'wght' 320, 'SOFT' 100, 'WONK' 1;
+    color:var(--accent);
+  }
+  h1.title .tm{
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:.16em;
+    font-weight:500;
+    vertical-align:super;
+    color:var(--paper-300);
+    letter-spacing:.04em;
+    margin-left:.15em;
+  }
+
+  .kicker{
+    margin-top:40px;
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 36, 'wght' 320, 'SOFT' 50;
+    font-style:italic;
+    font-size:clamp(20px, 2.1vw, 26px);
+    line-height:1.45;
+    color:var(--paper-200);
+    max-width:760px;
+  }
+
+  .boring-line{
+    margin-top:28px;
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 380, 'SOFT' 60;
+    font-style:italic;
+    font-size:clamp(22px, 2.4vw, 30px);
+    color:var(--accent);
+    letter-spacing:-.01em;
+  }
+
+  .meta{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:0;
+    padding-top:40px;
+    border-top:1px solid var(--hairline);
+  }
+  .meta .cell{
+    position:relative;
+    padding:8px 32px 8px 0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  .meta .cell + .cell{
+    padding-left:32px;
+    border-left:1px solid var(--hairline);
+  }
+  .meta .cell .pillar{
+    display:block;
+    margin-top:14px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-variation-settings:'opsz' 96, 'wght' 380, 'SOFT' 30, 'WONK' 1;
+    font-size:clamp(32px, 3.4vw, 44px);
+    line-height:1.05;
+    letter-spacing:-.02em;
+    color:var(--paper-100);
+    text-transform:none;
+  }
+  .meta .cell .role{
+    display:block;
+    margin-top:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+  }
+  @media (max-width:780px){
+    .meta{ grid-template-columns:1fr; }
+    .meta .cell + .cell{ padding-left:0; border-left:none; border-top:1px solid var(--hairline); margin-top:24px; padding-top:24px; }
+  }
+
+  /* ───────── DIP CALLOUT ───────── */
+  .dip{
+    margin-top:96px;
+    padding:32px 36px;
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .dip .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--warn);
+    display:flex; align-items:center; gap:12px;
+  }
+  .dip .label::before{
+    content:''; width:8px; height:8px; border-radius:50%;
+    background:var(--warn); box-shadow:0 0 10px var(--warn);
+  }
+  .dip .stmt{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 96, 'wght' 320, 'SOFT' 30;
+    font-size:clamp(20px, 2.4vw, 28px);
+    line-height:1.35;
+    letter-spacing:-.012em;
+    color:var(--paper-100);
+  }
+  .dip .stmt em{
+    font-style:italic;
+    color:var(--accent);
+    font-variation-settings:'opsz' 96, 'wght' 360, 'SOFT' 100, 'WONK' 1;
+  }
+  @media (max-width:780px){ .dip{ grid-template-columns:1fr; padding:24px 0; } }
+
+  /* ───────── LAYERS (FLOORS) ───────── */
+  .tower{
+    position:relative;
+    margin-top:64px;
+    padding-bottom:64px;
+  }
+
+  .floor{
+    position:relative;
+    padding:88px 0 88px 0;
+    border-top:1px solid var(--hairline);
+  }
+  .floor:last-child{ border-bottom:1px solid var(--hairline); }
+
+  .floor.lvl-01{
+    background: linear-gradient(180deg, rgba(74,158,255,0.025) 0%, transparent 60%);
+  }
+  .floor.lvl-02{
+    background: linear-gradient(180deg, rgba(74,158,255,0.045) 0%, transparent 60%);
+  }
+  .floor.lvl-03{
+    background: linear-gradient(180deg, rgba(74,158,255,0.065) 0%, transparent 60%);
+  }
+
+  .floor-head{
+    display:grid;
+    grid-template-columns: 280px 1fr;
+    column-gap:64px;
+    align-items:start;
+    margin-bottom:56px;
+  }
+
+  .floor .number{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 144, 'wght' 200, 'SOFT' 0, 'WONK' 0;
+    font-style:italic;
+    font-size:clamp(140px, 16vw, 220px);
+    line-height:.84;
+    letter-spacing:-.05em;
+    user-select:none;
+  }
+  .floor.lvl-01 .number{ color:rgba(196,208,224,.45); }
+  .floor.lvl-02 .number{ color:rgba(196,208,224,.7); }
+  .floor.lvl-03 .number{
+    color:var(--accent);
+    text-shadow: 0 0 80px rgba(74,158,255,.3);
+  }
+  .floor .number .tag{
+    display:block;
+    margin-top:24px;
+    font-family:'JetBrains Mono', monospace;
+    font-style:normal;
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    white-space:nowrap;
+  }
+  .floor .number .tag::before{
+    content:''; display:inline-block;
+    width:24px; height:1px;
+    background:var(--paper-300);
+    vertical-align:middle;
+    margin-right:10px;
+  }
+
+  .floor .head-body .verb{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .floor .head-body .verb::before{
+    content:''; width:18px; height:1px; background:var(--accent);
+  }
+
+  .floor .head-body h2{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 96, 'wght' 380, 'SOFT' 30, 'WONK' 1;
+    font-size:clamp(48px, 5.8vw, 76px);
+    line-height:.95;
+    letter-spacing:-.028em;
+    color:var(--paper-100);
+    margin-bottom:14px;
+  }
+  .floor .head-body h2 em{
+    font-style:italic;
+    color:var(--accent);
+    font-variation-settings:'opsz' 96, 'wght' 380, 'SOFT' 100, 'WONK' 1;
+  }
+
+  .floor .head-body .tagline{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 350;
+    font-style:italic;
+    font-size:22px;
+    line-height:1.4;
+    color:var(--paper-200);
+  }
+
+  @media (max-width:1100px){
+    .floor-head{ grid-template-columns: 200px 1fr; column-gap:40px; }
+  }
+  @media (max-width:760px){
+    .frame{ padding:0 24px; }
+    .floor-head{ grid-template-columns:1fr; }
+    .floor .number{ font-size:120px; }
+    h1.title{ font-size:56px; }
+    .topbar .right{ display:none; }
+  }
+
+  /* ───────── SUB LABEL ───────── */
+  .sub-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin: 32px 0 24px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .sub-label::before{
+    content:''; width:24px; height:1px; background:var(--accent);
+  }
+
+  /* ───────── CONCEPT CARDS ───────── */
+  .concept-row{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+  }
+  .concept-row.tight { gap:16px; }
+
+  .card{
+    border:1px solid var(--hairline);
+    border-radius:6px;
+    padding:28px 28px 28px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.05));
+    backdrop-filter: blur(6px);
+    cursor:pointer;
+    transition: border-color 320ms ease, transform 320ms ease, box-shadow 320ms ease, background 320ms ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity:.25;
+    transition: opacity 320ms ease;
+  }
+  .card:hover{
+    border-color:rgba(74,158,255,0.35);
+    background: linear-gradient(180deg, rgba(74,158,255,0.04), rgba(0,0,0,0.05));
+    transform:translateY(-1px);
+  }
+  .card:hover::before{ opacity:.55; }
+  .card.expanded{
+    border-color:var(--accent);
+    background: linear-gradient(180deg, rgba(74,158,255,0.06), rgba(0,0,0,0.05));
+  }
+  .card.expanded::before{ opacity:.8; }
+  .concept-row:has(.card.expanded){
+    grid-template-columns: 1fr;
+  }
+
+  .card .card-eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    margin-bottom:14px;
+  }
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 36, 'wght' 400, 'SOFT' 30, 'WONK' 1;
+    font-size:24px;
+    line-height:1.1;
+    letter-spacing:-.018em;
+    color:var(--paper-100);
+    margin-bottom:10px;
+  }
+  .card h3 em{
+    font-style:italic;
+    color:var(--accent);
+    font-variation-settings:'opsz' 36, 'wght' 400, 'SOFT' 100, 'WONK' 1;
+  }
+  .card .one-liner{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 18, 'wght' 320;
+    font-style:italic;
+    font-size:15px;
+    color:var(--paper-200);
+    line-height:1.55;
+  }
+
+  .card .expand-hint{
+    margin-top:16px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--paper-400);
+    transition: color 320ms ease;
+  }
+  .card:hover .expand-hint{ color:var(--accent); }
+  .card.expanded .expand-hint{ display:none; }
+
+  .card .detail{
+    display:none;
+    margin-top:24px;
+    padding-top:24px;
+    border-top:1px dashed rgba(255,255,255,0.12);
+  }
+  .card.expanded .detail{ display:block; }
+  .card .detail p{
+    font-size:14.5px;
+    line-height:1.7;
+    color:var(--paper-200);
+    margin-bottom:14px;
+    max-width:64ch;
+  }
+  .card .detail p strong{ color:var(--paper-100); font-weight:600; }
+  .card .detail p em{ color:var(--paper-100); font-style:italic; }
+
+  .conn-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--paper-400);
+    margin-top:20px;
+    margin-bottom:10px;
+  }
+  .connections{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .conn-chip{
+    padding:5px 10px;
+    border-radius:3px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:.04em;
+    border:1px solid var(--hairline);
+    color:var(--paper-200);
+  }
+  .conn-chip.feeds{ color:var(--accent); border-color:rgba(74,158,255,0.35); }
+  .conn-chip.fed-by{ color:var(--grow); border-color:rgba(74,255,143,0.3); }
+  .conn-chip.parallel{ color:var(--paper-200); border-color:rgba(196,208,224,0.25); }
+  .conn-chip.branch{ color:var(--accent); border:1px dashed rgba(74,158,255,0.4); }
+
+  /* ───────── PIPELINE ───────── */
+  .pipeline{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+    gap:0;
+    margin-bottom:32px;
+    padding:24px 0;
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+  }
+  .pipeline .step{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--paper-100);
+    padding:8px 14px;
+    border:1px solid var(--hairline);
+    border-radius:3px;
+  }
+  .pipeline .arrow{
+    color:var(--accent);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    margin:0 14px;
+    opacity:.7;
+  }
+
+  /* ───────── EAD FLOWCHART ───────── */
+  .ead-tree{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:32px 24px;
+  }
+  .ead-node{
+    padding:10px 18px;
+    border-radius:3px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.04em;
+    text-align:center;
+  }
+  .ead-node.start{
+    border:1px solid var(--accent);
+    background:rgba(74,158,255,0.08);
+    color:var(--paper-100);
+  }
+  .ead-node.decision{
+    border:1px solid var(--accent);
+    color:var(--accent);
+    background:transparent;
+  }
+  .ead-node.kill{
+    border:1px solid var(--warn);
+    color:var(--warn);
+    background:rgba(255,107,107,0.06);
+  }
+  .ead-node.auto{
+    border:1px solid var(--accent);
+    color:var(--accent);
+    background:rgba(74,158,255,0.08);
+  }
+  .ead-node.delegate{
+    border:1px solid var(--paper-300);
+    color:var(--paper-200);
+    background:rgba(196,208,224,0.04);
+  }
+  .ead-conn{
+    width:1px;
+    height:18px;
+    background:var(--paper-400);
+    margin:6px auto;
+  }
+  .ead-branch{ display:flex; gap:48px; align-items:flex-start; margin-top:4px; }
+  .ead-arm{ display:flex; flex-direction:column; align-items:center; }
+  .ead-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px; letter-spacing:.18em; text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .ead-tag.yes{ color:var(--grow); }
+  .ead-tag.no{ color:var(--warn); }
+
+  /* ───────── RATIO BAR ───────── */
+  .ratio{ display:flex; height:36px; border-radius:3px; overflow:hidden; margin-top:14px; }
+  .ratio div{
+    display:flex; align-items:center; padding:0 12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  }
+  .ratio .a{ flex:6; background:var(--accent); color:var(--ink-1000); }
+  .ratio .b{ flex:3; background:rgba(74,158,255,0.32); color:var(--paper-100); }
+  .ratio .c{ flex:1; background:rgba(74,158,255,0.10); color:var(--paper-200); padding:0 6px; }
+
+  /* ───────── PROCESS MAP ───────── */
+  .process{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap:8px;
+    margin-top:14px;
+  }
+  .process .step{
+    border:1px solid var(--hairline);
+    border-radius:3px;
+    padding:14px 12px;
+    background:rgba(0,0,0,0.18);
+  }
+  .process .step .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    margin-bottom:6px;
+  }
+  .process .step .q{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 18, 'wght' 360;
+    font-style:italic;
+    font-size:14px;
+    color:var(--paper-100);
+    line-height:1.3;
+  }
+  .process .step.t{ border-top:2px solid var(--grow); }
+  .process .step.s{ border-top:2px solid var(--accent); }
+  .process .step.x{ border-top:2px solid var(--accent); }
+  .process .step.d{ border-top:2px solid var(--warn); }
+  .process .step.o{ border-top:2px solid var(--grow); }
+  @media (max-width:900px){ .process{ grid-template-columns:1fr; } }
+
+  /* ───────── SPECTRUM ───────── */
+  .spectrum-bar{
+    display:flex;
+    height:42px;
+    border-radius:3px;
+    overflow:hidden;
+    margin-top:12px;
+  }
+  .spectrum-bar div{
+    flex:1; display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; letter-spacing:.12em;
+    border-right:1px solid rgba(0,0,0,0.4);
+  }
+  .spectrum-bar div:last-child{ border-right:none; }
+  .spectrum-bar .l0{ background:rgba(196,208,224,0.18); color:var(--paper-100); }
+  .spectrum-bar .l1{ background:rgba(74,158,255,0.18); color:var(--paper-200); }
+  .spectrum-bar .l2{ background:rgba(74,158,255,0.32); color:var(--paper-100); }
+  .spectrum-bar .l3{ background:rgba(74,158,255,0.55); color:var(--paper-100); }
+  .spectrum-bar .l4{ background:var(--accent); color:var(--ink-1000); }
+  .spectrum-labels{
+    display:flex;
+    margin-top:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+  }
+  .spectrum-labels span{ flex:1; text-align:center; }
+  .spectrum-callouts{
+    display:flex; justify-content:space-between;
+    margin-top:14px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .spectrum-callouts .start{ color:var(--grow); }
+  .spectrum-callouts .danger{ color:var(--warn); }
+
+  /* ───────── BUCKETS ───────── */
+  .buckets{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:14px; }
+  .bucket{
+    border:1px solid var(--hairline);
+    border-top:2px solid var(--accent);
+    border-radius:0 0 3px 3px;
+    padding:18px 18px 20px;
+    background:rgba(74,158,255,0.03);
+  }
+  .bucket h4{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 380;
+    font-style:italic;
+    font-size:18px;
+    color:var(--paper-100);
+    margin-bottom:12px;
+  }
+  .bucket ul{
+    list-style:none;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.04em;
+    color:var(--paper-200);
+    line-height:2;
+  }
+  @media (max-width:700px){ .buckets{ grid-template-columns:1fr; } }
+
+  /* ───────── BIKE METHOD ───────── */
+  .bike{ display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-top:14px; }
+  .bike .phase{
+    border:1px solid var(--hairline);
+    border-radius:3px;
+    padding:18px 16px 20px;
+    background:rgba(0,0,0,0.18);
+    transition: border-color 320ms ease, transform 320ms ease;
+  }
+  .bike .phase:hover{ border-color:rgba(74,158,255,0.35); transform:translateY(-2px); }
+  .bike .phase .num{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 96, 'wght' 200;
+    font-style:italic;
+    font-size:48px;
+    line-height:1;
+    color:var(--accent);
+    margin-bottom:8px;
+  }
+  .bike .phase h4{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 380;
+    font-style:italic;
+    font-size:17px;
+    color:var(--paper-100);
+    margin-bottom:8px;
+  }
+  .bike .phase p{
+    font-size:12.5px;
+    color:var(--paper-200);
+    line-height:1.5;
+  }
+  .bike-arrow{
+    margin-top:14px;
+    height:1px;
+    background:linear-gradient(90deg, rgba(74,158,255,0.15), var(--accent));
+  }
+  .bike-tag{
+    text-align:right;
+    margin-top:6px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  @media (max-width:900px){ .bike{ grid-template-columns: repeat(2,1fr); } }
+
+  /* ───────── CONSTRAINT QUESTIONS ───────── */
+  .constraint-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-top:14px; }
+  .q-card{
+    border:1px solid var(--hairline);
+    border-left:2px solid;
+    border-radius:0 3px 3px 0;
+    padding:18px 20px;
+    background:rgba(0,0,0,0.18);
+  }
+  .q-card.bottleneck{ border-left-color:var(--warn); }
+  .q-card.lever{ border-left-color:var(--grow); }
+  .q-card .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .q-card.bottleneck .lbl{ color:var(--warn); }
+  .q-card.lever .lbl{ color:var(--grow); }
+  .q-card .q{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 360;
+    font-style:italic;
+    font-size:17px;
+    line-height:1.4;
+    color:var(--paper-100);
+  }
+  @media (max-width:700px){ .constraint-grid{ grid-template-columns:1fr; } }
+
+  /* ───────── CROSS-CONNECTIONS ───────── */
+  .cross{
+    margin-top:96px;
+    padding-top:64px;
+    border-top:2px solid var(--accent);
+  }
+  .cross-head{
+    margin-bottom:32px;
+  }
+  .cross-head .lh{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .cross-head .lh::before{ content:''; width:32px; height:1px; background:var(--accent); }
+  .cross-head h2{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 96, 'wght' 380, 'SOFT' 30, 'WONK' 1;
+    font-size:clamp(36px, 4.4vw, 56px);
+    line-height:1.02;
+    letter-spacing:-.025em;
+    color:var(--paper-100);
+    margin-bottom:14px;
+  }
+  .cross-head h2 em{
+    font-style:italic;
+    color:var(--accent);
+    font-variation-settings:'opsz' 96, 'wght' 380, 'SOFT' 100, 'WONK' 1;
+  }
+  .cross-head p{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 320;
+    font-style:italic;
+    font-size:18px;
+    line-height:1.5;
+    color:var(--paper-200);
+    max-width:36em;
+  }
+  .cross-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:900px){ .cross-grid{ grid-template-columns:1fr; } }
+  .cross-card{
+    border:1px solid var(--hairline);
+    border-radius:3px;
+    padding:22px 24px;
+    background:rgba(0,0,0,0.15);
+    cursor:pointer;
+    transition: border-color 320ms ease, background 320ms ease;
+  }
+  .cross-card:hover{ border-color:rgba(74,158,255,0.35); background:rgba(74,158,255,0.04); }
+  .cross-card.expanded{ border-color:var(--accent); background:rgba(74,158,255,0.05); }
+  .cross-card .header{
+    display:flex; align-items:center; gap:14px;
+  }
+  .cross-card .from, .cross-card .to{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    color:var(--paper-100);
+    padding:5px 10px;
+    border:1px solid var(--hairline);
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .cross-card .arrow{
+    flex:1;
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    line-height:1.4;
+  }
+  .cross-card .desc{
+    display:none;
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px dashed rgba(255,255,255,0.12);
+    font-size:14px;
+    line-height:1.7;
+    color:var(--paper-200);
+  }
+  .cross-card .desc em{ font-style:italic; color:var(--paper-100); }
+  .cross-card.expanded .desc{ display:block; }
+  .cross-card .hint{
+    margin-top:14px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--paper-400);
+  }
+  .cross-card:hover .hint{ color:var(--accent); }
+  .cross-card.expanded .hint{ display:none; }
+
+  /* ───────── PRINCIPLES ───────── */
+  .principles{
+    margin-top:96px;
+    padding-top:64px;
+    border-top:1px solid var(--hairline);
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:32px;
+  }
+  @media (max-width:900px){ .principles{ grid-template-columns:1fr; } }
+  .principle{
+    border:1px solid var(--hairline);
+    border-radius:3px;
+    padding:32px 28px;
+    background:rgba(74,158,255,0.025);
+    transition: border-color 320ms ease;
+  }
+  .principle:hover{ border-color:rgba(74,158,255,0.3); }
+  .principle .roman{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 96, 'wght' 200;
+    font-style:italic;
+    font-size:56px;
+    line-height:1;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+  .principle h3{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 36, 'wght' 400, 'SOFT' 30, 'WONK' 1;
+    font-size:22px;
+    color:var(--paper-100);
+    margin-bottom:10px;
+  }
+  .principle p{
+    font-size:14px;
+    line-height:1.65;
+    color:var(--paper-200);
+  }
+
+  /* ───────── BRANCHES ───────── */
+  .branches{
+    margin-top:80px;
+    padding-top:48px;
+    border-top:1px solid var(--hairline);
+  }
+  .branches .lh{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .branches .lh::before{ content:''; width:24px; height:1px; background:var(--paper-300); }
+  .branches h2{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 72, 'wght' 380, 'SOFT' 30, 'WONK' 1;
+    font-size:clamp(28px, 3.4vw, 40px);
+    line-height:1.05;
+    letter-spacing:-.02em;
+    color:var(--paper-100);
+    margin-bottom:8px;
+  }
+  .branches .blurb{
+    font-family:'Fraunces', serif;
+    font-variation-settings:'opsz' 24, 'wght' 320;
+    font-style:italic;
+    font-size:17px;
+    color:var(--paper-200);
+    margin-bottom:24px;
+    max-width:46em;
+  }
+  .branch-grid{ display:flex; flex-wrap:wrap; gap:10px; }
+  .branch-chip{
+    border:1px dashed rgba(74,158,255,0.35);
+    border-radius:3px;
+    padding:10px 14px;
+    background:rgba(74,158,255,0.03);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.04em;
+    color:var(--paper-200);
+    transition: border-color 320ms ease, color 320ms ease;
+  }
+  .branch-chip:hover{ border-color:var(--accent); color:var(--paper-100); }
+  .branch-chip .extends{
+    display:block;
+    margin-top:4px;
+    font-size:9.5px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+  .branch-chip .tm-mark{ font-size:9px; color:var(--paper-300); margin-left:2px; vertical-align:super; }
+
+  /* ───────── FOOTER ───────── */
+  footer{
+    margin-top:120px;
+    padding:48px 0 64px;
+    border-top:1px solid var(--hairline);
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--paper-300);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;
+    gap:24px;
+  }
+  footer .tm-line{
+    color:var(--paper-200);
+    font-style:normal;
+    text-transform:none;
+    letter-spacing:.04em;
+    font-size:11.5px;
+  }
+  footer .tm-line em{ font-style:italic; }
+
+  /* ───────── ON-LOAD REVEAL ───────── */
+  @media (prefers-reduced-motion: no-preference){
+    .floor{
+      opacity:0;
+      transform: translateY(24px);
+      animation: rise 900ms cubic-bezier(.2,.6,.2,1) forwards;
+    }
+    .floor.lvl-01{ animation-delay:120ms; }
+    .floor.lvl-02{ animation-delay:240ms; }
+    .floor.lvl-03{ animation-delay:360ms; }
+    @keyframes rise{
+      to{ opacity:1; transform:none; }
+    }
+    h1.title, .kicker, .meta, .dip { animation: rise 900ms cubic-bezier(.2,.6,.2,1) backwards; }
+    h1.title{ animation-delay:60ms; }
+    .kicker{ animation-delay:160ms; }
+    .meta{ animation-delay:260ms; }
+    .dip{ animation-delay:360ms; }
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <!-- ───────── HERO ───────── -->
+  <header class="hero">
+    <div class="topbar">
+      <div class="left">A FRAMEWORK BY NATE HERK · 2026</div>
+      <div class="right">
+        <span>VERSION 01</span>
+        <span>MINDSET · METHOD · MACHINE</span>
+        <span>TRADEMARK CLAIMED</span>
+      </div>
+    </div>
+
+    <div class="eyebrow">The mothership framework</div>
+
+    <h1 class="title">
+      The Three <span class="ital">Ms</span><br>
+      of <span class="ital">AI</span><span class="tm">™</span>
+    </h1>
+
+    <p class="kicker">
+      Tools change every six months. The platform you're using today might not exist next year. What doesn't change is how you THINK about automation, how you DECIDE what to automate, and how you BUILD and OPERATE the thing once it's running.
+    </p>
+
+    <div class="boring-line">Boring is Beautiful.</div>
+
+    <div class="meta">
+      <div class="cell">01 · Pillar<span class="pillar">Mindset</span><span class="role">How to think</span></div>
+      <div class="cell">02 · Pillar<span class="pillar">Method</span><span class="role">How to decide</span></div>
+      <div class="cell">03 · Pillar<span class="pillar">Machine</span><span class="role">How to build &amp; operate</span></div>
+    </div>
+  </header>
+
+  <!-- ───────── DIP CALLOUT ───────── -->
+  <section class="dip">
+    <div class="label">Expect the dip</div>
+    <div class="stmt">
+      ~20% productivity dip in the first two weeks. That's normal. Within two weeks, your baseline doubles. <em>Fail fast, learn faster.</em>
+    </div>
+  </section>
+
+  <!-- ───────── TOWER ───────── -->
+  <section class="tower">
+
+    <!-- ── 01 · MINDSET ── -->
+    <article class="floor lvl-01" id="mindset">
+      <div class="floor-head">
+        <div class="number">01<span class="tag">Layer 01 · Foundation</span></div>
+        <div class="head-body">
+          <div class="verb">The brain · how to think</div>
+          <h2><em>Mindset</em></h2>
+          <div class="tagline">A way to think that works regardless of what platform you're on, what model just dropped, or what the latest hype cycle is pushing.</div>
+        </div>
+      </div>
+
+      <div class="concept-row">
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Habit · 01</div>
+          <h3>The <em>Default Shift</em></h3>
+          <div class="one-liner">Before doing any task the old way, ask: "How could AI do this — or at least 30% of it?"</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>Here's the core habit: before doing any task the old way, ask yourself — "How could AI do this?" And if the answer is "it can't do all of it," the follow-up is: "How could AI assist with the first 30%?"</p>
+            <p>It's never binary. The real question is always "to what extent can AI be leveraged here?" Maybe it handles 80%. Maybe 10%. But you don't know until you ask.</p>
+            <p><strong>Real example:</strong> I needed to update tracking links across 300+ YouTube video descriptions. The old me would have opened each video in YouTube Studio one by one. Instead, I described the problem to Claude Code and walked to the kitchen. By the time I came back, it had researched the YouTube Data API, figured out the quota limits, written a script, and laid out a plan. I approved it, it ran, and now I have a reusable system.</p>
+            <p>The Default Shift is like learning to type instead of writing by hand. Once it clicks, you physically cannot go back. Every manual task starts to itch.</p>
+            <p>One important thing: AI is better than you think, and improving faster than you think. If AI can't do something today, try again next month. Seriously.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip feeds">feeds → Find the Constraint</span>
+              <span class="conn-chip parallel">parallels ↔ EAD</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Habit · 02</div>
+          <h3>The <em>Function Breakdown</em></h3>
+          <div class="one-liner">Your role is a set of functions. Each breaks into tiny tasks. Automate one piece at a time.</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>Your job description probably has about five bullet points. Each breaks into dozens of tiny tasks. You don't automate your whole job. You automate one tiny piece. Then another. Then you chain them together.</p>
+            <p><strong>Real example:</strong> Think about "automating a YouTube video." Sounds impossible, right? But break it down: ideation, scripting, title generation, thumbnail generation, description writing, comment replies, timestamps, analytics. Each piece is its own automation. Build one, get it working, move to the next. Chain them together over time and suddenly you've automated a massive chunk of a process that seemed untouchable.</p>
+            <p>One small task per day. That's it. Do that for six months and you've automated hundreds of tasks. The compounding is real.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip feeds">feeds → EAD</span>
+              <span class="conn-chip feeds">feeds → Map the Process</span>
+              <span class="conn-chip parallel">parallels ↔ Lego Principle</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Habit · 03</div>
+          <h3>The <em>Curiosity Rule</em></h3>
+          <div class="one-liner">Never accept AI output without asking why. Treat AI as a mentor, not a vending machine.</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>This one separates the people who actually get good at AI from the people who just use it like a fancy search engine.</p>
+            <p>Never accept AI output without asking why. Ask for three alternatives. Ask which one it thinks is best and why. Push back. Dig in.</p>
+            <p>This is the antidote to what I call "dark code" — automations or code that you don't understand. If you build something and you can't explain how it works, you've built a liability, not an asset. When it breaks (and it will), you'll have no idea where to start.</p>
+            <p>If you're not curious, you're just pushing buttons. Every question you ask makes you smarter for next time. Treat AI as a mentor, not a vending machine. The vending machine approach gives you output. The mentor approach gives you understanding.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip parallel">parallels ↔ Validation Chain</span>
+              <span class="conn-chip parallel">parallels ↔ Kill Switch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── 02 · METHOD ── -->
+    <article class="floor lvl-02" id="method">
+      <div class="floor-head">
+        <div class="number">02<span class="tag">Layer 02 · Decision</span></div>
+        <div class="head-body">
+          <div class="verb">The lens · how to decide</div>
+          <h2><em>Method</em></h2>
+          <div class="tagline">From idea to a decision. Surface the constraint, run it through EAD, map the process, set autonomy, tie it to a number.</div>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <div class="pipeline">
+        <span class="step">Find Constraint</span>
+        <span class="arrow">→</span>
+        <span class="step">EAD</span>
+        <span class="arrow">→</span>
+        <span class="step">Map Process</span>
+        <span class="arrow">→</span>
+        <span class="step">Autonomy Level</span>
+        <span class="arrow">→</span>
+        <span class="step">Tie to KPI</span>
+      </div>
+
+      <!-- Find Constraint -->
+      <div class="card" onclick="toggleExpand(this)" style="margin-bottom:20px;">
+        <div class="card-eyebrow">Step · 01 · Find the Constraint</div>
+        <h3>Two power questions that surface <em>everything</em></h3>
+        <div class="constraint-grid">
+          <div class="q-card bottleneck">
+            <div class="lbl">Bottleneck</div>
+            <div class="q">"If 500 new clients showed up tomorrow, what would break first?"</div>
+          </div>
+          <div class="q-card lever">
+            <div class="lbl">Growth lever</div>
+            <div class="q">"What would give you 500 more clients tomorrow?"</div>
+          </div>
+        </div>
+        <div class="expand-hint">click to explore</div>
+        <div class="detail">
+          <p>Start with two power questions. They're deceptively simple but they surface everything you need.</p>
+          <p><strong>Question 1</strong> finds your bottlenecks — the clogs in the pipe. Maybe it's onboarding. Maybe it's invoicing. Maybe it's customer support response times. Whatever would crack under pressure is where you should look first.</p>
+          <p><strong>Question 2</strong> finds growth opportunities — the untapped pipe. Maybe it's content you're not creating, outreach you're not doing, leads you're not following up on.</p>
+          <p>One question finds what's broken. The other finds what could scale. Together, they give you the full picture. Start with the constraint, then work outward.</p>
+          <div class="conn-label">Connections</div>
+          <div class="connections">
+            <span class="conn-chip fed-by">← fed by Default Shift</span>
+            <span class="conn-chip feeds">feeds → EAD</span>
+            <span class="conn-chip branch">↗ Discovery Playbook</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EAD + 60/30/10 -->
+      <div class="concept-row tight">
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Step · 02 · EAD</div>
+          <h3>Eliminate → Automate → <em>Delegate</em></h3>
+          <div class="ead-tree">
+            <div class="ead-node start">Process Identified</div>
+            <div class="ead-conn"></div>
+            <div class="ead-node decision">Can we eliminate it?</div>
+            <div class="ead-conn"></div>
+            <div class="ead-branch">
+              <div class="ead-arm">
+                <div class="ead-tag yes">YES</div>
+                <div class="ead-conn"></div>
+                <div class="ead-node kill">Kill it</div>
+              </div>
+              <div class="ead-arm">
+                <div class="ead-tag no">NO</div>
+                <div class="ead-conn"></div>
+                <div class="ead-node decision">Can we automate it?</div>
+                <div class="ead-conn"></div>
+                <div class="ead-branch">
+                  <div class="ead-arm">
+                    <div class="ead-tag yes">YES</div>
+                    <div class="ead-conn"></div>
+                    <div class="ead-node auto">Apply 60/30/10</div>
+                  </div>
+                  <div class="ead-arm">
+                    <div class="ead-tag no">NO</div>
+                    <div class="ead-conn"></div>
+                    <div class="ead-node delegate">Delegate</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>For every process you identify, run it through EAD — in this order.</p>
+            <p><strong>Eliminate first.</strong> Ask: "What happens if we just stop doing this?" You'd be surprised how many processes exist because they always have. Duplication between tools, reports nobody reads, approval steps that add no value. If nobody would notice it disappeared, kill it. Don't automate waste.</p>
+            <p><strong>Automate second.</strong> For what's left, apply the 60/30/10 Golden Rule.</p>
+            <p><strong>Delegate third.</strong> If a process can't hit the 60/30/10 ratio — if it's too complex, too variable, or too dependent on human judgment — delegate it to a person. Not everything should be automated.</p>
+            <p>The key: nothing stays as-is. Every process gets killed, automated, or handed to a person.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip fed-by">← fed by Find Constraint</span>
+              <span class="conn-chip feeds">feeds → 60/30/10</span>
+              <span class="conn-chip feeds">feeds → Map the Process</span>
+              <span class="conn-chip parallel">parallels ↔ Default Shift</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Rule · 60 / 30 / 10</div>
+          <h3>The <em>Golden Rule</em> of automation ratios</h3>
+          <div class="one-liner">Full automation is rarely the goal.</div>
+          <div class="ratio">
+            <div class="a">60% Auto</div>
+            <div class="b">30% Assisted</div>
+            <div class="c">10%</div>
+          </div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>~60% can be fully automated (no human touch needed). ~30% is AI-assisted (AI does the work, human reviews before it goes out). ~10% stays manual (too nuanced, too risky, or too rare to justify automating).</p>
+            <p>This ratio normalizes expectations. If someone promises you 100% automation on anything meaningful, they're selling you something.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip fed-by">← fed by EAD</span>
+              <span class="conn-chip parallel">parallels ↔ Autonomy Spectrum</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map the Process -->
+      <div class="card" onclick="toggleExpand(this)" style="margin-top:16px;">
+        <div class="card-eyebrow">Step · 03 · Map the Process</div>
+        <h3>Five elements on paper before <em>touching any tool</em></h3>
+        <div class="process">
+          <div class="step t"><div class="lbl">Trigger</div><div class="q">What kicks it off?</div></div>
+          <div class="step s"><div class="lbl">Sources</div><div class="q">Where's the data?</div></div>
+          <div class="step x"><div class="lbl">Transforms</div><div class="q">How does it change?</div></div>
+          <div class="step d"><div class="lbl">Decisions</div><div class="q">Where does it branch?</div></div>
+          <div class="step o"><div class="lbl">Destination</div><div class="q">Where does output go?</div></div>
+        </div>
+        <div class="expand-hint">click to explore</div>
+        <div class="detail">
+          <p>Before you touch any tool, write every step on paper. Seriously — paper, whiteboard, napkin, whatever. You need to see the whole thing.</p>
+          <p>Here's the rule: if you can't explain it to a person, you can't explain it to an AI. The map forces clarity. Skip this step and you'll build something that sort of works but breaks in weird ways you can't diagnose.</p>
+          <div class="conn-label">Connections</div>
+          <div class="connections">
+            <span class="conn-chip fed-by">← fed by EAD</span>
+            <span class="conn-chip feeds">feeds → Lego Principle</span>
+            <span class="conn-chip feeds">feeds → Autonomy Spectrum</span>
+            <span class="conn-chip parallel">parallels ↔ Function Breakdown</span>
+            <span class="conn-chip branch">↗ Data Retrieval Hierarchy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Autonomy Spectrum + Three Buckets -->
+      <div class="concept-row tight" style="margin-top:16px;">
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Step · 04 · Autonomy Spectrum</div>
+          <h3>Default to the <em>lowest level</em> that works</h3>
+          <div class="spectrum-bar">
+            <div class="l0">L0</div>
+            <div class="l1">L1</div>
+            <div class="l2">L2</div>
+            <div class="l3">L3</div>
+            <div class="l4">L4</div>
+          </div>
+          <div class="spectrum-labels">
+            <span>Manual</span><span>Suggested</span><span>Drafted</span><span>Supervised</span><span>Autonomous</span>
+          </div>
+          <div class="spectrum-callouts">
+            <span class="start">↑ Start here</span>
+            <span class="danger">Most people default here ↑</span>
+          </div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>Once you've mapped your process, each step needs an autonomy level. The governing principle: <strong>default to the lowest level that works.</strong></p>
+            <p>Most people get this backwards. They hear "AI automation" and jump straight to L4 — fully autonomous everything. That's where things go wrong. This is where "Boring is Beautiful" really lives.</p>
+            <p>Deterministic beats non-deterministic. Workflows beat agents. If a decision doesn't HAVE to be made by AI, don't let AI make it. A simple if/else statement that runs the same way every time is better than a language model "deciding" something it doesn't need to decide.</p>
+            <p>Push autonomy up only when you've proven the lower level works and the higher level is justified.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip fed-by">← fed by Map the Process</span>
+              <span class="conn-chip feeds">feeds → Bike Method</span>
+              <span class="conn-chip parallel">parallels ↔ 60/30/10</span>
+              <span class="conn-chip parallel">parallels ↔ Intern Rule</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Step · 05 · Tie to KPI</div>
+          <h3>The <em>Three Buckets</em></h3>
+          <div class="one-liner">If it doesn't fill a bucket, why build it?</div>
+          <div class="buckets">
+            <div class="bucket"><h4>More Customers</h4><ul><li>Lead gen</li><li>Outreach</li><li>Content</li><li>Referrals</li></ul></div>
+            <div class="bucket"><h4>More Value</h4><ul><li>Onboarding</li><li>Upsells</li><li>Retention</li><li>Support</li></ul></div>
+            <div class="bucket"><h4>Less Cost</h4><ul><li>Manual tasks</li><li>Redundancies</li><li>Error handling</li><li>Reporting</li></ul></div>
+          </div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>If your automation doesn't move a number, why are you building it?</p>
+            <p>These are universal KPIs — every business metric falls into one of these three buckets. <strong>Specific KPIs</strong> are tied to the individual automation: response time, error rate, tickets per month, conversion rate, time-to-completion. Pick the metric that matters most.</p>
+            <p>"Because it's cool" isn't a business case.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip feeds">feeds → Kill Switch</span>
+              <span class="conn-chip feeds">loops back → Find Constraint</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── 03 · MACHINE ── -->
+    <article class="floor lvl-03" id="machine">
+      <div class="floor-head">
+        <div class="number">03<span class="tag">Layer 03 · The OS is alive</span></div>
+        <div class="head-body">
+          <div class="verb">The hands · how to build &amp; operate</div>
+          <h2><em>Machine</em></h2>
+          <div class="tagline">Build it small, validate at every step, then operate it like a brand-new hire on their first day.</div>
+        </div>
+      </div>
+
+      <div class="sub-label">Build</div>
+      <div class="concept-row">
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Build · 01</div>
+          <h3>The <em>Lego Principle</em></h3>
+          <div class="one-liner">Smallest possible blocks. One input, one output. Deterministic steps first.</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>Break your automation into the smallest possible steps. One input, one output per block. The output of block 1 becomes the input of block 2.</p>
+            <p>Start with zero-AI steps first. Get the deterministic pieces working — the data fetching, the formatting, the routing. Then layer in AI where it's actually needed.</p>
+            <p>This does two things. First, it makes the project less overwhelming. Second, it lets you validate as you go. If block 3 is producing garbage, you know exactly where to look.</p>
+            <p>Think of everything as Lego blocks that can plug into other systems. Modularity is freedom.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip fed-by">← fed by Map the Process</span>
+              <span class="conn-chip feeds">feeds → Assembly Line</span>
+              <span class="conn-chip parallel">parallels ↔ Function Breakdown</span>
+              <span class="conn-chip branch">↗ Integration Ladder</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Build · 02</div>
+          <h3>The <em>Assembly Line</em></h3>
+          <div class="one-liner">Each AI step does one specialized job. No generalists.</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>Like workers on an assembly line — each person has one task they're great at.</p>
+            <p>Don't build a generalist. One model call for writing copy. Another for reasoning through a decision. Another for classifying input into categories. Keep them separate.</p>
+            <p>Benefits: easier to debug (you know which step broke), easier to swap models (upgrade one without touching others), easier to adjust prompts (tweaking the classification prompt won't accidentally break your copywriting step).</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip fed-by">← fed by Lego Principle</span>
+              <span class="conn-chip feeds">feeds → Validation Chain</span>
+              <span class="conn-chip branch">↗ Model Selection Guide</span>
+              <span class="conn-chip branch">↗ Context Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Build · 03</div>
+          <h3>The <em>Validation Chain</em></h3>
+          <div class="one-liner">Validate each step's output before chaining to the next.</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>Validate each step's output before chaining it to the next. Do NOT build the whole pipeline and then test end-to-end. That's a recipe for "it doesn't work and I have no idea why."</p>
+            <p>Build step 1. Run it. Confirm the output is correct. Build step 2. Run it with step 1's actual output. Confirm. Chain them. Add step 3. This is how you build a proof of concept that actually works.</p>
+            <p>Every time you skip validation and chain three steps together untested, you're creating a debugging nightmare for future you.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip fed-by">← fed by Assembly Line</span>
+              <span class="conn-chip feeds">feeds → Bike Method</span>
+              <span class="conn-chip parallel">parallels ↔ Curiosity Rule</span>
+              <span class="conn-chip branch">↗ Error Handling Playbook</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Build · 04</div>
+          <h3>The <em>Iteration Mindset</em></h3>
+          <div class="one-liner">Deterministic scripts can be finished. AI steps are always evolving. Ship the POC.</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>There's no such thing as a finished product — especially with AI.</p>
+            <p>Deterministic scripts CAN be done. A script that reformats a CSV does one job, does it well, and you can call it finished. But AI steps are always evolving. New models drop. New capabilities emerge. Things get faster and cheaper. The prompt that was optimal six months ago might be verbose and expensive today.</p>
+            <p>Ship the POC. Get feedback from real usage. Expand. Iterate. Then iterate again. Perfectionism is the enemy of deployment.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip feeds">loops back → Validation Chain</span>
+              <span class="conn-chip parallel">parallels ↔ Expect the Dip</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-label">Operate</div>
+
+      <!-- Bike Method -->
+      <div class="card" onclick="toggleExpand(this)" style="margin-bottom:16px;">
+        <div class="card-eyebrow">Operate · 01 · The Bike Method</div>
+        <h3>Roll out in <em>phases</em>, like teaching a kid to ride</h3>
+        <div class="bike">
+          <div class="phase">
+            <div class="num">01</div>
+            <h4>Training Wheels</h4>
+            <p>Run it manually. Watch everything. Build muscle memory.</p>
+          </div>
+          <div class="phase">
+            <div class="num">02</div>
+            <h4>Guided</h4>
+            <p>AI runs, you check every single output before it goes.</p>
+          </div>
+          <div class="phase">
+            <div class="num">03</div>
+            <h4>Watched</h4>
+            <p>AI runs autonomously. You spot-check and review batches.</p>
+          </div>
+          <div class="phase">
+            <div class="num">04</div>
+            <h4>Hands-Off</h4>
+            <p>Full confidence. Helmet on, go ride. Review monthly.</p>
+          </div>
+        </div>
+        <div class="bike-arrow"></div>
+        <div class="bike-tag">Increasing autonomy →</div>
+        <div class="expand-hint">click to explore</div>
+        <div class="detail">
+          <p>Even a process you're 90% sure is automatable — roll out 10% of the volume first. Watch it for a week. Add 20% more. Think of it like drug trials: you don't give the full dose to everyone on day one.</p>
+          <p>Use confidence thresholds to manage this: high confidence outputs auto-send, medium confidence outputs go to a draft queue for review, low confidence outputs escalate to a human. The thresholds tighten or loosen as you gather data.</p>
+          <div class="conn-label">Connections</div>
+          <div class="connections">
+            <span class="conn-chip fed-by">← fed by Validation Chain</span>
+            <span class="conn-chip fed-by">← guided by Autonomy Spectrum</span>
+            <span class="conn-chip feeds">feeds → Kill Switch</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-row tight">
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Operate · 02</div>
+          <h3>The <em>Intern Rule</em></h3>
+          <div class="one-liner">Own identity. Scoped permissions. Full audit trail. Never impersonates you.</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>Treat AI like a brand-new hire on their first day. You wouldn't hand an intern your personal bank login, let them send emails as you, or give them admin access to everything.</p>
+            <p><strong>Own identity.</strong> Give it its own email, accounts, and credentials. <strong>Read-only by default.</strong> View-only access until you've proven it needs write access. <strong>Never impersonates you.</strong> People should know when they're talking to AI. <strong>Full audit trail.</strong> You should be able to see everything it did, spent, created, and deleted. <strong>Scoped permissions.</strong> It gets exactly what it needs and nothing more.</p>
+            <p>"You wouldn't trust someone you just met with your bank account." Don't do it with AI either.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip feeds">feeds → Bike Method</span>
+              <span class="conn-chip parallel">parallels ↔ Autonomy Spectrum</span>
+              <span class="conn-chip branch">↗ Security &amp; Permissions Playbook</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleExpand(this)">
+          <div class="card-eyebrow">Operate · 03</div>
+          <h3>The <em>Kill Switch</em></h3>
+          <div class="one-liner">If it costs more to maintain than it saves — tear it down.</div>
+          <div class="expand-hint">click to explore</div>
+          <div class="detail">
+            <p>This is the one nobody talks about because it's not sexy. But it might be the most important operational principle.</p>
+            <p>Monitor what's running. If an automation consistently needs patches, produces low-quality output, or costs more to maintain than it saves — tear it down. Dismantle it. Delete it.</p>
+            <p>Don't fall into the sunk cost trap. "But I spent three weeks building this" is not a reason to keep running something that doesn't work. Good operators know when to build AND when to destroy. The kill switch is just as important as the launch button.</p>
+            <div class="conn-label">Connections</div>
+            <div class="connections">
+              <span class="conn-chip fed-by">← fed by Three Buckets</span>
+              <span class="conn-chip fed-by">← fed by Bike Method</span>
+              <span class="conn-chip parallel">parallels ↔ Curiosity Rule</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ───────── CROSS-CONNECTIONS ───────── -->
+  <section class="cross">
+    <div class="cross-head">
+      <div class="lh">How it all connects</div>
+      <h2>Concepts that <em>echo, feed, and reinforce</em> each other across layers</h2>
+      <p>The 3 Ms aren't islands. The same instinct shows up in different forms — a Mindset habit becomes a Method step becomes a Machine pattern.</p>
+    </div>
+
+    <div class="cross-grid">
+      <div class="cross-card" onclick="toggleExpand(this)">
+        <div class="header">
+          <div class="from">Function Breakdown</div>
+          <div class="arrow">mirrors<br/>↔</div>
+          <div class="to">Lego Principle</div>
+        </div>
+        <div class="hint">click to explore</div>
+        <div class="desc">Both are about decomposition. Function Breakdown decomposes your <em>role</em> into tasks. Lego Principle decomposes your <em>systems</em> into blocks. Same instinct, different target. If you can break down your job, you can break down your automation.</div>
+      </div>
+
+      <div class="cross-card" onclick="toggleExpand(this)">
+        <div class="header">
+          <div class="from">Curiosity Rule</div>
+          <div class="arrow">becomes<br/>↔</div>
+          <div class="to">Validation Chain</div>
+        </div>
+        <div class="hint">click to explore</div>
+        <div class="desc">The Curiosity Rule is the human habit of checking output — asking "why?" before accepting. The Validation Chain is the systematic, automated version. One is a mindset, the other is its mechanization. You internalize the instinct (Mindset), then encode it into your systems (Machine).</div>
+      </div>
+
+      <div class="cross-card" onclick="toggleExpand(this)">
+        <div class="header">
+          <div class="from">EAD Output</div>
+          <div class="arrow">feeds →</div>
+          <div class="to">Map the Process</div>
+        </div>
+        <div class="hint">click to explore</div>
+        <div class="desc">EAD sorts your tasks into three bins: eliminate, automate, or delegate. Only the tasks that survive elimination and aren't purely delegated get mapped. Map the Process consumes EAD's output — it's the next step in the Method pipeline.</div>
+      </div>
+
+      <div class="cross-card" onclick="toggleExpand(this)">
+        <div class="header">
+          <div class="from">Map the Process</div>
+          <div class="arrow">feeds →</div>
+          <div class="to">Lego Principle</div>
+        </div>
+        <div class="hint">click to explore</div>
+        <div class="desc">Map the Process produces the blueprint — trigger, data sources, transformations, decision points, destination. The Lego Principle takes that blueprint and breaks it into the smallest possible implementation blocks. The map is the raw material that gets decomposed into code.</div>
+      </div>
+
+      <div class="cross-card" onclick="toggleExpand(this)">
+        <div class="header">
+          <div class="from">Autonomy Spectrum</div>
+          <div class="arrow">guides<br/>↔</div>
+          <div class="to">Bike Method</div>
+        </div>
+        <div class="hint">click to explore</div>
+        <div class="desc">The Autonomy Spectrum defines the levels (L0–L4). The Bike Method is the protocol for moving between them. The spectrum tells you <em>where</em> you're going. The Bike Method tells you <em>how</em> to get there safely, phase by phase.</div>
+      </div>
+
+      <div class="cross-card" onclick="toggleExpand(this)">
+        <div class="header">
+          <div class="from">Three Buckets</div>
+          <div class="arrow">enforced by<br/>↔</div>
+          <div class="to">Kill Switch</div>
+        </div>
+        <div class="hint">click to explore</div>
+        <div class="desc">Three Buckets demands every automation justify itself — more customers, more value, or less cost. The Kill Switch enforces the consequence when it can't. If an automation doesn't fill a bucket, the Kill Switch says: tear it down. One sets the bar, the other holds the hammer.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── GOVERNING PRINCIPLES ───────── -->
+  <section class="principles">
+    <div class="principle">
+      <div class="roman">I</div>
+      <h3>Boring is Beautiful</h3>
+      <p>Predictable is better than clever. Default to the simplest, most deterministic approach that gets the job done.</p>
+    </div>
+    <div class="principle">
+      <div class="roman">II</div>
+      <h3>Deterministic ≠ AI</h3>
+      <p>Deterministic steps can be finished. AI steps are always evolving. Set expectations accordingly.</p>
+    </div>
+    <div class="principle">
+      <div class="roman">III</div>
+      <h3>Fail Fast, Learn Faster</h3>
+      <p>Get to your first 10 mistakes as safely and quickly as possible. That's where the real learning lives.</p>
+    </div>
+  </section>
+
+  <!-- ───────── BRANCH FRAMEWORKS ───────── -->
+  <section class="branches">
+    <div class="lh">Branch frameworks</div>
+    <h2>Where to <em>go deeper</em></h2>
+    <p class="blurb">The Three Ms of AI<span class="tm-mark">™</span> is the mothership. These go deeper on specific topics and plug back in at named points.</p>
+    <div class="branch-grid">
+      <div class="branch-chip">Data Retrieval Hierarchy<span class="extends">extends → Map the Process</span></div>
+      <div class="branch-chip">Integration Ladder<span class="extends">extends → Lego Principle</span></div>
+      <div class="branch-chip">Error Handling Playbook<span class="extends">extends → Validation Chain</span></div>
+      <div class="branch-chip">Model Selection Guide<span class="extends">extends → Assembly Line</span></div>
+      <div class="branch-chip">Context Engineering<span class="extends">extends → Assembly Line</span></div>
+      <div class="branch-chip">Discovery Playbook<span class="extends">extends → Find Constraint</span></div>
+      <div class="branch-chip">Security &amp; Permissions<span class="extends">extends → Intern Rule</span></div>
+    </div>
+  </section>
+
+  <!-- ───────── FOOTER ───────── -->
+  <footer>
+    <div>NATE HERK · 2026</div>
+    <div class="tm-line"><em>The Three Ms of AI</em>™ — © 2026 Nate Herk. All rights reserved.</div>
+    <div>BUILD · v1.0</div>
+  </footer>
+
+</div>
+
+<script>
+  function toggleExpand(el) {
+    el.classList.toggle('expanded');
+  }
+</script>
+
+</body>
+</html>

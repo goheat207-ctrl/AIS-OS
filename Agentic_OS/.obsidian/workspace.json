@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "a684d4ab13ebde28",
+    "type": "split",
+    "children": [
+      {
+        "id": "f50fb7f789f8bec1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ad4319cb7a6126fc",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "50c93172cc3e05a3",
+    "type": "split",
+    "children": [
+      {
+        "id": "73489dcc40cff0fb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "048afc0c026da89c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byCreatedTime",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "c63f014575fa66b4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "373b632f58c93f23",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "de770409e292ba58",
+    "type": "split",
+    "children": [
+      {
+        "id": "b84398046af22416",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fc1e0b6371d1b462",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "e05c639106ccf952",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "6ca64424b3d1a386",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "5c6b694df0ebbbe9",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "markdown-importer:Open format converter": false,
+      "switcher:Open quick switcher": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "bases:Create new base": false,
+      "graph:Open graph view": false
+    }
+  },
+  "active": "ad4319cb7a6126fc",
+  "lastOpenFiles": [
+    "wiki/entities/codex.md",
+    "wiki/SECOND_BRAIN_GUIDE.md",
+    "wiki/SECOND_BRAIN_GUIDE.md.tmp.112396.711ce5de8c70",
+    "wiki/log.md.tmp.112396.b7453bf2104f",
+    "wiki/log.md.tmp.112396.dba7d86b65bd",
+    "wiki/index.md.tmp.112396.59be886dc642",
+    "wiki/index.md.tmp.112396.3b88c9d915b2",
+    "wiki/sources/src_20260511_account_statement_schwab.md",
+    "wiki/sources/src_20260511_account_statement_schwab.md.tmp.112396.8f600b60e687",
+    "wiki/topics/playbook_library.md",
+    "wiki/topics/playbook_library.md.tmp.112396.b800caf656e7",
+    "wiki/sources/src_20260511_smart_money_tracking_milesdeutscher.md",
+    "wiki/sources/src_20260511_smart_money_tracking_milesdeutscher.md.tmp.112396.090f74a0b087",
+    "raw/data/CLIK, CLIK, CLIK, CLIK, CLIK - Flexible Grid Main@thinkorswim [build 1991] 2026-05-11 07-22-11.mp4",
+    "raw/books/user_18211059_dc611137-4d5a-4a11-9b84-576298af22bc.pdf",
+    "raw/data/2026-05-05-t&s-SOBR.png",
+    "raw/data/2026-05-05-AT-SOBR.png",
+    "raw/data/2026-05-05-lvl2-SOBR.png",
+    "raw/data/2026-05-05-FLEXIBLE_GRID.png",
+    "raw/thinkorswim.md",
+    "raw/articles/Post by @RoundtableSpace on X.md",
+    "wiki/SCHEMA.md",
+    "raw/articles/Post by @OpenledgerHQ on X.md",
+    "wiki/entities/trading_agents.md",
+    "raw/articles/Post by @tom_doerr on X.md",
+    "raw/articles/Post by @milesdeutscher on X.md",
+    "wiki/entities/thinkorswim.md",
+    "wiki/topics/trading_prompts.md",
+    "raw/articles/Post by @Shahriar661731 on X.md",
+    "wiki/sources/src_20260510_ai_trading_prompts_shahriar.md",
+    "wiki/sources/src_20260510_ai_trading_prompts_med1.md",
+    "raw/articles/Post by @Med1_Ai on X.md",
+    "2026-05-11.md",
+    "wiki/index.md",
+    "wiki/entities/blaine.md",
+    "wiki/topics/adhd_workflow.md",
+    "wiki/topics/q2_goals.md",
+    "Agenticos.md",
+    "Claudeclaw.md",
+    "Hivemind.md",
+    "Screenshot 2026-05-09 212303.png",
+    "Screenshot 2026-05-09 212357.png",
+    "Screenshot 2026-05-09 212536.png",
+    "Screenshot 2026-05-09 213130.png",
+    "Screenshot 2026-05-09 212704.png"
+  ]
+}

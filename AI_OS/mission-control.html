@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGENTIC OS — MISSION CONTROL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+/* ══════════════════════════════════════════════
+   RESET + TOKENS
+══════════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:   #080808;
+  --bg2:  #0d0d0d;
+  --bg3:  #111111;
+  --bg4:  #141414;
+  --brd:  #1c1c1c;
+  --brd2: #282828;
+  --or:   #ff4d00;
+  --or2:  #cc3a00;
+  --oglow:rgba(255,77,0,0.12);
+  --oglow2:rgba(255,77,0,0.06);
+  --txt:  #c0c0c0;
+  --dim:  #484848;
+  --dim2: #363636;
+  --brt:  #e8e8e8;
+  --font:'IBM Plex Mono',monospace;
+  --grn: #3ddc84;
+  --red: #ff4466;
+  --ylw: #ffaa00;
+}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--font);font-size:13px;overflow:hidden;}
+
+/* ══════════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════════ */
+#app{display:flex;height:100vh;overflow:hidden;}
+
+/* ══════════════════════════════════════════════
+   SIDEBAR
+══════════════════════════════════════════════ */
+#sidebar{
+  width:240px;flex-shrink:0;
+  background:var(--bg2);
+  border-right:1px solid var(--brd);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.sb-head{
+  padding:16px 18px 14px;
+  border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.sb-logo{display:flex;align-items:center;gap:9px;cursor:pointer;}
+.sb-hex{
+  width:22px;height:22px;
+  background:var(--or);
+  clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:#000;font-weight:700;
+}
+.sb-name{
+  font-size:13px;font-weight:600;letter-spacing:1.5px;color:var(--brt);
+}
+.sb-caret{font-size:10px;color:var(--dim);margin-left:2px;}
+
+.sb-search{
+  padding:10px 14px;
+  border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;gap:8px;
+  flex-shrink:0;
+}
+.sb-search input{
+  flex:1;background:none;border:none;outline:none;
+  font-family:var(--font);font-size:11px;color:var(--txt);
+  letter-spacing:0.3px;
+}
+.sb-search input::placeholder{color:var(--dim);}
+.sb-search .ks{font-size:9px;color:var(--dim);border:1px solid var(--brd2);padding:1px 5px;}
+
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0 16px;}
+.sb-nav::-webkit-scrollbar{width:2px;}
+.sb-nav::-webkit-scrollbar-thumb{background:var(--brd2);}
+
+.sb-section{margin-bottom:4px;}
+.sb-sec-label{
+  font-size:9px;letter-spacing:2px;color:var(--dim);
+  text-transform:uppercase;padding:10px 18px 5px;
+}
+.sb-item{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 18px;
+  font-size:12px;color:var(--dim);
+  cursor:pointer;transition:all 0.1s;
+  border-left:2px solid transparent;
+  letter-spacing:0.3px;
+}
+.sb-item:hover{color:var(--txt);background:var(--oglow2);}
+.sb-item.active{
+  color:var(--brt);
+  background:var(--oglow);
+  border-left-color:var(--or);
+}
+.sb-item .sb-icon{font-size:13px;width:18px;text-align:center;}
+.sb-item .sb-badge{
+  margin-left:auto;font-size:9px;
+  background:var(--or);color:#000;
+  padding:1px 5px;font-weight:600;
+}
+
+.sb-footer{
+  padding:12px 18px;
+  border-top:1px solid var(--brd);
+  flex-shrink:0;
+  display:flex;align-items:center;gap:8px;
+}
+.sb-status-dot{width:6px;height:6px;background:var(--grn);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
+.sb-status-txt{font-size:10px;color:var(--dim);letter-spacing:0.5px;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* ══════════════════════════════════════════════
+   MAIN AREA
+══════════════════════════════════════════════ */
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+
+/* ── View header ── */
+.view-header{
+  padding:0 24px;
+  height:48px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--brd);
+  flex-shrink:0;
+  background:var(--bg2);
+}
+.vh-title{font-size:14px;font-weight:500;color:var(--brt);letter-spacing:1px;}
+.vh-right{display:flex;align-items:center;gap:10px;}
+.vh-btn{
+  padding:6px 14px;border:1px solid var(--brd2);
+  background:var(--bg3);color:var(--txt);
+  font-family:var(--font);font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;cursor:pointer;transition:all 0.1s;
+}
+.vh-btn:hover{border-color:var(--or);color:var(--or);}
+.vh-btn.primary{background:var(--or);color:#000;border-color:var(--or);}
+.vh-btn.primary:hover{background:var(--or2);}
+
+/* ── View content ── */
+.view{display:none;flex:1;overflow:hidden;}
+.view.active{display:flex;flex-direction:column;}
+.view-scroll{flex:1;overflow-y:auto;}
+.view-scroll::-webkit-scrollbar{width:3px;}
+.view-scroll::-webkit-scrollbar-thumb{background:var(--brd2);}
+
+/* ══════════════════════════════════════════════
+   MISSION CONTROL — KANBAN
+══════════════════════════════════════════════ */
+.kanban-bar{
+  padding:10px 20px;
+  border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;gap:8px;
+  flex-shrink:0;background:var(--bg2);
+}
+.kanban-bar input{
+  flex:1;background:var(--bg3);border:1px solid var(--brd2);
+  color:var(--txt);font-family:var(--font);font-size:11px;
+  padding:7px 12px;outline:none;
+}
+.kanban-bar input:focus{border-color:var(--or);}
+.kanban-bar input::placeholder{color:var(--dim);}
+.kanban-board{
+  flex:1;display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;overflow:hidden;
+}
+.kanban-col{
+  border-right:1px solid var(--brd);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.kanban-col:last-child{border-right:none;}
+.kanban-col-head{
+  padding:12px 16px;
+  border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;background:var(--bg2);
+}
+.kc-label{font-size:9px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;}
+.kc-count{font-size:9px;color:var(--dim);background:var(--bg3);padding:2px 7px;border:1px solid var(--brd2);}
+.kanban-cards{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;}
+.kanban-cards::-webkit-scrollbar{width:2px;}
+.kanban-cards::-webkit-scrollbar-thumb{background:var(--brd2);}
+
+.kcard{
+  background:var(--bg3);border:1px solid var(--brd2);
+  padding:12px 14px;cursor:pointer;
+  transition:all 0.1s;
+}
+.kcard:hover{border-color:var(--or);background:var(--bg4);}
+.kcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;}
+.kcard-title{font-size:12px;color:var(--brt);line-height:1.4;flex:1;margin-right:8px;}
+.kcard-id{font-size:9px;color:var(--dim);}
+.kcard-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.kcard-agent{
+  font-size:9px;letter-spacing:1px;
+  color:var(--or);border:1px solid rgba(255,77,0,0.3);
+  padding:2px 7px;
+}
+.kcard-pri{font-size:9px;padding:2px 7px;}
+.pri-high{background:rgba(255,68,102,0.15);color:var(--red);border:1px solid rgba(255,68,102,0.3);}
+.pri-med{background:rgba(255,170,0,0.1);color:var(--ylw);border:1px solid rgba(255,170,0,0.3);}
+.pri-low{background:rgba(61,220,132,0.08);color:var(--grn);border:1px solid rgba(61,220,132,0.25);}
+
+/* ══════════════════════════════════════════════
+   SCHEDULED
+══════════════════════════════════════════════ */
+.sched-list{padding:20px;}
+.sched-item{
+  border:1px solid var(--brd2);background:var(--bg3);
+  padding:14px 18px;margin-bottom:8px;
+  display:flex;align-items:center;gap:16px;
+}
+.sched-item:hover{border-color:var(--or);}
+.sched-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.sched-dot.active{background:var(--grn);}
+.sched-dot.paused{background:var(--dim);}
+.sched-name{font-size:12px;color:var(--brt);flex:1;}
+.sched-cron{font-size:10px;color:var(--or);letter-spacing:0.5px;min-width:120px;}
+.sched-agent{font-size:10px;color:var(--dim);}
+.sched-next{font-size:10px;color:var(--dim);margin-left:auto;}
+.sched-section-head{
+  font-size:9px;letter-spacing:2px;color:var(--or);
+  text-transform:uppercase;padding:0 20px 10px;
+  margin-top:20px;
+}
+
+/* ══════════════════════════════════════════════
+   AGENTS
+══════════════════════════════════════════════ */
+.agents-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-bottom:1px solid var(--brd);
+}
+.agent-card{
+  padding:20px;border-right:1px solid var(--brd);
+  border-bottom:1px solid var(--brd);
+  cursor:pointer;transition:background 0.1s;
+}
+.agent-card:nth-child(3n){border-right:none;}
+.agent-card:hover{background:var(--bg3);}
+.ac-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.ac-avatar{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;border:1px solid var(--brd2);
+}
+.ac-info{flex:1;}
+.ac-name{font-size:13px;color:var(--brt);font-weight:500;margin-bottom:3px;}
+.ac-role{font-size:9px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;}
+.ac-status{display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+.ac-dot{width:6px;height:6px;border-radius:50%;}
+.ac-dot.online{background:var(--grn);}
+.ac-dot.pending{background:var(--ylw);}
+.ac-dot.offline{background:var(--dim);}
+.ac-stxt{font-size:10px;color:var(--dim);}
+.ac-last{font-size:11px;color:var(--dim);line-height:1.4;margin-bottom:12px;}
+.ac-model{font-size:9px;color:var(--or);letter-spacing:0.5px;}
+
+.agent-detail{padding:20px;}
+.ad-back{
+  font-size:10px;color:var(--or);letter-spacing:1px;
+  cursor:pointer;margin-bottom:20px;
+  display:flex;align-items:center;gap:6px;
+}
+.ad-back:hover{color:var(--brt);}
+
+/* ══════════════════════════════════════════════
+   CHAT
+══════════════════════════════════════════════ */
+.chat-layout{display:flex;flex:1;overflow:hidden;}
+.chat-sidebar{
+  width:220px;flex-shrink:0;
+  border-right:1px solid var(--brd);
+  overflow-y:auto;
+}
+.chat-sidebar::-webkit-scrollbar{width:2px;}
+.chat-sidebar::-webkit-scrollbar-thumb{background:var(--brd2);}
+.chat-agent-item{
+  padding:12px 16px;border-bottom:1px solid var(--brd);
+  cursor:pointer;transition:background 0.1s;
+}
+.chat-agent-item:hover{background:var(--bg3);}
+.chat-agent-item.active{background:var(--oglow);border-left:2px solid var(--or);}
+.cai-name{font-size:12px;color:var(--brt);margin-bottom:3px;display:flex;align-items:center;gap:6px;}
+.cai-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);}
+.cai-last{font-size:10px;color:var(--dim);line-height:1.4;}
+
+.chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;}
+.chat-messages::-webkit-scrollbar{width:3px;}
+.chat-messages::-webkit-scrollbar-thumb{background:var(--brd2);}
+.msg{display:flex;gap:12px;}
+.msg-avatar{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;background:var(--bg3);border:1px solid var(--brd2);
+}
+.msg-body{}
+.msg-meta{font-size:9px;color:var(--dim);margin-bottom:5px;letter-spacing:0.5px;}
+.msg-meta .agent-nm{color:var(--or);}
+.msg-text{
+  background:var(--bg3);border:1px solid var(--brd2);
+  padding:10px 14px;font-size:12px;color:var(--txt);line-height:1.6;
+}
+.msg.user .msg-avatar{order:2;}
+.msg.user .msg-body{order:1;text-align:right;}
+.msg.user .msg-text{background:var(--oglow);border-color:rgba(255,77,0,0.3);color:var(--brt);}
+.msg-label{
+  font-size:9px;letter-spacing:1.5px;color:var(--dim);
+  text-transform:uppercase;padding:2px 7px;
+  border:1px solid var(--brd2);display:inline-block;margin-bottom:4px;
+}
+.msg-label.chiming{color:var(--or);border-color:rgba(255,77,0,0.3);}
+
+.chat-input-area{
+  padding:14px 20px;border-top:1px solid var(--brd);
+  display:flex;gap:10px;flex-shrink:0;
+}
+.chat-input{
+  flex:1;background:var(--bg3);border:1px solid var(--brd2);
+  color:var(--txt);font-family:var(--font);font-size:12px;
+  padding:10px 14px;outline:none;
+}
+.chat-input:focus{border-color:var(--or);}
+.chat-input::placeholder{color:var(--dim);}
+.chat-send{
+  padding:10px 18px;background:var(--or);color:#000;
+  border:none;font-family:var(--font);font-size:11px;
+  letter-spacing:1.5px;cursor:pointer;
+}
+.chat-send:hover{background:var(--or2);}
+
+/* ══════════════════════════════════════════════
+   MEMORIES
+══════════════════════════════════════════════ */
+.mem-layout{display:flex;flex:1;overflow:hidden;}
+.mem-main{flex:1;overflow-y:auto;padding:20px;}
+.mem-main::-webkit-scrollbar{width:3px;}
+.mem-main::-webkit-scrollbar-thumb{background:var(--brd2);}
+.mem-sidebar{width:260px;flex-shrink:0;border-left:1px solid var(--brd);overflow-y:auto;padding:20px;}
+.mem-sidebar::-webkit-scrollbar{width:2px;}
+.mem-sidebar::-webkit-scrollbar-thumb{background:var(--brd2);}
+
+.mem-search-row{display:flex;gap:8px;margin-bottom:20px;}
+.mem-search{
+  flex:1;background:var(--bg3);border:1px solid var(--brd2);
+  color:var(--txt);font-family:var(--font);font-size:11px;
+  padding:9px 14px;outline:none;
+}
+.mem-search:focus{border-color:var(--or);}
+.mem-search::placeholder{color:var(--dim);}
+
+.mem-item{
+  background:var(--bg3);border:1px solid var(--brd2);
+  padding:12px 14px;margin-bottom:8px;
+}
+.mem-item.pinned{border-color:rgba(255,77,0,0.4);}
+.mem-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;}
+.mem-text{font-size:12px;color:var(--txt);line-height:1.5;flex:1;margin-right:10px;}
+.mem-type{font-size:9px;letter-spacing:1.5px;color:var(--or);border:1px solid rgba(255,77,0,0.3);padding:1px 6px;}
+.mem-meta{font-size:9px;color:var(--dim);display:flex;gap:12px;margin-top:5px;}
+.mem-imp{font-size:11px;color:var(--or);}
+.mem-pin-icon{font-size:10px;color:var(--or);}
+
+.mem-insight{
+  background:var(--oglow);border:1px solid rgba(255,77,0,0.25);
+  padding:12px 14px;margin-bottom:8px;
+}
+.mi-label{font-size:9px;letter-spacing:2px;color:var(--or);text-transform:uppercase;margin-bottom:5px;}
+.mi-text{font-size:12px;color:var(--txt);line-height:1.5;}
+
+.mem-stats{margin-bottom:20px;}
+.ms-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--brd);}
+.ms-label{font-size:11px;color:var(--dim);}
+.ms-val{font-size:11px;color:var(--brt);}
+
+.mem-imp-bar{margin-bottom:20px;}
+.mib-label{font-size:9px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:10px;}
+.mib-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.mib-score{font-size:10px;color:var(--dim);width:20px;}
+.mib-bar{flex:1;height:4px;background:var(--brd2);}
+.mib-fill{height:100%;background:var(--or);}
+.mib-count{font-size:10px;color:var(--dim);width:24px;text-align:right;}
+
+/* ══════════════════════════════════════════════
+   HIVE MIND
+══════════════════════════════════════════════ */
+.hm-controls{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 20px;border-bottom:1px solid var(--brd);
+  flex-shrink:0;background:var(--bg2);
+}
+.hm-view-btn{
+  padding:5px 14px;border:1px solid var(--brd2);
+  background:transparent;color:var(--dim);
+  font-family:var(--font);font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;cursor:pointer;transition:all 0.1s;
+}
+.hm-view-btn:hover{color:var(--txt);border-color:var(--brd);}
+.hm-view-btn.active{background:var(--or);color:#000;border-color:var(--or);}
+.hm-filter-btn{
+  padding:5px 12px;border:1px solid var(--brd2);
+  background:transparent;color:var(--dim);
+  font-family:var(--font);font-size:10px;letter-spacing:1px;
+  cursor:pointer;transition:all 0.1s;
+}
+.hm-filter-btn:hover{color:var(--or);}
+.hm-filter-btn.active{color:var(--or);border-color:rgba(255,77,0,0.4);}
+.hm-sep{width:1px;height:20px;background:var(--brd2);}
+
+.hm-container{flex:1;position:relative;overflow:hidden;}
+#hm-3d-canvas{position:absolute;inset:0;width:100%!important;height:100%!important;}
+#hm-2d-svg{width:100%;height:100%;}
+#hm-list-view{padding:20px;overflow-y:auto;height:100%;}
+#hm-list-view::-webkit-scrollbar{width:3px;}
+#hm-list-view::-webkit-scrollbar-thumb{background:var(--brd2);}
+
+table.hm-tbl{width:100%;border-collapse:collapse;}
+.hm-tbl th{
+  text-align:left;padding:8px 12px;
+  color:var(--or);font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  border-bottom:1px solid var(--brd2);
+}
+.hm-tbl td{padding:9px 12px;border-bottom:1px solid var(--brd);font-size:11px;color:var(--txt);}
+.hm-tbl tr:hover td{background:var(--bg3);}
+.hm-status{display:inline-block;padding:1px 7px;font-size:9px;letter-spacing:1px;}
+.hm-s-done{background:rgba(61,220,132,0.1);color:var(--grn);border:1px solid rgba(61,220,132,0.25);}
+.hm-s-fail{background:rgba(255,68,102,0.1);color:var(--red);border:1px solid rgba(255,68,102,0.25);}
+.hm-s-prog{background:rgba(255,77,0,0.12);color:var(--or);border:1px solid rgba(255,77,0,0.3);}
+
+.hm-popup{
+  position:absolute;
+  background:var(--bg2);border:1px solid var(--brd2);
+  padding:14px;min-width:220px;pointer-events:none;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+  z-index:100;
+}
+.hm-popup-agent{font-size:9px;letter-spacing:2px;color:var(--or);text-transform:uppercase;margin-bottom:6px;}
+.hm-popup-task{font-size:12px;color:var(--brt);line-height:1.4;margin-bottom:8px;}
+.hm-popup-count{font-size:11px;color:var(--dim);}
+.hm-popup-pie{display:flex;align-items:center;gap:8px;margin-top:8px;}
+.hm-popup-circle{width:36px;height:36px;}
+.hm-popup-legend{}
+.hm-popup-leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim);margin-bottom:2px;}
+.hm-popup-dot{width:6px;height:6px;border-radius:50%;}
+
+/* ══════════════════════════════════════════════
+   WAR ROOM
+══════════════════════════════════════════════ */
+#warroom-assembling{
+  position:absolute;inset:0;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  z-index:50;transition:opacity 0.5s;
+}
+#warroom-assembling.hidden{opacity:0;pointer-events:none;}
+.wr-title{font-size:48px;font-weight:600;color:var(--brt);letter-spacing:-1px;margin-bottom:8px;text-align:center;}
+.wr-subtitle{font-size:10px;letter-spacing:4px;color:var(--dim);text-transform:uppercase;margin-bottom:48px;text-align:center;}
+.wr-agents{display:flex;gap:28px;margin-bottom:48px;flex-wrap:wrap;justify-content:center;}
+.wr-agent{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;transition:opacity 0.4s;}
+.wr-agent.visible{opacity:1;}
+.wr-agent-av{
+  width:64px;height:64px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+  border:2px solid var(--brd2);
+  transition:border-color 0.3s,box-shadow 0.3s;
+  background:var(--bg3);
+}
+.wr-agent.visible .wr-agent-av{
+  border-color:rgba(255,77,0,0.5);
+  box-shadow:0 0 20px rgba(255,77,0,0.15);
+}
+.wr-agent-name{font-size:11px;color:var(--txt);letter-spacing:0.5px;}
+.wr-agent-status{
+  font-size:9px;letter-spacing:2px;color:var(--grn);
+  display:flex;align-items:center;gap:5px;
+}
+.wr-agent-status::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--grn);display:inline-block;
+}
+.wr-progress{width:280px;height:1px;background:var(--brd2);margin-bottom:14px;overflow:hidden;}
+.wr-progress-fill{height:100%;background:var(--or);width:0%;transition:width 0.8s ease;}
+.wr-progress-lbl{font-size:9px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;}
+
+/* War room active state */
+#warroom-active{position:absolute;inset:0;display:flex;opacity:0;transition:opacity 0.5s;pointer-events:none;}
+#warroom-active.visible{opacity:1;pointer-events:all;}
+
+.wr-sidebar{
+  width:200px;flex-shrink:0;
+  border-right:1px solid var(--brd);
+  display:flex;flex-direction:column;
+  background:var(--bg2);
+}
+.wr-sidebar-top{
+  padding:12px 14px;border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;gap:8px;
+}
+.wr-mode-lbl{font-size:9px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;}
+.wr-size-btns{display:flex;gap:4px;margin-left:auto;}
+.wr-size-btn{
+  font-size:9px;padding:3px 7px;border:1px solid var(--brd2);
+  background:none;color:var(--dim);cursor:pointer;font-family:var(--font);
+}
+.wr-size-btn.active{color:var(--or);border-color:rgba(255,77,0,0.4);}
+.wr-agents-list{flex:1;overflow-y:auto;}
+.wr-agents-list::-webkit-scrollbar{width:2px;}
+.wr-agents-list::-webkit-scrollbar-thumb{background:var(--brd2);}
+.wr-agent-row{
+  padding:12px 14px;border-bottom:1px solid var(--brd);
+  cursor:pointer;transition:background 0.1s;
+}
+.wr-agent-row:hover{background:var(--bg3);}
+.wr-agent-row.active{background:var(--oglow);border-left:2px solid var(--or);}
+.war-av{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.war-av-ico{
+  width:26px;height:26px;border-radius:50%;background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+  border:1px solid var(--brd2);flex-shrink:0;
+}
+.war-av-name{font-size:11px;color:var(--brt);font-weight:500;}
+.war-av-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);margin-left:auto;flex-shrink:0;}
+.war-last{font-size:9px;color:var(--dim);line-height:1.4;padding-left:34px;}
+
+.wr-chat{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.wr-chat-header{
+  padding:10px 20px;border-bottom:1px solid var(--brd);
+  flex-shrink:0;background:var(--bg2);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.wr-chat-title{font-size:12px;color:var(--brt);letter-spacing:0.5px;}
+.wr-chat-meta{font-size:9px;color:var(--dim);letter-spacing:1px;}
+.wr-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;}
+.wr-messages::-webkit-scrollbar{width:3px;}
+.wr-messages::-webkit-scrollbar-thumb{background:var(--brd2);}
+
+.wr-msg{display:flex;gap:12px;}
+.wr-msg-av{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--bg3);border:1px solid var(--brd2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+}
+.wr-msg-body{flex:1;}
+.wr-msg-top{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
+.wr-msg-name{font-size:11px;color:var(--or);font-weight:500;}
+.wr-msg-time{font-size:9px;color:var(--dim);}
+.wr-msg-badge{font-size:9px;letter-spacing:1.5px;color:var(--dim);border:1px solid var(--brd2);padding:1px 6px;}
+.wr-msg-badge.chiming{color:var(--or);border-color:rgba(255,77,0,0.3);}
+.wr-msg-text{
+  background:var(--bg3);border:1px solid var(--brd2);
+  padding:10px 14px;font-size:12px;color:var(--txt);line-height:1.65;
+}
+
+.wr-input-area{
+  padding:14px 20px;border-top:1px solid var(--brd);
+  flex-shrink:0;display:flex;gap:10px;align-items:center;
+}
+.wr-input{
+  flex:1;background:var(--bg3);border:1px solid var(--brd2);
+  color:var(--txt);font-family:var(--font);font-size:12px;
+  padding:11px 14px;outline:none;
+}
+.wr-input:focus{border-color:var(--or);}
+.wr-input::placeholder{color:var(--dim);}
+.wr-send{
+  padding:11px 18px;background:var(--or);color:#000;
+  border:none;font-family:var(--font);font-size:10px;
+  letter-spacing:1.5px;cursor:pointer;text-transform:uppercase;
+}
+.wr-send:hover{background:var(--or2);}
+
+/* ══════════════════════════════════════════════
+   SETTINGS
+══════════════════════════════════════════════ */
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.settings-section{
+  padding:20px 24px;border-right:1px solid var(--brd);
+  border-bottom:1px solid var(--brd);
+}
+.settings-section:nth-child(even){border-right:none;}
+.ss-title{font-size:10px;letter-spacing:2px;color:var(--or);text-transform:uppercase;margin-bottom:16px;}
+.ss-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--brd);}
+.ss-label{font-size:12px;color:var(--txt);}
+.ss-sub{font-size:10px;color:var(--dim);margin-top:2px;}
+.toggle{
+  width:36px;height:20px;background:var(--brd2);
+  border-radius:10px;position:relative;cursor:pointer;transition:background 0.2s;
+  flex-shrink:0;border:1px solid var(--brd2);
+}
+.toggle.on{background:var(--or);}
+.toggle::after{
+  content:'';position:absolute;width:14px;height:14px;
+  background:var(--bg);border-radius:50%;
+  top:2px;left:2px;transition:left 0.2s;
+}
+.toggle.on::after{left:18px;}
+
+/* ══════════════════════════════════════════════
+   USAGE / AUDIT
+══════════════════════════════════════════════ */
+.usage-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-bottom:1px solid var(--brd);
+}
+.usage-card{
+  padding:20px;border-right:1px solid var(--brd);
+}
+.usage-card:last-child{border-right:none;}
+.uc-label{font-size:9px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:8px;}
+.uc-val{font-size:32px;font-weight:500;color:var(--brt);letter-spacing:-1px;margin-bottom:5px;}
+.uc-sub{font-size:10px;color:var(--dim);}
+.uc-bar{height:3px;background:var(--brd2);margin-top:12px;overflow:hidden;}
+.uc-bar-fill{height:100%;background:var(--or);}
+
+.audit-list{padding:20px;}
+.audit-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 14px;border-bottom:1px solid var(--brd);
+  font-size:11px;
+}
+.audit-item:hover{background:var(--bg3);}
+.audit-time{color:var(--dim);min-width:80px;flex-shrink:0;}
+.audit-actor{color:var(--or);min-width:70px;flex-shrink:0;}
+.audit-action{color:var(--txt);flex:1;}
+.audit-target{color:var(--dim);}
+
+/* ══════════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════════ */
+.or{color:var(--or);}
+.dim{color:var(--dim);}
+.brt{color:var(--brt);}
+.grn{color:var(--grn);}
+.red{color:var(--red);}
+.section-head{
+  font-size:9px;letter-spacing:2px;color:var(--or);
+  text-transform:uppercase;padding:14px 20px 8px;
+  border-bottom:1px solid var(--brd);background:var(--bg2);
+}
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 20px;color:var(--dim);gap:10px;
+}
+.empty-state .es-icon{font-size:32px;opacity:0.3;}
+.empty-state .es-text{font-size:12px;letter-spacing:0.5px;}
+
+/* scrollbar global */
+::-webkit-scrollbar{width:3px;height:3px;}
+::-webkit-scrollbar-thumb{background:var(--brd2);}
+
+/* blink */
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.fade-in{animation:fadeIn 0.3s ease;}
+
+/* ── Loading spinner ── */
+.spinner{
+  width:20px;height:20px;border:2px solid var(--brd2);
+  border-top-color:var(--or);border-radius:50%;
+  animation:spin 0.7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ══ SIDEBAR ══════════════════════════════════ -->
+<div id="sidebar">
+  <div class="sb-head">
+    <div class="sb-logo" onclick="navigate('kanban')">
+      <div class="sb-hex">B</div>
+      <div class="sb-name">BLAINE'S LAB</div>
+      <div class="sb-caret">▾</div>
+    </div>
+  </div>
+
+  <div class="sb-search">
+    <span style="color:var(--dim);font-size:11px;">⌕</span>
+    <input type="text" placeholder="Search..." id="sbSearchInput">
+    <span class="ks">⌘K</span>
+  </div>
+
+  <div class="sb-nav" id="sbNav">
+    <!-- WORKSPACE -->
+    <div class="sb-section">
+      <div class="sb-sec-label">Workspace</div>
+      <div class="sb-item active" onclick="navigate('kanban')" data-view="kanban">
+        <span class="sb-icon">⬛</span> Mission Control
+      </div>
+      <div class="sb-item" onclick="navigate('scheduled')" data-view="scheduled">
+        <span class="sb-icon">⏱</span> Scheduled
+        <span class="sb-badge">3</span>
+      </div>
+      <div class="sb-item" onclick="navigate('agents')" data-view="agents">
+        <span class="sb-icon">⚙</span> Agents
+      </div>
+      <div class="sb-item" onclick="navigate('chat')" data-view="chat">
+        <span class="sb-icon">◻</span> Chat
+      </div>
+    </div>
+
+    <!-- INTELLIGENCE -->
+    <div class="sb-section">
+      <div class="sb-sec-label">Intelligence</div>
+      <div class="sb-item" onclick="navigate('memories')" data-view="memories">
+        <span class="sb-icon">⊙</span> Memories
+      </div>
+      <div class="sb-item" onclick="navigate('hivemind')" data-view="hivemind">
+        <span class="sb-icon">◈</span> Hive Mind
+      </div>
+      <div class="sb-item" onclick="navigate('usage')" data-view="usage">
+        <span class="sb-icon">∿</span> Usage
+      </div>
+      <div class="sb-item" onclick="navigate('audit')" data-view="audit">
+        <span class="sb-icon">◉</span> Audit
+      </div>
+    </div>
+
+    <!-- COLLABORATE -->
+    <div class="sb-section">
+      <div class="sb-sec-label">Collaborate</div>
+      <div class="sb-item" onclick="navigate('warroom')" data-view="warroom">
+        <span class="sb-icon">✦</span> War Room
+      </div>
+    </div>
+
+    <!-- CONFIGURE -->
+    <div class="sb-section">
+      <div class="sb-sec-label">Configure</div>
+      <div class="sb-item" onclick="navigate('settings')" data-view="settings">
+        <span class="sb-icon">◎</span> Settings
+      </div>
+    </div>
+  </div>
+
+  <div class="sb-footer">
+    <div class="sb-status-dot"></div>
+    <div class="sb-status-txt">PHASE 1 ACTIVE</div>
+  </div>
+</div>
+
+<!-- ══ MAIN ════════════════════════════════════ -->
+<div id="main">
+
+  <!-- ─── MISSION CONTROL ─── -->
+  <div class="view active" id="view-kanban">
+    <div class="view-header">
+      <span class="vh-title">MISSION CONTROL</span>
+      <div class="vh-right">
+        <button class="vh-btn" onclick="autoAssign()">AUTO ASSIGN</button>
+        <button class="vh-btn primary" onclick="newTask()">+ NEW TASK</button>
+      </div>
+    </div>
+    <div class="kanban-bar">
+      <input type="text" placeholder="Filter tasks..." id="kanbanFilter" oninput="filterKanban(this.value)">
+      <button class="vh-btn" style="flex-shrink:0" onclick="toggleKanbanFilter('all')">ALL</button>
+      <button class="vh-btn" style="flex-shrink:0" onclick="toggleKanbanFilter('main')">MAIN</button>
+      <button class="vh-btn" style="flex-shrink:0" onclick="toggleKanbanFilter('trading')">TRADING</button>
+      <button class="vh-btn" style="flex-shrink:0" onclick="toggleKanbanFilter('ops')">OPS</button>
+    </div>
+    <div class="kanban-board" id="kanbanBoard">
+      <div class="kanban-col">
+        <div class="kanban-col-head">
+          <span class="kc-label">Pending</span>
+          <span class="kc-count" id="cnt-pending">0</span>
+        </div>
+        <div class="kanban-cards" id="col-pending"></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-head">
+          <span class="kc-label">In Progress</span>
+          <span class="kc-count" id="cnt-progress">0</span>
+        </div>
+        <div class="kanban-cards" id="col-progress"></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-head">
+          <span class="kc-label">Completed</span>
+          <span class="kc-count" id="cnt-done">0</span>
+        </div>
+        <div class="kanban-cards" id="col-done"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SCHEDULED ─── -->
+  <div class="view" id="view-scheduled">
+    <div class="view-header">
+      <span class="vh-title">SCHEDULED TASKS</span>
+      <div class="vh-right">
+        <button class="vh-btn primary" onclick="newScheduled()">+ NEW SCHEDULE</button>
+      </div>
+    </div>
+    <div class="view-scroll">
+      <div class="sched-section-head">ACTIVE CRONS</div>
+      <div class="sched-list" id="schedList"></div>
+    </div>
+  </div>
+
+  <!-- ─── AGENTS ─── -->
+  <div class="view" id="view-agents">
+    <div class="view-header">
+      <span class="vh-title">AGENTS</span>
+      <div class="vh-right">
+        <button class="vh-btn" onclick="runSuggestions()">SUGGESTIONS</button>
+        <button class="vh-btn primary" onclick="newAgent()">+ NEW AGENT</button>
+      </div>
+    </div>
+    <div class="view-scroll">
+      <div class="agents-grid" id="agentsGrid"></div>
+    </div>
+  </div>
+
+  <!-- ─── CHAT ─── -->
+  <div class="view" id="view-chat">
+    <div class="view-header">
+      <span class="vh-title">CHAT</span>
+      <div class="vh-right">
+        <span style="font-size:10px;color:var(--dim);letter-spacing:1px;" id="chatActiveAgent">Select an agent</span>
+      </div>
+    </div>
+    <div class="chat-layout" style="flex:1;overflow:hidden;">
+      <div class="chat-sidebar" id="chatSidebar"></div>
+      <div class="chat-main">
+        <div class="chat-messages" id="chatMessages">
+          <div class="empty-state">
+            <div class="es-icon">◻</div>
+            <div class="es-text">Select an agent to start chatting</div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input class="chat-input" id="chatInput" placeholder="Message the agent..." onkeydown="if(event.key==='Enter')sendChatMsg()">
+          <button class="chat-send" onclick="sendChatMsg()">SEND</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MEMORIES ─── -->
+  <div class="view" id="view-memories">
+    <div class="view-header">
+      <span class="vh-title">MEMORIES</span>
+      <div class="vh-right">
+        <button class="vh-btn" onclick="runInsights()">/ INSIGHTS</button>
+      </div>
+    </div>
+    <div class="mem-layout" style="flex:1;overflow:hidden;">
+      <div class="mem-main">
+        <div class="mem-search-row">
+          <input class="mem-search" id="memSearch" placeholder="Search memories... (try: Gmail, trading, risk)" oninput="filterMemories(this.value)">
+          <button class="vh-btn" onclick="filterMemories('')">CLEAR</button>
+        </div>
+        <div id="memList"></div>
+      </div>
+      <div class="mem-sidebar">
+        <div class="ss-title">MEMORY STATS</div>
+        <div class="mem-stats" id="memStats"></div>
+        <div class="mib-label" style="margin-top:16px;">IMPORTANCE DISTRIBUTION</div>
+        <div class="mem-imp-bar" id="memImpBar"></div>
+        <div class="ss-title" style="margin-top:8px;">INSIGHTS</div>
+        <div id="memInsights"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── HIVE MIND ─── -->
+  <div class="view" id="view-hivemind">
+    <div class="view-header">
+      <span class="vh-title">HIVE MIND</span>
+      <div class="vh-right">
+        <span style="font-size:9px;color:var(--dim);letter-spacing:1.5px;" id="hmTotalTasks">0 TASKS</span>
+      </div>
+    </div>
+    <div class="hm-controls">
+      <button class="hm-view-btn active" onclick="setHMView('3d',this)">3D</button>
+      <button class="hm-view-btn" onclick="setHMView('2d',this)">2D GRAPH</button>
+      <button class="hm-view-btn" onclick="setHMView('list',this)">LIST</button>
+      <div class="hm-sep"></div>
+      <button class="hm-filter-btn active" onclick="setHMFilter('all',this)">All</button>
+      <button class="hm-filter-btn" onclick="setHMFilter('main',this)">main</button>
+      <button class="hm-filter-btn" onclick="setHMFilter('trading',this)">trading</button>
+      <button class="hm-filter-btn" onclick="setHMFilter('ops',this)">ops</button>
+      <button class="hm-filter-btn" onclick="setHMFilter('research',this)">research</button>
+      <button class="hm-filter-btn" onclick="setHMFilter('comms',this)">comms</button>
+      <button class="hm-filter-btn" onclick="setHMFilter('meta',this)">meta</button>
+    </div>
+    <div class="hm-container" id="hmContainer">
+      <canvas id="hm-3d-canvas"></canvas>
+      <svg id="hm-2d-svg" style="display:none;"></svg>
+      <div id="hm-list-view" style="display:none;"></div>
+      <div class="hm-popup" id="hmPopup" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- ─── WAR ROOM ─── -->
+  <div class="view" id="view-warroom">
+    <div style="position:relative;flex:1;overflow:hidden;">
+      <!-- Assembling screen -->
+      <div id="warroom-assembling">
+        <div class="wr-title">The War Room</div>
+        <div class="wr-subtitle">Assembling the team</div>
+        <div class="wr-agents" id="wrAgents"></div>
+        <div class="wr-progress"><div class="wr-progress-fill" id="wrProgress"></div></div>
+        <div class="wr-progress-lbl" id="wrProgressLbl">Initializing...</div>
+      </div>
+      <!-- Active chat -->
+      <div id="warroom-active">
+        <div class="wr-sidebar">
+          <div class="wr-sidebar-top">
+            <span class="wr-mode-lbl">TEAM</span>
+            <div class="wr-size-btns">
+              <button class="wr-size-btn active" onclick="wrSize('S',this)">S</button>
+              <button class="wr-size-btn" onclick="wrSize('M',this)">M</button>
+              <button class="wr-size-btn" onclick="wrSize('L',this)">L</button>
+            </div>
+          </div>
+          <div class="wr-agents-list" id="wrAgentsList"></div>
+        </div>
+        <div class="wr-chat">
+          <div class="wr-chat-header">
+            <span class="wr-chat-title">War Room · TEXT MODE</span>
+            <span class="wr-chat-meta" id="wrTimer">0:00</span>
+          </div>
+          <div class="wr-messages" id="wrMessages"></div>
+          <div class="wr-input-area">
+            <input class="wr-input" id="wrInput" placeholder="Message the team — try /standup or @agent" onkeydown="if(event.key==='Enter')sendWarRoomMsg()">
+            <button class="wr-send" onclick="sendWarRoomMsg()">SEND</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── USAGE ─── -->
+  <div class="view" id="view-usage">
+    <div class="view-header"><span class="vh-title">USAGE</span></div>
+    <div class="view-scroll">
+      <div class="usage-grid" id="usageGrid"></div>
+      <div style="padding:20px;">
+        <div class="section-head" style="padding:0 0 10px;border:none;">TOKEN USAGE — 30D</div>
+        <div style="height:180px;position:relative;"><canvas id="usageChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── AUDIT ─── -->
+  <div class="view" id="view-audit">
+    <div class="view-header">
+      <span class="vh-title">AUDIT LOG</span>
+      <div class="vh-right">
+        <span style="font-size:10px;color:var(--dim);letter-spacing:1px;">90-DAY RETENTION</span>
+      </div>
+    </div>
+    <div class="view-scroll">
+      <div class="audit-list" id="auditList"></div>
+    </div>
+  </div>
+
+  <!-- ─── SETTINGS ─── -->
+  <div class="view" id="view-settings">
+    <div class="view-header"><span class="vh-title">SETTINGS</span></div>
+    <div class="view-scroll">
+      <div class="settings-grid" id="settingsGrid"></div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════ -->
+<script>
+/* ──────────────────────────────────────────────
+   DATA
+────────────────────────────────────────────── */
+const AGENTS = [
+  { id:'main',     name:'Main',     icon:'🎯', role:'Orchestrator',    model:'claude-sonnet-4-6', status:'online',
+    last:'Delegated pre-market scanner to Trading. Routing comms triage to Comms agent.' },
+  { id:'trading',  name:'Trading',  icon:'📈', role:'Small-Cap Momentum', model:'claude-sonnet-4-6', status:'online',
+    last:'HOD breakout scanner ran at 08:30 ET. 3 primary setups flagged.' },
+  { id:'ops',      name:'Ops',      icon:'⚙️',  role:'Business Admin',  model:'claude-sonnet-4-6', status:'online',
+    last:'Weekly ops report generated. Finance brief saved to ops/finance/.' },
+  { id:'research', name:'Research', icon:'🔬', role:'Deep Research',    model:'claude-sonnet-4-6', status:'online',
+    last:'EDGAR 8-K pull completed on AEYE. Float: 12.4M, short interest 18%.' },
+  { id:'comms',    name:'Comms',    icon:'💬', role:'Communications',  model:'claude-sonnet-4-6', status:'online',
+    last:'Inbox triage done. 3 priority emails flagged. 2 draft replies queued.' },
+  { id:'meta',     name:'Meta',     icon:'🧠', role:'System Health',   model:'claude-haiku-4-5', status:'pending',
+    last:'System health check pending API key config.' },
+];
+
+const TASKS = [
+  {id:'T-001',title:'Run pre-market HOD breakout scanner',agent:'trading',status:'done',priority:'high'},
+  {id:'T-002',title:'Build watchlist from top 5 gappers',agent:'trading',status:'done',priority:'high'},
+  {id:'T-003',title:'Generate weekly ops report',agent:'ops',status:'done',priority:'med'},
+  {id:'T-004',title:'EDGAR catalyst pull — AEYE',agent:'research',status:'done',priority:'high'},
+  {id:'T-005',title:'Inbox triage + draft replies',agent:'comms',status:'done',priority:'med'},
+  {id:'T-006',title:'Pattern review — last 20 trades',agent:'trading',status:'progress',priority:'high'},
+  {id:'T-007',title:'Finance brief — week of May 9',agent:'ops',status:'progress',priority:'med'},
+  {id:'T-008',title:'Finviz small-cap momentum screen',agent:'research',status:'progress',priority:'med'},
+  {id:'T-009',title:'Draft reply to community member re: scanner',agent:'comms',status:'pending',priority:'low'},
+  {id:'T-010',title:'System health check — all 6 agents',agent:'meta',status:'pending',priority:'high'},
+  {id:'T-011',title:'Risk check — current session drawdown',agent:'trading',status:'pending',priority:'high'},
+  {id:'T-012',title:'Update wiki/trading-patterns with this week',agent:'trading',status:'pending',priority:'low'},
+];
+
+const SCHEDULES = [
+  {name:'Pre-Market Scan',cron:'30 8 * * 1-5',english:'Weekdays 8:30 AM ET',agent:'trading',status:'active',next:'Mon 08:30'},
+  {name:'Pattern Review',cron:'0 16 * * 5',english:'Fridays 4:00 PM ET',agent:'trading',status:'active',next:'Fri 16:00'},
+  {name:'Vault Compact',cron:'0 22 * * *',english:'Daily 10:00 PM',agent:'meta',status:'active',next:'Tonight 22:00'},
+  {name:'Morning Brief',cron:'45 8 * * 1-5',english:'Weekdays 8:45 AM ET',agent:'main',status:'active',next:'Mon 08:45'},
+  {name:'Finance Brief',cron:'0 17 * * 5',english:'Fridays 5:00 PM ET',agent:'ops',status:'active',next:'Fri 17:00'},
+  {name:'Agent Suggestions Scan',cron:'0 0 * * 0',english:'Sundays midnight',agent:'meta',status:'paused',next:'—'},
+];
+
+const MEMORIES = [
+  {text:'Trading style: U.S. small-cap momentum, intraday, catalyst-based. Never holds overnight.',type:'PREF',importance:10,agent:'main',days:0,pinned:true},
+  {text:'Risk rule: Never risk more than 1-2% per trade. No exceptions. Daily drawdown max 3% — stop trading if hit.',type:'FACT',importance:10,agent:'trading',days:0,pinned:true},
+  {text:'Name: Blaine. Email: goheat207@gmail.com.',type:'FACT',importance:9,agent:'main',days:0,pinned:true},
+  {text:'Vault location: D:\\Agentic OS\\',type:'FACT',importance:9,agent:'main',days:0,pinned:true},
+  {text:'Prefers responses broken into small steps. ADHD/OCD profile — one next step at a time.',type:'PREF',importance:9,agent:'main',days:0,pinned:true},
+  {text:'HOD breakout scanner requires: price $1-$20, volume >500k, pre-market change >5%.',type:'FACT',importance:8,agent:'trading',days:3,pinned:false},
+  {text:'Primary trading hours: 9:30-11:00 AM ET. Avoids first 5 minutes of open.',type:'PREF',importance:8,agent:'trading',days:7,pinned:false},
+  {text:'Prefers tables for decision-making. Visual roadmaps over walls of text.',type:'PREF',importance:7,agent:'main',days:14,pinned:false},
+  {text:'EDGAR 8-K catalyst types ranked by strength: FDA approval > Earnings beat > Major contract > PR.',type:'FACT',importance:7,agent:'research',days:5,pinned:false},
+  {text:'Gmail connected via Google Workspace CLI. Comms agent uses gcloud SDK.',type:'FACT',importance:6,agent:'comms',days:21,pinned:false},
+  {text:'Community platform: Skool (Early AI Dopters). Responds to community DMs on Sundays.',type:'PREF',importance:6,agent:'comms',days:18,pinned:false},
+  {text:'Build philosophy: Functional first. Optimized later. Ship working version before perfecting.',type:'PREF',importance:8,agent:'main',days:2,pinned:false},
+];
+
+const INSIGHTS = [
+  'Trading agent is the most queried — consider a dedicated scanner sub-agent for pre-market vs intraday.',
+  'Memory access shows strong preference for risk rules — these should remain pinned permanently.',
+  'Comms agent handles 40% of total sessions. Consider splitting email from community management.',
+];
+
+const HIVE_DATA = [
+  {id:1,agent:'trading',task:'HOD breakout scanner — 3 setups flagged (AEYE, SMMT, CRKN)',status:'completed',domain:'trading',ts:'2026-05-09 08:31'},
+  {id:2,agent:'trading',task:'Pre-market watchlist built — 5 tickers graded',status:'completed',domain:'trading',ts:'2026-05-09 08:45'},
+  {id:3,agent:'research',task:'EDGAR 8-K pull on AEYE — FDA catalyst confirmed, float 12.4M',status:'completed',domain:'trading',ts:'2026-05-09 09:02'},
+  {id:4,agent:'comms',task:'Inbox triage — 12 emails processed, 3 flagged urgent, 2 replies drafted',status:'completed',domain:'ops',ts:'2026-05-09 09:15'},
+  {id:5,agent:'ops',task:'Weekly ops report generated — saved to ops/reports/',status:'completed',domain:'ops',ts:'2026-05-09 09:30'},
+  {id:6,agent:'main',task:'Delegated pattern review task to Trading agent',status:'completed',domain:'projects',ts:'2026-05-09 10:00'},
+  {id:7,agent:'trading',task:'Pattern review in progress — analyzing last 20 trades',status:'in_progress',domain:'trading',ts:'2026-05-09 10:05'},
+  {id:8,agent:'ops',task:'Finance brief for week of May 9 — in progress',status:'in_progress',domain:'ops',ts:'2026-05-09 10:10'},
+  {id:9,agent:'research',task:'Finviz small-cap momentum screen running',status:'in_progress',domain:'trading',ts:'2026-05-09 10:12'},
+  {id:10,agent:'meta',task:'System health check pending — API key required',status:'failed',domain:'system',ts:'2026-05-09 10:15'},
+  {id:11,agent:'main',task:'Risk check: no violations today. Account at +$342.',status:'completed',domain:'trading',ts:'2026-05-09 11:00'},
+  {id:12,agent:'trading',task:'VWAP reclaim scanner — no signals this session',status:'completed',domain:'trading',ts:'2026-05-09 11:30'},
+];
+
+const AUDIT_LOG = [
+  {time:'10:15:42',actor:'meta',action:'spawn_failed',target:'system health check — missing TELEGRAM_META_BOT_TOKEN'},
+  {time:'10:12:01',actor:'research',action:'tool_call',target:'finviz_screen — filters: mcap<300M, price $1-$20, vol>500k'},
+  {time:'10:10:33',actor:'ops',action:'file_write',target:'ops/finance/2026-05-09-finance-brief.md'},
+  {time:'10:05:18',actor:'trading',action:'tool_call',target:'pattern analysis — reading raw/trading/*.md (last 20 trades)'},
+  {time:'10:00:04',actor:'main',action:'delegate',target:'trading — pattern review task T-006'},
+  {time:'09:30:11',actor:'ops',action:'file_write',target:'ops/reports/2026-05-weekly-report.md'},
+  {time:'09:15:02',actor:'comms',action:'tool_call',target:'gmail_fetch — 12 messages retrieved, 3 flagged priority'},
+  {time:'09:02:44',actor:'research',action:'tool_call',target:'edgar_8k — AEYE filing retrieved, catalyst: FDA ODD designation'},
+  {time:'08:45:12',actor:'trading',action:'file_write',target:'raw/trading/2026-05-09-watchlist.md'},
+  {time:'08:31:03',actor:'trading',action:'tool_call',target:'tos_scanner — HOD breakout scan complete, 3 results'},
+];
+
+const WARROOM_RESPONSES = {
+  '/standup': [
+    {agent:'main',text:'Wrapped routing the morning task batch — scanner, research, and comms all delegated successfully. Queued is monitoring for any follow-up action items from the pattern review. No blockers. System is GREEN.'},
+    {agent:'trading',text:'Wrapped the HOD breakout scan at 08:31 — flagged AEYE, SMMT, CRKN as primary setups. Pattern review currently in progress analyzing last 20 trades. Queued is the VWAP reclaim scan for midday. Risk check shows no violations today.'},
+    {agent:'ops',text:'Wrapped the weekly ops report and saved to ops/reports/. Finance brief for May 9 is in progress — estimated 15 minutes to complete. No scheduled tasks failed this week.'},
+    {agent:'research',text:'Wrapped the AEYE EDGAR pull — 8-K confirmed FDA ODD designation, float 12.4M, short interest 18%. Currently running Finviz small-cap screen. Queued is any deeper catalyst research Main flags from the watchlist.'},
+    {agent:'comms',text:'Wrapped inbox triage — 12 emails processed, 3 flagged urgent, 2 draft replies queued for your approval. Queued is the community member reply re: scanners. No blockers, waiting on your sign-off before any replies go out.'},
+    {agent:'meta',text:'System health check blocked — TELEGRAM_META_BOT_TOKEN not configured. All other agents reporting GREEN. Hive Mind DB has 12 entries today. No failed tasks except my own spawn. Action required: set API key in .env.'},
+  ],
+  '/discuss': [
+    {agent:'main',text:'From an orchestration standpoint, the system is functioning well but Meta agent needs its API key resolved before we have full visibility. I\'d prioritize that as the next configuration task.'},
+    {agent:'trading',text:'Pattern review is still running, but early read on the last 20 trades suggests the HOD breakout setup has the strongest edge. The AEYE catalyst play today is a solid primary — clean float, strong catalyst, high relative volume.'},
+    {agent:'ops',text:'From an ops angle, nothing critical. Finance brief will confirm the week\'s P&L shortly. Weekly ops report shows all scheduled tasks fired correctly this week.'},
+    {agent:'research',text:'Research angle: AEYE looks like the strongest catalyst setup today. The Finviz screen has 8 tickers worth reviewing — I\'ll have the full list to you in 10 minutes.'},
+    {agent:'comms',text:'Nothing in the inbox that requires immediate action before market close. The 3 priority emails can wait until end of day.'},
+    {agent:'meta',text:'System is 5 out of 6 agents operational. Recommend resolving the Meta API key today so we have full audit coverage. Everything else is green.'},
+  ]
+};
+
+/* ──────────────────────────────────────────────
+   NAVIGATION
+────────────────────────────────────────────── */
+function navigate(viewId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+  const v = document.getElementById('view-' + viewId);
+  if (v) v.classList.add('active');
+  const items = document.querySelectorAll('.sb-item[data-view="' + viewId + '"]');
+  items.forEach(i => i.classList.add('active'));
+
+  // Lazy init views
+  if (viewId === 'hivemind' && !window._hmInited) { initHiveMind(); window._hmInited = true; }
+  if (viewId === 'warroom' && !window._wrStarted) { startWarRoom(); window._wrStarted = true; }
+  if (viewId === 'usage' && !window._usageInited) { initUsage(); window._usageInited = true; }
+}
+
+/* ──────────────────────────────────────────────
+   KANBAN
+────────────────────────────────────────────── */
+function buildKanban(tasks) {
+  const cols = {pending: [], progress: [], done: []};
+  tasks.forEach(t => {
+    const col = t.status === 'done' ? 'done' : t.status === 'progress' ? 'progress' : 'pending';
+    cols[col].push(t);
+  });
+
+  ['pending','progress','done'].forEach(col => {
+    const el = document.getElementById('col-' + col);
+    const cnt = document.getElementById('cnt-' + col);
+    el.innerHTML = '';
+    cnt.textContent = cols[col].length;
+    cols[col].forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'kcard fade-in';
+      card.innerHTML =
+        '<div class="kcard-top">' +
+          '<div class="kcard-title">' + t.title + '</div>' +
+          '<div class="kcard-id">' + t.id + '</div>' +
+        '</div>' +
+        '<div class="kcard-meta">' +
+          '<div class="kcard-agent">' + t.agent.toUpperCase() + '</div>' +
+          '<div class="kcard-pri pri-' + t.priority + '">' + t.priority.toUpperCase() + '</div>' +
+        '</div>';
+      el.appendChild(card);
+    });
+    if (cols[col].length === 0) {
+      el.innerHTML = '<div class="empty-state" style="padding:30px 10px;"><div class="es-icon">□</div><div class="es-text">No tasks</div></div>';
+    }
+  });
+}
+
+function filterKanban(q) {
+  const filtered = q ? TASKS.filter(t => t.title.toLowerCase().includes(q.toLowerCase()) || t.agent.includes(q.toLowerCase())) : TASKS;
+  buildKanban(filtered);
+}
+
+function toggleKanbanFilter(agent) {
+  const filtered = agent === 'all' ? TASKS : TASKS.filter(t => t.agent === agent);
+  buildKanban(filtered);
+}
+
+function newTask() {
+  const title = prompt('Task title:');
+  if (!title) return;
+  const agent = prompt('Assign to agent (main/trading/ops/research/comms):') || 'main';
+  TASKS.unshift({id:'T-0'+Math.floor(Math.random()*90+10),title,agent,status:'pending',priority:'med'});
+  buildKanban(TASKS);
+}
+
+function autoAssign() {
+  alert('Auto-assign uses Gemini Flash to route task to best agent.\n\nThis feature connects to your Gemini API key in .env to classify and assign.');
+}
+
+/* ──────────────────────────────────────────────
+   SCHEDULES
+────────────────────────────────────────────── */
+function buildSchedules() {
+  const list = document.getElementById('schedList');
+  list.innerHTML = '';
+  SCHEDULES.forEach(s => {
+    const el = document.createElement('div');
+    el.className = 'sched-item';
+    el.innerHTML =
+      '<div class="sched-dot ' + s.status + '"></div>' +
+      '<div class="sched-name">' + s.name + '</div>' +
+      '<div class="sched-cron">' + s.english + '</div>' +
+      '<div class="sched-agent">' + s.agent.toUpperCase() + '</div>' +
+      '<div class="sched-next">next: ' + s.next + '</div>';
+    list.appendChild(el);
+  });
+}
+
+function newScheduled() {
+  const name = prompt('Schedule name:');
+  if (!name) return;
+  const english = prompt('When? (e.g. "Every weekday 9am")') || 'Custom';
+  SCHEDULES.push({name,cron:'custom',english,agent:'main',status:'active',next:'—'});
+  buildSchedules();
+}
+
+/* ──────────────────────────────────────────────
+   AGENTS
+────────────────────────────────────────────── */
+function buildAgents() {
+  const grid = document.getElementById('agentsGrid');
+  grid.innerHTML = '';
+  AGENTS.forEach(a => {
+    const el = document.createElement('div');
+    el.className = 'agent-card';
+    el.innerHTML =
+      '<div class="ac-top">' +
+        '<div class="ac-avatar">' + a.icon + '</div>' +
+        '<div class="ac-info">' +
+          '<div class="ac-name">' + a.name + '</div>' +
+          '<div class="ac-role">' + a.role + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ac-status">' +
+        '<div class="ac-dot ' + a.status + '"></div>' +
+        '<div class="ac-stxt">' + a.status.toUpperCase() + '</div>' +
+      '</div>' +
+      '<div class="ac-last">' + a.last + '</div>' +
+      '<div class="ac-model">' + a.model + '</div>';
+    grid.appendChild(el);
+  });
+}
+
+function newAgent() {
+  alert('Creating a new agent:\n1. Choose a name and persona\n2. Get a Telegram Bot Token from @BotFather\n3. Add agent YAML to agents/ folder\n4. Set bot token in .env');
+}
+
+function runSuggestions() {
+  alert('Agent Suggestions (powered by Gemini Flash):\n\nAnalysis of last 7 days:\n• Comms agent is handling 40% of sessions — consider splitting email vs community\n• Trading agent has 100% queue fill on pre-market days\n• Research agent underutilized after 10am ET\n\nSuggested: "Email Manager" agent to offload inbox from Comms.');
+}
+
+/* ──────────────────────────────────────────────
+   CHAT
+────────────────────────────────────────────── */
+let chatAgent = null;
+const chatHistory = {};
+
+function buildChatSidebar() {
+  const sidebar = document.getElementById('chatSidebar');
+  sidebar.innerHTML = '';
+  AGENTS.forEach(a => {
+    const el = document.createElement('div');
+    el.className = 'chat-agent-item';
+    el.dataset.id = a.id;
+    el.innerHTML =
+      '<div class="cai-name"><span class="cai-dot"></span>' + a.icon + ' ' + a.name + '</div>' +
+      '<div class="cai-last">' + a.last.substring(0,55) + '...</div>';
+    el.onclick = () => selectChatAgent(a.id);
+    sidebar.appendChild(el);
+  });
+}
+
+function selectChatAgent(id) {
+  chatAgent = id;
+  document.querySelectorAll('.chat-agent-item').forEach(i => i.classList.remove('active'));
+  document.querySelector('.chat-agent-item[data-id="' + id + '"]').classList.add('active');
+  const a = AGENTS.find(x => x.id === id);
+  document.getElementById('chatActiveAgent').textContent = a.icon + ' ' + a.name;
+  renderChatMessages(id);
+}
+
+function renderChatMessages(agentId) {
+  const msgs = chatHistory[agentId] || [];
+  const el = document.getElementById('chatMessages');
+  if (msgs.length === 0) {
+    const a = AGENTS.find(x => x.id === agentId);
+    el.innerHTML =
+      '<div class="empty-state">' +
+        '<div class="es-icon">' + a.icon + '</div>' +
+        '<div class="es-text">Start a conversation with ' + a.name + '</div>' +
+      '</div>';
+    return;
+  }
+  el.innerHTML = '';
+  msgs.forEach(m => {
+    const a = AGENTS.find(x => x.id === agentId);
+    const div = document.createElement('div');
+    div.className = 'msg ' + (m.role === 'user' ? 'user' : '');
+    if (m.role === 'user') {
+      div.innerHTML =
+        '<div class="msg-body"><div class="msg-meta">You · just now</div><div class="msg-text">' + m.text + '</div></div>' +
+        '<div class="msg-avatar">🧑</div>';
+    } else {
+      div.innerHTML =
+        '<div class="msg-avatar">' + a.icon + '</div>' +
+        '<div class="msg-body"><div class="msg-meta"><span class="agent-nm">' + a.name + '</span> · just now</div><div class="msg-text">' + m.text + '</div></div>';
+    }
+    el.appendChild(div);
+  });
+  el.scrollTop = el.scrollHeight;
+}
+
+function sendChatMsg() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text || !chatAgent) return;
+  input.value = '';
+
+  if (!chatHistory[chatAgent]) chatHistory[chatAgent] = [];
+  chatHistory[chatAgent].push({role:'user',text});
+  renderChatMessages(chatAgent);
+
+  setTimeout(() => {
+    const a = AGENTS.find(x => x.id === chatAgent);
+    const replies = {
+      main: 'Understood. I\'ll triage and delegate accordingly. Is there anything specific you want me to prioritize?',
+      trading: 'Got it. I\'ll check the current scanner data and flag any matching setups. Remember: risk max 1-2% per trade.',
+      ops: 'On it. I\'ll pull the relevant data from ops/ and have it ready shortly.',
+      research: 'Running the research now. I\'ll cross-reference EDGAR, Finviz, and any recent news for you.',
+      comms: 'Understood. I\'ll draft a response and queue it for your review before anything goes out.',
+      meta: 'System health check: most agents are operational. Meta agent needs TELEGRAM_META_BOT_TOKEN to be fully active.',
+    };
+    chatHistory[chatAgent].push({role:'agent',text: replies[chatAgent] || 'Processing your request...'});
+    renderChatMessages(chatAgent);
+  }, 800);
+}
+
+/* ──────────────────────────────────────────────
+   MEMORIES
+────────────────────────────────────────────── */
+function buildMemories(list) {
+  const el = document.getElementById('memList');
+  el.innerHTML = '';
+  list.forEach(m => {
+    const div = document.createElement('div');
+    div.className = 'mem-item' + (m.pinned ? ' pinned' : '');
+    div.innerHTML =
+      '<div class="mem-top">' +
+        '<div class="mem-text">' + (m.pinned ? '📌 ' : '') + m.text + '</div>' +
+        '<div class="mem-type">' + m.type + '</div>' +
+      '</div>' +
+      '<div class="mem-meta">' +
+        '<span>' + m.agent.toUpperCase() + '</span>' +
+        '<span>Importance: ' + m.importance + '/10</span>' +
+        '<span>' + (m.days === 0 ? 'today' : m.days + 'd ago') + '</span>' +
+      '</div>';
+    el.appendChild(div);
+  });
+  if (list.length === 0) {
+    el.innerHTML = '<div class="empty-state"><div class="es-icon">⊙</div><div class="es-text">No memories found</div></div>';
+  }
+}
+
+function filterMemories(q) {
+  const filtered = q ? MEMORIES.filter(m => m.text.toLowerCase().includes(q.toLowerCase()) || m.type.toLowerCase().includes(q.toLowerCase())) : MEMORIES;
+  buildMemories(filtered);
+}
+
+function buildMemorySidebar() {
+  // Stats
+  const statsEl = document.getElementById('memStats');
+  statsEl.innerHTML =
+    '<div class="ms-row"><span class="ms-label">Total Memories</span><span class="ms-val">' + MEMORIES.length + '</span></div>' +
+    '<div class="ms-row"><span class="ms-label">Pinned</span><span class="ms-val or">' + MEMORIES.filter(m => m.pinned).length + '</span></div>' +
+    '<div class="ms-row"><span class="ms-label">General</span><span class="ms-val">' + MEMORIES.filter(m => !m.pinned && m.importance >= 5).length + '</span></div>' +
+    '<div class="ms-row"><span class="ms-label">Fading</span><span class="ms-val dim">' + MEMORIES.filter(m => m.importance < 5).length + '</span></div>' +
+    '<div class="ms-row"><span class="ms-label">Insights</span><span class="ms-val">' + INSIGHTS.length + '</span></div>';
+
+  // Importance distribution
+  const impEl = document.getElementById('memImpBar');
+  impEl.innerHTML = '';
+  [10,9,8,7,6,5].forEach(score => {
+    const count = MEMORIES.filter(m => m.importance === score).length;
+    const pct = Math.round(count / MEMORIES.length * 100);
+    impEl.innerHTML +=
+      '<div class="mib-row">' +
+        '<span class="mib-score">' + score + '</span>' +
+        '<div class="mib-bar"><div class="mib-fill" style="width:' + (count * 25) + 'px;max-width:100%;"></div></div>' +
+        '<span class="mib-count">' + count + '</span>' +
+      '</div>';
+  });
+
+  // Insights
+  const insEl = document.getElementById('memInsights');
+  insEl.innerHTML = '';
+  INSIGHTS.forEach(ins => {
+    const div = document.createElement('div');
+    div.className = 'mem-insight';
+    div.innerHTML = '<div class="mi-label">INSIGHT</div><div class="mi-text">' + ins + '</div>';
+    insEl.appendChild(div);
+  });
+}
+
+function runInsights() {
+  alert('Running /insights via Gemini Flash...\n\n' + INSIGHTS.join('\n\n'));
+}
+
+/* ──────────────────────────────────────────────
+   HIVE MIND — 3D (Three.js)
+────────────────────────────────────────────── */
+let hmScene, hmCamera, hmRenderer, hmNodes = [], hmAnimFrame;
+let hmCurrentFilter = 'all';
+let hmCurrentView = '3d';
+
+const AGENT_COLORS = {
+  main:     0xff4d00,
+  trading:  0xff8c00,
+  ops:      0xffaa00,
+  research: 0xff6622,
+  comms:    0xff3300,
+  meta:     0xcc3a00,
+};
+
+function initHiveMind() {
+  init3D();
+  buildHiveList();
+  document.getElementById('hmTotalTasks').textContent = HIVE_DATA.length + ' TASKS';
+}
+
+function init3D() {
+  const container = document.getElementById('hmContainer');
+  const canvas = document.getElementById('hm-3d-canvas');
+  const W = container.clientWidth;
+  const H = container.clientHeight;
+
+  hmScene = new THREE.Scene();
+  hmScene.background = new THREE.Color(0x080808);
+
+  hmCamera = new THREE.PerspectiveCamera(55, W / H, 0.1, 1000);
+  hmCamera.position.set(0, 0, 18);
+
+  hmRenderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  hmRenderer.setSize(W, H);
+  hmRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Ambient + point light
+  const ambLight = new THREE.AmbientLight(0xffffff, 0.2);
+  hmScene.add(ambLight);
+
+  const pLight = new THREE.PointLight(0xff4d00, 2, 30);
+  pLight.position.set(5, 5, 5);
+  hmScene.add(pLight);
+
+  buildHive3DNodes();
+
+  // Mouse interaction
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, hmCamera);
+    const hits = raycaster.intersectObjects(hmNodes.map(n => n.mesh));
+    const popup = document.getElementById('hmPopup');
+    if (hits.length > 0) {
+      const node = hmNodes.find(n => n.mesh === hits[0].object);
+      if (node) {
+        popup.style.display = 'block';
+        popup.style.left = (e.clientX - container.getBoundingClientRect().left + 16) + 'px';
+        popup.style.top = (e.clientY - container.getBoundingClientRect().top - 40) + 'px';
+        popup.innerHTML =
+          '<div class="hm-popup-agent">' + node.data.agent + '</div>' +
+          '<div class="hm-popup-task">' + node.data.task.substring(0,80) + '</div>' +
+          '<div class="hm-popup-count">' + node.data.ts + ' · ' + node.data.status + '</div>';
+      }
+    } else {
+      popup.style.display = 'none';
+    }
+  });
+  canvas.addEventListener('mouseleave', () => {
+    document.getElementById('hmPopup').style.display = 'none';
+  });
+
+  // Scroll to orbit
+  let rotX = 0, rotY = 0;
+  canvas.addEventListener('mousemove', e => {
+    if (e.buttons === 1) {
+      rotY += e.movementX * 0.008;
+      rotX += e.movementY * 0.008;
+    }
+  });
+
+  function animate() {
+    hmAnimFrame = requestAnimationFrame(animate);
+    rotY += 0.002;
+    hmScene.rotation.y = rotY;
+    hmScene.rotation.x = rotX;
+    hmRenderer.render(hmScene, hmCamera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    const W2 = container.clientWidth;
+    const H2 = container.clientHeight;
+    hmCamera.aspect = W2 / H2;
+    hmCamera.updateProjectionMatrix();
+    hmRenderer.setSize(W2, H2);
+  });
+}
+
+function buildHive3DNodes() {
+  // Clear existing nodes
+  hmNodes.forEach(n => { hmScene.remove(n.mesh); if(n.line) hmScene.remove(n.line); });
+  hmNodes = [];
+
+  const filtered = hmCurrentFilter === 'all' ? HIVE_DATA : HIVE_DATA.filter(d => d.agent === hmCurrentFilter);
+
+  // Position nodes in a sphere
+  const radius = 7;
+  const phi_increment = Math.PI * (3 - Math.sqrt(5));
+
+  filtered.forEach((d, i) => {
+    const y = 1 - (i / (filtered.length - 0.5 || 1)) * 2;
+    const r = Math.sqrt(1 - y * y) * radius;
+    const theta = phi_increment * i;
+    const x = Math.cos(theta) * r;
+    const z = Math.sin(theta) * r;
+
+    const size = d.status === 'completed' ? 0.28 : d.status === 'in_progress' ? 0.38 : 0.22;
+    const geo = new THREE.SphereGeometry(size, 12, 12);
+    const color = AGENT_COLORS[d.agent] || 0xff4d00;
+    const opacity = d.status === 'completed' ? 0.85 : d.status === 'in_progress' ? 1.0 : 0.4;
+
+    const mat = new THREE.MeshStandardMaterial({
+      color,
+      emissive: color,
+      emissiveIntensity: d.status === 'in_progress' ? 1.2 : 0.5,
+      transparent: true,
+      opacity,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.set(x, y * radius * 0.9, z);
+    hmScene.add(mesh);
+
+    // Glow sphere (slightly larger, transparent)
+    const glowGeo = new THREE.SphereGeometry(size * 2.2, 8, 8);
+    const glowMat = new THREE.MeshBasicMaterial({
+      color,
+      transparent: true,
+      opacity: 0.04,
+    });
+    const glow = new THREE.Mesh(glowGeo, glowMat);
+    glow.position.copy(mesh.position);
+    hmScene.add(glow);
+
+    hmNodes.push({mesh, glow, data: d, pos: {x, y: y * radius * 0.9, z}});
+  });
+
+  // Lines between nearby nodes
+  const positions = hmNodes.map(n => n.pos);
+  for (let i = 0; i < hmNodes.length; i++) {
+    for (let j = i + 1; j < hmNodes.length; j++) {
+      const dx = positions[i].x - positions[j].x;
+      const dy = positions[i].y - positions[j].y;
+      const dz = positions[i].z - positions[j].z;
+      const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+      if (dist < 4.5) {
+        const pts = [
+          new THREE.Vector3(positions[i].x, positions[i].y, positions[i].z),
+          new THREE.Vector3(positions[j].x, positions[j].y, positions[j].z),
+        ];
+        const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
+        const lineMat = new THREE.LineBasicMaterial({
+          color: 0xff4d00,
+          transparent: true,
+          opacity: 0.12,
+        });
+        const line = new THREE.Line(lineGeo, lineMat);
+        hmScene.add(line);
+      }
+    }
+  }
+
+  // Region labels (fake, just markers)
+  const regions = [
+    {label:'TRADING', pos: new THREE.Vector3(5, 3, 0)},
+    {label:'OPS', pos: new THREE.Vector3(-5, -2, 3)},
+    {label:'SYSTEM', pos: new THREE.Vector3(0, -5, -4)},
+  ];
+}
+
+/* ── 2D Graph ── */
+function buildHive2D() {
+  const svg = document.getElementById('hm-2d-svg');
+  const container = document.getElementById('hmContainer');
+  const W = container.clientWidth;
+  const H = container.clientHeight;
+
+  const filtered = hmCurrentFilter === 'all' ? HIVE_DATA : HIVE_DATA.filter(d => d.agent === hmCurrentFilter);
+
+  const d3svg = d3.select('#hm-2d-svg')
+    .attr('width', W)
+    .attr('height', H);
+
+  d3svg.selectAll('*').remove();
+
+  const agentNodes = [...new Set(filtered.map(d => d.agent))].map(id => ({id, type:'agent', agent:id}));
+  const taskNodes = filtered.map(d => ({id:'t'+d.id, type:'task', data:d, agent:d.agent}));
+  const nodes = [...agentNodes, ...taskNodes];
+
+  const links = filtered.map(d => ({source:'t'+d.id, target:d.agent, agent:d.agent}));
+
+  const sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(80))
+    .force('charge', d3.forceManyBody().strength(-120))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collision', d3.forceCollide(20));
+
+  const linkEl = d3svg.append('g').selectAll('line')
+    .data(links).join('line')
+    .attr('stroke', 'rgba(255,77,0,0.15)')
+    .attr('stroke-width', 1);
+
+  const nodeEl = d3svg.append('g').selectAll('circle')
+    .data(nodes).join('circle')
+    .attr('r', d => d.type === 'agent' ? 14 : 6)
+    .attr('fill', d => {
+      const c = AGENT_COLORS[d.agent] || 0xff4d00;
+      return '#' + c.toString(16).padStart(6,'0');
+    })
+    .attr('fill-opacity', d => d.type === 'agent' ? 0.9 : 0.6)
+    .attr('stroke', d => d.type === 'agent' ? '#ff4d00' : 'rgba(255,77,0,0.3)')
+    .attr('stroke-width', d => d.type === 'agent' ? 2 : 1)
+    .call(d3.drag()
+      .on('start', (event, d) => { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on('drag', (event, d) => { d.fx = event.x; d.fy = event.y; })
+      .on('end', (event, d) => { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
+    );
+
+  const label = d3svg.append('g').selectAll('text')
+    .data(nodes.filter(n => n.type === 'agent')).join('text')
+    .attr('font-family', "'IBM Plex Mono', monospace")
+    .attr('font-size', 10)
+    .attr('fill', '#ff4d00')
+    .attr('text-anchor', 'middle')
+    .attr('dy', 28)
+    .text(d => d.id.toUpperCase());
+
+  sim.on('tick', () => {
+    linkEl
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y);
+    nodeEl
+      .attr('cx', d => d.x)
+      .attr('cy', d => d.y);
+    label
+      .attr('x', d => d.x)
+      .attr('y', d => d.y);
+  });
+}
+
+/* ── List view ── */
+function buildHiveList() {
+  const el = document.getElementById('hm-list-view');
+  const filtered = hmCurrentFilter === 'all' ? HIVE_DATA : HIVE_DATA.filter(d => d.agent === hmCurrentFilter);
+
+  el.innerHTML = '<table class="hm-tbl">' +
+    '<thead><tr><th>AGENT</th><th>TASK</th><th>STATUS</th><th>DOMAIN</th><th>TIMESTAMP</th></tr></thead>' +
+    '<tbody>' +
+    filtered.map(d => {
+      const sc = d.status === 'completed' ? 'hm-s-done' : d.status === 'in_progress' ? 'hm-s-prog' : 'hm-s-fail';
+      return '<tr>' +
+        '<td class="or">' + d.agent.toUpperCase() + '</td>' +
+        '<td>' + d.task + '</td>' +
+        '<td><span class="hm-status ' + sc + '">' + d.status.toUpperCase() + '</span></td>' +
+        '<td class="dim">' + d.domain + '</td>' +
+        '<td class="dim">' + d.ts + '</td>' +
+        '</tr>';
+    }).join('') +
+    '</tbody></table>';
+}
+
+function setHMView(view, btn) {
+  hmCurrentView = view;
+  document.querySelectorAll('.hm-view-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const canvas = document.getElementById('hm-3d-canvas');
+  const svg = document.getElementById('hm-2d-svg');
+  const list = document.getElementById('hm-list-view');
+
+  canvas.style.display = 'none';
+  svg.style.display = 'none';
+  list.style.display = 'none';
+
+  if (view === '3d') {
+    canvas.style.display = 'block';
+    if (hmAnimFrame) { cancelAnimationFrame(hmAnimFrame); }
+    // Restart animation
+    function animate() {
+      hmAnimFrame = requestAnimationFrame(animate);
+      hmScene.rotation.y += 0.002;
+      hmRenderer.render(hmScene, hmCamera);
+    }
+    animate();
+  } else if (view === '2d') {
+    svg.style.display = 'block';
+    buildHive2D();
+  } else {
+    list.style.display = 'block';
+    buildHiveList();
+  }
+}
+
+function setHMFilter(filter, btn) {
+  hmCurrentFilter = filter;
+  document.querySelectorAll('.hm-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('hmTotalTasks').textContent = (filter === 'all' ? HIVE_DATA : HIVE_DATA.filter(d => d.agent === filter)).length + ' TASKS';
+
+  if (hmCurrentView === '3d') {
+    buildHive3DNodes();
+  } else if (hmCurrentView === '2d') {
+    buildHive2D();
+  } else {
+    buildHiveList();
+  }
+}
+
+/* ──────────────────────────────────────────────
+   WAR ROOM
+────────────────────────────────────────────── */
+let wrTimerInterval;
+let wrSeconds = 0;
+
+function startWarRoom() {
+  const agentsEl = document.getElementById('wrAgents');
+  agentsEl.innerHTML = '';
+
+  AGENTS.forEach((a, i) => {
+    const div = document.createElement('div');
+    div.className = 'wr-agent';
+    div.id = 'wra-' + a.id;
+    div.innerHTML =
+      '<div class="wr-agent-av">' + a.icon + '</div>' +
+      '<div class="wr-agent-name">' + a.name + '</div>' +
+      '<div class="wr-agent-status">ONLINE</div>';
+    agentsEl.appendChild(div);
+  });
+
+  // Build sidebar
+  buildWarRoomSidebar();
+
+  // Animate assembly
+  const steps = ['Initializing agents...', 'Loading Hive Mind...', 'Injecting domain context...', 'Warming up the room...', 'Ready.'];
+  let stepIdx = 0;
+  let agentIdx = 0;
+
+  const interval = setInterval(() => {
+    if (agentIdx < AGENTS.length) {
+      const el = document.getElementById('wra-' + AGENTS[agentIdx].id);
+      if (el) el.classList.add('visible');
+      agentIdx++;
+      const pct = (agentIdx / AGENTS.length) * 80;
+      document.getElementById('wrProgress').style.width = pct + '%';
+    } else {
+      document.getElementById('wrProgress').style.width = '100%';
+      clearInterval(interval);
+      setTimeout(() => {
+        document.getElementById('wrProgressLbl').textContent = 'Ready.';
+        setTimeout(() => transitionToWarRoomChat(), 800);
+      }, 500);
+    }
+
+    document.getElementById('wrProgressLbl').textContent = steps[Math.min(stepIdx, steps.length - 1)];
+    stepIdx++;
+  }, 400);
+}
+
+function transitionToWarRoomChat() {
+  const assembling = document.getElementById('warroom-assembling');
+  const active = document.getElementById('warroom-active');
+  assembling.classList.add('hidden');
+  setTimeout(() => {
+    assembling.style.display = 'none';
+    active.classList.add('visible');
+    startWrTimer();
+    addWrMsg('main', 'War Room active. All agents online. Use /standup for a status report from all agents, /discuss [question] for a group discussion, or @agent to address a specific agent.');
+  }, 500);
+}
+
+function buildWarRoomSidebar() {
+  const list = document.getElementById('wrAgentsList');
+  list.innerHTML = '';
+  AGENTS.forEach((a, i) => {
+    const el = document.createElement('div');
+    el.className = 'wr-agent-row' + (i === 0 ? ' active' : '');
+    el.innerHTML =
+      '<div class="war-av">' +
+        '<div class="war-av-ico">' + a.icon + '</div>' +
+        '<div class="war-av-name">' + a.name + '</div>' +
+        '<div class="war-av-dot"></div>' +
+      '</div>' +
+      '<div class="war-last">' + a.last.substring(0,48) + '...</div>';
+    el.onclick = () => {
+      document.querySelectorAll('.wr-agent-row').forEach(r => r.classList.remove('active'));
+      el.classList.add('active');
+    };
+    list.appendChild(el);
+  });
+}
+
+function addWrMsg(agentId, text, label) {
+  const msgs = document.getElementById('wrMessages');
+  const a = AGENTS.find(x => x.id === agentId) || {icon:'🤖',name:agentId};
+  const div = document.createElement('div');
+  div.className = 'wr-msg fade-in';
+  const ts = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false});
+  div.innerHTML =
+    '<div class="wr-msg-av">' + a.icon + '</div>' +
+    '<div class="wr-msg-body">' +
+      '<div class="wr-msg-top">' +
+        '<span class="wr-msg-name">' + a.name.toUpperCase() + '</span>' +
+        '<span class="wr-msg-time">' + ts + '</span>' +
+        (label ? '<span class="wr-msg-badge chiming">' + label + '</span>' : '') +
+      '</div>' +
+      '<div class="wr-msg-text">' + text + '</div>' +
+    '</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addWrUserMsg(text) {
+  const msgs = document.getElementById('wrMessages');
+  const div = document.createElement('div');
+  div.className = 'wr-msg fade-in';
+  const ts = new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false});
+  div.innerHTML =
+    '<div class="wr-msg-av">🧑</div>' +
+    '<div class="wr-msg-body">' +
+      '<div class="wr-msg-top"><span class="wr-msg-name" style="color:var(--brt)">BLAINE</span><span class="wr-msg-time">' + ts + '</span></div>' +
+      '<div class="wr-msg-text" style="border-color:rgba(255,77,0,0.3);background:var(--oglow)">' + text + '</div>' +
+    '</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function sendWarRoomMsg() {
+  const input = document.getElementById('wrInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addWrUserMsg(text);
+
+  const lower = text.toLowerCase();
+
+  if (lower === '/standup') {
+    const responses = WARROOM_RESPONSES['/standup'];
+    responses.forEach((r, i) => {
+      setTimeout(() => {
+        addWrMsg(r.agent, r.text, 'CHIMING IN');
+      }, (i + 1) * 900);
+    });
+  } else if (lower.startsWith('/discuss')) {
+    const q = text.substring(8).trim() || 'the current system status';
+    const responses = WARROOM_RESPONSES['/discuss'];
+    responses.forEach((r, i) => {
+      setTimeout(() => {
+        addWrMsg(r.agent, r.text, 'CHIMING IN');
+      }, (i + 1) * 900);
+    });
+  } else if (lower.startsWith('@')) {
+    const parts = text.split(' ');
+    const agentId = parts[0].substring(1).toLowerCase();
+    const msg = parts.slice(1).join(' ');
+    const a = AGENTS.find(x => x.id === agentId || x.name.toLowerCase() === agentId);
+    if (a) {
+      setTimeout(() => {
+        addWrMsg(a.id, 'Responding to your direct message: ' + (msg || text) + '\n\nI\'ll handle this now and update the Hive Mind when complete.', 'DIRECT');
+      }, 700);
+    }
+  } else {
+    setTimeout(() => {
+      addWrMsg('main', 'Received. I\'m triaging and will delegate to the appropriate agent. Use /standup for a full status report, or @agent to speak directly to a specific team member.', 'CHIMING IN');
+    }, 600);
+  }
+}
+
+function startWrTimer() {
+  wrSeconds = 0;
+  clearInterval(wrTimerInterval);
+  wrTimerInterval = setInterval(() => {
+    wrSeconds++;
+    const m = String(Math.floor(wrSeconds / 60)).padStart(1,'0');
+    const s = String(wrSeconds % 60).padStart(2,'0');
+    const el = document.getElementById('wrTimer');
+    if (el) el.textContent = m + ':' + s;
+  }, 1000);
+}
+
+function wrSize(size, btn) {
+  document.querySelectorAll('.wr-size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const sidebar = document.querySelector('.wr-sidebar');
+  if (size === 'S') sidebar.style.width = '180px';
+  else if (size === 'M') sidebar.style.width = '220px';
+  else sidebar.style.width = '280px';
+}
+
+/* ──────────────────────────────────────────────
+   USAGE
+────────────────────────────────────────────── */
+function initUsage() {
+  const grid = document.getElementById('usageGrid');
+  const stats = [
+    {label:'5-HOUR WINDOW',val:'3.1M',sub:'/ 5.0M tokens',pct:62,note:'7 sessions · FLAT'},
+    {label:'WEEKLY WINDOW',val:'41.0M',sub:'/ 60.0M tokens',pct:68,note:'43 sessions · FLAT'},
+    {label:'ROUTINES · MAX',val:'9 / 15',sub:'$14.3 today',pct:60,note:'Resets midnight'},
+  ];
+  grid.innerHTML = '';
+  stats.forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'usage-card';
+    div.innerHTML =
+      '<div class="uc-label">' + s.label + '</div>' +
+      '<div class="uc-val">' + s.val + '</div>' +
+      '<div class="uc-sub">' + s.sub + '</div>' +
+      '<div class="uc-sub" style="color:var(--dim);margin-top:3px;">' + s.note + '</div>' +
+      '<div class="uc-bar"><div class="uc-bar-fill" style="width:' + s.pct + '%;background:var(--or);"></div></div>';
+    grid.appendChild(div);
+  });
+
+  // Usage chart
+  const ctx = document.getElementById('usageChart').getContext('2d');
+  const labels = [];
+  const data = [];
+  const start = new Date('2026-04-10');
+  let cum = 0;
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(start);
+    d.setDate(d.getDate() + i);
+    labels.push(d.toLocaleDateString('en-US',{month:'short',day:'2-digit'}));
+    const daily = Math.floor(Math.random() * 2000000 + 500000);
+    cum += daily;
+    data.push(Math.round(cum / 1000000 * 10) / 10);
+  }
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data,
+        borderColor: '#ff4d00',
+        borderWidth: 2,
+        backgroundColor: ctx2 => {
+          const chart = ctx2.chart;
+          if (!chart.chartArea) return 'rgba(255,77,0,0.1)';
+          const g = chart.ctx.createLinearGradient(0, chart.chartArea.top, 0, chart.chartArea.bottom);
+          g.addColorStop(0, 'rgba(255,77,0,0.4)');
+          g.addColorStop(1, 'rgba(255,77,0,0.02)');
+          return g;
+        },
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {display:false},
+        tooltip: {
+          backgroundColor:'#111',
+          borderColor:'#ff4d00',
+          borderWidth:1,
+          titleColor:'#ff4d00',
+          bodyColor:'#c0c0c0',
+          titleFont:{family:'IBM Plex Mono',size:10},
+          bodyFont:{family:'IBM Plex Mono',size:10},
+          padding:8,
+        }
+      },
+      scales: {
+        x: {
+          grid:{color:'#161616'},
+          ticks:{color:'#383838',font:{family:'IBM Plex Mono',size:9},maxTicksLimit:8},
+          border:{color:'#1c1c1c'},
+        },
+        y: {
+          grid:{color:'#161616'},
+          ticks:{color:'#383838',font:{family:'IBM Plex Mono',size:9},callback:v=>v+'M'},
+          border:{color:'#1c1c1c'},
+        }
+      }
+    }
+  });
+}
+
+/* ──────────────────────────────────────────────
+   AUDIT LOG
+────────────────────────────────────────────── */
+function buildAuditLog() {
+  const list = document.getElementById('auditList');
+  list.innerHTML = '';
+  AUDIT_LOG.forEach(entry => {
+    const div = document.createElement('div');
+    div.className = 'audit-item';
+    div.innerHTML =
+      '<span class="audit-time">' + entry.time + '</span>' +
+      '<span class="audit-actor">' + entry.actor.toUpperCase() + '</span>' +
+      '<span class="audit-action">' + entry.action + '</span>' +
+      '<span class="audit-target" style="font-size:10px;color:var(--dim);">' + entry.target + '</span>';
+    list.appendChild(div);
+  });
+}
+
+/* ──────────────────────────────────────────────
+   SETTINGS
+────────────────────────────────────────────── */
+function buildSettings() {
+  const grid = document.getElementById('settingsGrid');
+  const sections = [
+    {
+      title: 'KILL SWITCHES',
+      rows: [
+        {label:'LLM Spawn',sub:'Gate all AI model calls',on:true},
+        {label:'War Room Text',sub:'Enable /standup and /discuss',on:true},
+        {label:'War Room Voice',sub:'Real-time voice sessions',on:false},
+        {label:'Dashboard Mutations',sub:'Allow POST/PUT/DELETE via UI',on:true},
+        {label:'Auto-Assign',sub:'Gemini classifier for task routing',on:true},
+        {label:'Scheduler',sub:'Cron task execution',on:true},
+      ]
+    },
+    {
+      title: 'SECURITY',
+      rows: [
+        {label:'Chat ID Allowlist',sub:'Only your Telegram ID can message agents',on:true},
+        {label:'PIN Entry',sub:'Require PIN on agent spawn',on:false},
+        {label:'Exfiltration Guard',sub:'Block API key patterns in outbound messages',on:true},
+        {label:'Audit Log',sub:'Append-only log of all tool calls',on:true},
+      ]
+    },
+    {
+      title: 'MEMORY',
+      rows: [
+        {label:'Memory Consolidation',sub:'Gemini Flash washing machine (30min)',on:true},
+        {label:'Auto-Decay',sub:'Fade memories below importance 5 after 30d',on:true},
+        {label:'Obsidian Auto-Inject',sub:'Inject domain claude.md on session start',on:true},
+        {label:'Insights Generation',sub:'Periodic AI insights from memory',on:true},
+      ]
+    },
+    {
+      title: 'INTEGRATIONS',
+      rows: [
+        {label:'Telegram — Main',sub:'@blaine_main_bot · pending API key',on:false},
+        {label:'Telegram — Trading',sub:'@blaine_trading_bot · pending API key',on:false},
+        {label:'Gemini Flash',sub:'Memory consolidation + auto-assign',on:false},
+        {label:'EDGAR CLI',sub:'SEC filing research',on:true},
+      ]
+    },
+  ];
+
+  grid.innerHTML = '';
+  sections.forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'settings-section';
+    let html = '<div class="ss-title">' + s.title + '</div>';
+    s.rows.forEach(r => {
+      html +=
+        '<div class="ss-row">' +
+          '<div><div class="ss-label">' + r.label + '</div><div class="ss-sub">' + r.sub + '</div></div>' +
+          '<div class="toggle ' + (r.on ? 'on' : '') + '" onclick="this.classList.toggle(\'on\')"></div>' +
+        '</div>';
+    });
+    div.innerHTML = html;
+    grid.appendChild(div);
+  });
+}
+
+/* ──────────────────────────────────────────────
+   INIT ALL
+────────────────────────────────────────────── */
+buildKanban(TASKS);
+buildSchedules();
+buildAgents();
+buildChatSidebar();
+buildMemories(MEMORIES);
+buildMemorySidebar();
+buildAuditLog();
+buildSettings();
+</script>
+</body>
+</html>

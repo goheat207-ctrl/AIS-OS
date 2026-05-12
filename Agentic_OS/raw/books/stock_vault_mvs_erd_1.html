@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Vault — Minimum Viable Schema ERD</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f9f8f5;
+    color: #1a1a18;
+    padding: 32px 24px 48px;
+  }
+  header {
+    max-width: 960px;
+    margin: 0 auto 28px;
+  }
+  header h1 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+  header p {
+    font-size: 13px;
+    color: #5f5e5a;
+    line-height: 1.6;
+  }
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    font-size: 12px;
+    color: #5f5e5a;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+  .swatch.anchor  { background: #534AB7; }
+  .swatch.raw     { background: #0F6E56; }
+  .swatch.extract { background: #854F0B; }
+  .swatch.user    { background: #993556; }
+  .swatch.derived { background: #3d3d3a; }
+  #erd {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e0dfd8;
+    border-radius: 12px;
+    padding: 24px;
+    overflow-x: auto;
+  }
+  #erd svg { max-width: 100%; display: block; margin: 0 auto; }
+  footer {
+    max-width: 960px;
+    margin: 20px auto 0;
+    font-size: 11px;
+    color: #888780;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Stock Vault — Minimum Viable Schema (ERD)</h1>
+  <p>11 core tables across 3 layers. Every structured record traces back to <code>companies</code> via <code>company_id</code> and to a filing via <code>filing_id</code> where applicable. <code>analytics_snapshots</code> is the only derived table — never edited directly.</p>
+  <div class="legend">
+    <div class="legend-item"><div class="swatch anchor"></div> Anchor</div>
+    <div class="legend-item"><div class="swatch raw"></div> Filing registry</div>
+    <div class="legend-item"><div class="swatch extract"></div> Structured extraction</div>
+    <div class="legend-item"><div class="swatch user"></div> User notes</div>
+    <div class="legend-item"><div class="swatch derived"></div> Derived / analytics</div>
+  </div>
+</header>
+<div id="erd"></div>
+<footer>Generated from Stock Vault project knowledge. Free/public sources only. SQLite-first, local-first.</footer>
+
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+    primaryColor: dark ? '#3C3489' : '#EEEDFE',
+    primaryTextColor: dark ? '#CECBF6' : '#3C3489',
+    primaryBorderColor: '#534AB7',
+    attributeBackgroundColorEven: dark ? '#2C2C2A' : '#F8F7F4',
+    attributeBackgroundColorOdd: dark ? '#444441' : '#ffffff',
+  },
+});
+
+const diagram = `erDiagram
+  companies {
+    int company_id PK
+    text cik
+    text ticker
+    text company_name
+    text exchange
+    text sector
+    text status
+    text created_at
+  }
+  filings {
+    int filing_id PK
+    int company_id FK
+    text accession_number
+    text form_type
+    text filing_date
+    text filing_url
+    text raw_file_path
+    text parsed_text_path
+    text source_status
+    text created_at
+  }
+  filing_documents {
+    int filing_document_id PK
+    int filing_id FK
+    text document_name
+    text exhibit_type
+    text document_url
+    text raw_file_path
+    int document_order
+    text created_at
+  }
+  share_counts {
+    int share_count_id PK
+    int company_id FK
+    int filing_id FK
+    text as_of_date
+    int shares_outstanding
+    int authorized_shares
+    int public_float_reported
+    text source_note
+    text confidence
+    text created_at
+  }
+  offerings {
+    int offering_id PK
+    int company_id FK
+    int filing_id FK
+    text announced_date
+    text offering_type
+    real gross_proceeds
+    real price_per_share
+    int shares_offered
+    text status
+    text notes
+    text created_at
+  }
+  atm_programs {
+    int atm_id PK
+    int company_id FK
+    int filing_id FK
+    text announced_date
+    real total_capacity
+    real used_capacity
+    real remaining_capacity
+    text sales_agent
+    text status
+    text notes
+    text created_at
+  }
+  warrants {
+    int warrant_id PK
+    int company_id FK
+    int filing_id FK
+    text issue_date
+    real exercise_price
+    int share_count
+    text expiry_date
+    int cashless_allowed
+    int reset_clause
+    int blocker_clause
+    text status
+    text notes
+    text created_at
+  }
+  convertibles {
+    int convertible_id PK
+    int company_id FK
+    int filing_id FK
+    text instrument_type
+    real principal_amount
+    real conversion_price
+    text conversion_formula
+    real floor_price
+    text maturity_date
+    int blocker_clause
+    text status
+    text notes
+    text created_at
+  }
+  reverse_splits {
+    int reverse_split_id PK
+    int company_id FK
+    int filing_id FK
+    text effective_date
+    text split_ratio
+    text notes
+    text created_at
+  }
+  notes {
+    int note_id PK
+    int company_id FK
+    int related_filing_id FK
+    text note_date
+    text note_type
+    text title
+    text body
+    text tags
+    text confidence
+    text created_at
+  }
+  analytics_snapshots {
+    int snapshot_id PK
+    int company_id FK
+    text snapshot_date
+    text dilution_risk
+    real estimated_overhang
+    real nearest_ceiling_price
+    text summary
+    text methodology_note
+    text created_at
+  }
+  companies ||--o{ filings : has
+  companies ||--o{ share_counts : tracks
+  companies ||--o{ offerings : has
+  companies ||--o{ atm_programs : has
+  companies ||--o{ warrants : has
+  companies ||--o{ convertibles : has
+  companies ||--o{ reverse_splits : has
+  companies ||--o{ notes : annotated_by
+  companies ||--o{ analytics_snapshots : derives
+  filings ||--o{ filing_documents : contains
+  filings ||--o{ share_counts : sourced_from
+  filings ||--o{ offerings : sourced_from
+  filings ||--o{ atm_programs : sourced_from
+  filings ||--o{ warrants : sourced_from
+  filings ||--o{ convertibles : sourced_from
+  filings ||--o{ reverse_splits : sourced_from
+  filings ||--o{ notes : referenced_by
+`;
+
+const { svg } = await mermaid.render('erd-svg', diagram);
+document.getElementById('erd').innerHTML = svg;
+
+document.querySelectorAll('#erd svg.erDiagram .node').forEach(node => {
+  const firstPath = node.querySelector('path[d]');
+  if (!firstPath) return;
+  const d = firstPath.getAttribute('d');
+  const nums = d.match(/-?[\d.]+/g)?.map(Number);
+  if (!nums || nums.length < 8) return;
+  const xs = [nums[0], nums[2], nums[4], nums[6]];
+  const ys = [nums[1], nums[3], nums[5], nums[7]];
+  const x = Math.min(...xs), y = Math.min(...ys);
+  const w = Math.max(...xs) - x, h = Math.max(...ys) - y;
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', y);
+  rect.setAttribute('width', w); rect.setAttribute('height', h);
+  rect.setAttribute('rx', '8');
+  for (const a of ['fill', 'stroke', 'stroke-width', 'class', 'style']) {
+    if (firstPath.hasAttribute(a)) rect.setAttribute(a, firstPath.getAttribute(a));
+  }
+  firstPath.replaceWith(rect);
+});
+
+document.querySelectorAll('#erd svg.erDiagram .row-rect-odd path, #erd svg.erDiagram .row-rect-even path').forEach(p => {
+  p.setAttribute('stroke', 'none');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,768 @@
+========================================
+TIMOTHY SYKES TRADER PLAYBOOK
+REVERSE-ENGINEERED FROM PRIMARY SOURCES
+Research Date: March 30, 2026
+Sources: timothysykes.com blog, Trading Challenge syllabus, Profit.ly,
+Complete Penny Stock Course (Jamil Ben Alluch), Sykes Sliding Scale documentation,
+Trading Tickers DVD, Tim Sykes Challenge ZenDesk knowledge base,
+StocksToTrade blog, multiple verified trade recaps and video lesson summaries.
+========================================
+
+
+========================================
+SECTION 1 -- TRADER PLAYBOOK SUMMARY
+========================================
+
+Timothy Sykes is a pattern-recognition long-biased trader (with some short exposure)
+who specializes in promoted penny stocks and OTC/small-cap names that follow a
+predictable lifecycle from hype to collapse. His core insight is that these stocks
+follow the same emotional arc -- hype, euphoria, distribution, panic, bounce -- and
+that the patterns are repeatable regardless of the underlying company or sector.
+
+His primary vehicle is the morning panic dip buy on stocks that have had multi-day or
+multi-week runs. He claims this single pattern accounts for one-third to one-half of
+his total career trading profits, which he documents publicly on Profit.ly.
+
+He trades small. His personal trading account is intentionally kept small (by trader
+standards) and all profits are donated to charity. His personal P&L ranges from
+$80K-$240K per year in documented recent years. His business income is primarily
+from the Trading Challenge education product.
+
+He is primarily a teacher who still trades to demonstrate his system. His trading
+volume is low relative to his students'. He explicitly states he misses or undersizes
+many setups intentionally because he is focused on demonstrating the process, not
+maximizing personal P&L.
+
+Operating principle: "Aim small, miss small." Take small, defined-risk trades on
+high-probability patterns. Never try to catch the full move. Preservation over
+maximization.
+
+Confirmed current bias: Long-biased. He has explicitly moved away from short selling
+in recent years due to short squeeze risk in small-cap names. Quote from 2022-2023:
+"I stopped shorting stocks" and "without them [short sellers] we wouldn't have so
+many great opportunities." He actively uses overly aggressive short sellers as
+evidence of long-side squeeze fuel.
+
+
+========================================
+SECTION 2 -- MARKET FOCUS
+========================================
+
+Instruments:
+Primarily OTC penny stocks and small-cap listed stocks (NASDAQ/NYSE).
+Occasional listed names when hot (GME, AMC, IPO runners, theme-driven names).
+Promoted stocks: his framework was built on and remains most applicable to stocks
+being actively hyped by promoters, newsletters, or social media.
+
+Price range:
+Sub-$1 to $10 is his historical sweet spot.
+He has expanded to higher-priced names (TSLA, GME, AMC) when those have exhibited
+penny-stock-like behavior (parabolic spikes, mass retail participation, clear panic).
+No hard upper limit cited but preference is for small, volatile names with thin floats.
+
+Float profile:
+Thin float / low float strongly preferred. Creates faster and more predictable panics
+and bounces. Thick float accepted only when the emotional cycle is strong enough
+(GME/AMC model).
+
+Volatility conditions:
+High volatility required. He explicitly avoids slow, dull markets.
+Quote: "I wait for the big moves. I'm not trying to make money every day."
+During slow periods he frequently describes not trading or trading very little.
+
+Session timing:
+9:30 AM to 12:00 PM Eastern Time is his primary window for morning panic dip buys.
+He explicitly warns against afternoon panic dip buys in most cases.
+Quote: "Definitely not on any afternoon panics" for morning panic dip buy pattern.
+Exception: double-bottom afternoon panic (specific nuance described below in setups).
+Pre-market review is mandatory every morning before trading.
+
+Sector / theme filter:
+Hot themes are required for multi-day runners. Examples cited: IPOs, oil and gas,
+cannabis, biotech, AI names, meme stocks.
+"Themes should be fairly obvious when you look at a cross-section of recent runners.
+If you don't see one, don't force it."
+Name-specific momentum without theme support = lower confidence.
+
+
+========================================
+SECTION 3 -- SETUP CATALOG
+========================================
+
+--------
+SETUP 1: MORNING PANIC DIP BUY (PRIMARY SETUP)
+Confidence: High
+Sources: timothysykes.com/blog/dip-buy-morning-panics,
+         timothysykes.com/blog/perfect-morning-panic,
+         timothysykes.com/blog/7-steps-to-mastering-the-panic-dip-buy,
+         timothysykes.com/blog/do-this-every-morning
+--------
+
+Description:
+A stock that has run for several days to several weeks opens and sells off sharply
+(30% or more from the prior session close or overnight high). The panic is fast and
+mechanical. At some point the selling exhausts and buyers absorb. The stock bounces.
+
+Required context:
+Stock must have had a multi-day or multi-week catalyst-driven run prior to the panic.
+The bigger and longer the run, the better the bounce quality.
+Promoter-backed OTC stocks are his historical sweet spot because promoters have
+incentive to create a soft landing (they need price above their cost basis).
+
+Catalyst precondition:
+Catalyst must have driven the multi-day run. PR, promotion, social hype, sector theme.
+No catalyst run = no predictable panic bounce. This is not a random dip buy.
+
+Entry trigger:
+First stabilization after the panic. First green candle or visible momentum stall.
+Wait for the sell-off to visibly exhaust before entering. Do not buy mid-fall.
+Window: 9:30 AM to 12:00 PM ET only.
+
+Invalidation point:
+Panic continues through the entry level. No bounce develops.
+Afternoon panic (first red day afternoon) = do not enter. High failure rate.
+
+Stop logic:
+Cut quickly if no bounce. He explicitly says: "Panics don't always bounce."
+Stop is typically just below the entry / panic low.
+He does not specify a fixed % stop. Structural stop only.
+
+Target logic:
+Quick 10-20% or 30-50% bounce. Goal is to collect a defined percentage, not ride
+the full recovery. He describes taking 1/4 to 1/3 of the potential move as his
+typical capture due to conservative sizing.
+"I'm just trying to take advantage of a short-term move."
+
+Common failure mode:
+Averaging down when the bounce does not materialize immediately.
+Holding too long and giving back gains when the stock continues to fade.
+Entering a slow afternoon panic rather than a sharp morning panic.
+
+Confidence: High. Confirmed as his stated primary edge and repeatedly demonstrated.
+
+
+--------
+SETUP 2: THE 7-STEP SUPERNOVA -- LONG-SIDE STAGES 2-4 ENTRY
+Confidence: High
+Sources: timothysykes.com/blog/7-step-pennystocking-framework,
+         timothysykes.com/blog/gtii-my-7-step-framework,
+         timothysykes.com/blog/7-step-framework-predicted-this-weekend-trade
+--------
+
+Description:
+The 7-step pennystocking framework maps the full lifecycle of a promoted/hyped penny
+stock. The seven stages are:
+
+Stage 1: Initial spike / first discovery (low volume, first catalyst)
+Stage 2: Pullback / consolidation after initial spike
+Stage 3: Second leg up / breakout above first spike high
+Stage 4: Peak / climax / supernova exhaustion (most dramatic move)
+Stage 5: First selloff / major panic
+Stage 6: Dead cat bounce / recovery attempt
+Stage 7: Final fade to lows / stock dies
+
+Long entries: Stages 2-3 (early re-entry on pullback before second leg).
+             Stage 5-6 (dip buy the panic, sell into the dead cat bounce).
+Short entries: Stage 4 top (short the supernova peak) -- now largely avoided.
+              Stage 6-7 transition (short the dead cat bounce failure).
+
+His personal preference: Stages 5-6 for long-side dip buys.
+Quote: "I find trading between steps 5 and 6 to be more consistent for most traders."
+
+Required context:
+Stock must be identifiably in one of the framework stages. Not every stock qualifies.
+Must have had a real catalyst-driven spike as the foundation for the cycle.
+
+Entry trigger:
+Stage 2: Pullback to support after initial spike with volume drying up.
+Stage 5-6: First panic low with volume exhaustion, entering the dead cat bounce.
+
+Stop: Just below the stage entry level. Cut quickly if stage progression fails.
+
+Target:
+Stage 2 entry: Next leg toward stage 3 high.
+Stage 5-6 entry: The dead cat bounce recovery. Do not hold through stage 7.
+
+Failure mode:
+Misidentifying which stage the stock is actually in.
+Holding a stage 5-6 bounce too long and riding it into stage 7 (final collapse).
+
+
+--------
+SETUP 3: FIRST GREEN DAY (FGD) LONG
+Confidence: High
+Sources: stockstotrade.com/first-green-day-pattern,
+         timothysykes.com/blog/7-steps-to-mastering-the-panic-dip-buy,
+         multiple trade recaps on Profit.ly
+--------
+
+Description:
+A stock that has been in a downtrend or base suddenly has a high-volume green day
+driven by a fresh catalyst. The first green day is the entry signal for the next
+potential multi-day move.
+
+Required context:
+Fresh, confirmed catalyst from the current session or recent session.
+High relative volume vs recent average. Volume confirms the catalyst is real.
+Stock was previously fading or base-building, not already extended.
+For OTC stocks: catalyst spreading slowly = more time to enter. Listed stocks:
+catalyst spreads faster, afternoon entry preferred.
+
+Entry trigger:
+For OTC: Buy on or shortly after the first green day, as the catalyst is spreading.
+For listed stocks: Afternoon confirmation that the move is holding.
+He waits to see if early buyers hold their positions before committing.
+
+Stop: Below the first green day low. If it gives back the catalyst, exit.
+
+Target: Second and third green day continuation.
+
+Common failure mode:
+Entering too late after the first green day has already moved 50%+.
+No follow-through on day 2 if volume does not confirm.
+
+
+--------
+SETUP 4: BUYABLE PULLBACK IN STRONG UPTREND (RUNAWAY STOCK ENTRY)
+Confidence: Medium
+Sources: timothysykes.com/blog/the-only-way-to-buy-into-strength
+--------
+
+Description:
+A stock moving fast with a strong news-driven catalyst that Sykes does not want to
+chase outright. He waits for a brief intraday pullback to a short-term support level,
+then enters with the momentum to the upside.
+
+Required context:
+Extremely strong catalyst with real potential (not vague PR). His example was EMGE.
+Stock must be proven already moving. Not anticipatory.
+He explicitly states this is NOT his normal mode. He adapted to it for special cases.
+"Normally, I don't like to buy into strength."
+
+Entry: Quick dip within the uptrend. Buy into the dip, not at the high.
+Stop: Below the dip low. If the pullback continues, exit.
+Target: Continuation of the original momentum move.
+
+Confidence: Medium. He teaches it but describes it as a situational adaptation.
+
+
+--------
+SETUP 5: AFTERNOON DOUBLE-BOTTOM PANIC DIP BUY (NUANCE/EXCEPTION)
+Confidence: Medium
+Sources: timothysykes.com/blog/penny-stock-nuances
+--------
+
+Description:
+A stock panics in the afternoon (which he normally avoids). It attempts to make a
+low, fails, then probes a second low shortly thereafter. The second bottom is a
+potential entry -- better odds than the first bottom.
+
+Required context:
+Must be a double-bottom structure (two bottom attempts, not a one-time flush).
+Late in the day = lower probability. Only applicable under specific conditions.
+He explicitly warns: "The later in the day, the less likely this setup will work."
+
+Entry: After the second bottom forms and shows stabilization.
+Stop: Below the second bottom low.
+Target: Quick intraday recovery, 10-20%.
+
+Confidence: Medium. He teaches it as an exception to his normal no-afternoon rule.
+
+
+========================================
+SECTION 4 -- PATTERN AND CONTEXT PREFERENCES
+========================================
+
+Chart structures he repeats most:
+Multi-day spike into panic: his primary pattern. Stock runs for days or weeks then
+opens with a sharp sell-off. He buys the bounce.
+
+Volume signatures that matter to him:
+Volume spike on panic = seller exhaustion possible. Watch for stabilization.
+Volume dry-up on pullback/base = accumulation potential, next leg likely.
+No volume on fake bounce = don't chase, bounce likely to fail.
+
+He explicitly uses volume at support and resistance levels to confirm their strength:
+"General areas where the price hovers for 30 minutes to an hour are the strongest."
+
+Momentum conditions:
+He does not require momentum to be present at entry. He buys into the panic bottom,
+which by definition has no momentum. He then sells into the recovering momentum.
+This is a mean-reversion/bounce approach, not a pure momentum chase.
+
+Regime preferences:
+Hot market with active sector themes = deploy more aggressively.
+Slow/quiet market = reduce activity or stop trading entirely.
+He describes taking weeks or months off when there are no quality setups.
+Quote: "I wait for the big moves. I'm not trying to make money every day."
+
+Catalyst hierarchy:
+Tier 1 (best): Confirmed earnings beat, FDA approval, real revenue news.
+Tier 2: Sector theme news, partnership announcements with substance.
+Tier 3: Vague PR, promotional fluff, LOI, MOU = lower confidence.
+He explicitly warns against vague PRs but acknowledges that promoted stocks with
+weak catalysts still follow the supernova pattern.
+
+Promoter-backed stocks:
+He still trades stocks he knows are likely promotions because the pattern is
+predictable. "I don't dip buy offerings" is his primary filter for promoter stocks.
+He avoids stocks that are diluting via offerings because the soft landing
+(the bounce he needs) may not materialize.
+
+
+========================================
+SECTION 5 -- EXECUTION FRAMEWORK
+========================================
+
+Entry style:
+Conservative. He describes himself as getting in too conservatively and capturing
+only 1/4 to 1/3 of the potential move on most dip buys.
+Does not attempt to catch the exact bottom. Waits for evidence of stabilization.
+Limit orders implied by his precision-focused language. Does not chase.
+
+Confirmation requirements:
+First stabilization candle after panic. Volume slowing. Price not continuing lower.
+Does not enter until the panic velocity visibly slows.
+
+Aggressiveness vs patience:
+Patience is explicitly the core discipline. He describes waiting for the pattern to
+be "perfect" before acting. Most days he does not trade at all.
+"Not every panic is the same, but the overall pattern hasn't changed."
+
+Adding strategy:
+No described consistent adding-to-winner strategy. His trades are typically entered
+in one tranche and exited quickly. He does not describe pyramiding.
+
+Trimming strategy:
+Sells quickly into the bounce recovery. Takes 10-20% often, leaving the rest on the
+table. Deliberately under-captures to ensure he is always selling, not holding.
+"It's vital to sell into excessive strength/hype, do not just hold and hope."
+
+Exit logic:
+Bounce recovery = partial to full exit.
+If the bounce fails to develop or price fades = cut quickly.
+He never holds overnight if the thesis is based on a morning panic bounce.
+Swing holds only if the multi-day framework clearly supports it.
+
+When he holds vs cuts:
+Holds: When the 7-step stage analysis supports multi-day continuation.
+       When the catalyst is strong and confirmed.
+Cuts: When price action fails to confirm the bounce.
+      When the stock is entering a probable stage 7 (final collapse).
+      Any time he was wrong about the stage identification.
+
+Signs of low-quality trade:
+Afternoon panic (not morning).
+No prior multi-day run to establish the emotional baseline.
+Vague catalyst without real substance.
+Stock in stage 7 (no dead cat bounce expected).
+Dilution via active offering ongoing (no promoter incentive for soft landing).
+Spread too wide for clean exit.
+
+
+========================================
+SECTION 6 -- RISK MANAGEMENT MODEL
+========================================
+
+Typical risk per trade:
+Not stated as a fixed % in public sources. Structural stop at entry low.
+His trade sizes are small relative to his account. He intentionally keeps position
+sizes tiny to demonstrate process, not maximize personal P&L.
+Quote: "Aim small, miss small." Small gains and small losses are the operating model.
+
+Sizing method:
+Position size in relation to average trading volume is a confirmed consideration
+from the Sykes Sliding Scale. He does not enter a position so large that liquidity
+becomes a problem on exit.
+He explicitly warns against oversizing: one of the most repeated lessons.
+
+Stop placement:
+Structural: just below the panic low on a dip buy.
+Psychological: if the bounce does not materialize quickly, exit.
+He does not use fixed % stops. Context-based stops only.
+
+Max loss rules:
+No confirmed explicit daily max loss rule in public documentation.
+Implied behavioral rule: cut quickly on any thesis failure. Do not hold losers.
+He describes cutting losses as the single most important discipline.
+Quote from student study document: "cut losses quickly" is explicitly #1.
+
+Drawdown control:
+In slow markets: stop trading. Do not force trades when there are no setups.
+After a loss streak: review what changed about the market environment.
+He does not describe a mechanical drawdown rule. Regime awareness is his drawdown
+control method.
+
+Loss-streak response:
+Study more. Review recent trades. Identify pattern changes.
+Do not increase size to recover losses faster.
+"Never risk more than you can afford to lose."
+
+Capital preservation rules:
+Small positions. Quick exits on failures. Never average down.
+Never hold through an overnight if uncertain about next-day direction.
+He explicitly donates all his personal trading profits, which means his account
+growth is not his motivation. This creates a structural alignment with caution.
+
+
+========================================
+SECTION 7 -- PSYCHOLOGY AND PROCESS RULES
+========================================
+
+Pre-market routine (confirmed from multiple blog posts and student accounts):
+Review pre-market movers and build a three-tier watchlist every morning:
+  Group 1: Previous day spikers -- potential breakout candidates.
+  Group 2: Pre-market spikers -- high-volume gappers with unusual volume.
+  Group 3: Multi-day runners -- potential morning panic dip buy targets.
+
+Study over trading:
+He repeatedly emphasizes studying as more important than trading.
+"Consider studying and preparing more than trading."
+He has over 6,000 video lessons posted and explicitly says he watches his own
+old trades to reinforce pattern memory.
+
+Transparency as discipline:
+Posts every trade on Profit.ly including losses. This is a core principle.
+"If you're honest with others, you'll be honest with yourself."
+He explicitly teaches that hiding losses leads to self-deception and larger errors.
+
+Pattern memorization:
+His teaching method requires students to literally memorize chart patterns like
+flashcards. A student study blog described this process in detail: dozens of folders
+of named patterns cycled through daily until pattern recognition is automatic.
+
+Emotion management:
+Detach from the money. Think of trades as setups, not money.
+If he misses a setup or takes a loss, he moves on quickly.
+Revenge trading explicitly warned against repeatedly.
+
+Patience and selectivity:
+Does not feel compelled to trade every day. Many days he does not trade.
+"Trading random setups leads to random results."
+Waits for the specific patterns he knows and trusts.
+
+Greed avoidance:
+"It's vital to sell into excessive strength/hype."
+He describes underperforming his own potential deliberately to avoid greed-driven
+decisions. Leaving money on the table is a feature, not a bug.
+
+Recurring mistakes he warns against (confirmed from blog and course materials):
+Buying anything that is spiking without a pattern.
+Shorting early into momentum plays.
+Averaging down on losing dip buys.
+Holding too long past the bounce.
+Trading afternoon panics with the same expectation as morning panics.
+Not cutting losses quickly.
+Trading promoter stocks during active dilution events.
+Ignoring the 7-step stage and trying to short stage 3-4 too early.
+
+
+========================================
+SECTION 8 -- CONTRADICTIONS AND INCONSISTENCIES
+========================================
+
+CONTRADICTION 1: Long-biased but teaches short selling
+He explicitly moved away from short selling in recent years due to short squeeze risk.
+He says shorts provide great long opportunities. Yet his course material still heavily
+features short-selling setups (breakout then fade, dead cat bounce short).
+He appears to teach short selling theoretically while practicing it less personally.
+Confidence that contradiction exists: High.
+
+CONTRADICTION 2: Small account demo trading vs large income from education
+He trades a small account to demonstrate process. His personal P&L ($80K-$240K/year)
+is a fraction of what students like Kellogg ($8M+) make.
+He claims to use the same process, but his scale constraints are self-imposed
+(donating profits, keeping account small). This means his demonstrated results
+do not reflect what the process can produce at scale.
+Students observing his personal trade results may be misled about the ceiling.
+
+CONTRADICTION 3: "Not trying to make money every day" vs daily alerts and engagement
+He explicitly says he waits for quality setups and doesn't trade daily.
+Yet his platform requires daily engagement (alerts, webinars, chat room presence).
+This business model pressure likely creates tension between his stated discipline
+and his commercial activity. Whether he trades out of conviction vs platform
+obligation is not documentable from public sources.
+Confidence: Medium.
+
+CONTRADICTION 4: 1:3 or 1:4 R:R target vs described trade captures
+He states 1:3 or 1:4 R:R minimum on the Sykes Sliding Scale.
+Yet he describes typically capturing 1/4 to 1/3 of the potential move on panics,
+which implies the actual realized R:R on many trades is much lower.
+Possible reconciliation: the 1:3 ratio is the potential before entry, not the
+realized capture. He intentionally exits early.
+Confidence: Medium tension here.
+
+CONTRADICTION 5: Avoids promoted stocks with dilution vs trades promoted stocks
+He says "I don't dip buy offerings" (active dilution = no soft landing possible).
+Yet many of the OTC penny stocks he trades are promotions with known dilution risk.
+His filter is whether the dilution is actively being executed at the time of the
+trade, not whether the company has a history of dilution.
+This is a nuance, not a clear contradiction, but it creates confusion for students.
+
+
+========================================
+SECTION 9 -- REAL EDGE ASSESSMENT
+========================================
+
+LIKELY REAL EDGE:
+
+1. Pattern frequency in promoted/hyped penny stocks.
+Promoted stocks follow a highly predictable lifecycle because the promoters create it
+deliberately. The supernova arc (hype, spike, panic, bounce, collapse) is engineered
+by the promoters and is therefore more reliable than random market patterns.
+Sykes recognized this structural predictability early and built his framework around it.
+His edge is in reading a manufactured cycle, not a natural market cycle.
+This is a genuine structural edge that most traders do not recognize.
+
+2. Morning panic dip buy on high-liquidity multi-week runners.
+When a stock has run for weeks, the emotional base of trapped longs and panicking
+sellers is large. The morning panic on these names produces a predictable bounce
+because the same mechanics repeat: forced selling, stop cascades, then stabilization.
+Timing the stabilization with a tight structural stop creates a favorable entry.
+
+3. Pattern library and preparation quality.
+His teaching method is built on memorizing hundreds of named patterns until recognition
+is automatic. The competitive edge is speed of identification and preparedness.
+A trader who has internalized 800+ dip buy video lessons will recognize the setup
+faster than one who has not. Speed of recognition = ability to enter near the bottom.
+
+4. Discipline to only trade when the pattern is present.
+Most retail traders overtrade. His willingness to not trade on dull days reduces
+unnecessary losses that erode edge. Selectivity is documented and confirmed.
+
+WHAT APPEARS TO BE BRANDING, NOT EDGE:
+
+1. The $12,415 to $2M bar mitzvah money story.
+This was his 2000-2001 result in one of the most speculative periods in US market
+history. Repeating this in 2025 is marketing context, not strategy context.
+
+2. "Over 30 millionaire students" as proof of concept.
+The selection bias is severe. Thousands of students, a handful of high performers.
+The strategy may work for skilled practitioners but the hit rate among typical
+students is not reported with precision.
+
+3. The teaching-charity-travel lifestyle positioning.
+His personal brand is largely about freedom and lifestyle. This is marketing.
+His actual trading P&L ($80K-$240K/year recently) is modest for a claimed strategy.
+
+4. Supernova terminology and branding.
+The term supernova is his coinage and is now widely used. The pattern itself
+(parabolic spike then collapse) predates him and exists across markets.
+His brand has been attached to a universal phenomenon, not a proprietary discovery.
+
+
+========================================
+SECTION 10 -- RULES-BASED RECONSTRUCTION
+========================================
+
+SETUP CRITERIA:
+Stock has had a multi-day or multi-week catalyst-driven run.
+The run has a confirmed underlying catalyst (not fully vague PR).
+Stock is showing sharp morning sell-off (30%+) in the first 30-60 minutes.
+Sell-off is fast and mechanical, not slow grind.
+Stock has a history of bouncing from panics (check prior chart behavior).
+Active dilution offering is NOT in progress at time of entry.
+Time is between 9:30 AM and 12:00 PM ET.
+Spread is acceptable for clean entry and exit.
+
+ENTRY CHECKLIST:
+Identify which 7-step stage the stock is in. Confirm stage 5 or close to stage 6.
+Wait for the panic to visibly stall. Do not buy mid-fall.
+First stabilization candle or first green candle confirms.
+Apply Sykes Sliding Scale PREPARE acronym before entry:
+  P - Pattern identified clearly
+  R - Risk/reward at least 1:3 potential
+  E - Ease of entry/exit confirmed (liquidity check)
+  P - Past history of spiking and bouncing confirmed
+  A - Time window confirmed (9:30 AM - 12:00 PM ET)
+  R - Real catalyst driving the original run
+  E - Environment (hot market, active sector theme if possible)
+Enter with small initial position.
+
+RISK CHECKLIST:
+Stop defined before entry: just below the panic low.
+Liquidity confirmed: position size manageable relative to average daily volume.
+Active offering? If yes, do not enter (no soft landing incentive).
+Afternoon panic? If yes, skip or reduce size drastically.
+Is this stage 7 (final collapse)? If yes, do not enter long.
+
+EXIT CHECKLIST:
+Bounce of 10-20% from entry = consider first partial exit.
+Do not hold through parabolic extension looking for stage 4 again.
+If price fades back through entry within 30 minutes = exit 100%. Thesis failed.
+Never hold overnight a morning panic dip buy unless multi-day framework supports it.
+Take 1/4 to 1/3 of potential move, not the full potential.
+"Sell into excessive strength/hype."
+
+NO-TRADE CONDITIONS:
+Stock is panicking in the afternoon (past 12:00 PM ET).
+Active dilution offering in progress.
+No prior multi-day run establishing the emotional base.
+Catalyst was vague, promotional, or has already been fully discounted.
+Stock is in stage 7 of the 7-step framework (final collapse, no bounce expected).
+Spread too wide for clean entry and exit.
+Market environment is slow/quiet with no active themes.
+The pattern is not clearly identifiable from the chart.
+You feel the urge to trade but cannot identify which stage the stock is in.
+
+DAILY PROCESS FRAMEWORK:
+Pre-market (before 9:30 AM):
+  Scan for overnight gappers and prior day spikers.
+  Build three-tier watchlist: prior day spikers, pre-market gappers, multi-day runners.
+  Identify which tier-3 names (multi-day runners) are potential panic dip buy targets.
+  Apply Sykes Sliding Scale to each candidate. Grade pre-market, not intraday.
+
+Market open (9:30 AM - 12:00 PM):
+  Watch tier-3 candidates for morning panic patterns.
+  Do not trade the spike itself. Wait for the panic.
+  Execute dip buy on first stabilization if all criteria are met.
+  Exit quickly into bounce recovery. Do not overstay.
+
+Midday to close:
+  Review trades. Log results on Profit.ly or equivalent.
+  If no quality morning setups, do not force afternoon trades.
+  Look for first green day setups developing in sector theme names.
+
+Post-market:
+  Study one trade video lesson or chart pattern daily.
+  Review watchlist for next day. Which multi-day runners are still intact?
+
+
+========================================
+SECTION 11 -- FINAL RELIABILITY RATING
+========================================
+
+RATING: Partially reconstructable to Highly reconstructable.
+
+The core setups (morning panic dip buy, 7-step lifecycle entry points) are
+well-documented and repeatedly demonstrated in free blog content, YouTube videos,
+and publicly available trade recaps on Profit.ly. The Sykes Sliding Scale
+PREPARE framework is fully documented and taught at no cost in multiple formats.
+
+What makes it more reconstructable than most:
+His blog contains hundreds of trade-specific examples with real tickers and real P&L.
+He shows his losses, not just wins. The Profit.ly account is public.
+The 7-step lifecycle is a systematic, mappable framework -- not vague intuition.
+His teaching is built specifically to be transmittable. The patterns are named,
+numbered, and categorized intentionally.
+
+What prevents full reconstruction:
+His precise position sizing rules are not publicly stated (though the principle
+of sizing small in relation to daily volume is confirmed).
+The exact criteria for distinguishing a true morning panic from a normal pullback
+are qualitative, not quantitative. Pattern recognition requires experience.
+His daily max loss rule (if any) is not publicly documented.
+His recent evolution (move away from short selling, embrace of squeeze plays) is
+partially documented but his current exact process in 2025-2026 is not as
+granular as his 2010-2020 documentation.
+His personal trading P&L is small enough that it may not reflect the full
+potential of the strategy at scale.
+
+
+========================================
+A. TOP 5 STRONGEST EVIDENCE-BACKED TAKEAWAYS
+========================================
+
+1. CONFIRMED: Morning panic dip buy is his primary setup, responsible for 1/3 to
+1/2 of his career profits. The buy window is 9:30 AM to 12:00 PM ET only. Afternoon
+panics are explicitly avoided in most conditions.
+Source: timothysykes.com/blog/perfect-morning-panic and multiple blog recaps.
+Confidence: High.
+
+2. CONFIRMED: The Sykes Sliding Scale PREPARE acronym is his explicit pre-trade
+grading system. Minimum R:R target is 1:3 to 1:4. He grades every trade against
+all seven criteria before entering.
+Source: timothysykes.com/blog/sykes-sliding-scale, ZenDesk documentation.
+Confidence: High.
+
+3. CONFIRMED: The 7-step pennystocking framework is his master pattern map.
+His preferred long entries are at Stages 5-6 (panic and dead cat bounce), not
+Stages 3-4 (the speculative peak). "I find trading between steps 5 and 6 to be
+more consistent for most traders."
+Source: timothysykes.com/blog/7-step-pennystocking-framework.
+Confidence: High.
+
+4. CONFIRMED: He has shifted away from short selling in recent years due to
+short squeeze risk. He now trades long-biased and explicitly uses overcrowded
+short sellers as evidence of squeeze fuel for his long setups.
+Source: timothysykes.com/blog/all-these-crazy-supernovas,
+        timothysykes.com/blog/lessons-from-astc.
+Confidence: High.
+
+5. CONFIRMED: Selectivity and patience are documented as non-negotiable.
+He does not trade every day. He waits for the specific pattern conditions to align.
+He explicitly reduces activity in slow markets and describes taking weeks off.
+"Trading random setups leads to random results."
+Source: timothysykes.com/blog/do-this-every-morning,
+        timothysykes.com/blog/all-these-crazy-supernovas.
+Confidence: High.
+
+
+========================================
+B. TOP 5 UNRESOLVED UNKNOWNS
+========================================
+
+1. Precise quantitative criteria for confirming a morning panic qualifies vs a
+normal open pullback. He describes 30%+ drops as ideal but this is not a hard
+threshold. The qualitative feel of "fast and mechanical" is not precisely defined.
+
+2. His current (2024-2026) trading frequency and active setups. He has described
+an evolution in approach but his current trading frequency, P&L, and active
+setup preferences are not comprehensively documented in available public sources.
+
+3. His exact position sizing formula. He states size in relation to daily volume
+matters and to trade small, but no formula or % of account per trade is publicly
+stated.
+
+4. Whether he uses a daily max loss rule or drawdown stop rule. Not documented
+publicly. His behavior in losing streaks suggests regime recognition drives
+activity reduction, but no explicit rule is confirmed.
+
+5. The full criteria distinguishing Stage 5 from Stage 7 in real-time. Both involve
+a decline, but Stage 5 has a bounce (stage 6 follows) and Stage 7 does not. His
+framework identifies this distinction as critical but the real-time identification
+criteria are not quantified.
+
+
+========================================
+C. ONE-PARAGRAPH TRUE OPERATING STYLE
+========================================
+
+Timothy Sykes is a low-frequency, pattern-waiting long-biased trader who profits by
+identifying promoted or hyped penny stocks that are in a predictable emotional
+lifecycle and entering them at the bounce point after a sharp morning panic sell-off.
+He does not try to catch the full move. He enters near the panic low, sells quickly
+into the bounce recovery, and exits before the next leg down. He is highly selective,
+trading only when his specific pattern conditions align, and he reduces activity
+dramatically when the market offers no clean setups. His real edge is in recognizing
+the manufactured nature of promoted stock cycles and positioning himself to benefit
+from the bounce that promoters have structural incentive to create. His process is
+systematic, teachable, and based on pattern memorization reinforced by daily study.
+His personal P&L is modest by current millionaire trader standards, but his framework
+has produced a disproportionate number of successful students in the small-cap
+promoted stock niche, which is his primary evidence that the method works.
+
+
+========================================
+D. COMPACT CHECKLIST OF SYKES' APPARENT EDGE
+========================================
+
+Identifies promoted/hype stocks in confirmed multi-day run phase.
+Waits for a sharp (30%+) fast morning panic before entering, never mid-run.
+Enters at the first stabilization / first green candle, not at the panic bottom.
+Sets structural stop just below the panic low. Cut quickly if no bounce.
+Targets 10-20% bounce capture. Does not try to hold for full recovery.
+Exits into the bounce recovery. Sells before excitement returns.
+Only trades between 9:30 AM and 12:00 PM ET for this pattern.
+Applies PREPARE Sliding Scale to every trade before entry.
+Does not enter during active dilution offerings (removes soft landing incentive).
+Does not trade afternoon panics or stage 7 collapses.
+Reduces activity to near zero in slow, dull markets. Never forces trades.
+Posts every trade publicly (Profit.ly) as a self-accountability tool.
+Studies past trades and patterns daily. Pattern library depth is the competitive moat.
+
+--------
+END OF TIMOTHY SYKES PLAYBOOK REVERSE-ENGINEERING
+Generated by Grant AI Trading Desk
+Research Date: March 30, 2026
+--------

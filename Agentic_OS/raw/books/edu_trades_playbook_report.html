@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reusable Research Report Template</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0d0d0d;
+      --white: #ffffff;
+      --offwhite: #f5f4f0;
+      --gray: #6b7280;
+      --light-gray: #e5e7eb;
+      --green: #059669;
+      --green-bg: #ecfdf5;
+      --green-light: #a7f3d0;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --red-light: #fecaca;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --blue: #1e40af;
+      --blue-bg: #eff6ff;
+      --accent: #f59e0b;
+      --accent-dark: #92400e;
+      --divider: #e2e0db;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--offwhite);
+      color: var(--black);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 20%, rgba(245,158,11,.12) 0%, transparent 70%),
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,.025) 80px);
+    }
+
+    .cover-num {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(200px, 30vw, 380px);
+      color: rgba(255,255,255,.03);
+      line-height: 1;
+      letter-spacing: -.02em;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .cover-eyebrow {
+      font-size: 11px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(64px, 9vw, 120px);
+      line-height: .92;
+      letter-spacing: .01em;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover h1 span { color: var(--accent); }
+
+    .cover-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,.5);
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-pill {
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    .cover-pill-gold { border-color: var(--accent); color: var(--accent); }
+
+    .cover-stats {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 32px;
+    }
+
+    .c-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .c-stat-l {
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+    }
+
+    .c-stat-v {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 28px;
+      letter-spacing: .02em;
+    }
+
+    .page {
+      background: var(--white);
+      max-width: 1200px;
+      margin: 0 auto 2px;
+      padding: 56px 60px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .page-label {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gray);
+      border-top: 2px solid var(--black);
+      padding-top: 6px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 48px;
+      letter-spacing: .02em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    h2 span { color: var(--accent); }
+
+    h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -.01em;
+    }
+
+    h4 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 10px;
+    }
+
+    p { margin-bottom: 14px; color: #374151; }
+    p:last-child { margin-bottom: 0; }
+    ul { padding-left: 18px; }
+    ul li { margin-bottom: 6px; color: #374151; }
+    ol { padding-left: 20px; }
+    ol li { margin-bottom: 8px; color: #374151; }
+    strong { font-weight: 700; }
+
+    .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+    .divider { border: none; border-top: 1px solid var(--divider); margin: 36px 0; }
+    .mt-8 { margin-top: 8px; }
+    .mt-12 { margin-top: 12px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-20 { margin-top: 20px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-28 { margin-top: 28px; }
+    .mt-32 { margin-top: 32px; }
+    .mb-16 { margin-bottom: 16px; }
+    .mb-20 { margin-bottom: 20px; }
+    .mb-24 { margin-bottom: 24px; }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .badge-gold { background: var(--accent); color: var(--black); }
+    .badge-green { background: var(--green); color: white; }
+    .badge-red { background: var(--red); color: white; }
+    .badge-black { background: var(--black); color: white; }
+    .badge-blue { background: var(--blue); color: white; }
+    .badge-outline { border: 1.5px solid var(--black); color: var(--black); background: transparent; }
+
+    .conf-high,
+    .conf-med,
+    .conf-low {
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .conf-high {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green-light);
+    }
+
+    .conf-med {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border: 1px solid #fde68a;
+    }
+
+    .conf-low {
+      background: var(--red-bg);
+      color: var(--red);
+      border: 1px solid var(--red-light);
+    }
+
+    .card {
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      padding: 20px 24px;
+      background: var(--white);
+    }
+
+    .card-gold { background: #fffbeb; border-color: #fde68a; }
+    .card-green { background: var(--green-bg); border-color: var(--green-light); }
+    .card-red { background: var(--red-bg); border-color: var(--red-light); }
+    .card-blue { background: var(--blue-bg); border-color: #bfdbfe; }
+    .card-black { background: var(--black); color: var(--white); }
+    .card-black p, .card-black li { color: rgba(255,255,255,.72); }
+    .card-black h3, .card-black h4 { color: var(--white); }
+
+    .card-stripe { border-left: 4px solid var(--accent); }
+    .card-stripe-green { border-left: 4px solid var(--green); }
+    .card-stripe-red { border-left: 4px solid var(--red); }
+
+    .setup-card {
+      border: 1px solid var(--divider);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .setup-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 22px;
+      background: var(--black);
+      color: var(--white);
+      flex-wrap: wrap;
+    }
+
+    .setup-hdr-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 22px;
+      letter-spacing: .04em;
+    }
+
+    .setup-body { padding: 22px; }
+
+    .setup-grid { display: grid; grid-template-columns: 1fr 1fr; }
+
+    .setup-cell {
+      padding: 14px 18px;
+      border-right: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .setup-cell:nth-child(2n) { border-right: none; }
+    .setup-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+    .setup-cell-lbl {
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 5px;
+    }
+
+    .setup-cell-val { font-size: 13px; color: var(--black); }
+
+    .pillar-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+
+    .pillar-card {
+      background: var(--black);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .pillar-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 36px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .pillar-name {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-top: 8px;
+    }
+
+    .pillar-detail {
+      font-size: 11px;
+      color: rgba(255,255,255,.55);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .evidence-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .evidence-row:last-child { border-bottom: none; }
+
+    .evidence-num {
+      min-width: 30px;
+      height: 30px;
+      background: var(--accent);
+      color: var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .checklist { list-style: none; padding: 0; }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--divider);
+      color: #374151;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .c-icon { min-width: 20px; font-size: 15px; margin-top: 1px; }
+    .c-green { color: var(--green); }
+    .c-red { color: var(--red); }
+
+    .t {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .t th {
+      background: var(--black);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .t td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--divider);
+      font-size: 13px;
+      color: #374151;
+      vertical-align: top;
+    }
+
+    .t tr:nth-child(even) td { background: #fafaf8; }
+
+    .callout {
+      border-left: 4px solid var(--black);
+      padding: 14px 18px;
+      background: #fafaf8;
+      margin: 16px 0;
+    }
+
+    .callout-gold { border-left-color: var(--accent); background: var(--amber-bg); }
+    .callout-green { border-left-color: var(--green); background: var(--green-bg); }
+    .callout-red { border-left-color: var(--red); background: var(--red-bg); }
+
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .pros-col { background: var(--green-bg); padding: 24px; border-radius: 8px 0 0 8px; }
+    .cons-col { background: var(--red-bg); padding: 24px; border-radius: 0 8px 8px 0; }
+
+    .rating-wrap {
+      background: var(--light-gray);
+      border-radius: 4px;
+      height: 8px;
+      overflow: hidden;
+      margin: 6px 0;
+    }
+
+    .rating-bar { height: 100%; border-radius: 4px; background: var(--green); }
+    .rating-bar-gold { background: var(--accent); }
+
+    .takeaway-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .takeaway-card {
+      background: var(--black);
+      color: white;
+      border-radius: 8px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .takeaway-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 40px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .takeaway-text {
+      font-size: 12px;
+      color: rgba(255,255,255,.68);
+      line-height: 1.5;
+    }
+
+    .unknown-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+
+    .unknown-card {
+      background: var(--red-bg);
+      border: 1px solid var(--red-light);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .unknown-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 32px;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .unknown-text {
+      font-size: 12px;
+      color: #7f1d1d;
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center; }
+    .vs-divider { display: flex; align-items: center; justify-content: center; width: 56px; }
+
+    .vs-circle {
+      width: 40px;
+      height: 40px;
+      background: var(--black);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      background: var(--black);
+      color: rgba(255,255,255,.3);
+      text-align: center;
+      padding: 24px;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 820px) {
+      .page { padding: 36px 22px; }
+      .col-2, .col-3, .setup-grid, .pros-cons, .takeaway-grid, .unknown-grid, .pillar-grid, .vs-grid {
+        grid-template-columns: 1fr;
+      }
+      .cover { padding: 40px 28px; }
+      .vs-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    /*
+    ============================================================
+    EDIT ONLY THIS OBJECT
+    ============================================================
+
+    Change text, lists, stats, cards, and setups here.
+    Do not edit the render functions below unless you want
+    to change the actual layout/design.
+    */
+
+    const REPORT = {
+  "documentTitle": "Edu Trades / Eduardo Briceño – Institutional Playbook Analysis",
+  "footerText": "Edu Trades / Eduardo Briceño Playbook Analysis · Built from public interviews, site pages, podcast summaries, and reported trade examples · Educational research only · Not financial advice · Trading results are atypical and high risk.",
+  "cover": {
+    "bgInitials": "ET",
+    "eyebrow": "Institutional-Grade Research Analysis · Edu Trades / Stocks Trading Club",
+    "titleHtml": "EDU<br><span>TRADES</span><br>PLAYBOOK",
+    "description": "A reverse-engineered analysis of Eduardo Briceño’s actual small-cap trading playbook: what he trades, when he trades it, which setups recur, how he filters dilution and overhead, how he sizes risk, and where the public evidence stops being precise.",
+    "pills": [
+      {
+        "text": "Hybrid Long / Short Small Caps",
+        "gold": true
+      },
+      {
+        "text": "Gap & Go + First Red Day"
+      },
+      {
+        "text": "Pump-and-Dump Phase Trader"
+      },
+      {
+        "text": "Partially Reconstructable"
+      }
+    ],
+    "stats": [
+      {
+        "label": "Primary Universe",
+        "value": "<$2B Small Caps"
+      },
+      {
+        "label": "Core Long",
+        "value": "PMH Breakout"
+      },
+      {
+        "label": "Core Short",
+        "value": "First Red Day"
+      },
+      {
+        "label": "Stated Risk Cap",
+        "value": "~2% / Position"
+      },
+      {
+        "label": "Reconstructability",
+        "value": "Partial"
+      }
+    ]
+  },
+  "overview": {
+    "labelLeft": "Section 01 · Trader Playbook Summary",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "leftTitleHtml": "TRADER PLAYBOOK <span>SUMMARY</span>",
+    "leftParagraphs": [
+      "Eduardo Briceño appears to trade small-cap attention cycles rather than a single chart pattern. His public description is that he recycles shares around the stages of a pump-and-dump structure: he buys when small caps gain attention and shorts when they lose it.",
+      "The cleanest confirmed long setup is Gap & Go: a breakout of premarket high in a low-float small cap with historical volume, a catalyst, no obvious dilution, positive cash flow, and relatively low institutional ownership.",
+      "The cleanest confirmed short setup is the first red day after a multi-day rally or the first clear weakness after a mania phase. He does not appear to be an early anticipatory buyer. He waits until attention, media, and volume are already there."
+    ],
+    "callout": {
+      "tone": "gold",
+      "title": "Core Principle:",
+      "text": "Trade attention, catalyst, and phase alignment. Stay process-focused and detach from the money outcome."
+    },
+    "rulesTitle": "The Method in 5 Rules",
+    "rules": [
+      "Scan premarket for small caps already moving, typically 15–20%+ gap and unusual volume.",
+      "Manually rank the list using catalyst quality, sector heat, float/liquidity, ownership, dilution risk, and overhead supply.",
+      "Go long when attention is expanding and the premarket-high breakout or first-green-day structure confirms.",
+      "Recycle size around a core idea: trim into strength, buy retracements only if the structure still holds, and exit quickly if it fails.",
+      "Go short when the attention cycle rolls over: first red day, failed gap, gap-down weakness, dilution risk, or post-mania loss of attention."
+    ],
+    "rightTitle": "What the Public Evidence Shows",
+    "quote": "“Discrecional con mi core sistemático.”",
+    "logicRows": [
+      {
+        "badgeClass": "badge-gold",
+        "label": "Attention",
+        "text": "He trades names already drawing crowd interest, not quiet value setups."
+      },
+      {
+        "badgeClass": "badge-green",
+        "label": "Catalyst",
+        "text": "Headline news, hot sector alignment, and real volume materially improve quality."
+      },
+      {
+        "badgeClass": "badge-blue",
+        "label": "Phase",
+        "text": "He frames small caps as a staged cycle: expansion first, decay later."
+      },
+      {
+        "badgeClass": "badge-red",
+        "label": "Dilution",
+        "text": "Potential share issuance is a major disqualifier for longs and can become a short thesis."
+      }
+    ],
+    "timeframesTitle": "Session and Process Rhythm",
+    "timeframes": [
+      "5:45–6:00 AM: premarket scan and market analysis",
+      "Premarket is actively traded when the tape is alive",
+      "7:30–10:30 AM: core live session with his team",
+      "Still alert for opportunities later, but his public process is morning-centric",
+      "After 3:00 PM: disconnect from trading"
+    ],
+    "sourceNote": "Evidence base: Business Insider (Apr 1 2023; May 17 2023), X-Trader interview (Oct 2 2024), STC / Edu site pages, Kinfo education page, TradingSim and Kinfo podcast summaries.",
+    "sourceConfidence": "high"
+  },
+  "pillars": {
+    "labelLeft": "Section 02 · Market Focus",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "titleHtml": "MARKET <span>FOCUS</span>",
+    "intro": "His watchlist is narrowed first by structural fit, then by discretionary ranking. The public evidence is strongest on the filters below.",
+    "cards": [
+      {
+        "num": "01",
+        "name": "Market Cap",
+        "detail": "Small caps below roughly $2B market cap are the primary hunting ground."
+      },
+      {
+        "num": "02",
+        "name": "Gap / Momentum",
+        "detail": "Usually 15–20%+ premarket move and strong relative attention before the open."
+      },
+      {
+        "num": "03",
+        "name": "Volume",
+        "detail": "Historical / unusual volume is required; dead liquidity is not the game."
+      },
+      {
+        "num": "04",
+        "name": "Catalyst / Sector",
+        "detail": "Real catalyst and hot-sector alignment push names toward A quality."
+      },
+      {
+        "num": "05",
+        "name": "Float / Ownership / Dilution",
+        "detail": "Avoid too-low liquidity, high institutional control, obvious dilution, and heavy bag-holder overhead."
+      }
+    ],
+    "leftTitle": "Preferred Conditions",
+    "leftText": "He is not screening for generic chart beauty. He is screening for tradable crowd behavior in small caps where a single catalyst can distort price quickly.",
+    "table": {
+      "headers": [
+        "Condition",
+        "Observed Response",
+        "Quality"
+      ],
+      "rows": [
+        [
+          "Hot sector + real catalyst",
+          "Highest priority; more likely to earn A ranking",
+          "A"
+        ],
+        [
+          "Premarket volume without real catalyst",
+          "Possible chat-pump risk; caution or short bias if overextended",
+          "C"
+        ],
+        [
+          "Very low float / poor liquidity",
+          "Too unstable for clean execution on the long side",
+          "Lower"
+        ],
+        [
+          "Obvious dilution / weak cash flow",
+          "Avoid long; may become short thesis",
+          "Bearish"
+        ],
+        [
+          "Small-cap tape weak overall",
+          "Shift defensive, reduce aggression",
+          "Risk-Off"
+        ]
+      ]
+    },
+    "conditionCallout": {
+      "tone": "gold",
+      "title": "Confirmed Filter:",
+      "text": "Dilution is one of the most important fundamentals in his process, and low cash flow raises the probability of future selling."
+    },
+    "rightTitle": "Watchlist Construction & Tools",
+    "sessionRows": [
+      [
+        "~6:00 AM",
+        "Scanner sweep for gappers and volume"
+      ],
+      [
+        "15–20%+ gap",
+        "Initial attention threshold for many candidates"
+      ],
+      [
+        "20–50 names",
+        "Typical raw scanner output before manual ranking"
+      ],
+      [
+        "A / B / C ranking",
+        "Manual quality sorting after deeper review",
+        true
+      ],
+      [
+        "7:30–10:30 AM",
+        "Main live execution window",
+        "green"
+      ],
+      [
+        "Post-session",
+        "Journal review and team feedback"
+      ]
+    ],
+    "scannerTitle": "Data Sources and Infrastructure",
+    "scannerList": [
+      "Trade Ideas scanner",
+      "DAS Trader as execution platform",
+      "Yahoo Finance for float, ownership, and cash-flow context",
+      "Dilution Tracker for financing risk",
+      "BamSEC to inspect the type of dilution when present",
+      "Flash Research for stats",
+      "Tradervue journal",
+      "Discord group as additional eyes and idea filter"
+    ]
+  },
+  "setups": {
+    "labelLeft": "Section 03 · Setup Catalog",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "titleHtml": "SETUP <span>CATALOG</span>",
+    "intro": "These are the recurring setups that are actually supported by public evidence. Confidence drops sharply once the question becomes exact stop formulas or exact add sizes.",
+    "large": [
+      {
+        "title": "SETUP 1: GAP & GO / PREMARKET-HIGH BREAKOUT",
+        "badgeText": "Confirmed Core Long",
+        "badgeClass": "badge-gold",
+        "leftTitle": "Description",
+        "leftParagraphs": [
+          "This is the cleanest directly stated long setup in his public material. He described it as a breakout of premarket high in a small cap with historical volume, low float, an ideal catalyst, no apparent dilution, positive cash flow, and institutional ownership below roughly 40%.",
+          "Business Insider also showed him buying names that fit this framework after they broke premarket highs with catalyst and volume."
+        ],
+        "leftCallout": {
+          "tone": "gold",
+          "title": "Confirmed Context:",
+          "text": "He explicitly recommends this as a starter long strategy for new small-cap traders."
+        },
+        "rightTitle": "What Must Be True",
+        "rightList": [
+          "Small cap already moving premarket",
+          "Historical / unusual volume present",
+          "Low float but not illiquid micro-trash",
+          "Catalyst behind the move",
+          "No obvious dilution risk",
+          "Low enough institutional ownership",
+          "Premarket high available as trigger level"
+        ],
+        "whyTitle": "Failure Mode",
+        "whyList": [
+          "Gap lacks real news and behaves like a chat pump",
+          "Dilution or weak cash flow caps upside",
+          "Breakout fails immediately after the open",
+          "Liquidity too thin to execute cleanly"
+        ],
+        "grid": [
+          [
+            "Entry Trigger",
+            "Confirmed: breakout of premarket high. Inferred: often taken only once attention and volume confirm rather than blindly at first touch."
+          ],
+          [
+            "Invalidation / Stop Logic",
+            "Confirmed: he thinks exit matters more than entry and position size adjusts risk. Inferred: PMH failure / immediate post-breakout weakness is the practical thesis break."
+          ],
+          [
+            "Target Logic",
+            "Confirmed: he trims strength and recycles around the move. Precise R-multiple targets are not publicly hard-coded."
+          ],
+          [
+            "Confidence / Sources",
+            "High. Sources: X-Trader Oct 2024; Business Insider Apr 2023 and May 2023."
+          ]
+        ]
+      },
+      {
+        "title": "SETUP 2: FIRST GREEN DAY / EARLY MANIA LONG",
+        "badgeText": "Confirmed Core Long",
+        "badgeClass": "badge-green",
+        "leftTitle": "Description",
+        "leftParagraphs": [
+          "He uses the Tim Sykes penny-stocking framework as a map for where a stock sits inside a broader attention cycle. He aims to go long on the first green day / run-up, but not in the earliest stealth phase.",
+          "He appears to prefer the early mania phase: press release already out, media attention building, volume expanding, and the move becoming visible enough to confirm."
+        ],
+        "rightTitle": "Required Context",
+        "rightList": [
+          "Stock has been quiet, then breaks out definitively",
+          "News catalyst and volume expansion exist",
+          "Volume and price are well above longer-term norms",
+          "Crowd attention is rising, not fading",
+          "He is willing to sacrifice some early upside for confirmation"
+        ],
+        "whyTitle": "Trade Management",
+        "whyList": [
+          "Weave in and out around a core position",
+          "Trim into strength",
+          "Buy retracements if the structure still holds",
+          "Exit if the move crashes within the first minutes"
+        ],
+        "grid": [
+          [
+            "Entry Trigger",
+            "Confirmed: first green day / early run-up, often after breakout and once volume plus press attention are obvious."
+          ],
+          [
+            "Stop / Invalidation",
+            "Confirmed: if the long begins to crash in the first few minutes, he is willing to exit."
+          ],
+          [
+            "Target / Exit",
+            "Confirmed in example: shave profits into strength, hold core while active, and sometimes flatten before overnight risk."
+          ],
+          [
+            "Confidence / Sources",
+            "High. Sources: Business Insider May 2023; TRVN trade example."
+          ]
+        ]
+      }
+    ],
+    "sideBySide": [
+      {
+        "title": "SETUP 3: SHARE RECYCLING INSIDE A VALID IDEA",
+        "badgeText": "Execution Technique",
+        "badgeClass": "badge-blue",
+        "paragraphs": [
+          "He describes his style as recycling shares around a heavy idea. Public examples show him holding a core position, trimming strength, and buying retracement periods back when the thesis remains intact.",
+          "This appears less like a standalone setup and more like his default way of pressing a valid long or short without becoming a passive holder."
+        ],
+        "list": [
+          "Confirmed context: valid thesis already exists",
+          "Confirmed behavior: core plus active in-and-out execution",
+          "Inferred entry add: retracement back into still-valid structure",
+          "Common failure: recycling becomes averaging down after thesis break"
+        ],
+        "confidence": "med",
+        "confidenceText": "Medium — directly described, but exact mechanical rules are not public."
+      },
+      {
+        "title": "SETUP 4: FIRST RED DAY AFTER MULTI-DAY RUN",
+        "badgeText": "Confirmed Core Short",
+        "badgeClass": "badge-black",
+        "paragraphs": [
+          "He said his favorite trade is the first red day after a stock has rallied for several days. The thesis is that many of these rallies do not rest on durable fundamentals, so once weakness appears, the unwind can be fast.",
+          "This lines up with his broader phase model: long while attention expands, short when the cycle starts to roll over."
+        ],
+        "list": [
+          "Required context: multi-day rally or obvious mania leg",
+          "Trigger: first clear sign of weakness / first red day",
+          "Bias strengthens when fundamentals are weak or promotional",
+          "Target logic: cover into flush as fear replaces attention"
+        ],
+        "confidence": "high",
+        "confidenceText": "High — directly stated as his favorite trade in Business Insider."
+      }
+    ],
+    "finalLarge": {
+      "title": "SETUP 5: GAP-DOWN / PHASE-4 WEAKNESS CONTINUATION",
+      "badgeText": "Confirmed Example, Medium Generalization",
+      "badgeClass": "badge-gold",
+      "leftParagraphs": [
+        "In the TRVN example, he bought the day-one breakout, then switched bias the next premarket when the stock gapped down about 15%, signaling weakness and a possible transition into the return-to-normal / fear phase.",
+        "He then shorted premarket and covered progressively lower. That makes gap-down weakness after day-one mania a credible recurring short template, even if he has not publicly published a full rule sheet for it."
+      ],
+      "leftList": [
+        "Catalyst day loses follow-through the next morning",
+        "Gap-down weakness confirms attention decay",
+        "Bias shifts from momentum long to unwind short",
+        "Premarket participation matters"
+      ],
+      "rightTitle": "Common Failure Mode",
+      "rightParagraph": "Gap-downs can still reverse violently if the crowd decides the weakness is a dip-buy instead of a phase shift. The public evidence supports the setup, but not an exact universal trigger hierarchy beyond visible weakness and loss of attention.",
+      "rightCallout": {
+        "tone": "gold",
+        "title": "Source Base:",
+        "text": "Business Insider May 2023 TRVN example; confidence medium because the evidence is example-driven rather than rulebook-driven."
+      }
+    }
+  },
+  "execution": {
+    "labelLeft": "Section 04 · Pattern and Context Preferences / Execution Framework",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "leftTitleHtml": "PATTERN & CONTEXT <span>PREFERENCES</span>",
+    "leftParagraphs": [
+      "The strongest pattern preference is not a shape but a phase: he wants small caps in an attention expansion stage for longs and in an attention decay stage for shorts.",
+      "His context filters are unusually fundamental for a fast trader: catalyst quality, dilution, cash flow, ownership, hot sector alignment, and historical overhead all matter before the chart trigger."
+    ],
+    "entryTitle": "Execution Style — What He Actually Seems To Do",
+    "entryCard": {
+      "tone": "stripe",
+      "confidence": "high",
+      "list": [
+        "Fast, highly active execution",
+        "Premarket participation when the tape is active",
+        "Hundreds of trades per day in some periods",
+        "Hotkey-heavy workflow according to Timothy Sykes",
+        "Core idea plus recycling rather than one static entry",
+        "Screens for candidates first, then executes discretionarily"
+      ]
+    },
+    "l2Title": "Pattern and Context Signals He Repeats",
+    "l2List": [
+      "Hot sectors get promoted to higher quality",
+      "No-news movers are suspect and can be chat pumps",
+      "Low float is good, but too-low float can be untradable",
+      "Bag-holder overhead matters if prior peaks had large volume",
+      "Dilution and poor cash flow cap long-side trust",
+      "He wants names whose behavior he has seen many times before"
+    ],
+    "addTitle": "What He Says vs. What He Shows",
+    "addCallout": {
+      "tone": "green",
+      "title": "Says:",
+      "text": "Risk should be sized from the exit and setup quality. Shows: active scaling, recycling, and opportunistic bias shifts around the same name as its phase changes."
+    },
+    "rightTitle": "How Winners and Losers Are Managed",
+    "rightBlackTitle": "IF THE ATTENTION CYCLE BREAKS, THE TRADE CAN FLIP OR DIE FAST.",
+    "rightBlackText": "Public examples show aggressive profit shaving, retracement rebuys only while structure remains valid, and willingness to abandon longs quickly if post-breakout behavior deteriorates within minutes.",
+    "trimTitle": "Execution Details Supported Publicly",
+    "trimCard": {
+      "tone": "green-stripe",
+      "confidence": "med",
+      "steps": [
+        "Rank names before the open rather than trade everything moving",
+        "Enter confirmed attention names, not quiet anticipatory ideas",
+        "Use a core position and recycle around it",
+        "Trim strength instead of waiting only for one final exit",
+        "Flatten when overnight risk no longer pays",
+        "Switch from long to short when the phase turns"
+      ]
+    },
+    "stopTitle": "Low-Quality Trade Signs",
+    "stopList": [
+      "No-news move / chat-pump character",
+      "Weak cash flow plus dilution risk",
+      "Float so small liquidity becomes unmanageable",
+      "Heavy prior-volume overhead nearby",
+      "Too much institutional or insider control",
+      "Tape weak enough that he explicitly turns defensive"
+    ],
+    "avoidTitle": "Failure Cases",
+    "avoidCards": [
+      {
+        "tone": "red",
+        "title": "Stock Quality Failures",
+        "items": [
+          "Apparent dilution",
+          "Weak operating cash flow",
+          "High institutional ownership",
+          "Foreign small caps with concentrated control",
+          "No genuine catalyst"
+        ]
+      },
+      {
+        "tone": "red",
+        "title": "Pattern Failures",
+        "items": [
+          "PMH breakout fails immediately",
+          "Gap fades right after the open",
+          "First green day never broadens into real mania",
+          "First red day short is early before weakness confirms",
+          "Gap-down weakness gets squeezed"
+        ]
+      },
+      {
+        "tone": "red",
+        "title": "Behavioral Failures",
+        "items": [
+          "Breaking the 2% rule",
+          "Forcing trades to make money instead of trading process",
+          "Turning recycling into averaging down",
+          "Ignoring regime weakness",
+          "Trading a setup whose edge is unfamiliar"
+        ]
+      }
+    ]
+  },
+  "risk": {
+    "labelLeft": "Section 05 · Risk Management Model",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "leftTitleHtml": "RISK MANAGEMENT <span>MODEL</span>",
+    "leftParagraphs": [
+      "This is the part of the playbook where the evidence is both useful and contradictory. One public rule is clear: he said he never risks more than 2% of his account on any given position. But later public comments imply setup-dependent aggression and non-mechanical sizing.",
+      "So the best reconstruction is not a fixed formula but a hierarchy: cap base risk, press A+ setups harder, use B/C setups for cash flow, and make the exit decision carry most of the real risk load."
+    ],
+    "blackBoxTitle": "Confirmed Risk Anchors",
+    "blackBoxItems": [
+      {
+        "num": "1",
+        "title": "Stated Position Risk Cap",
+        "text": "In Business Insider he said he never risks more than 2% of total account value on a given position."
+      },
+      {
+        "num": "2",
+        "title": "Hard Lesson From Rule Break",
+        "text": "When he violated that rule on ADTX, the loss became about 15% of the account, which reinforces that he treats oversized risk as a major mistake."
+      }
+    ],
+    "giveBackTitle": "Sizing Logic",
+    "giveBackCallout": {
+      "tone": "gold",
+      "title": "Confirmed / Inferred Blend:",
+      "text": "Entry size is adjusted to the amount he wants to risk, and A+ setups can justify pressing size and letting gains run harder than B/C setups."
+    },
+    "pnlTitle": "What Matters Most",
+    "pnlList": [
+      "Exit quality matters more than entry precision in his own description",
+      "A+ setups deserve acceleration",
+      "B/C setups can be used as lower-asymmetry cash-flow trades",
+      "Risk is distributed differently in hot markets",
+      "Maximizing gains on rare aligned setups matters as much as cost control"
+    ],
+    "rightTitle": "Publicly Visible Risk Framework",
+    "rightCards": [
+      {
+        "tone": "default",
+        "title": "Confirmed",
+        "items": [
+          "Approximate 2% max risk per position",
+          "Start small while learning",
+          "Detach from P&L pressure",
+          "Do not trade from survival mode"
+        ]
+      },
+      {
+        "tone": "stripe",
+        "title": "Inferred",
+        "paragraph": "His real risk engine appears nonlinear. He likely risks less on ordinary flow trades and more on rare A+ alignment, but the exact math is not public.",
+        "items": [
+          "Setup-grade-based size changes",
+          "Phase-based conviction changes",
+          "More aggression when tape is hot",
+          "Defensive posture when small-cap tape weakens"
+        ],
+        "confidence": "med"
+      }
+    ],
+    "metricsTitle": "Evidence Notes",
+    "metricsList": [
+      "Business Insider Apr 2023: 2% position-risk statement and ADTX rule-break example",
+      "X-Trader Oct 2024: exit-focused sizing, A+ acceleration, B/C cash-flow framing",
+      "Kinfo / STC materials: process and journaling emphasis, but not an exact public formula"
+    ]
+  },
+  "psychology": {
+    "labelLeft": "Section 06 · Psychology and Process Rules",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "leftTitleHtml": "PSYCHOLOGY & <span>PROCESS RULES</span>",
+    "leftParagraphs": [
+      "His psychology rules are not generic motivation content. They tie directly to survival in an execution-heavy strategy.",
+      "The biggest repeated idea is that trying to trade to survive or force income destroyed his discipline. His turning point was shifting attention away from desperately needing money and toward process, pattern familiarity, and technical execution."
+    ],
+    "evidenceRows": [
+      {
+        "num": "1",
+        "title": "Process Over Outcome",
+        "text": "He explicitly says mindset changed his career when he stopped focusing on making money and focused on technicals and process."
+      },
+      {
+        "num": "2",
+        "title": "Technical First, Then Psychology",
+        "text": "He says many traders obsess over psychology too early; first build the technical base, then refine emotional control."
+      },
+      {
+        "num": "3",
+        "title": "Anything Can Happen",
+        "text": "He stresses flexibility and humility because every market event is unique and black swans exist."
+      },
+      {
+        "num": "4",
+        "title": "A+ Setups Must Be Pressed",
+        "text": "Discipline is not only cutting losses; it is also letting exceptional winners run when alignment is rare."
+      },
+      {
+        "num": "5",
+        "title": "Breathing Under Stress",
+        "text": "He publicly recommends a 4-7-8 breathing pattern to reset under tension."
+      }
+    ],
+    "rightTitle": "Daily Process Framework",
+    "checklist": [
+      {
+        "ok": true,
+        "text": "Wake before the open and analyze the market early"
+      },
+      {
+        "ok": true,
+        "text": "Use scanner first, then manual ranking"
+      },
+      {
+        "ok": true,
+        "text": "Focus on names with familiar variables"
+      },
+      {
+        "ok": true,
+        "text": "Check catalyst, float, ownership, dilution, overhead"
+      },
+      {
+        "ok": true,
+        "text": "Trade the active morning window when edge is best"
+      },
+      {
+        "ok": true,
+        "text": "Journal and review with data tools"
+      },
+      {
+        "ok": false,
+        "text": "Do not trade because you need money today"
+      },
+      {
+        "ok": false,
+        "text": "Do not confuse emotional conviction with A+ quality"
+      },
+      {
+        "ok": false,
+        "text": "Do not assume any method works 100%"
+      },
+      {
+        "ok": false,
+        "text": "Do not stop learning once profitable"
+      }
+    ],
+    "processTitle": "What He Repeatedly Warns Against",
+    "processSteps": [
+      "Trading from desperation or bills pressure",
+      "Ignoring dilution and weak fundamentals in small caps",
+      "Focusing only on minimizing losses while failing to maximize aligned winners",
+      "Building opinions that cannot adapt to new information",
+      "Relying on psychology talk before technical skill exists",
+      "Assuming one public strategy can be copied without matching temperament and risk tolerance"
+    ],
+    "simTitle": "Mindset Summary",
+    "simCallout": {
+      "tone": "gold",
+      "title": "Bottom Line:",
+      "text": "His psychological edge is not calmness alone. It is detachment from forced outcomes, humility about uncertainty, and willingness to stay systematic inside a discretionary style."
+    }
+  },
+  "contradictions": {
+    "labelLeft": "Section 07 · Contradictions and Inconsistencies / Real Edge Assessment",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "leftTitleHtml": "CONTRADICTIONS & <span>INCONSISTENCIES</span>",
+    "leftCards": [
+      {
+        "tone": "amber-stripe",
+        "title": "1. “Never risk more than 2%” vs. “Press A+ setups”",
+        "paragraphs": [
+          "The public material contains both a fixed-sounding risk cap and a setup-quality sizing model.",
+          "Most likely interpretation: 2% is a normal outer boundary for a position idea, while actual conviction and scaling vary within that framework."
+        ],
+        "concern": "High Importance"
+      },
+      {
+        "tone": "amber-stripe",
+        "title": "2. Public teaching simplifies the playbook",
+        "paragraphs": [
+          "Gap & Go is presented as the starter strategy, but his actual practice is broader: phase trading, recycling, long-short switching, and catalyst / dilution overlays.",
+          "That makes the public beginner framing cleaner than the real operating playbook."
+        ],
+        "concern": "High Importance"
+      },
+      {
+        "tone": "amber-stripe",
+        "title": "3. “Discretionary with a systematic core” leaves exact rules opaque",
+        "paragraphs": [
+          "This phrase is probably accurate, but it also means exact entries, adds, and exits are partly internalized judgment rather than a public algorithm.",
+          "So reconstruction is possible at the framework level, not at the fully mechanical level."
+        ],
+        "concern": "Medium Importance"
+      }
+    ],
+    "rightTitleHtml": "REAL EDGE <span>ASSESSMENT</span>",
+    "rightIntro": "The real edge appears to come less from secret indicators and more from combining several hard filters before executing very aggressively inside a narrow niche.",
+    "edgeItems": [
+      {
+        "title": "1. Familiar-Variables Edge",
+        "text": "He deliberately trades only environments whose variables he believes he understands: small-cap momentum and decay."
+      },
+      {
+        "title": "2. Catalyst + Dilution Cross-Check",
+        "text": "He does not treat news and dilution separately; he treats them as competing forces that determine whether a move can be trusted."
+      },
+      {
+        "title": "3. Attention-Phase Timing",
+        "text": "He buys when awareness is expanding and shorts when awareness is fading."
+      },
+      {
+        "title": "4. Recycling / Liquidity Provision",
+        "text": "He appears skilled at repeatedly trading around a core idea instead of using one entry and one exit."
+      },
+      {
+        "title": "5. Process-Driven Adaptation",
+        "text": "He continually reframes around regime, setup grade, and uncertainty rather than trying to force one static model."
+      }
+    ],
+    "brandingCallout": {
+      "tone": "gold",
+      "title": "Most Likely Truth:",
+      "text": "The edge is real, but it is more execution- and judgment-intensive than the simpler public education layer suggests."
+    }
+  },
+  "prosCons": {
+    "labelLeft": "Section 08 · Strategy Assessment / What He Says vs What He Appears To Do",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "titleHtml": "STRATEGY <span>ASSESSMENT</span>",
+    "intro": "The public evidence is strong enough to reconstruct the niche, the core filters, and the main long/short setups. It is weaker on exact stop math and exact intraday decision trees.",
+    "pros": [
+      "Clear niche specialization",
+      "Strong catalyst and dilution awareness",
+      "Useful manual ranking process",
+      "Long and short playbook both exist",
+      "Setup-grade-based aggression likely improves capital efficiency",
+      "Process mindset is grounded in actual trading failure and recovery"
+    ],
+    "cons": [
+      "Execution appears highly discretionary",
+      "Trade frequency may be too high for most traders to copy",
+      "Exact stop/add formulas are not public",
+      "Public beginner education understates the complexity of the real process",
+      "Small-cap regime weakness can reduce edge sharply",
+      "Heavy reliance on pattern familiarity creates replication gap"
+    ],
+    "compareTitle": "What He Says vs. What He Appears To Actually Do",
+    "compareIntro": "This is the cleanest way to separate brand-layer simplification from the observed operating logic.",
+    "compareLeft": {
+      "title": "WHAT HE SAYS",
+      "items": [
+        "Gap & Go is the starter long strategy",
+        "Risk should be controlled and sized from the exit",
+        "Process matters more than money",
+        "Trade only familiar variables",
+        "Discretionary style sits on a systematic core"
+      ]
+    },
+    "compareRight": {
+      "title": "WHAT HE APPEARS TO DO",
+      "items": [
+        "Trade a broader pump-and-dump phase model",
+        "Recycle aggressively around a core thesis",
+        "Shift bias long to short as the cycle turns",
+        "Use catalyst, dilution, ownership, and overhead as pre-trade filters",
+        "Vary aggression materially by setup quality and tape conditions"
+      ]
+    }
+  },
+  "rules": {
+    "labelLeft": "Section 09 · Rules-Based Reconstruction",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "titleHtml": "RULES-BASED <span>RECONSTRUCTION</span>",
+    "intro": "This page converts the public evidence into a practical, rules-based approximation. Items marked by the report body as inferred should be tested rather than trusted blindly.",
+    "leftCards": [
+      {
+        "tone": "gold",
+        "title": "Setup Criteria",
+        "items": [
+          "Small cap under roughly $2B market cap",
+          "Premarket gap usually 15–20%+ or equivalent sudden attention",
+          "Historical / unusual volume",
+          "Real catalyst or hot-sector alignment",
+          "Float not too tiny for execution",
+          "Institutional ownership not too concentrated",
+          "No obvious dilution overhang for longs",
+          "Manageable overhead / bag-holder profile"
+        ]
+      },
+      {
+        "tone": "default",
+        "title": "Entry Checklist",
+        "checklist": [
+          {
+            "ok": true,
+            "text": "Name already has attention; no forcing dead tape"
+          },
+          {
+            "ok": true,
+            "text": "Catalyst and volume align"
+          },
+          {
+            "ok": true,
+            "text": "Quality ranking is A or strong B"
+          },
+          {
+            "ok": true,
+            "text": "For Gap & Go: PMH break confirms"
+          },
+          {
+            "ok": true,
+            "text": "For run-up long: early mania confirmation exists"
+          },
+          {
+            "ok": true,
+            "text": "For short: first red day / visible weakness confirms"
+          },
+          {
+            "ok": false,
+            "text": "Do not long obvious dilution risk"
+          },
+          {
+            "ok": false,
+            "text": "Do not buy because it already moved a lot"
+          },
+          {
+            "ok": false,
+            "text": "Do not enter if thesis is unfamiliar"
+          }
+        ]
+      }
+    ],
+    "rightCards": [
+      {
+        "tone": "red",
+        "title": "Risk Checklist",
+        "items": [
+          "Base position risk around stated ~2% ceiling",
+          "Size from exit / thesis break, not from wishful entry",
+          "Press only A+ setups",
+          "Use B/C setups more for cash flow than for huge asymmetry",
+          "Break rule = stop and review",
+          "Never trade from survival pressure"
+        ]
+      },
+      {
+        "tone": "default",
+        "title": "Exit Checklist",
+        "checklist": [
+          {
+            "ok": true,
+            "text": "Trim into strength rather than only one final sell"
+          },
+          {
+            "ok": true,
+            "text": "Recycle only while structure remains valid"
+          },
+          {
+            "ok": true,
+            "text": "Exit longs quickly if they break down in the first minutes"
+          },
+          {
+            "ok": true,
+            "text": "Cover shorts into flush / fear expansion"
+          },
+          {
+            "ok": true,
+            "text": "Flatten if overnight risk no longer pays"
+          },
+          {
+            "ok": false,
+            "text": "Do not turn a failed idea into an investment"
+          },
+          {
+            "ok": false,
+            "text": "Do not average down after thesis death"
+          }
+        ]
+      },
+      {
+        "tone": "red",
+        "title": "No-Trade Conditions",
+        "items": [
+          "No catalyst and social-media pump character",
+          "Weak cash flow with obvious financing risk",
+          "Liquidity too poor to manage size",
+          "Heavy overhead too close to entry",
+          "Tape weak enough that the niche is defensive",
+          "You need the trade to work emotionally or financially",
+          "You cannot define where the phase likely changes"
+        ]
+      }
+    ]
+  },
+  "final": {
+    "labelLeft": "Section 10 · Final Reliability Rating",
+    "labelRight": "Edu Trades · Eduardo Briceño",
+    "takeawaysTitleHtml": "TOP 5 STRONGEST <span>TAKEAWAYS</span>",
+    "takeaways": [
+      "The strongest confirmed long is Gap & Go / premarket-high breakout in catalyst-driven small caps.",
+      "The strongest confirmed short is first red day / first real weakness after a multi-day run.",
+      "Dilution, cash flow, and ownership are central filters, not side notes.",
+      "His actual style is hybrid long-short phase trading with active share recycling.",
+      "The public edge is framework-clear but execution-heavy and not fully mechanical."
+    ],
+    "unknownsTitleHtml": "TOP 5 UNRESOLVED <span>UNKNOWNS</span>",
+    "unknowns": [
+      "Exact stop placement formula by setup",
+      "Exact intraday max-loss framework",
+      "Exact scanner thresholds beyond published gap / volume filters",
+      "Exact add / reduce sizing logic for A+, B, and C trades",
+      "How often he keeps size overnight outside isolated examples"
+    ],
+    "summaryTitleHtml": "TRUE OPERATING <span>STYLE</span>",
+    "summaryText": "Edu Trades appears to operate as a small-cap attention-cycle trader. He screens for sub-$2B names already moving, then narrows hard using catalyst, volume, dilution, ownership, and overhead filters. He buys when attention expands, usually on premarket-high or first-green-day confirmation, and shorts when the cycle loses attention, especially on the first red day. The edge is not a secret indicator. It is niche specialization, catalyst-plus-dilution judgment, phase recognition, and aggressive recycling around valid ideas.",
+    "checklistTitleHtml": "APPARENT EDGE <span>CHECKLIST</span>",
+    "checklist": [
+      {
+        "ok": true,
+        "text": "Knows exactly which niche to trade"
+      },
+      {
+        "ok": true,
+        "text": "Filters crowd attention before entering"
+      },
+      {
+        "ok": true,
+        "text": "Uses dilution as a structural trust test"
+      },
+      {
+        "ok": true,
+        "text": "Can trade both expansion and unwind phases"
+      },
+      {
+        "ok": true,
+        "text": "Recycles around ideas instead of single-shot execution"
+      },
+      {
+        "ok": true,
+        "text": "Anchors process over short-term money pressure"
+      }
+    ],
+    "ratingTitle": "Final Reliability Rating",
+    "ratingValue": "PARTIALLY RECONSTRUCTABLE",
+    "ratingText": "The universe, setups, and decision logic are publicly visible enough to map the playbook with useful precision. The exact stop math, add logic, and day-to-day execution tree remain partly discretionary and therefore not fully reconstructable from public evidence alone."
+  }
+};
+
+    /*
+    ============================================================
+    DO NOT EDIT BELOW UNLESS YOU WANT TO CHANGE THE LAYOUT
+    ============================================================
+    */
+
+    const app = document.getElementById("app");
+    document.title = REPORT.documentTitle;
+
+    function esc(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function confClass(value) {
+      if (value === "high") return "conf-high";
+      if (value === "med") return "conf-med";
+      if (value === "low") return "conf-low";
+      return "conf-high";
+    }
+
+    function renderParagraphs(items = []) {
+      return items.map(p => `<p>${esc(p)}</p>`).join("");
+    }
+
+    function renderList(items = []) {
+      return `<ul>${items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
+    }
+
+    function renderChecklist(items = []) {
+      return `
+        <ul class="checklist">
+          ${items.map(item => `
+            <li>
+              <span class="c-icon ${item.ok ? 'c-green' : 'c-red'}">${item.ok ? '✓' : '✗'}</span>
+              <span>${esc(item.text)}</span>
+            </li>
+          `).join("")}
+        </ul>
+      `;
+    }
+
+    function renderCallout(callout) {
+      if (!callout) return "";
+      const tone =
+        callout.tone === "gold" ? "callout-gold" :
+        callout.tone === "green" ? "callout-green" :
+        callout.tone === "red" ? "callout-red" : "";
+      return `
+        <div class="callout ${tone}">
+          <strong>${esc(callout.title)}</strong> ${esc(callout.text)}
+        </div>
+      `;
+    }
+
+    function renderCardClass(tone) {
+      if (tone === "gold") return "card card-gold";
+      if (tone === "green") return "card card-green";
+      if (tone === "red") return "card card-red";
+      if (tone === "blue") return "card card-blue";
+      if (tone === "black") return "card card-black";
+      if (tone === "stripe") return "card card-stripe";
+      if (tone === "green-stripe") return "card card-stripe-green";
+      if (tone === "red-stripe") return "card card-stripe-red";
+      return "card";
+    }
+
+    function renderPageLabel(left, right) {
+      return `
+        <div class="page-label">
+          <span>${esc(left)}</span>
+          <span>${esc(right)}</span>
+        </div>
+      `;
+    }
+
+    function renderCover() {
+      return `
+        <div class="cover">
+          <div class="cover-bg"></div>
+          <div class="cover-num">${esc(REPORT.cover.bgInitials)}</div>
+          <div class="cover-eyebrow">${esc(REPORT.cover.eyebrow)}</div>
+          <h1>${REPORT.cover.titleHtml}</h1>
+          <p class="cover-desc">${esc(REPORT.cover.description)}</p>
+          <div class="cover-pills">
+            ${REPORT.cover.pills.map(pill => `
+              <div class="cover-pill ${pill.gold ? 'cover-pill-gold' : ''}">${esc(pill.text)}</div>
+            `).join("")}
+          </div>
+          <div class="cover-stats">
+            ${REPORT.cover.stats.map(stat => `
+              <div class="c-stat">
+                <span class="c-stat-l">${esc(stat.label)}</span>
+                <span class="c-stat-v">${esc(stat.value)}</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderOverview() {
+      const s = REPORT.overview;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${renderParagraphs(s.leftParagraphs)}
+              ${renderCallout(s.callout)}
+
+              <h3 class="mt-24">${esc(s.rulesTitle)}</h3>
+              <ol style="display:flex; flex-direction:column; gap:10px;">
+                ${s.rules.map(rule => `<li>${esc(rule)}</li>`).join("")}
+              </ol>
+            </div>
+
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              <div class="card card-black mt-16 mb-24">
+                <p style="font-family:'Bebas Neue',cursive; font-size:20px; letter-spacing:.03em; color:white; margin-bottom:0;">
+                  ${esc(s.quote)}
+                </p>
+              </div>
+
+              <h4 style="margin-top:20px;">Market Logic</h4>
+              <ul style="list-style:none; padding:0;">
+                ${s.logicRows.map(row => `
+                  <li style="display:flex; gap:10px; margin-bottom:10px; align-items:flex-start;">
+                    <span class="badge ${row.badgeClass}">${esc(row.label)}</span>
+                    <span>${esc(row.text)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+
+              <hr class="divider">
+
+              <h3>${esc(s.timeframesTitle)}</h3>
+              ${renderList(s.timeframes)}
+
+              <div class="callout callout-gold mt-20">
+                <strong>${esc(s.sourceNote)}</strong> Overall:
+                <span class="${confClass(s.sourceConfidence)}">${esc(s.sourceConfidence.toUpperCase())}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPillars() {
+      const s = REPORT.pillars;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <h2>${s.titleHtml}</h2>
+          <p>${esc(s.intro)}</p>
+
+          <div class="pillar-grid mt-32">
+            ${s.cards.map(card => `
+              <div class="pillar-card">
+                <div class="pillar-num">${esc(card.num)}</div>
+                <div class="pillar-name">${esc(card.name)}</div>
+                <div class="pillar-detail">${esc(card.detail)}</div>
+              </div>
+            `).join("")}
+          </div>
+
+          <hr class="divider">
+
+          <div class="col-2 mt-24">
+            <div>
+              <h3>${esc(s.leftTitle)}</h3>
+              <p>${esc(s.leftText)}</p>
+
+              <table class="t mt-16">
+                <thead>
+                  <tr>${s.table.headers.map(h => `<th>${esc(h)}</th>`).join("")}</tr>
+                </thead>
+                <tbody>
+                  ${s.table.rows.map(row => `
+                    <tr>
+                      <td><strong>${esc(row[0])}</strong></td>
+                      <td>${esc(row[1])}</td>
+                      <td>${esc(row[2])}</td>
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+
+              ${renderCallout(s.conditionCallout)}
+            </div>
+
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              <div class="card mt-16">
+                <div style="display:flex; flex-direction:column; gap:0;">
+                  ${s.sessionRows.map((row, idx) => {
+                    const isGold = row[2] === true;
+                    const isGreen = row[2] === "green";
+                    const bg = isGold ? "background:#fffbeb; margin:0 -8px; padding:10px 8px;" : "";
+                    const color = isGold ? "var(--amber)" : isGreen ? "var(--green)" : "inherit";
+                    const detailColor = isGold ? "var(--amber)" : isGreen ? "var(--green)" : "var(--gray)";
+                    const weight = isGold ? "800" : isGreen ? "700" : "600";
+                    const detailWeight = isGold ? "700" : isGreen ? "600" : "400";
+                    return `
+                      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; ${idx < s.sessionRows.length - 1 ? 'border-bottom:1px solid var(--divider);' : ''} ${bg}">
+                        <span style="font-weight:${weight}; color:${color};">${esc(row[0])}</span>
+                        <span style="color:${detailColor}; font-weight:${detailWeight}; font-size:13px;">${esc(row[1])}</span>
+                      </div>
+                    `;
+                  }).join("")}
+                </div>
+              </div>
+
+              <h3 class="mt-24">${esc(s.scannerTitle)}</h3>
+              ${renderList(s.scannerList)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLargeSetup(setup) {
+      return `
+        <div class="setup-card mt-28">
+          <div class="setup-hdr">
+            <div class="setup-hdr-title">${esc(setup.title)}</div>
+            <span class="badge ${setup.badgeClass}">${esc(setup.badgeText)}</span>
+          </div>
+          <div class="setup-body">
+            <div class="col-2 mb-20">
+              <div>
+                <h4>${esc(setup.leftTitle)}</h4>
+                ${renderParagraphs(setup.leftParagraphs)}
+                ${renderCallout(setup.leftCallout)}
+              </div>
+              <div>
+                <h4>${esc(setup.rightTitle)}</h4>
+                ${renderList(setup.rightList)}
+                <h4 class="mt-16">${esc(setup.whyTitle)}</h4>
+                ${renderList(setup.whyList)}
+              </div>
+            </div>
+            <div class="setup-grid">
+              ${setup.grid.map(cell => `
+                <div class="setup-cell">
+                  <div class="setup-cell-lbl">${esc(cell[0])}</div>
+                  <div class="setup-cell-val">${esc(cell[1])}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSmallSetup(setup) {
+      return `
+        <div class="setup-card" style="margin-bottom:0;">
+          <div class="setup-hdr">
+            <div class="setup-hdr-title">${esc(setup.title)}</div>
+            <span class="badge ${setup.badgeClass}">${esc(setup.badgeText)}</span>
+          </div>
+          <div class="setup-body">
+            ${renderParagraphs(setup.paragraphs)}
+            ${renderList(setup.list)}
+            <div class="mt-16">
+              <span class="${confClass(setup.confidence)}">${esc(setup.confidence.toUpperCase())}</span>
+              — ${esc(setup.confidenceText)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSetups() {
+      const s = REPORT.setups;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <h2>${s.titleHtml}</h2>
+          <p>${esc(s.intro)}</p>
+
+          ${s.large.map(renderLargeSetup).join("")}
+
+          <div class="col-2">
+            ${s.sideBySide.map(renderSmallSetup).join("")}
+          </div>
+
+          <div class="setup-card mt-28">
+            <div class="setup-hdr">
+              <div class="setup-hdr-title">${esc(s.finalLarge.title)}</div>
+              <span class="badge ${s.finalLarge.badgeClass}">${esc(s.finalLarge.badgeText)}</span>
+            </div>
+            <div class="setup-body">
+              <div class="col-2">
+                <div>
+                  ${renderParagraphs(s.finalLarge.leftParagraphs)}
+                  ${renderList(s.finalLarge.leftList)}
+                </div>
+                <div>
+                  <h4>${esc(s.finalLarge.rightTitle)}</h4>
+                  <p>${esc(s.finalLarge.rightParagraph)}</p>
+                  ${renderCallout(s.finalLarge.rightCallout)}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderExecution() {
+      const s = REPORT.execution;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${renderParagraphs(s.leftParagraphs)}
+
+              <h3 class="mt-24">${esc(s.entryTitle)}</h3>
+              <div class="${renderCardClass(s.entryCard.tone)} mt-12">
+                ${renderList(s.entryCard.list)}
+                <div class="mt-16"><span class="${confClass(s.entryCard.confidence)}">${esc(s.entryCard.confidence.toUpperCase())}</span></div>
+              </div>
+
+              <h3 class="mt-24">${esc(s.l2Title)}</h3>
+              ${renderList(s.l2List)}
+
+              <h3 class="mt-24">${esc(s.addTitle)}</h3>
+              ${renderCallout(s.addCallout)}
+            </div>
+
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              <div class="card card-black mt-16">
+                <p style="font-family:'Bebas Neue',cursive; font-size:18px; color:var(--accent); letter-spacing:.04em; margin-bottom:12px;">
+                  ${esc(s.rightBlackTitle)}
+                </p>
+                <p>${esc(s.rightBlackText)}</p>
+              </div>
+
+              <h3 class="mt-24">${esc(s.trimTitle)}</h3>
+              <div class="${renderCardClass(s.trimCard.tone)} mt-12">
+                <ol style="display:flex; flex-direction:column; gap:10px;">
+                  ${s.trimCard.steps.map(step => `<li>${esc(step)}</li>`).join("")}
+                </ol>
+                <div class="mt-16"><span class="${confClass(s.trimCard.confidence)}">${esc(s.trimCard.confidence.toUpperCase())}</span></div>
+              </div>
+
+              <h3 class="mt-24">${esc(s.stopTitle)}</h3>
+              ${renderList(s.stopList)}
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <h3>${esc(s.avoidTitle)}</h3>
+          <div class="col-3 mt-16">
+            ${s.avoidCards.map(card => `
+              <div class="${renderCardClass(card.tone)}">
+                <h4 style="color:${card.tone === 'red' ? 'var(--red)' : 'inherit'};">${esc(card.title)}</h4>
+                ${renderList(card.items)}
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRisk() {
+      const s = REPORT.risk;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${renderParagraphs(s.leftParagraphs)}
+
+              <div class="card card-black mt-24">
+                <h3 style="color:white; margin-bottom:16px;">${esc(s.blackBoxTitle)}</h3>
+                <div style="display:flex; flex-direction:column; gap:16px;">
+                  ${s.blackBoxItems.map(item => `
+                    <div style="display:flex; gap:14px; align-items:flex-start;">
+                      <span style="font-family:'Bebas Neue',cursive; font-size:36px; color:var(--accent); line-height:1; flex-shrink:0;">${esc(item.num)}</span>
+                      <div>
+                        <p style="font-weight:700; color:white; margin-bottom:4px;">${esc(item.title)}</p>
+                        <p style="font-size:13px;">${esc(item.text)}</p>
+                      </div>
+                    </div>
+                  `).join("")}
+                </div>
+              </div>
+
+              <h3 class="mt-32">${esc(s.giveBackTitle)}</h3>
+              ${renderCallout(s.giveBackCallout)}
+
+              <h3 class="mt-24">${esc(s.pnlTitle)}</h3>
+              ${renderList(s.pnlList)}
+            </div>
+
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              ${s.rightCards.map(card => `
+                <div class="${renderCardClass(card.tone)} mt-16">
+                  <h4>${esc(card.title)}</h4>
+                  ${card.paragraph ? `<p>${esc(card.paragraph)}</p>` : ""}
+                  ${renderList(card.items || [])}
+                  ${card.confidence ? `<div class="mt-16"><span class="${confClass(card.confidence)}">${esc(card.confidence.toUpperCase())}</span></div>` : ""}
+                </div>
+              `).join("")}
+
+              <h3 class="mt-24">${esc(s.metricsTitle)}</h3>
+              ${renderList(s.metricsList)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPsychology() {
+      const s = REPORT.psychology;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+              ${renderParagraphs(s.leftParagraphs)}
+
+              <h3 class="mt-24">Core Mental Models</h3>
+              ${s.evidenceRows.map(row => `
+                <div class="evidence-row">
+                  <div class="evidence-num">${esc(row.num)}</div>
+                  <div>
+                    <strong>${esc(row.title)}</strong>
+                    <p>${esc(row.text)}</p>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+
+            <div>
+              <h3>${esc(s.rightTitle)}</h3>
+              <div class="card mt-16">
+                ${renderChecklist(s.checklist)}
+              </div>
+
+              <h3 class="mt-24">${esc(s.processTitle)}</h3>
+              <ol class="mt-12" style="display:flex; flex-direction:column; gap:10px;">
+                ${s.processSteps.map(step => `<li>${esc(step)}</li>`).join("")}
+              </ol>
+
+              <h3 class="mt-24">${esc(s.simTitle)}</h3>
+              ${renderCallout(s.simCallout)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderContradictions() {
+      const s = REPORT.contradictions;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+
+          <div class="col-2">
+            <div>
+              <h2>${s.leftTitleHtml}</h2>
+
+              ${s.leftCards.map(card => `
+                <div class="card card-stripe mt-24" style="border-left-color:var(--amber);">
+                  <h4 style="color:var(--amber);">${esc(card.title)}</h4>
+                  ${card.paragraphs.map(p => `<p>${esc(p)}</p>`).join("")}
+                  <p style="margin-top:8px;"><span class="conf-med">${esc(card.concern)}</span></p>
+                </div>
+              `).join("")}
+            </div>
+
+            <div>
+              <h2>${s.rightTitleHtml}</h2>
+              <p>${esc(s.rightIntro)}</p>
+
+              <div class="card card-black mt-24">
+                <h3 style="color:white; margin-bottom:16px;">The Actual Edge</h3>
+                <div style="display:flex; flex-direction:column; gap:14px;">
+                  ${s.edgeItems.map(item => `
+                    <div>
+                      <p style="font-weight:700; color:var(--accent); margin-bottom:4px;">${esc(item.title)}</p>
+                      <p style="font-size:13px;">${esc(item.text)}</p>
+                    </div>
+                  `).join("")}
+                </div>
+              </div>
+
+              ${renderCallout(s.brandingCallout)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProsCons() {
+      const s = REPORT.prosCons;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+
+          <h2>${s.titleHtml}</h2>
+          <p>${esc(s.intro)}</p>
+
+          <div class="pros-cons mt-28">
+            <div class="pros-col">
+              <h4 style="color:var(--green);">✓ &nbsp; Pros</h4>
+              <ul style="list-style:none; padding:0; margin-top:16px;">
+                ${s.pros.map(item => `
+                  <li style="display:flex; gap:10px; margin-bottom:12px;">
+                    <span style="color:var(--green); font-weight:800;">+</span>
+                    <span>${esc(item)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+
+            <div class="cons-col">
+              <h4 style="color:var(--red);">✗ &nbsp; Cons / Awareness Points</h4>
+              <ul style="list-style:none; padding:0; margin-top:16px;">
+                ${s.cons.map(item => `
+                  <li style="display:flex; gap:10px; margin-bottom:12px;">
+                    <span style="color:var(--red); font-weight:800;">−</span>
+                    <span>${esc(item)}</span>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <h3 class="mt-32">${esc(s.compareTitle)}</h3>
+          <p style="margin-bottom:20px;">${esc(s.compareIntro)}</p>
+
+          <div class="vs-grid">
+            <div class="card card-gold" style="border-radius:8px 0 0 8px;">
+              <h4 style="color:var(--amber-dark);">${esc(s.compareLeft.title)}</h4>
+              ${renderList(s.compareLeft.items)}
+            </div>
+
+            <div class="vs-divider">
+              <div class="vs-circle">VS</div>
+            </div>
+
+            <div class="card" style="border-radius:0 8px 8px 0; border-left:none;">
+              <h4 style="color:var(--black);">${esc(s.compareRight.title)}</h4>
+              ${renderList(s.compareRight.items)}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRules() {
+      const s = REPORT.rules;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+          <h2>${s.titleHtml}</h2>
+          <p>${esc(s.intro)}</p>
+
+          <div class="col-2 mt-28">
+            <div>
+              ${s.leftCards.map(card => `
+                <div class="${renderCardClass(card.tone)} mb-20">
+                  <h3>${esc(card.title)}</h3>
+                  ${card.items ? renderList(card.items) : ""}
+                  ${card.checklist ? renderChecklist(card.checklist) : ""}
+                </div>
+              `).join("")}
+            </div>
+
+            <div>
+              ${s.rightCards.map(card => `
+                <div class="${renderCardClass(card.tone)} mb-20">
+                  <h3>${esc(card.title)}</h3>
+                  ${card.items ? renderList(card.items) : ""}
+                  ${card.checklist ? renderChecklist(card.checklist) : ""}
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFinal() {
+      const s = REPORT.final;
+      return `
+        <div class="page">
+          ${renderPageLabel(s.labelLeft, s.labelRight)}
+
+          <h2>${s.takeawaysTitleHtml}</h2>
+          <div class="takeaway-grid mt-24">
+            ${s.takeaways.map((item, index) => `
+              <div class="takeaway-card">
+                <div class="takeaway-num">${String(index + 1).padStart(2, "0")}</div>
+                <div class="takeaway-text">${esc(item)}</div>
+              </div>
+            `).join("")}
+          </div>
+
+          <hr class="divider">
+
+          <h2 class="mt-32">${s.unknownsTitleHtml}</h2>
+          <div class="unknown-grid mt-24">
+            ${s.unknowns.map((item, index) => `
+              <div class="unknown-card">
+                <div class="unknown-num">?${index + 1}</div>
+                <div class="unknown-text">${esc(item)}</div>
+              </div>
+            `).join("")}
+          </div>
+
+          <hr class="divider">
+
+          <div class="col-2 mt-32">
+            <div>
+              <h2>${s.summaryTitleHtml}</h2>
+              <div class="callout callout-gold mt-16" style="padding:24px;">
+                <p>${esc(s.summaryText)}</p>
+              </div>
+            </div>
+
+            <div>
+              <h2>${s.checklistTitleHtml}</h2>
+              <div class="card mt-16">
+                ${renderChecklist(s.checklist)}
+              </div>
+
+              <div class="card card-black mt-16">
+                <h4 style="color:rgba(255,255,255,.5);">${esc(s.ratingTitle)}</h4>
+                <p style="font-family:'Bebas Neue',cursive; font-size:26px; color:var(--accent); margin:8px 0; letter-spacing:.03em;">
+                  ${esc(s.ratingValue)}
+                </p>
+                <p style="font-size:13px; color:rgba(255,255,255,.65);">${esc(s.ratingText)}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    app.innerHTML = [
+      renderCover(),
+      renderOverview(),
+      renderPillars(),
+      renderSetups(),
+      renderExecution(),
+      renderRisk(),
+      renderPsychology(),
+      renderContradictions(),
+      renderProsCons(),
+      renderRules(),
+      renderFinal(),
+      `<div class="footer">${esc(REPORT.footerText)}</div>`
+    ].join("");
+  </script>
+</body>
+</html>

@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ross Cameron – Institutional Playbook Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0d0d0d;
+    --white: #ffffff;
+    --offwhite: #f5f4f0;
+    --gray: #6b7280;
+    --light-gray: #e5e7eb;
+    --green: #059669;
+    --green-bg: #ecfdf5;
+    --green-light: #a7f3d0;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-light: #fecaca;
+    --amber: #b45309;
+    --amber-bg: #fffbeb;
+    --blue: #1e40af;
+    --blue-bg: #eff6ff;
+    --accent: #f59e0b;
+    --accent-dark: #92400e;
+    --divider: #e2e0db;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--offwhite);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--black);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 20%, rgba(245,158,11,.12) 0%, transparent 70%),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,.025) 80px);
+  }
+  .cover-num {
+    position: absolute;
+    top: 0; right: 0;
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(200px, 30vw, 380px);
+    color: rgba(255,255,255,.03);
+    line-height: 1;
+    letter-spacing: -.02em;
+    pointer-events: none;
+    user-select: none;
+  }
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .cover h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(64px, 9vw, 120px);
+    line-height: .92;
+    letter-spacing: .01em;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .cover h1 span { color: var(--accent); }
+  .cover-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,.5);
+    max-width: 520px;
+    margin-bottom: 48px;
+    line-height: 1.55;
+    position: relative;
+  }
+  .cover-pills {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .cover-pill {
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .cover-pill-gold { border-color: var(--accent); color: var(--accent); }
+  .cover-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 32px;
+  }
+  .c-stat { display: flex; flex-direction: column; gap: 4px; }
+  .c-stat-l { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+  .c-stat-v { font-family: 'Bebas Neue', cursive; font-size: 28px; letter-spacing: .02em; }
+
+  /* ── PAGES ── */
+  .page {
+    background: var(--white);
+    max-width: 1200px;
+    margin: 0 auto 2px;
+    padding: 56px 60px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .page-label {
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    border-top: 2px solid var(--black);
+    padding-top: 6px;
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 48px;
+    letter-spacing: .02em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  h2 span { color: var(--accent); }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -.01em;
+  }
+  h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-bottom: 10px;
+  }
+  p { margin-bottom: 14px; color: #374151; }
+  p:last-child { margin-bottom: 0; }
+  ul { padding-left: 18px; }
+  ul li { margin-bottom: 6px; color: #374151; }
+  ol { padding-left: 20px; }
+  ol li { margin-bottom: 8px; color: #374151; }
+  strong { font-weight: 700; }
+
+  /* ── LAYOUT ── */
+  .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+  .divider { border: none; border-top: 1px solid var(--divider); margin: 36px 0; }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .mt-32 { margin-top: 32px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .badge-gold { background: var(--accent); color: var(--black); }
+  .badge-green { background: var(--green); color: white; }
+  .badge-red { background: var(--red); color: white; }
+  .badge-black { background: var(--black); color: white; }
+  .badge-blue { background: var(--blue); color: white; }
+  .badge-outline { border: 1.5px solid var(--black); color: var(--black); background: transparent; }
+
+  /* ── CONFIDENCE PILLS ── */
+  .conf-high { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-light); padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .conf-med { background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .conf-low { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-light); padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+
+  /* ── CARDS ── */
+  .card { border: 1px solid var(--divider); border-radius: 8px; padding: 20px 24px; background: var(--white); }
+  .card-gold { background: #fffbeb; border-color: #fde68a; }
+  .card-green { background: var(--green-bg); border-color: var(--green-light); }
+  .card-red { background: var(--red-bg); border-color: var(--red-light); }
+  .card-blue { background: var(--blue-bg); border-color: #bfdbfe; }
+  .card-black { background: var(--black); color: var(--white); }
+  .card-black p, .card-black li { color: rgba(255,255,255,.72); }
+  .card-black h3, .card-black h4 { color: var(--white); }
+  .card-stripe { border-left: 4px solid var(--accent); }
+  .card-stripe-green { border-left: 4px solid var(--green); }
+  .card-stripe-red { border-left: 4px solid var(--red); }
+
+  /* ── SETUP CARD ── */
+  .setup-card { border: 1px solid var(--divider); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .setup-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 22px;
+    background: var(--black);
+    color: var(--white);
+  }
+  .setup-hdr-title { font-family: 'Bebas Neue', cursive; font-size: 22px; letter-spacing: .04em; }
+  .setup-body { padding: 22px; }
+  .setup-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .setup-cell {
+    padding: 14px 18px;
+    border-right: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .setup-cell:nth-child(2n) { border-right: none; }
+  .setup-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .setup-cell-lbl { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-bottom: 5px; }
+  .setup-cell-val { font-size: 13px; color: var(--black); }
+
+  /* ── PILLAR GRID ── */
+  .pillar-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .pillar-card {
+    background: var(--black); color: var(--white);
+    border-radius: 8px; padding: 16px 14px;
+    text-align: center;
+  }
+  .pillar-num { font-family: 'Bebas Neue', cursive; font-size: 36px; color: var(--accent); line-height: 1; }
+  .pillar-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-top: 8px; }
+  .pillar-detail { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 6px; line-height: 1.4; }
+
+  /* ── EVIDENCE ROW ── */
+  .evidence-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--divider); }
+  .evidence-row:last-child { border-bottom: none; }
+  .evidence-num { min-width: 30px; height: 30px; background: var(--accent); color: var(--black); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--divider); color: #374151; }
+  .checklist li:last-child { border-bottom: none; }
+  .c-icon { min-width: 20px; font-size: 15px; margin-top: 1px; }
+  .c-green { color: var(--green); }
+  .c-red { color: var(--red); }
+
+  /* ── TABLE ── */
+  .t { width: 100%; border-collapse: collapse; }
+  .t th { background: var(--black); color: white; padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
+  .t td { padding: 10px 14px; border-bottom: 1px solid var(--divider); font-size: 13px; color: #374151; vertical-align: top; }
+  .t tr:nth-child(even) td { background: #fafaf8; }
+
+  /* ── CALLOUT ── */
+  .callout { border-left: 4px solid var(--black); padding: 14px 18px; background: #fafaf8; margin: 16px 0; }
+  .callout-gold { border-left-color: var(--accent); background: var(--amber-bg); }
+  .callout-green { border-left-color: var(--green); background: var(--green-bg); }
+  .callout-red { border-left-color: var(--red); background: var(--red-bg); }
+
+  /* ── PROS/CONS ── */
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .pros-col { background: var(--green-bg); padding: 24px; border-radius: 8px 0 0 8px; }
+  .cons-col { background: var(--red-bg); padding: 24px; border-radius: 0 8px 8px 0; }
+
+  /* ── RATING BAR ── */
+  .rating-wrap { background: var(--light-gray); border-radius: 4px; height: 8px; overflow: hidden; margin: 6px 0; }
+  .rating-bar { height: 100%; border-radius: 4px; background: var(--green); }
+  .rating-bar-gold { background: var(--accent); }
+
+  /* ── TAKEAWAY GRID ── */
+  .takeaway-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .takeaway-card { background: var(--black); color: white; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .takeaway-num { font-family: 'Bebas Neue', cursive; font-size: 40px; color: var(--accent); line-height: 1; }
+  .takeaway-text { font-size: 12px; color: rgba(255,255,255,.68); line-height: 1.5; }
+  .unknown-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .unknown-card { background: var(--red-bg); border: 1px solid var(--red-light); border-radius: 8px; padding: 18px; }
+  .unknown-num { font-family: 'Bebas Neue', cursive; font-size: 32px; color: var(--red); line-height: 1; }
+  .unknown-text { font-size: 12px; color: #7f1d1d; line-height: 1.5; margin-top: 6px; }
+
+  /* ── VS BLOCK ── */
+  .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center; }
+  .vs-divider { display: flex; align-items: center; justify-content: center; width: 56px; }
+  .vs-circle { width: 40px; height: 40px; background: var(--black); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', cursive; font-size: 18px; flex-shrink: 0; }
+
+  @media (max-width: 820px) {
+    .page { padding: 36px 22px; }
+    .col-2, .col-3, .setup-grid, .pros-cons, .takeaway-grid, .unknown-grid, .pillar-grid, .vs-grid { grid-template-columns: 1fr; }
+    .cover { padding: 40px 28px; }
+    .vs-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-num">RC</div>
+  <div class="cover-eyebrow">Institutional-Grade Research Analysis · Warrior Trading</div>
+  <h1>ROSS<br><span>CAMERON</span><br>PLAYBOOK</h1>
+  <p class="cover-desc">A reverse-engineered analysis of Ross Cameron's real trading strategy, setups, execution logic, risk framework, and decision process — built from primary sources, verified broker statements, and 24,000+ confirmed trades.</p>
+  <div class="cover-pills">
+    <div class="cover-pill cover-pill-gold">Long-Only Momentum Breakout</div>
+    <div class="cover-pill">Low-Float Small Caps</div>
+    <div class="cover-pill">~69% Accuracy on 24K+ Trades</div>
+    <div class="cover-pill">CPA-Verified $12.5M P&amp;L</div>
+  </div>
+  <div class="cover-stats">
+    <div class="c-stat">
+      <span class="c-stat-l">Strategy Type</span>
+      <span class="c-stat-v">Breakout Buyer</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-l">Primary Instruments</span>
+      <span class="c-stat-v">Small Cap Stocks</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-l">Verified P&amp;L</span>
+      <span class="c-stat-v">$12.5M+</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-l">Daily Max Loss</span>
+      <span class="c-stat-v">$5,000</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-l">Reconstructability</span>
+      <span class="c-stat-v">Very High</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 1: OVERVIEW ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 01 · Playbook Overview &amp; Core Foundation</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>PLAYBOOK <span>OVERVIEW</span></h2>
+      <p>Ross Cameron's strategy is built on a single foundational premise: <strong>identify stocks that are already moving, ride the momentum on the breakout, and get out fast</strong>. Unlike contrarian or dip-buying approaches, Ross explicitly buys strength — he enters when a stock makes new highs with high volume and exits before momentum fades.</p>
+      <p>His method is long-biased, scalp-oriented, and applied strictly to low-float small-cap stocks. It does not use complex indicators. It relies on a repeatable 5-pillar stock-selection framework, pattern recognition on 1-minute and 5-minute charts, and disciplined mechanical exits.</p>
+
+      <div class="callout callout-gold mt-16">
+        <strong>Core Principle (confirmed, direct):</strong> "I'm not interested in stocks that might move, are 'primed' to move, or are 'significantly undervalued.' I only focus on stocks that are <em>already moving</em>." — Ross Cameron, <em>How To Day Trade: The Plain Truth</em>
+      </div>
+
+      <h3 class="mt-24">The Strategy in 5 Rules</h3>
+      <ol style="display:flex; flex-direction:column; gap:10px;">
+        <li>Find the <strong>leading gapper</strong> every morning using a momentum scanner.</li>
+        <li>Verify it passes all <strong>5 Pillars</strong> — float, price, catalyst, RVOL, momentum.</li>
+        <li>Wait for a <strong>clean chart pattern</strong> (Bull Flag or Gap and Go breakout).</li>
+        <li>Enter on the <strong>first candle to make a new high</strong> with volume confirmation.</li>
+        <li>Scale out into strength; cut immediately if the pattern fails — <strong>"Breakout or Bailout."</strong></li>
+      </ol>
+    </div>
+
+    <div>
+      <h3>Core Foundation</h3>
+      <div class="card card-black mt-16 mb-24">
+        <p style="font-family:'Bebas Neue',cursive; font-size:20px; letter-spacing:.03em; color:white; margin-bottom:0;">Momentum is the only catalyst that matters. The best trades work immediately.</p>
+      </div>
+
+      <h4 style="margin-top:20px;">Market Logic</h4>
+      <ul style="list-style:none; padding:0;">
+        <li style="display:flex; gap:10px; margin-bottom:10px; align-items:flex-start;">
+          <span class="badge badge-gold">Low Float</span>
+          <span>Small share count = amplified directional moves</span>
+        </li>
+        <li style="display:flex; gap:10px; margin-bottom:10px; align-items:flex-start;">
+          <span class="badge badge-green">Catalyst</span>
+          <span>News creates urgency — retail FOMO fuels the move</span>
+        </li>
+        <li style="display:flex; gap:10px; margin-bottom:10px; align-items:flex-start;">
+          <span class="badge badge-blue">RVOL 5x+</span>
+          <span>Confirms institutional and retail participation</span>
+        </li>
+        <li style="display:flex; gap:10px; margin-bottom:10px; align-items:flex-start;">
+          <span class="badge badge-red">Breakout</span>
+          <span>Entry on new high = shorts are wrong, buyers have control</span>
+        </li>
+      </ul>
+
+      <hr class="divider">
+
+      <h3>Timeframes Used</h3>
+      <ul>
+        <li><strong>Primary chart:</strong> 1-minute for entries and exits</li>
+        <li><strong>Context chart:</strong> 5-minute for pattern structure</li>
+        <li><strong>Pre-market:</strong> 1-minute for gap levels and pre-market high/low</li>
+        <li><strong>After 11:30 AM:</strong> Switches to 5-min only (1-min too choppy)</li>
+      </ul>
+
+      <div class="callout callout-gold mt-20">
+        <strong>Source Confidence:</strong> Warrior Trading course materials (confirmed); <em>How To Day Trade: The Plain Truth</em> book (confirmed); Warrior Trading website direct quotes (confirmed); Warrior Trading Medium articles (confirmed). Overall: <span class="conf-high">High</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2: THE 5 PILLARS ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 02 · The 5-Pillar Stock Selection Framework &amp; Market Focus</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <h2>THE 5 <span>PILLARS</span></h2>
+  <p>Ross Cameron's stock selection is built on a 5-pillar framework. Every trade candidate must pass all five before a setup is even considered. This is one of the most precisely documented and confirmed elements of his playbook.</p>
+
+  <div class="pillar-grid mt-32">
+    <div class="pillar-card">
+      <div class="pillar-num">01</div>
+      <div class="pillar-name">Low Float</div>
+      <div class="pillar-detail">&lt;10M shares. Amplifies price moves. Larger floats disqualified.</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">02</div>
+      <div class="pillar-name">Price Range</div>
+      <div class="pillar-detail">$2 – $20. Profitable zone. Stops trading above $20 (confirmed by metrics analysis).</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">03</div>
+      <div class="pillar-name">Relative Volume</div>
+      <div class="pillar-detail">5x+ average volume minimum. Confirms participation and momentum validity.</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">04</div>
+      <div class="pillar-name">% Move Today</div>
+      <div class="pillar-detail">10%+ move on the day. No significant move = no setup regardless of other factors.</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">05</div>
+      <div class="pillar-name">News Catalyst</div>
+      <div class="pillar-detail">Real news required. Press release, earnings, FDA, SEC. Pure technical gap without news = lower quality.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="col-2 mt-24">
+    <div>
+      <h3>Market Conditions</h3>
+      <p>Ross is explicit that market environment determines daily trade quality. His high-volatility periods (2020–2021 bull market, energy sector 2022) produced the majority of his cumulative P&amp;L.</p>
+
+      <table class="t mt-16">
+        <thead>
+          <tr>
+            <th>Market Type</th>
+            <th>Ross's Approach</th>
+            <th>Quality</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>High Volatility Bull</strong></td>
+            <td>Full size, high frequency, aggressive</td>
+            <td><span class="conf-high">A+ Days</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hot Sector Active</strong></td>
+            <td>Multiple setups per day in sector</td>
+            <td><span class="conf-high">A Days</span></td>
+          </tr>
+          <tr>
+            <td><strong>Normal Trending</strong></td>
+            <td>Selective, reduced size, 1–2 trades</td>
+            <td><span class="conf-med">B Days</span></td>
+          </tr>
+          <tr>
+            <td><strong>Bear / Low Volatility</strong></td>
+            <td>Reduced size, "Trader Rehab" mode</td>
+            <td><span class="conf-low">Grind</span></td>
+          </tr>
+          <tr>
+            <td><strong>Choppy No Momentum</strong></td>
+            <td>Sit out or minimal sizing</td>
+            <td><span class="conf-low">Avoid</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-gold mt-20">
+        <strong>Confirmed (Medium, 2023):</strong> "I decided to set a max share size of 10,000 shares, reduced from no limit [avg 30,000]. I also tightened max daily loss to -$5,000. By end of month, my consistency was back."
+      </div>
+    </div>
+
+    <div>
+      <h3>Session Timing &amp; Pre-Market Routine</h3>
+      <div class="card mt-16">
+        <div style="display:flex; flex-direction:column; gap:0;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--divider);">
+            <span style="font-weight:700;">4:00 AM – 7:00 AM</span>
+            <span style="color:var(--gray); font-size:13px;">Overnight news scan, gap watch</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--divider);">
+            <span style="font-weight:700;">7:00 / 7:30 / 8:00 / 8:30 AM</span>
+            <span style="color:var(--gray); font-size:13px;">News drop windows — key catalyst check</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--divider); background:#fffbeb; margin:0 -8px; padding:10px 8px;">
+            <span style="font-weight:800; color:var(--amber);">8:00 – 10:00 AM EST ★</span>
+            <span style="color:var(--amber); font-weight:700; font-size:13px;">Sweet Spot — highest edge</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--divider);">
+            <span style="font-weight:700; color:var(--green);">9:30 – 11:30 AM EST</span>
+            <span style="color:var(--green); font-weight:600; font-size:13px;">Primary trading window</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--divider);">
+            <span style="font-weight:600;">11:30 AM – 2:00 PM</span>
+            <span style="color:var(--gray); font-size:13px;">5-min chart only; less trading</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0;">
+            <span style="font-weight:600;">After Close</span>
+            <span style="color:var(--gray); font-size:13px;">Metrics review, TraderVue journal</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-24">Scanner Setup</h3>
+      <ul>
+        <li>Uses <strong>Warrior Trading proprietary scanners</strong> (custom-built, formerly Trade-Ideas)</li>
+        <li><strong>5 Pillar Scan List</strong>: pre-configured to match his exact criteria</li>
+        <li><strong>Penny-Top Gappers</strong>: Sub-$5 stocks, highest volatility candidates</li>
+        <li><strong>Top Gappers</strong>: Pre-market percentage movers, all price ranges</li>
+        <li>"Flame" indicator on scanner = priority stock for that day</li>
+        <li><strong>LightSpeed Trader</strong> broker with hotkeys for rapid execution</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 3: SETUP CATALOG ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 03 · Setup Catalog</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <h2>SETUP <span>CATALOG</span></h2>
+  <p>Ross trades a focused catalog of momentum-breakout setups. All share the same operating logic: buy new highs on volume, confirm with chart pattern, exit before momentum stalls.</p>
+
+  <!-- Setup 1 -->
+  <div class="setup-card mt-28">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 1: GAP AND GO</div>
+      <span class="badge badge-gold">Core Setup · Long · Opening Drive</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>Concept</h4>
+          <p>A stock gaps up significantly pre-market on news catalyst. At the open, it continues to push higher without filling the gap. Ross identifies these as the "leading gapper" each morning and trades the continuation of that gap-up energy.</p>
+          <p>The logic is simple: if buyers were aggressive enough pre-market to create a large gap, they are likely to continue buying at the open. The gap itself signals urgency — a catalyst strong enough that traders couldn't wait for the regular session.</p>
+          <div class="callout callout-gold mt-16">
+            <strong>Key Quote (confirmed, Medium):</strong> "It's about seizing the initiative from the get-go by capitalizing on stocks that have gapped up at market open."
+          </div>
+        </div>
+        <div>
+          <h4>Rules</h4>
+          <ul>
+            <li>Gap must be <strong>10%+ pre-market</strong> with news catalyst</li>
+            <li>Float &lt;10M, price $2–$20, RVOL 5x+</li>
+            <li>At 9:30, watch for continuation above pre-market high</li>
+            <li>Do NOT buy if it gaps and immediately fades (failed gapper)</li>
+            <li>Bull flag consolidation near pre-market high = ideal entry setup</li>
+            <li>Entry: breakout above pre-market high on 1-min candle close</li>
+          </ul>
+          <h4 class="mt-16">Why This Works</h4>
+          <ul>
+            <li>Short sellers who faded pre-market are caught wrong</li>
+            <li>FOMO retail traders pile in at open, fueling continuation</li>
+            <li>Low float means small volume = large % moves</li>
+          </ul>
+        </div>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Entry Trigger</div>
+          <div class="setup-cell-val">First candle to make new high after consolidation. Confirmed with high volume on 1-min chart. Limit order on the ask using ARCA/NASDAQ routing.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Stop Logic</div>
+          <div class="setup-cell-val">Mental stop 10–20 cents below entry. Low of consolidation candle / flag. "Breakout or Bailout" — if it doesn't move immediately, exit. Do NOT let small loss become large loss.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Target / Exit</div>
+          <div class="setup-cell-val">Sell 50% at first profit target (2:1). Adjust stop to breakeven. Sell additional pieces on the ask. Final exit on first red 5-min candle or level 2 showing big seller.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Confidence</div>
+          <div class="setup-cell-val"><span class="conf-high">High</span> — Named as primary strategy. Confirmed in course materials, book, Medium articles, Warrior Trading website. Most referenced setup in public record.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Setup 2 -->
+  <div class="setup-card">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 2: BULL FLAG BREAKOUT</div>
+      <span class="badge badge-green">Core Setup · 1-Min &amp; 5-Min · Highest Volume of Data</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>Concept</h4>
+          <p>The bull flag is Ross's most statistically documented setup — he has taken <strong>24,000+ trades</strong> and reports ~69% accuracy on this pattern specifically. It consists of a strong initial move (the flagpole), followed by a low-volume pullback (the flag), and then a breakout to new highs (the continuation).</p>
+          <p>The flag is the key: <strong>low-volume red candles during the consolidation signal weak selling</strong> — profit-takers, not sellers. When volume re-enters on the green breakout candle, that's the entry signal.</p>
+        </div>
+        <div>
+          <h4>Anatomy of the Setup</h4>
+          <ul>
+            <li><strong>Flagpole:</strong> Big green candle on high volume — initial spike</li>
+            <li><strong>Flag:</strong> Sideways consolidation with 2–4 low-volume red candles</li>
+            <li><strong>Entry:</strong> First candle that makes a new high — breakout of the flag</li>
+            <li><strong>Max loss:</strong> Low of the pullback (bottom of the flag)</li>
+            <li><strong>Target:</strong> Height of flagpole projected from breakout point</li>
+            <li>Best stocks: $2–$20, 10%+ day gain, 5x RVOL minimum</li>
+          </ul>
+          <div class="mt-16"><span class="conf-high">Confirmed</span> — Warrior Trading website, direct Ross Cameron article, 24,000+ trade data, ~69% accuracy stated directly</div>
+        </div>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Volume Signal</div>
+          <div class="setup-cell-val">HIGH volume on green flagpole candles. LIGHT volume on red consolidation candles. Volume surge on breakout candle = confirmation. Inverse = avoid.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Entry Precision</div>
+          <div class="setup-cell-val">Entry at first candle to make new high. Level 2 must show buyers on the ask, not heavy sellers. If L2 shows big seller, wait or skip.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Scaling Out Rules</div>
+          <div class="setup-cell-val">Sell 50% on ask when first target touched. Adjust stop to breakeven. Sell more on 2nd/3rd targets. Bail on bid if L2 shows resistance or tape turns red.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Failure Mode</div>
+          <div class="setup-cell-val">Flag breaks below consolidation low. Stock fails to make new high. Volume on red candles exceeds green candles. "If it doesn't move immediately, I exit." — confirmed direct quote.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Setup 3 & 4 side by side -->
+  <div class="col-2">
+    <div class="setup-card" style="margin-bottom:0;">
+      <div class="setup-hdr">
+        <div class="setup-hdr-title">SETUP 3: VWAP BREAKOUT &amp; BOUNCE</div>
+        <span class="badge badge-blue">Intraday</span>
+      </div>
+      <div class="setup-body">
+        <p>Ross uses VWAP as a key dynamic level. <strong>VWAP Breakout:</strong> Stock trades under VWAP (bears in control), accumulating short sellers. When it breaks above, shorts are forced to cover — creating a powerful upside move. <strong>VWAP Bounce:</strong> Stock already above VWAP, pulls back to test it, holds — bulls confirmed.</p>
+        <ul class="mt-16">
+          <li>Entry: Bull flag at VWAP with stop just below VWAP support</li>
+          <li>Target: Retest of high of day</li>
+          <li>Breakout setup: Stock under VWAP + sudden break upward = parabolic potential</li>
+          <li>Confirmed: "Several of the biggest winning trades I've taken have been based on the VWAP breakout" — direct quote</li>
+        </ul>
+        <div class="mt-16"><span class="conf-high">Confirmed</span> — Warrior Trading VWAP article, direct Ross Cameron statement</div>
+      </div>
+    </div>
+
+    <div class="setup-card" style="margin-bottom:0;">
+      <div class="setup-hdr">
+        <div class="setup-hdr-title">SETUP 4: ABCD PATTERN</div>
+        <span class="badge badge-black">Reversal · Multi-Leg</span>
+      </div>
+      <div class="setup-body">
+        <p>A 4-point pattern where A→B is the initial move, B→C is the pullback, and C→D is the continuation. Ross enters at the D-point breakout — when the stock resumes its upward move after the BC correction. This is a higher-timeframe version of the bull flag logic.</p>
+        <ul class="mt-16">
+          <li>Entry trigger: D-point breakout with volume confirmation</li>
+          <li>Stop: Below C-point (support of BC pullback)</li>
+          <li>Target: Equal to A→B distance projected from D</li>
+          <li>Best used mid-morning after initial gap-and-go has played out</li>
+        </ul>
+        <div class="mt-16"><span class="conf-high">Confirmed</span> — Named in Warrior Trading curriculum, scanner documentation, and course materials</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Setup 5 -->
+  <div class="setup-card mt-28">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 5: MULTI-DAY CONTINUATION</div>
+      <span class="badge badge-gold">Swing-Day Hybrid · Higher Duration</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2">
+        <div>
+          <p>A stock surges 30–100% on a news catalyst and continues climbing over the following days — culminating in a final short squeeze. Ross trades the subsequent day's continuation, not just the first day's gap. The key requirement is that the stock <strong>holds support overnight</strong> and gaps again or opens strong.</p>
+          <ul class="mt-16">
+            <li>Typical duration: 2–5 days of continuation potential</li>
+            <li>Final phase: parabolic move + short squeeze = highest risk/reward</li>
+            <li>Exit criteria identical to intraday — sell into strength on red candle signals</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Why It Works</h4>
+          <p>Shorts who missed the initial move try to fade the extended run. As the stock holds and continues, their positions are squeezed, adding buying pressure. RVOL remains elevated because media attention and retail interest continues for days after the initial catalyst.</p>
+          <div class="callout callout-gold mt-16">
+            <strong>Confirmed:</strong> Medium article "Continuation Setup," Warrior Trading course materials. "This prolonged momentum often results in a final short squeeze." — direct quote.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 4: EXECUTION FRAMEWORK ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 04 · Execution Framework</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>EXECUTION <span>FRAMEWORK</span></h2>
+      <p>Ross Cameron's execution is among the most technically specific of any public trader. He uses direct-access routing, hotkeys, Level 2 tape reading, and limit orders exclusively. No market orders. No hesitation once the setup confirms.</p>
+
+      <h3 class="mt-24">Entry Style — Technical Specifics</h3>
+      <div class="card card-stripe mt-12">
+        <ul>
+          <li><strong>Limit orders only</strong> — never market orders</li>
+          <li>Routing: <strong>ARCA or NASDAQ direct routing</strong> (confirmed)</li>
+          <li>Broker: <strong>LightSpeed Trader</strong> (hotkey-optimized)</li>
+          <li>Entry: On the ASK, immediately as breakout candle forms</li>
+          <li>Confirmation: Level 2 must show buyers stacked on ask, not a large seller</li>
+          <li>Prepares order in advance — only hits "send" at trigger moment</li>
+        </ul>
+        <div class="mt-16"><span class="conf-high">Confirmed</span> — Warrior Trading support article, routing documentation</div>
+      </div>
+
+      <h3 class="mt-24">Level 2 Usage (Tape Reading)</h3>
+      <p>Ross uses Level 2 extensively to confirm entries and time exits. It is a non-negotiable part of his execution toolkit.</p>
+      <ul>
+        <li><strong>Pre-entry:</strong> Check L2 for large sellers on the ask (resistance). If clear → enter.</li>
+        <li><strong>During trade:</strong> Monitor time &amp; sales for buyer vs. seller dominance</li>
+        <li><strong>Exit signal:</strong> "Heavy resistance on L2 — big seller showing up → bail by selling on the bid"</li>
+        <li><strong>Exit signal:</strong> "Time &amp; sales shows lots of selling, no buying → bail on the bid"</li>
+      </ul>
+
+      <h3 class="mt-24">Adding to Winners</h3>
+      <div class="callout callout-green mt-12">
+        <strong>Confirmed Direct Quote (Book):</strong> "If I buy a stock at $10.00 and it goes up to $10.50, I may double my position and have a new cost basis of $10.25." — Only adds to WINNING positions moving in his direction. Never averages down into losers.
+      </div>
+    </div>
+
+    <div>
+      <h3>The "Breakout or Bailout" Rule</h3>
+      <div class="card card-black mt-16">
+        <p style="font-family:'Bebas Neue',cursive; font-size:18px; color:var(--accent); letter-spacing:.04em; margin-bottom:12px;">IF IT DOESN'T MOVE IMMEDIATELY — EXIT.</p>
+        <p>Ross's best trades work almost instantly. If a stock stalls or reverses after entry, the most likely outcome is a loser. He does not wait hoping for a recovery. He exits and finds a better setup.</p>
+        <p style="color:rgba(255,255,255,.6); font-size:13px; margin-top:12px;">Source: Warrior Trading Bull Flag article, confirmed direct quote</p>
+      </div>
+
+      <h3 class="mt-24">Trimming Strategy — Confirmed Rules</h3>
+      <div class="card card-stripe-green mt-12">
+        <ol style="display:flex; flex-direction:column; gap:10px;">
+          <li>Hit <strong>first profit target</strong> → sell 50% on the ASK, adjust stop to breakeven</li>
+          <li>Hit <strong>2nd profit target</strong> → sell additional pieces on ask</li>
+          <li>Hit <strong>3rd profit target</strong> → continue selling small pieces on ask</li>
+          <li>If entry was on <strong>5-min chart</strong> → sell on first red 5-min candle (unless already up significantly)</li>
+          <li>Big seller appears on L2 → <strong>sell immediately on the BID</strong></li>
+          <li>Tape shows only selling → <strong>sell immediately on the BID</strong></li>
+        </ol>
+        <div class="mt-16"><span class="conf-high">Confirmed</span> — Warrior Trading Bull Flag article, direct Ross Cameron text</div>
+      </div>
+
+      <h3 class="mt-24">Stop Logic Summary</h3>
+      <ul>
+        <li>Mental stop: <strong>10–20 cents below entry</strong> on typical intraday trade</li>
+        <li>Maximum stop: <strong>Low of the pullback / bottom of flag</strong></li>
+        <li>If support is 50+ cents away → <strong>skip the trade</strong> (confirmed quote)</li>
+        <li>Does NOT set automatic stops (uses mental stops + manual exit)</li>
+        <li>Sell offset: <strong>5 cents below current bid</strong> on forced exit</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3>Signs of a Low-Quality Trade (Avoid)</h3>
+  <div class="col-3 mt-16">
+    <div class="card card-red">
+      <h4 style="color:var(--red);">Stock Quality Failures</h4>
+      <ul>
+        <li>Float &gt;10M shares</li>
+        <li>No real news catalyst</li>
+        <li>Price below $2 or above $20</li>
+        <li>RVOL under 5x</li>
+        <li>Less than 10% day gain</li>
+      </ul>
+    </div>
+    <div class="card card-red">
+      <h4 style="color:var(--red);">Pattern Failures</h4>
+      <ul>
+        <li>Heavy volume on red flag candles</li>
+        <li>Large seller visible on L2</li>
+        <li>Time &amp; sales showing sellers dominant</li>
+        <li>Stock extended — support too far below entry</li>
+        <li>Choppy consolidation, no clean flag</li>
+      </ul>
+    </div>
+    <div class="card card-red">
+      <h4 style="color:var(--red);">Behavioral Failures</h4>
+      <ul>
+        <li>Trading after 11:30 AM on 1-min chart</li>
+        <li>Chasing an already-extended move</li>
+        <li>Averaging down into a loser</li>
+        <li>Ignoring "Breakout or Bailout" rule</li>
+        <li>Continuing after hitting max loss</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 5: RISK MANAGEMENT ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 05 · Risk Management Model</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>RISK <span>MANAGEMENT</span></h2>
+      <p>Ross Cameron's risk framework is among the most transparent and specific of any public trader. He publishes his daily P&amp;L publicly and has stated precise rules that he personally follows — including a confirmed daily max loss rule.</p>
+
+      <div class="card card-black mt-24">
+        <h3 style="color:white; margin-bottom:16px;">The Two Core Rules</h3>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive; font-size:36px; color:var(--accent); line-height:1; flex-shrink:0;">1</span>
+            <div>
+              <p style="font-weight:700; color:white; margin-bottom:4px;">Maintain 2:1 Profit-Loss Ratio</p>
+              <p style="font-size:13px;">Every trade. If you risk $0.20/share, you must have potential to make $0.40/share. No exceptions. "If you do not have the potential to win twice as much as you risk, you should not be taking the trade." — Book, confirmed.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive; font-size:36px; color:var(--accent); line-height:1; flex-shrink:0;">2</span>
+            <div>
+              <p style="font-weight:700; color:white; margin-bottom:4px;">Daily Max Loss: $5,000</p>
+              <p style="font-size:13px;">Confirmed in public Medium article: "My max loss is $5,000." Once hit, he stops for the day. This is non-negotiable. Does not chase or revenge trade after hitting the limit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-32">The Give-Back Rule</h3>
+      <div class="callout callout-gold mt-12">
+        <strong>Confirmed (7 Rules article):</strong> "I have a rule that I give back 50% of my profits once I reach a certain threshold. It's easier to remember half than 40%." — Once he hits a big gain, he will allow himself to give back no more than 50% of it before walking away for the day.
+      </div>
+
+      <h3 class="mt-24">P&amp;L Structure</h3>
+      <ul>
+        <li>Goals are goal-oriented and daily: "making $200 a day or $400 a day" when building</li>
+        <li>When at target → <strong>walk away immediately</strong></li>
+        <li>Does not push beyond his profitable window out of greed</li>
+        <li>Biggest risk period: <strong>after a big winning day</strong> — FOMO to match the win</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Position Sizing</h3>
+      <div class="card mt-16">
+        <h4>Normal Conditions</h4>
+        <ul>
+          <li>Share count calibrated to stop distance and account size</li>
+          <li>Normal operating range: up to <strong>~30,000 shares</strong> at full-size level</li>
+          <li>Smaller accounts: 100–500 shares to start</li>
+          <li>Stop distance determines share count (not fixed dollar risk % stated publicly)</li>
+        </ul>
+      </div>
+
+      <div class="card card-stripe mt-12">
+        <h4>"Trader Rehab" — Drawdown Protocol</h4>
+        <p>Ross's named protocol for managing losing streaks. Confirmed in bear market Medium post and in <em>How To Day Trade: The Plain Truth</em>.</p>
+        <ul class="mt-12">
+          <li>Reduce max share size to <strong>10,000 shares</strong> (from ~30K)</li>
+          <li>Tighten daily max loss to <strong>$5,000</strong> (confirmed) or lower</li>
+          <li>"Chip away with small base hits" until consistency returns</li>
+          <li>Focus on <strong>accuracy, not size</strong> during rehab period</li>
+          <li>No new strategies — return to core setups only</li>
+        </ul>
+        <div class="mt-16"><span class="conf-high">Confirmed</span> — Bear market Medium article, direct quote with specific numbers</div>
+      </div>
+
+      <h3 class="mt-24">Metrics Tracking</h3>
+      <p>Ross tracks trading metrics with obsessive precision. Confirmed habits include:</p>
+      <ul>
+        <li>Uses <strong>TraderVue</strong> to analyze trade performance</li>
+        <li>Identified via metrics that he <strong>loses money on stocks above $20</strong> — now avoids them</li>
+        <li>Tracks win rate, average winner, average loser, R:R ratio monthly</li>
+        <li>Targets improving average profit per share by even 1 cent = $5,000/month at 500K shares</li>
+        <li>Public P&amp;L independently verified by CPA (unique among retail educators)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 6: PSYCHOLOGY ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 06 · Psychology &amp; Process Rules</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>PSYCHOLOGY &amp; <span>PROCESS</span></h2>
+      <p>Ross Cameron's psychological framework centers on one core idea: <strong>discipline over impulse, metrics over intuition until intuition is earned</strong>. He calls his developed sense of timing "Educated Intuition" — and emphasizes it takes thousands of repetitions before gut instinct becomes reliable.</p>
+
+      <h3 class="mt-24">Core Mental Models</h3>
+      <div class="evidence-row">
+        <div class="evidence-num">1</div>
+        <div>
+          <strong>Week-as-Unit Thinking</strong>
+          <p>"Every week I approach the market as a blank slate with the goal of finishing each week in the green. Not every day will be profitable." — Removes the pressure of single-day P&amp;L and focuses on statistical consistency over time.</p>
+        </div>
+      </div>
+      <div class="evidence-row">
+        <div class="evidence-num">2</div>
+        <div>
+          <strong>"Best Trades Work Immediately"</strong>
+          <p>Ross's most important internal rule: if a trade isn't moving right away, it is more likely to lose than to eventually work. Stops the losing behavior of hoping and waiting.</p>
+        </div>
+      </div>
+      <div class="evidence-row">
+        <div class="evidence-num">3</div>
+        <div>
+          <strong>Walk Away After Target Hit</strong>
+          <p>"As soon as I hit my goal, whether it's $200 or $400 a day, I pack up and walk away." Confirmed. Prevents the most dangerous trading behavior: profitable traders who continue past their optimal window and give back gains.</p>
+        </div>
+      </div>
+      <div class="evidence-row">
+        <div class="evidence-num">4</div>
+        <div>
+          <strong>Metrics Are the Truth</strong>
+          <p>He discovered he was losing on stocks above $20 only through data review — not intuition. His psychological foundation is that gut feelings must be validated or invalidated through objective metrics before they are trusted.</p>
+        </div>
+      </div>
+      <div class="evidence-row">
+        <div class="evidence-num">5</div>
+        <div>
+          <strong>Trader Rehab — Self-Awareness Discipline</strong>
+          <p>"When I'm not dialed in, it's time to slow down and check myself into trader rehab." He recognizes when emotional state is affecting execution and reduces size until clarity returns — not the other way around.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Discipline Rules</h3>
+      <div class="card mt-16">
+        <ul class="checklist">
+          <li><span class="c-icon c-green">✓</span>Pre-market scan complete before 9:30 — levels marked</li>
+          <li><span class="c-icon c-green">✓</span>Only trade stocks passing all 5 Pillars</li>
+          <li><span class="c-icon c-green">✓</span>Enter on breakout, not anticipation</li>
+          <li><span class="c-icon c-green">✓</span>"Breakout or Bailout" — exit if momentum stalls</li>
+          <li><span class="c-icon c-green">✓</span>Scale out on the ask as targets hit</li>
+          <li><span class="c-icon c-green">✓</span>Stop trading when daily max loss is hit</li>
+          <li><span class="c-icon c-green">✓</span>Stop trading when daily goal is hit</li>
+          <li><span class="c-icon c-red">✗</span>Never average down into a loser</li>
+          <li><span class="c-icon c-red">✗</span>Never chase an already-extended move</li>
+          <li><span class="c-icon c-red">✗</span>Never trade stocks above $20 (data-confirmed loss zone)</li>
+          <li><span class="c-icon c-red">✗</span>Never jump from strategy to strategy before mastering one</li>
+        </ul>
+      </div>
+
+      <h3 class="mt-24">Daily Process</h3>
+      <ol class="mt-12" style="display:flex; flex-direction:column; gap:10px;">
+        <li><strong>Pre-market (4–9:30 AM):</strong> Check news at 7:00 / 7:30 / 8:00 / 8:30 AM. Identify leading gapper. Verify 5 Pillars. Mark pre-market high and low.</li>
+        <li><strong>9:30–9:45:</strong> Watch open. Is it gapping and going or fading? Assess quality in real time.</li>
+        <li><strong>9:30–11:30 AM:</strong> Trade window. Execute highest-quality setup. Follow all entry/exit rules.</li>
+        <li><strong>11:30 AM–2 PM:</strong> Reduce activity. 5-min chart only. Smaller size.</li>
+        <li><strong>After close:</strong> TraderVue journal. Review metrics. Identify setup improvements.</li>
+        <li><strong>Weekly:</strong> Full review of win rate, R:R, best/worst setups. Adjust rules if needed.</li>
+      </ol>
+
+      <h3 class="mt-24">Simulator-First Philosophy</h3>
+      <div class="callout callout-gold mt-12">
+        <strong>Confirmed:</strong> Ross <em>strongly</em> recommends 3–6 months of consistent profitable simulator trading before risking real money. He rebuilt his own skills in sim during losing periods. This is not generic advice — it is a confirmed part of his personal process.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 7: CONTRADICTIONS & EDGE ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 07 · Contradictions, Edge Assessment &amp; FTC Context</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>CONTRADICTIONS &amp; <span>TENSIONS</span></h2>
+
+      <div class="card card-stripe mt-24" style="border-left-color:var(--amber);">
+        <h4 style="color:var(--amber);">1. FTC Settlement vs. "Transparent" Brand</h4>
+        <p>In 2022, the FTC filed suit alleging misleading marketing claims about student earning potential — specifically that ads showcased Ross's verified results while implying students could achieve similar success. Warrior Trading settled for <strong>$3 million</strong> without admitting wrongdoing. The settlement included customer refunds and restrictions on earnings claims.</p>
+        <p style="margin-top:8px;">This is a real tension: Ross's own P&amp;L is CPA-verified and transparent. But the gap between his results and typical students was confirmed to be misleadingly presented in marketing. <span class="conf-high">High Confidence</span> — FTC public record.</p>
+      </div>
+
+      <div class="card card-stripe mt-16" style="border-left-color:var(--amber);">
+        <h4 style="color:var(--amber);">2. "Simple Strategy" vs. Execution Complexity</h4>
+        <p>Ross markets his strategy as simple and repeatable. However, effective use requires Level 2 tape reading, hotkey execution, real-time RVOL scanning, direct-access routing, and psychological discipline under live conditions. These skills take months to develop. The mechanical rules are genuinely clear; the execution skill gap is underrepresented in marketing.</p>
+        <p style="margin-top:8px;"><span class="conf-med">Medium Concern</span> — The rules themselves are legitimate; the implied ease is misleading.</p>
+      </div>
+
+      <div class="card card-stripe mt-16" style="border-left-color:var(--amber);">
+        <h4 style="color:var(--amber);">3. "70% Accuracy" vs. Bear Market Performance</h4>
+        <p>Ross's ~69% accuracy rate is confirmed over 24,000+ bull-flag trades. However, his own Medium article confirms that in bear/low-volatility markets (2023), he ground for months on small wins punctuated by "surprise big losses." The accuracy rate likely degrades significantly when the 5-Pillar setup quality drops in slow markets.</p>
+        <p style="margin-top:8px;"><span class="conf-med">Medium Concern</span> — Accuracy data may be skewed toward favorable market conditions.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2>REAL EDGE <span>ASSESSMENT</span></h2>
+      <p>What appears to be Ross Cameron's actual edge, separated from brand, education business, and motivational content.</p>
+
+      <div class="card card-black mt-24">
+        <h3 style="color:white; margin-bottom:16px;">The Actual Edge</h3>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div>
+            <p style="font-weight:700; color:var(--accent); margin-bottom:4px;">1. Systematic Stock Selection (5 Pillars)</p>
+            <p style="font-size:13px;">His rigid pre-filter eliminates the vast majority of noise before any setup analysis begins. This is a genuine, replicable edge — most retail traders have no such filter and trade anything that moves.</p>
+          </div>
+          <div>
+            <p style="font-weight:700; color:var(--accent); margin-bottom:4px;">2. Metrics-Driven Self-Improvement</p>
+            <p style="font-size:13px;">The data discovery that he loses money on stocks above $20 — and actually stopping trading them — represents a rare behavioral edge. Most traders never examine their own statistics objectively.</p>
+          </div>
+          <div>
+            <p style="font-weight:700; color:var(--accent); margin-bottom:4px;">3. Defined Daily Max Loss Rule</p>
+            <p style="font-size:13px;">The $5,000 daily max is confirmed and actually followed. This structural protection prevents the account-destroying spiral that ends most retail day traders' careers.</p>
+          </div>
+          <div>
+            <p style="font-weight:700; color:var(--accent); margin-bottom:4px;">4. "Breakout or Bailout" Discipline</p>
+            <p style="font-size:13px;">The rule to exit a stalling trade immediately — rather than hope — prevents small losses from compounding into large ones. At 24,000+ trades, this rule alone has likely saved enormous capital.</p>
+          </div>
+          <div>
+            <p style="font-weight:700; color:var(--accent); margin-bottom:4px;">5. Front-Side Momentum Focus</p>
+            <p style="font-size:13px;">Explicitly targets the "front side" of moves only. Refuses to fade or trade backside. This limits trade count but dramatically improves average trade quality.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-gold mt-20">
+        <strong>What Is Likely Branding:</strong> The $583 → $12.5M narrative (technically true but ignores 18 months of losses and market conditions), implied student replicability (FTC-confirmed misleading), and the "simple strategy" framing (execution is harder than rules suggest).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 8: PROS CONS ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 08 · Strategy Assessment</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <h2>PROS &amp; CONS OF <span>THE STRATEGY</span></h2>
+  <p>This playbook is among the most documented in public retail trading. The mechanical rules are clear and evidence-backed. Key characteristics require specific market conditions and execution skills to perform as documented.</p>
+
+  <div class="pros-cons mt-28">
+    <div class="pros-col">
+      <h4 style="color:var(--green);">✓ &nbsp; Pros</h4>
+      <ul style="list-style:none; padding:0; margin-top:16px;">
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--green); font-weight:800;">+</span>5-Pillar framework is completely mechanical and verifiable before trade entry</li>
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--green); font-weight:800;">+</span>~69% accuracy on 24,000+ confirmed trades — the largest verified public sample in retail trading education</li>
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--green); font-weight:800;">+</span>Confirmed $5,000 daily max loss prevents account destruction</li>
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--green); font-weight:800;">+</span>P&amp;L independently verified by CPA — rare and meaningful credibility signal</li>
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--green); font-weight:800;">+</span>"Breakout or Bailout" rule limits average loser size</li>
+        <li style="display:flex; gap:10px;"><span style="color:var(--green); font-weight:800;">+</span>Clear chart pattern rules (bull flag, ABCD) are fully teachable and back-testable</li>
+      </ul>
+    </div>
+    <div class="cons-col">
+      <h4 style="color:var(--red);">✗ &nbsp; Cons / Awareness Points</h4>
+      <ul style="list-style:none; padding:0; margin-top:16px;">
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--red); font-weight:800;">−</span>Strategy is highly regime-dependent — underperforms significantly in low-volatility or bear markets</li>
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--red); font-weight:800;">−</span>FTC settled $3M case over misleading student earning claims — gap between Ross and typical student is large</li>
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--red); font-weight:800;">−</span>Level 2 tape reading requires months of practice — not included in "simple strategy" framing</li>
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--red); font-weight:800;">−</span>PDT rule severely constrains accounts under $25K to 3 day trades per week</li>
+        <li style="display:flex; gap:10px; margin-bottom:12px;"><span style="color:var(--red); font-weight:800;">−</span>Low-float small caps can gap down violently — overnight risk if holding runners</li>
+        <li style="display:flex; gap:10px;"><span style="color:var(--red); font-weight:800;">−</span>Most of documented P&amp;L generated in exceptional bull market periods (2017, 2020–2021)</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 class="mt-32">Comparison: Ross Cameron vs. Roland Wolf</h3>
+  <p style="margin-bottom:20px;">These two traders share the same instrument class (low-float small caps) but operate with directly opposing philosophies. Understanding the contrast clarifies each trader's real edge.</p>
+
+  <div class="vs-grid">
+    <div class="card card-gold" style="border-radius:8px 0 0 8px;">
+      <h4 style="color:var(--amber-dark);">ROSS CAMERON — Breakout Buyer</h4>
+      <ul style="margin-top:12px;">
+        <li>Buys new highs and breakouts</li>
+        <li>Enters AFTER confirmation of strength</li>
+        <li>Best in trending, high-volatility markets</li>
+        <li>Momentum and FOMO are his fuel</li>
+        <li>Strategy works with clear mechanical filters</li>
+      </ul>
+    </div>
+    <div class="vs-divider">
+      <div class="vs-circle">VS</div>
+    </div>
+    <div class="card" style="border-radius:0 8px 8px 0; border-left: none;">
+      <h4 style="color:var(--black);">ROLAND WOLF — Dip Buyer</h4>
+      <ul style="margin-top:12px;">
+        <li>Buys weakness and pullbacks</li>
+        <li>Enters BEFORE the breakout attempt</li>
+        <li>Works in both trending and squeeze environments</li>
+        <li>Short-seller trapping is his fuel</li>
+        <li>Requires more discretion and float mechanics knowledge</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 9: RULES-BASED RECONSTRUCTION ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 09 · Rules-Based Reconstruction</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <h2>RULES-BASED <span>RECONSTRUCTION</span></h2>
+  <p>A clean, executable version of Ross Cameron's playbook built entirely from confirmed primary-source evidence.</p>
+
+  <div class="col-2 mt-28">
+    <div>
+      <div class="card card-gold mb-20">
+        <h3 style="color:var(--amber);">✓ Setup Criteria (5 Pillars)</h3>
+        <ul style="margin-top:12px;">
+          <li>Float: <strong>&lt;10 million shares</strong></li>
+          <li>Price: <strong>$2 – $20 only</strong> (stop trading above $20 — confirmed data-driven rule)</li>
+          <li>Relative volume: <strong>5x+ average</strong></li>
+          <li>Day move: <strong>10%+ gain on the day</strong></li>
+          <li>Catalyst: <strong>Real news event</strong> (earnings, FDA, press release)</li>
+          <li>Chart pattern: Bull Flag, Gap and Go, ABCD, or VWAP breakout</li>
+          <li>Market quality: Trending or hot-sector environment preferred</li>
+        </ul>
+      </div>
+
+      <div class="card mb-20">
+        <h3>📋 Entry Checklist</h3>
+        <ul class="checklist mt-12">
+          <li><span class="c-icon c-green">✓</span>All 5 Pillars confirmed (scanner shows "flame" icon)</li>
+          <li><span class="c-icon c-green">✓</span>Clean bull flag forming: heavy-volume pole, light-volume red consolidation</li>
+          <li><span class="c-icon c-green">✓</span>Level 2 clear — no large seller stacked on ask</li>
+          <li><span class="c-icon c-green">✓</span>Time &amp; sales showing buyer dominance</li>
+          <li><span class="c-icon c-green">✓</span>R:R minimum 2:1 to nearest resistance</li>
+          <li><span class="c-icon c-green">✓</span>Stop distance &lt;50 cents (otherwise size down or skip)</li>
+          <li><span class="c-icon c-green">✓</span>Within primary trading window (before 11:30 AM on 1-min)</li>
+          <li><span class="c-icon c-red">✗</span>Do NOT enter if stock is already extended with no clean support</li>
+          <li><span class="c-icon c-red">✗</span>Do NOT enter with market orders — limit orders only</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="card card-red mb-20">
+        <h3 style="color:var(--red);">⚠ Risk Checklist</h3>
+        <ul style="margin-top:12px;">
+          <li>Daily max loss: <strong>$5,000 hard stop</strong> — confirmed rule, stop trading</li>
+          <li>Give-back rule: Once at profit goal, allow max <strong>50% giveback</strong> before stopping</li>
+          <li>Mental stop: <strong>10–20 cents below entry</strong> for typical intraday trade</li>
+          <li>Hard stop level: <strong>Low of the flag / consolidation</strong></li>
+          <li>Exit on bid immediately if L2 shows big seller or tape turns</li>
+          <li><strong>Never average down</strong> into a losing position</li>
+          <li>Loss streak → enter <strong>Trader Rehab</strong>: 10K share cap, reduced max loss</li>
+        </ul>
+      </div>
+
+      <div class="card mb-20">
+        <h3>🎯 Exit Checklist</h3>
+        <ul class="checklist mt-12">
+          <li><span class="c-icon c-green">✓</span>First target hit → sell 50% on ASK, move stop to breakeven</li>
+          <li><span class="c-icon c-green">✓</span>Second target hit → sell additional pieces on ASK</li>
+          <li><span class="c-icon c-green">✓</span>If on 5-min chart, sell on first red 5-min candle close</li>
+          <li><span class="c-icon c-green">✓</span>If big seller appears on L2 → sell on BID immediately</li>
+          <li><span class="c-icon c-green">✓</span>If tape shows only selling → sell on BID immediately</li>
+          <li><span class="c-icon c-red">✗</span>Do NOT hold through tape weakness hoping for recovery</li>
+          <li><span class="c-icon c-red">✗</span>Do NOT continue trading after daily goal hit</li>
+        </ul>
+      </div>
+
+      <div class="card card-red">
+        <h3 style="color:var(--red);">🚫 No-Trade Conditions</h3>
+        <ul style="margin-top:12px;">
+          <li>Any Pillar fails (float, price, RVOL, %, news)</li>
+          <li>No clean chart pattern — choppy or extended</li>
+          <li>Large seller visible on Level 2 at breakout level</li>
+          <li>Daily max loss already hit ($5,000)</li>
+          <li>Daily profit target already hit</li>
+          <li>After 11:30 AM on 1-min chart (switch to 5-min only)</li>
+          <li>Market in bear / low-volatility environment with no hot sector</li>
+          <li>FOMO impulse driving the entry — no defined setup</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 10: FINAL ANALYSIS ═══════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 10 · Final Analysis &amp; Reliability Rating</span>
+    <span>Ross Cameron · Warrior Trading</span>
+  </div>
+
+  <h2>TOP 5 STRONGEST <span>TAKEAWAYS</span></h2>
+  <div class="takeaway-grid mt-24">
+    <div class="takeaway-card">
+      <div class="takeaway-num">01</div>
+      <div class="takeaway-text">The 5-Pillar framework is Ross's single most confirmable and replicable edge. It is publicly documented, consistent across all sources, and eliminates the majority of low-quality setups before any execution decision is made.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="takeaway-num">02</div>
+      <div class="takeaway-text">Ross has taken 24,000+ bull-flag trades and publicly reported ~69% accuracy. This is the largest and most statistically significant verified accuracy claim in retail day trading education — not a marketing number.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="takeaway-num">03</div>
+      <div class="takeaway-text">The $5,000 daily max loss is a confirmed rule — stated specifically in a public Medium article with exact dollar amounts. This structural protection is the single most important risk rule and a primary reason he has survived 12+ years of day trading.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="takeaway-num">04</div>
+      <div class="takeaway-text">"Breakout or Bailout" is a real operating rule, not a slogan. Confirmed in multiple direct quotes: "In all my years of trading, the best trades work almost immediately." This rule prevents the most common retail failure mode: holding losers.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="takeaway-num">05</div>
+      <div class="takeaway-text">His self-imposed rule to stop trading above $20 came from reviewing his own data — not from a rule book. This behaviorally rare, data-driven constraint is evidence that his edge is not just mechanical rules but genuine self-analysis discipline.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2 class="mt-32">TOP 5 UNRESOLVED <span>UNKNOWNS</span></h2>
+  <div class="unknown-grid mt-24">
+    <div class="unknown-card">
+      <div class="unknown-num">?1</div>
+      <div class="unknown-text">Exact position sizing formula: No confirmed % risk-per-trade figure publicly stated. Share count appears to be judged by stop distance and account feel, not a fixed percentage formula.</div>
+    </div>
+    <div class="unknown-card">
+      <div class="unknown-num">?2</div>
+      <div class="unknown-text">Verified accuracy rate in bear markets specifically. His ~69% figure is aggregate over all conditions. Performance during low-volatility periods (2023 confirmed to be a grind) may be significantly lower.</div>
+    </div>
+    <div class="unknown-card">
+      <div class="unknown-num">?3</div>
+      <div class="unknown-text">Exact scanner settings. While the 5-Pillar framework is confirmed, the specific numeric thresholds programmed into his scanners (exact float cutoff, exact RVOL filter, etc.) are proprietary to Warrior Trading members.</div>
+    </div>
+    <div class="unknown-card">
+      <div class="unknown-num">?4</div>
+      <div class="unknown-text">How he manages multi-day continuation positions overnight. Specific stop and risk rules for holding runners beyond one session are not fully documented in public sources.</div>
+    </div>
+    <div class="unknown-card">
+      <div class="unknown-num">?5</div>
+      <div class="unknown-text">Whether recent strategy adjustments have materially changed the method post-2022 bear market and FTC settlement period. His 2023 Medium article hints at adaptation but specifics are unclear.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="col-2 mt-32">
+    <div>
+      <h2>TRUE OPERATING <span>STYLE</span></h2>
+      <div class="callout callout-gold mt-16" style="padding:24px;">
+        <p>Ross Cameron is a <strong>high-frequency momentum scalper</strong> who operates at the extreme end of the retail day trading spectrum. His edge is not chart pattern recognition alone — it is the combination of a rigorous, data-derived pre-filter (5 Pillars) with a mechanical exit discipline that prevents the behavioral failures that destroy most traders. He buys strength, not weakness; momentum, not value. He scales large when conditions are favorable and retreats aggressively when they are not. His $12.5M P&amp;L is verified and real — but was disproportionately accumulated in exceptional bull-market windows. In normal or bear conditions, his strategy generates a grind, not home runs. The playbook is among the most reconstructable in retail trading: the rules are specific, evidence-backed, and confirmed across thousands of real trades — but the execution speed, tape reading, and psychological discipline required remain a substantial barrier to replication.</p>
+      </div>
+    </div>
+    <div>
+      <h2>EDGE <span>CHECKLIST</span></h2>
+      <div class="card mt-16">
+        <ul class="checklist">
+          <li><span class="c-icon c-green">✓</span><strong>Structural edge:</strong> 5-Pillar pre-filter eliminates 95%+ of tradeable universe before any setup analysis</li>
+          <li><span class="c-icon c-green">✓</span><strong>Behavioral edge:</strong> "Breakout or Bailout" — exits stalling trades before small loss becomes large</li>
+          <li><span class="c-icon c-green">✓</span><strong>Risk edge:</strong> $5,000 daily max loss structurally prevents catastrophic drawdowns</li>
+          <li><span class="c-icon c-green">✓</span><strong>Metrics edge:</strong> Data-driven self-correction (e.g., stopped trading stocks above $20 based on objective review)</li>
+          <li><span class="c-icon c-green">✓</span><strong>Pattern edge:</strong> 69% accuracy on 24K+ trades — genuine statistical confirmation, not marketing</li>
+          <li><span class="c-icon c-green">✓</span><strong>Timing edge:</strong> Focuses exclusively on optimal volatility window (8–11:30 AM EST)</li>
+        </ul>
+      </div>
+
+      <div class="card card-black mt-16">
+        <h4 style="color:rgba(255,255,255,.5);">Final Reliability Rating</h4>
+        <p style="font-family:'Bebas Neue',cursive; font-size:26px; color:var(--accent); margin:8px 0; letter-spacing:.03em;">HIGHLY RECONSTRUCTABLE</p>
+        <p style="font-size:13px; color:rgba(255,255,255,.65);">Ross Cameron's playbook is the most fully documented strategy in retail day trading education. The 5-Pillar framework, entry patterns, exit rules, daily max loss, and Trader Rehab protocol are all confirmed with specific numbers from primary sources. Execution speed and tape reading still require live practice — but the rules themselves need no guesswork.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="background:var(--black); color:rgba(255,255,255,.3); text-align:center; padding:24px; font-size:11px; letter-spacing:.1em; text-transform:uppercase;">
+  Ross Cameron Playbook Analysis · Compiled from Primary Public Sources Only · For Educational Research Purposes · Not Financial Advice · Ross Cameron's results are not typical. Most day traders lose money.
+</div>
+
+</body>
+</html>

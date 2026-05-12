@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mark Minervini – VCP / SEPA Institutional Playbook Analysis</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0d0d0d;
+      --white: #ffffff;
+      --offwhite: #f5f4f0;
+      --gray: #6b7280;
+      --light-gray: #e5e7eb;
+      --green: #059669;
+      --green-bg: #ecfdf5;
+      --green-light: #a7f3d0;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --red-light: #fecaca;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --blue: #1e40af;
+      --blue-bg: #eff6ff;
+      --accent: #f59e0b;
+      --accent-dark: #92400e;
+      --divider: #e2e0db;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--offwhite);
+      color: var(--black);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* ─────────── COVER ─────────── */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 20%, rgba(245,158,11,.12) 0%, transparent 70%),
+        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,.025) 80px);
+    }
+    .cover-num {
+      position: absolute;
+      top: 0; right: 0;
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(200px, 30vw, 380px);
+      color: rgba(255,255,255,.03);
+      line-height: 1;
+      letter-spacing: -.02em;
+      pointer-events: none;
+      user-select: none;
+    }
+    .cover-eyebrow {
+      font-size: 11px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .cover h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(64px, 9vw, 120px);
+      line-height: .92;
+      letter-spacing: .01em;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .cover h1 span { color: var(--accent); }
+    .cover-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,.5);
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.55;
+      position: relative;
+      z-index: 1;
+    }
+    .cover-pills {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 40px; position: relative; z-index: 1;
+    }
+    .cover-pill {
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 8px 18px; border-radius: 100px;
+      font-size: 12px; font-weight: 600; letter-spacing: .04em;
+    }
+    .cover-pill-gold { border-color: var(--accent); color: var(--accent); }
+    .cover-stats {
+      display: flex; gap: 40px; flex-wrap: wrap;
+      position: relative; z-index: 1;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 32px;
+    }
+    .c-stat { display: flex; flex-direction: column; gap: 4px; }
+    .c-stat-l { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+    .c-stat-v { font-family: 'Bebas Neue', cursive; font-size: 28px; letter-spacing: .02em; }
+
+    /* ─────────── PAGE ─────────── */
+    .page {
+      background: var(--white);
+      max-width: 1200px;
+      margin: 0 auto 2px;
+      padding: 56px 60px;
+      border-bottom: 1px solid var(--divider);
+    }
+    .page-label {
+      font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gray); border-top: 2px solid var(--black);
+      padding-top: 6px; margin-bottom: 36px;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+
+    /* ─────────── TYPE ─────────── */
+    h2 { font-family: 'Bebas Neue', cursive; font-size: 48px; letter-spacing: .02em; line-height: 1; margin-bottom: 20px; }
+    h2 span { color: var(--accent); }
+    h3 { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; letter-spacing: -.01em; }
+    h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
+    p { margin-bottom: 14px; color: #374151; }
+    p:last-child { margin-bottom: 0; }
+    ul { padding-left: 18px; }
+    ul li { margin-bottom: 6px; color: #374151; }
+    ol { padding-left: 20px; }
+    ol li { margin-bottom: 8px; color: #374151; }
+    strong { font-weight: 700; }
+
+    /* ─────────── LAYOUT HELPERS ─────────── */
+    .col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+    .divider { border: none; border-top: 1px solid var(--divider); margin: 36px 0; }
+    .mt-8{margin-top:8px} .mt-12{margin-top:12px} .mt-16{margin-top:16px}
+    .mt-20{margin-top:20px} .mt-24{margin-top:24px} .mt-28{margin-top:28px}
+    .mt-32{margin-top:32px} .mb-16{margin-bottom:16px} .mb-20{margin-bottom:20px} .mb-24{margin-bottom:24px}
+
+    /* ─────────── BADGES ─────────── */
+    .badge {
+      display: inline-block; padding: 5px 14px; border-radius: 3px;
+      font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .badge-gold  { background: var(--accent); color: var(--black); }
+    .badge-green { background: var(--green); color: white; }
+    .badge-red   { background: var(--red); color: white; }
+    .badge-black { background: var(--black); color: white; }
+    .badge-blue  { background: var(--blue); color: white; }
+    .badge-outline { border: 1.5px solid var(--black); color: var(--black); background: transparent; }
+
+    .conf-high, .conf-med, .conf-low {
+      padding: 2px 10px; border-radius: 20px; font-size: 11px;
+      font-weight: 700; white-space: nowrap; display: inline-block;
+    }
+    .conf-high { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-light); }
+    .conf-med  { background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+    .conf-low  { background: var(--red-bg);   color: var(--red);   border: 1px solid var(--red-light); }
+
+    /* ─────────── CARDS ─────────── */
+    .card { border: 1px solid var(--divider); border-radius: 8px; padding: 20px 24px; background: var(--white); }
+    .card-gold  { background: #fffbeb; border-color: #fde68a; }
+    .card-green { background: var(--green-bg); border-color: var(--green-light); }
+    .card-red   { background: var(--red-bg);   border-color: var(--red-light); }
+    .card-blue  { background: var(--blue-bg);  border-color: #bfdbfe; }
+    .card-black { background: var(--black); color: var(--white); }
+    .card-black p, .card-black li { color: rgba(255,255,255,.72); }
+    .card-black h3, .card-black h4 { color: var(--white); }
+    .card-stripe       { border-left: 4px solid var(--accent); }
+    .card-stripe-green { border-left: 4px solid var(--green); }
+    .card-stripe-red   { border-left: 4px solid var(--red); }
+
+    /* ─────────── SETUP CARDS ─────────── */
+    .setup-card { border: 1px solid var(--divider); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+    .setup-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 14px 22px; background: var(--black); color: var(--white); flex-wrap: wrap;
+    }
+    .setup-hdr-title { font-family: 'Bebas Neue', cursive; font-size: 22px; letter-spacing: .04em; }
+    .setup-body { padding: 22px; }
+    .setup-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .setup-cell { padding: 14px 18px; border-right: 1px solid var(--divider); border-bottom: 1px solid var(--divider); }
+    .setup-cell:nth-child(2n) { border-right: none; }
+    .setup-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .setup-cell-lbl { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray); margin-bottom: 5px; }
+    .setup-cell-val { font-size: 13px; color: var(--black); }
+
+    /* ─────────── PILLAR GRID ─────────── */
+    .pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .pillar-card { background: var(--black); color: var(--white); border-radius: 8px; padding: 16px 14px; text-align: center; }
+    .pillar-num  { font-family: 'Bebas Neue', cursive; font-size: 36px; color: var(--accent); line-height: 1; }
+    .pillar-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-top: 8px; }
+    .pillar-detail { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 6px; line-height: 1.4; }
+
+    /* ─────────── TREND TEMPLATE TABLE ─────────── */
+    .tt-grid { display: grid; grid-template-columns: 32px 1fr; gap: 0; }
+    .tt-row { display: contents; }
+    .tt-num { background: var(--black); color: var(--accent); font-family: 'Bebas Neue', cursive; font-size: 20px; padding: 10px 8px; text-align: center; border-bottom: 1px solid #222; }
+    .tt-text { padding: 10px 14px; border-bottom: 1px solid var(--divider); font-size: 13px; color: #374151; }
+
+    /* ─────────── EVIDENCE ROWS ─────────── */
+    .evidence-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--divider); }
+    .evidence-row:last-child { border-bottom: none; }
+    .evidence-num {
+      min-width: 30px; height: 30px; background: var(--accent); color: var(--black);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; flex-shrink: 0;
+    }
+
+    /* ─────────── CHECKLIST ─────────── */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid var(--divider); color: #374151;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .c-icon { min-width: 20px; font-size: 15px; margin-top: 1px; }
+    .c-green { color: var(--green); }
+    .c-red   { color: var(--red); }
+
+    /* ─────────── TABLES ─────────── */
+    .t { width: 100%; border-collapse: collapse; }
+    .t th { background: var(--black); color: white; padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
+    .t td { padding: 10px 14px; border-bottom: 1px solid var(--divider); font-size: 13px; color: #374151; vertical-align: top; }
+    .t tr:nth-child(even) td { background: #fafaf8; }
+
+    /* ─────────── CALLOUTS ─────────── */
+    .callout { border-left: 4px solid var(--black); padding: 14px 18px; background: #fafaf8; margin: 16px 0; }
+    .callout-gold  { border-left-color: var(--accent); background: var(--amber-bg); }
+    .callout-green { border-left-color: var(--green);  background: var(--green-bg); }
+    .callout-red   { border-left-color: var(--red);    background: var(--red-bg); }
+
+    /* ─────────── PROS / CONS ─────────── */
+    .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .pros-col  { background: var(--green-bg); padding: 24px; border-radius: 8px 0 0 8px; }
+    .cons-col  { background: var(--red-bg);   padding: 24px; border-radius: 0 8px 8px 0; }
+
+    /* ─────────── VS GRID ─────────── */
+    .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center; }
+    .vs-divider { display: flex; align-items: center; justify-content: center; width: 56px; }
+    .vs-circle {
+      width: 40px; height: 40px; background: var(--black); color: var(--accent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', cursive; font-size: 18px; flex-shrink: 0;
+    }
+
+    /* ─────────── TAKEAWAYS / UNKNOWNS ─────────── */
+    .takeaway-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .takeaway-card { background: var(--black); color: white; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+    .takeaway-num  { font-family: 'Bebas Neue', cursive; font-size: 40px; color: var(--accent); line-height: 1; }
+    .takeaway-text { font-size: 12px; color: rgba(255,255,255,.68); line-height: 1.5; }
+
+    .unknown-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .unknown-card { background: var(--red-bg); border: 1px solid var(--red-light); border-radius: 8px; padding: 18px; }
+    .unknown-num  { font-family: 'Bebas Neue', cursive; font-size: 32px; color: var(--red); line-height: 1; }
+    .unknown-text { font-size: 12px; color: #7f1d1d; line-height: 1.5; margin-top: 6px; }
+
+    .stage-bar { display: flex; gap: 2px; margin: 20px 0; }
+    .stage-seg {
+      flex: 1; padding: 10px 6px; text-align: center;
+      font-size: 11px; font-weight: 700; letter-spacing: .05em; border-radius: 4px;
+    }
+    .stage-1 { background: #e5e7eb; color: #6b7280; }
+    .stage-2 { background: var(--green); color: white; }
+    .stage-3 { background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+    .stage-4 { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-light); }
+    .stage-label { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+    .stage-sublabel { font-size: 10px; margin-top: 3px; font-weight: 400; }
+
+    .footer {
+      background: var(--black); color: rgba(255,255,255,.3);
+      text-align: center; padding: 24px;
+      font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    }
+
+    @media (max-width: 820px) {
+      .page { padding: 36px 22px; }
+      .col-2, .col-3, .setup-grid, .pros-cons, .takeaway-grid, .unknown-grid, .pillar-grid, .vs-grid { grid-template-columns: 1fr; }
+      .cover { padding: 40px 28px; }
+      .vs-divider { display: none; }
+      .stage-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     COVER
+══════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-num">VCP</div>
+  <div class="cover-eyebrow">Institutional-Grade Research Analysis · SEPA Methodology · Two-Time U.S. Investing Champion</div>
+  <h1>MARK<br><span>MINERVINI</span><br>VCP PLAYBOOK</h1>
+  <p class="cover-desc">
+    A reverse-engineered analysis of Mark Minervini's complete VCP / SEPA trading system — built from primary sources including Trade Like a Stock Market Wizard, Think and Trade Like a Champion, Momentum Masters, verified interviews, and documented live trades.
+  </p>
+  <div class="cover-pills">
+    <div class="cover-pill cover-pill-gold">Volatility Contraction Pattern (VCP)</div>
+    <div class="cover-pill">SEPA Methodology</div>
+    <div class="cover-pill">Stage 2 Growth Stocks</div>
+    <div class="cover-pill">220% Avg Annual Return (Audited)</div>
+    <div class="cover-pill">2× U.S. Investing Champion</div>
+  </div>
+  <div class="cover-stats">
+    <div class="c-stat"><span class="c-stat-l">Strategy Type</span><span class="c-stat-v">Momentum Breakout</span></div>
+    <div class="c-stat"><span class="c-stat-l">Primary Instrument</span><span class="c-stat-v">U.S. Growth Stocks</span></div>
+    <div class="c-stat"><span class="c-stat-l">Audited 5yr Return</span><span class="c-stat-v">33,500%</span></div>
+    <div class="c-stat"><span class="c-stat-l">Max Stop Loss</span><span class="c-stat-v">7–8%</span></div>
+    <div class="c-stat"><span class="c-stat-l">Reconstructability</span><span class="c-stat-v">Very High</span></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 01 — PLAYBOOK OVERVIEW
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 01 · Playbook Overview &amp; Core Operating Logic</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>PLAYBOOK <span>OVERVIEW</span></h2>
+      <p>Mark Minervini is a <strong>techno-fundamentalist</strong>: he screens for exceptional earnings growth first, then uses technical chart analysis to time the entry at the lowest possible risk. His complete system is called <strong>SEPA — Specific Entry Point Analysis</strong>.</p>
+      <p>The core insight is that institutional investors drive big moves, and their activity leaves footprints in price and volume. The VCP pattern is how those footprints appear before a breakout. Minervini's job is to read those footprints and enter just before the majority of the move happens.</p>
+
+      <div class="callout callout-gold">
+        <strong>Core Principle:</strong> Align three forces simultaneously — strong fundamentals, constructive price action (Stage 2 + VCP), and a healthy overall market — and only then enter at the pivot. Without all three, do not trade.
+      </div>
+
+      <h3 class="mt-24">The Operating Logic in 5 Steps</h3>
+      <ol style="display:flex;flex-direction:column;gap:10px;">
+        <li><strong>Screen the universe.</strong> Use the 8-point Trend Template to eliminate 95%+ of stocks. Only Stage 2 uptrends qualify.</li>
+        <li><strong>Verify the fundamentals.</strong> Confirm accelerating EPS growth, rising revenues, expanding margins, and RS rating of 70+.</li>
+        <li><strong>Identify the VCP.</strong> Look for progressively tighter price contractions with drying volume — 2 to 6 contractions narrowing to a final tight pivot.</li>
+        <li><strong>Enter the pivot breakout.</strong> Buy one cent above the pivot resistance on expanding volume. Enter as close to the stop as possible to maximize position size for the same dollar risk.</li>
+        <li><strong>Manage with strict rules.</strong> Hard stop at 7–8% max. Take first partials at 2–3× risk. Trail with 10-day MA on remaining shares. Never average down.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h3>Core Philosophy</h3>
+      <div class="card card-black mt-16 mb-24">
+        <p style="font-family:'Bebas Neue',cursive;font-size:20px;letter-spacing:.03em;color:white;margin-bottom:12px;">"The biggest gains come from the biggest stories, bought at the right price, at the right time, in the right market."</p>
+        <p style="font-size:12px;">— Mark Minervini, Think &amp; Trade Like a Champion</p>
+      </div>
+
+      <h4>Why This System Works (Minervini's Own Logic)</h4>
+      <ul style="list-style:none;padding:0;">
+        <li style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
+          <span class="badge badge-gold">FUNDAMENTALS</span>
+          <span>Earnings acceleration attracts institutional buying. Institutions are the engine of big moves.</span>
+        </li>
+        <li style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
+          <span class="badge badge-green">STAGE 2</span>
+          <span>Stocks only make their biggest moves in Stage 2. Buying in Stage 1, 3, or 4 is provably inferior.</span>
+        </li>
+        <li style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
+          <span class="badge badge-blue">VCP PATTERN</span>
+          <span>Contracting volatility = supply drying up. When supply stops, any demand sends price sharply higher.</span>
+        </li>
+        <li style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;">
+          <span class="badge badge-black">TIGHT ENTRY</span>
+          <span>Entering near the stop means a large position can be sized with the same dollar risk. Risk-first math.</span>
+        </li>
+      </ul>
+
+      <hr class="divider">
+
+      <h3>What Minervini Trades</h3>
+      <ul>
+        <li>U.S. listed growth stocks — primarily small-cap and mid-cap</li>
+        <li>Stocks with accelerating earnings, not just stable earnings</li>
+        <li>Market leaders and top competitors in hot sectors</li>
+        <li>IPO stocks after forming their first proper base (2+ months of price history)</li>
+        <li>Avoids cyclicals, merger candidates, and companies with decelerating growth</li>
+      </ul>
+
+      <div class="callout callout-gold mt-20">
+        <strong>Source Confidence:</strong> All five operating steps are directly stated in Trade Like a Stock Market Wizard (2013) and Think &amp; Trade Like a Champion (2017). <span class="conf-high">HIGH</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 02 — STAGE ANALYSIS & TREND TEMPLATE
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 02 · Stage Analysis, Trend Template &amp; Fundamental Pre-Filter</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <h2>THE STAGE <span>FRAMEWORK</span></h2>
+  <p>Before any chart pattern matters, the stock must be in the right stage. Minervini explicitly bases this on Stan Weinstein's Stage Analysis and makes Stage 2 the <em>mandatory pre-condition</em> for every trade. No exceptions.</p>
+
+  <div class="stage-bar">
+    <div class="stage-seg stage-1">
+      <div class="stage-label">Stage 1</div>
+      <div class="stage-sublabel">Base Building · Flat 200-day · No Trade</div>
+    </div>
+    <div class="stage-seg stage-2">
+      <div class="stage-label">★ Stage 2 — THE ONLY BUY ZONE ★</div>
+      <div class="stage-sublabel">Rising 200-day · Stacked MAs · VCP Forms Here</div>
+    </div>
+    <div class="stage-seg stage-3">
+      <div class="stage-label">Stage 3</div>
+      <div class="stage-sublabel">Topping · Distribution · Exit or Avoid</div>
+    </div>
+    <div class="stage-seg stage-4">
+      <div class="stage-label">Stage 4</div>
+      <div class="stage-sublabel">Declining · Never buy regardless of earnings news</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="col-2">
+    <div>
+      <h3>The 8-Point Trend Template</h3>
+      <p>This is Minervini's exact quantitative screen for confirming a stock is in Stage 2. All 8 criteria must be met. Directly from <em>Think &amp; Trade Like a Champion.</em></p>
+
+      <div class="tt-grid mt-16" style="border:1px solid var(--divider);border-radius:8px;overflow:hidden;">
+        <div class="tt-num" style="background:var(--accent);color:var(--black);">1</div>
+        <div class="tt-text">Price is above <strong>both</strong> the 150-day (30-week) and 200-day (40-week) moving averages.</div>
+        <div class="tt-num">2</div>
+        <div class="tt-text">The 150-day MA is <strong>above</strong> the 200-day MA.</div>
+        <div class="tt-num">3</div>
+        <div class="tt-text">The 200-day MA has been <strong>trending up for at least 1 month</strong> (preferably 4–5 months minimum).</div>
+        <div class="tt-num">4</div>
+        <div class="tt-text">The 50-day MA is <strong>above both</strong> the 150-day and 200-day MAs (stacked formation).</div>
+        <div class="tt-num">5</div>
+        <div class="tt-text">Price is trading <strong>above the 50-day MA</strong>.</div>
+        <div class="tt-num">6</div>
+        <div class="tt-text">Price is <strong>at least 30% above its 52-week low</strong>. (Top selections often 100%–300%+ above.)</div>
+        <div class="tt-num">7</div>
+        <div class="tt-text">Price is <strong>within 25% of its 52-week high</strong>. The closer to new highs, the better.</div>
+        <div class="tt-num" style="border-bottom:none;">8</div>
+        <div class="tt-text" style="border-bottom:none;">IBD <strong>Relative Strength rating ≥ 70</strong>. Ideal is 80s–90s. Measures stock vs. all other stocks over prior 12 months.</div>
+      </div>
+
+      <div class="callout callout-gold mt-16">
+        <strong>Why stacked MAs matter:</strong> When 50 &gt; 150 &gt; 200 and all three are rising, institutions have been buying consistently across multiple timeframes. That is the structural signature of genuine accumulation, not just a short-term spike.
+      </div>
+    </div>
+
+    <div>
+      <h3>Fundamental Pre-Filter</h3>
+      <p>Technical analysis confirms timing. Fundamentals confirm the "why" behind institutional interest. Minervini screens for these before touching a chart.</p>
+
+      <table class="t mt-16">
+        <thead><tr><th>Metric</th><th>Minimum Threshold</th><th>Confidence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Quarterly EPS Growth</strong></td><td>20%+ (prefer 25–50%+)</td><td><span class="conf-high">HIGH</span></td></tr>
+          <tr><td><strong>EPS Acceleration</strong></td><td>Must be improving vs. prior quarters</td><td><span class="conf-high">HIGH</span></td></tr>
+          <tr><td><strong>Revenue Growth</strong></td><td>15–20%+ annually</td><td><span class="conf-high">HIGH</span></td></tr>
+          <tr><td><strong>Profit Margins</strong></td><td>Expanding, not compressing</td><td><span class="conf-high">HIGH</span></td></tr>
+          <tr><td><strong>Earnings Surprise</strong></td><td>Beats estimates; upward revisions 5%+</td><td><span class="conf-high">HIGH</span></td></tr>
+          <tr><td><strong>ROE</strong></td><td>17%+ preferred</td><td><span class="conf-med">MED</span></td></tr>
+          <tr><td><strong>Institutional Ownership</strong></td><td>Increasing quarterly accumulation</td><td><span class="conf-high">HIGH</span></td></tr>
+          <tr><td><strong>Company Type</strong></td><td>Market Leaders, Top Competitors, Institutional Favorites, IPO Turnarounds</td><td><span class="conf-high">HIGH</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-gold mt-16">
+        <strong>Critical nuance (direct quote from interview):</strong> A company growing at 30% that previously grew at 80–90% is not attractive. Deceleration kills stocks. What matters is whether it is doing <em>better than before</em>, not just whether it looks good in absolute terms.
+      </div>
+
+      <h3 class="mt-24">What Minervini Avoids Explicitly</h3>
+      <ul>
+        <li>Cyclical stocks — earnings driven by the economy, not the company</li>
+        <li>Merger candidates — price moves on deal speculation, not fundamentals</li>
+        <li>Stage 4 stocks — regardless of strong earnings news</li>
+        <li>Stocks where growth is decelerating even if still positive</li>
+        <li>Companies with heavy debt or contracting margins</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 03 — THE VCP PATTERN (CORE SETUP)
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 03 · The VCP — Volatility Contraction Pattern (Core Setup)</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <h2>THE VCP — <span>VOLATILITY CONTRACTION PATTERN</span></h2>
+  <p>The VCP is the centerpiece of Minervini's entry timing system. It is not a simple chart shape — it is a <em>behavioral sequence</em> that reveals institutional accumulation in progress.</p>
+
+  <!-- Main VCP Setup Card -->
+  <div class="setup-card mt-28">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 1: THE STANDARD VCP</div>
+      <span class="badge badge-gold">Core Setup · Swing Trade · Daily Chart Primary</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>What It Is</h4>
+          <p>A stock in a Stage 2 uptrend pauses and consolidates. During this consolidation, each successive price pullback gets smaller and each period of contraction shows lower volume than the previous one. This tightening sequence — typically 2 to 6 contractions — is the VCP. The final contraction narrows into a specific price level called the <strong>pivot point</strong>.</p>
+          <p>When the stock breaks above the pivot with a surge in volume, it signals that supply has been absorbed and institutional buyers are in control.</p>
+          <div class="callout callout-gold">
+            <strong>Minervini's description:</strong> "When you quiet the stock down and it gets very tight on that right side after contracting and the volume comes in, that's telling you that stock supply has stopped coming to market. That's why they're so explosive when they come out of these formations."
+          </div>
+          <h4 class="mt-16">Why It Works</h4>
+          <ul>
+            <li>Retail and impatient holders sell during the pullbacks — supply dries up</li>
+            <li>Institutions accumulate quietly on the quieter pullbacks</li>
+            <li>Each tighter contraction proves fewer sellers remain</li>
+            <li>When supply fully exhausts, even modest demand sends price sharply higher</li>
+            <li>The pattern exists in stocks with genuine earnings acceleration — not just chart games</li>
+          </ul>
+        </div>
+        <div>
+          <h4>VCP Anatomy — The Contraction Sequence</h4>
+          <div class="card card-black mt-8">
+            <p style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:12px;">EXAMPLE CONTRACTION SEQUENCE</p>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #333;">
+                <span style="color:var(--accent);font-weight:700;">Contraction 1</span>
+                <span style="color:white;font-size:13px;">~20–30% pullback · Heavy volume</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #333;">
+                <span style="color:var(--accent);font-weight:700;">Contraction 2</span>
+                <span style="color:white;font-size:13px;">~10–15% pullback · Lighter volume</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #333;">
+                <span style="color:var(--accent);font-weight:700;">Contraction 3</span>
+                <span style="color:white;font-size:13px;">~5–8% pullback · Low volume</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+                <span style="color:var(--green);font-weight:700;">★ Pivot Area</span>
+                <span style="color:white;font-size:13px;">Very tight range · Volume drying · ENTRY ZONE</span>
+              </div>
+            </div>
+          </div>
+          <h4 class="mt-16">What Must Be True</h4>
+          <ul>
+            <li>Each contraction is <strong>smaller in % than the prior one</strong></li>
+            <li>Volume is <strong>lower on each successive pullback</strong> (volume contraction)</li>
+            <li>Stock holds <strong>higher lows</strong> — no lower lows through the base</li>
+            <li>"Tennis ball" bounces off pullbacks — quick snappy recoveries</li>
+            <li>Closes near the <strong>upper end of daily ranges</strong> during the tight phase</li>
+            <li>A clear, identifiable <strong>pivot point</strong> (resistance level) visible on the chart</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="setup-grid">
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Required Context</div>
+          <div class="setup-cell-val">All 8 Trend Template criteria confirmed. Stage 2 uptrend. Fundamental screen passed. Prior strong advance in the base. Overall market in a healthy bull phase.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Entry Trigger</div>
+          <div class="setup-cell-val">One cent above the pivot high on a day with volume 40–50%+ above the 50-day average volume. Volume expansion on the breakout is mandatory — no volume, no entry.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Stop Logic</div>
+          <div class="setup-cell-val">Below the low of the last (tightest) contraction. Maximum 7–8% below entry. If the correct stop would be wider than 8%, skip the trade entirely — the setup is not tight enough yet.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Target / Exit Logic</div>
+          <div class="setup-cell-val">First partial sell at 2–3× initial risk (if risk is 5%, first target is 10–15% gain). Move stop to breakeven. Trail remaining shares with 10-day MA. Exit if stock closes below 10-day MA on heavy volume.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Common Failure Mode</div>
+          <div class="setup-cell-val">Breakout on light volume that immediately reverses ("squat"). Stock breaks pivot but sellers rush in. If it gives back the pivot and closes below it, exit. Do not hold and hope.</div>
+        </div>
+        <div class="setup-cell">
+          <div class="setup-cell-lbl">Confidence Level</div>
+          <div class="setup-cell-val"><span class="conf-high">HIGH</span> — Named, described, and demonstrated across both books, multiple interviews, live trade examples, and the Master Trader Program curriculum.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VCP Pattern Checklist -->
+  <div class="col-2">
+    <div>
+      <h3>How to Identify a VCP in Real Time</h3>
+      <div class="card mt-12">
+        <ul class="checklist">
+          <li><span class="c-icon c-green">✓</span><span>Stock passes all 8 Trend Template criteria</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Prior advance of at least 25–30% before the base formed</span></li>
+          <li><span class="c-icon c-green">✓</span><span>At least 2 visible price contractions, each smaller than the last</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Volume lower on each successive pullback than the prior one</span></li>
+          <li><span class="c-icon c-green">✓</span><span>No new lows being made — higher lows throughout the base</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Currently in the tightest part of the pattern (near the right side)</span></li>
+          <li><span class="c-icon c-green">✓</span><span>A clear price level acts as resistance (the pivot)</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Volume currently near its lowest point in the base (the quiet before breakout)</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT enter if contractions are widening, not narrowing</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT enter if volume is rising during the pullback phases</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT enter before the breakout occurs — wait for pivot confirmation</span></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h3>VCP vs. Fake Consolidation — How to Tell the Difference</h3>
+      <table class="t mt-12">
+        <thead><tr><th>Feature</th><th>Real VCP</th><th>False Pattern</th></tr></thead>
+        <tbody>
+          <tr><td>Pullback depth</td><td>Each one smaller</td><td>Same or widening</td></tr>
+          <tr><td>Volume on pullbacks</td><td>Declining each time</td><td>Heavy or erratic</td></tr>
+          <tr><td>Price lows</td><td>Higher lows</td><td>Lower lows forming</td></tr>
+          <tr><td>Recovery speed</td><td>Quick, snappy ("tennis ball")</td><td>Slow, sluggish grind</td></tr>
+          <tr><td>Closing position</td><td>Near upper end of range</td><td>Near lows of daily range</td></tr>
+          <tr><td>Breakout volume</td><td>Clear surge above average</td><td>Average or below</td></tr>
+          <tr><td>Trend Template</td><td>All 8 pass</td><td>One or more fail</td></tr>
+          <tr><td>Fundamentals</td><td>EPS accelerating</td><td>Flat, decelerating, or absent</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 04 — SETUP CATALOG (POWER PLAY, LOW CHEAT, SQUAT)
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 04 · Extended Setup Catalog — Power Play, Low Cheat &amp; Squat</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <h2>SETUP <span>CATALOG</span></h2>
+  <p>Beyond the standard VCP, Minervini documents several specific setup variants. All operate on the same supply-exhaustion logic but with different structural conditions.</p>
+
+  <!-- Power Play -->
+  <div class="setup-card mt-28">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 2: THE POWER PLAY (HIGH TIGHT FLAG)</div>
+      <span class="badge badge-gold">Rarer · Explosive · High-Velocity Moves</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2 mb-20">
+        <div>
+          <h4>What It Is</h4>
+          <p>A stock that has already surged <strong>100%+ in 8 weeks or fewer</strong> and then consolidates in a tight base of <strong>10–25% depth</strong> over 3–6 weeks. The Power Play is essentially a VCP forming on an already-explosive move rather than a standard advance.</p>
+          <p>This is the rarest setup but historically produces some of the fastest and largest subsequent moves. The prior velocity of the initial surge is the key distinguishing factor.</p>
+          <div class="callout callout-gold">
+            <strong>Why it works:</strong> A stock that has already moved 100%+ in under 8 weeks has demonstrated extraordinary demand. The consolidation that follows is typically brief and shallow because sellers who wanted to exit already did so during the move.
+          </div>
+        </div>
+        <div>
+          <h4>Precise Criteria (Confirmed from Books)</h4>
+          <ul>
+            <li>Prior move: <strong>100%+ in 8 weeks or fewer</strong></li>
+            <li>Consolidation depth: <strong>no more than 20–25%</strong></li>
+            <li>Duration: <strong>3–6 weeks</strong> (some as short as 12 days)</li>
+            <li>VCP characteristics must be present within the flag</li>
+            <li>Trend Template criteria still pass</li>
+            <li>Volume dry-up during the flag is essential</li>
+          </ul>
+          <h4 class="mt-16">Historical Example (Confirmed)</h4>
+          <p>TASR (now AXON) formed three separate Power Play / High Tight Flag setups within a 2,500% run over 9 months in 2003 — one of the most cited examples in Minervini's teaching materials.</p>
+        </div>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-cell"><div class="setup-cell-lbl">Entry</div><div class="setup-cell-val">Pivot breakout above the high of the tight consolidation, on volume 40%+ above average.</div></div>
+        <div class="setup-cell"><div class="setup-cell-lbl">Stop</div><div class="setup-cell-val">Below the low of the tight flag / consolidation. With Power Plays, stop can be tighter than normal VCPs due to the precision of the formation.</div></div>
+        <div class="setup-cell"><div class="setup-cell-lbl">Target</div><div class="setup-cell-val">First target is the prior high or a measured move equal to the prior flag structure. These can extend significantly further — hold with trailing stop.</div></div>
+        <div class="setup-cell"><div class="setup-cell-lbl">Confidence</div><div class="setup-cell-val"><span class="conf-high">HIGH</span> — Directly described in Trade Like a Stock Market Wizard with specific duration and depth criteria and historical chart examples.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side by Side: Low Cheat + Squat -->
+  <div class="col-2">
+    <div class="setup-card" style="margin-bottom:0;">
+      <div class="setup-hdr">
+        <div class="setup-hdr-title">SETUP 3: THE LOW CHEAT</div>
+        <span class="badge badge-blue">Early Entry · Lower Risk · Stage 2 Only</span>
+      </div>
+      <div class="setup-body">
+        <p>An alternative entry used when a stock is still within the Trend Template but is currently trading below the 50-day MA, pulling back within an otherwise healthy Stage 2 uptrend.</p>
+        <p>This is Minervini's "exception" entry — buying a pullback within a confirmed Stage 2 advance rather than waiting for the full pivot breakout. It is noted as the <em>only exception</em> to Rule 8 of the Trend Template (price above 50-day MA).</p>
+        <ul class="mt-12">
+          <li>Stock must still pass criteria 1–7 of the Trend Template</li>
+          <li>The pullback to or below the 50-day must be on declining volume</li>
+          <li>Only valid within a strong, confirmed Stage 2 uptrend</li>
+          <li>Stop goes below the 50-day MA or the recent pullback low</li>
+          <li>Entry is lower risk because you're closer to the stop than at the breakout</li>
+        </ul>
+        <div class="mt-16"><span class="conf-med">MEDIUM</span> — Mentioned in books and teaching but less frequently demonstrated publicly than standard VCP. <strong>Use with caution until pattern recognition skill is high.</strong></div>
+      </div>
+    </div>
+
+    <div class="setup-card" style="margin-bottom:0;">
+      <div class="setup-hdr">
+        <div class="setup-hdr-title">SETUP 4: SQUAT REVERSAL</div>
+        <span class="badge badge-black">Post-Breakout · Re-Entry · Defined Window</span>
+      </div>
+      <div class="setup-body">
+        <p>After a legitimate breakout from a VCP, the stock retreats back into its prior base area — the "squat." This is a potential failure signal, but Minervini notes it can also be a re-entry opportunity if specific conditions are met.</p>
+        <p><strong>When to hold through a squat:</strong> Volume subsides, price action tightens, and the stock stays above its stop. In a bull market, a squat that holds and recovers within 10 days can resume the uptrend.</p>
+        <p><strong>When to exit immediately:</strong> Volume rises during the squat, price breaks through the 20-day MA on heavy volume, or the thesis fundamentally changes.</p>
+        <ul class="mt-12">
+          <li>Real example: SCHW (October 2021, Minervini's 334% U.S. Investing Championship year)</li>
+          <li>Entered on gap-up after a squat reversal held at the right level</li>
+        </ul>
+        <div class="mt-16"><span class="conf-high">HIGH</span> — Confirmed in book, live trade examples, and TraderLion documented recap of 2021 championship trades.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IPO Base -->
+  <div class="setup-card mt-28">
+    <div class="setup-hdr">
+      <div class="setup-hdr-title">SETUP 5: IPO BASE / FIRST PRIMARY BASE</div>
+      <span class="badge badge-green">Highest Potential · Timing Critical</span>
+    </div>
+    <div class="setup-body">
+      <div class="col-2">
+        <div>
+          <p>Minervini explicitly states that <strong>every bull market is characterized by a few leadership IPO stocks</strong>. The first base a new IPO forms after coming public is called the "primary base" — and it often produces the stock's largest subsequent advance.</p>
+          <p>The key rule: <strong>the IPO must be at least 2 months old</strong> before it is considered. This allows a proper base to form and provides enough price history to assess the trend structure.</p>
+        </div>
+        <div>
+          <ul>
+            <li>IPO must have proven itself in the market for 2+ months</li>
+            <li>A primary base must form with VCP characteristics</li>
+            <li>Volume action must confirm institutional accumulation</li>
+            <li>Fundamentals must be exceptional — IPOs without growth are avoided</li>
+            <li>Entry is on the pivot breakout above the base, same as standard VCP</li>
+          </ul>
+          <div class="mt-16"><span class="conf-high">HIGH</span> — Directly taught in Trade Like a Stock Market Wizard.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 05 — EXECUTION FRAMEWORK
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 05 · Execution Framework — Entry, Sizing, Scaling, and Exit Logic</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>EXECUTION <span>FRAMEWORK</span></h2>
+      <p>Execution is where the edge is protected or destroyed. Minervini's system has specific rules for how to enter, how to size, how to add, and how to exit — each designed to keep the risk-reward math in his favor.</p>
+
+      <h3 class="mt-24">Entry Mechanics</h3>
+      <div class="card card-stripe mt-12">
+        <h4>The Specific Entry Point</h4>
+        <ul>
+          <li><strong>Enter one cent above the pivot high</strong> — not before, not well above</li>
+          <li>Volume must be expanding <strong>intraday on the breakout day</strong></li>
+          <li>Entry should be as close to the stop as possible (tight stop = larger position for same dollar risk)</li>
+          <li>Minervini uses limit orders, not market orders</li>
+          <li>The entry logic is risk-first: know the stop price before you know the size</li>
+        </ul>
+        <div class="mt-12"><span class="conf-high">HIGH</span></div>
+      </div>
+
+      <h3 class="mt-24">Position Sizing — The Risk-First Formula</h3>
+      <div class="card card-black mt-12">
+        <h4 style="color:var(--accent);">THE FORMULA</h4>
+        <p style="font-size:13px;">Max $ Risk per Trade ÷ Stop Distance % = Position Size %</p>
+        <p style="font-size:12px;margin-top:8px;">Example: If max risk = 1% of portfolio and stop = 8% below entry → Position size = 12.5% of portfolio</p>
+        <p style="font-size:12px;">Example: If max risk = 1% and stop = 4% → Position size = 25% of portfolio</p>
+        <p style="font-size:12px;margin-top:8px;color:var(--accent);">Tighter stops → Larger positions → Same dollar risk. This is why precise entries matter.</p>
+      </div>
+
+      <h3 class="mt-24">Adding to Positions</h3>
+      <div class="callout callout-green">
+        <strong>Rule:</strong> Add only to <em>winning</em> positions that are already working. Never add to a position that is flat or down. The quote is direct: "There is no intelligent reason to increase your trading size if your positions are showing losses."
+      </div>
+      <ul class="mt-12">
+        <li>Pyramid into strength — add as the stock proves itself</li>
+        <li>Add in smaller increments than the original position</li>
+        <li>Each add must have a defined stop and still maintain the R:R target</li>
+        <li>Do not add so much that a reversal gives back most of the unrealized gain</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Trimming / Profit-Taking Strategy</h3>
+      <div class="card card-stripe-green mt-12">
+        <h4>Scaling Out Protocol (Confirmed)</h4>
+        <ol style="display:flex;flex-direction:column;gap:10px;">
+          <li>Take a <strong>partial sale when gain = 2–3× your initial stop</strong> (e.g., risk was 7%, sell part at +14–21%)</li>
+          <li>Move stop to <strong>breakeven</strong> after the first partial sale</li>
+          <li>Continue to hold remaining shares and trail the stop</li>
+          <li>Trail with the <strong>10-day MA</strong> — exit on a close below it on heavy volume</li>
+          <li>For parabolic vertical moves: take profits <strong>aggressively during the vertical spike</strong></li>
+          <li>In weak markets: take profits <strong>quicker and at smaller gains</strong></li>
+        </ol>
+        <div class="mt-16"><span class="conf-high">HIGH</span></div>
+      </div>
+
+      <h3 class="mt-24">Stop Loss Rules</h3>
+      <div class="card card-red mt-12">
+        <h4 style="color:var(--red);">Non-Negotiable Stop Rules</h4>
+        <ul>
+          <li>Maximum stop: <strong>7–8% below entry</strong> (hard limit, never exceed)</li>
+          <li>Typical stop: <strong>5–6%</strong> in normal conditions; tighter in good markets</li>
+          <li>In weak markets: tighten to <strong>4–5%</strong> and take quicker profits</li>
+          <li>Exit <strong>without question</strong> when stop is hit — no emotional override</li>
+          <li>If a stock moves 10–15% against entry, <strong>the entry timing was wrong</strong></li>
+          <li>Stop is placed at the logical technical level (below the contraction low), not at an arbitrary percentage</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-gold mt-20">
+        <strong>Minervini's discovery (from his own account analysis):</strong> He calculated that normalizing a 15% loss to a 10% stop would have turned a losing year into a 72% gain year. Tighter stops — even with more frequent small losses — dramatically improved overall performance.
+      </div>
+
+      <h3 class="mt-24">Portfolio Concentration</h3>
+      <ul>
+        <li>Optimal: <strong>4–6 stocks</strong> for most accounts</li>
+        <li>Maximum: <strong>10–12 stocks</strong> for large portfolios</li>
+        <li>True 2:1 trader → optimal position size ≈ 25% per position (4 stocks equally weighted)</li>
+        <li>Never exceed <strong>20 positions</strong> (5% weight each minimum)</li>
+        <li>Over-diversification dilutes gains and prevents focus on best setups</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3>Signs of a Low-Quality Trade or Setup — Do Not Enter</h3>
+  <div class="col-3 mt-16">
+    <div class="card card-red">
+      <h4 style="color:var(--red);">Trend Template Failures</h4>
+      <ul>
+        <li>Any of the 8 criteria fails</li>
+        <li>200-day MA declining or flat</li>
+        <li>Moving averages not stacked (50 &lt; 150 or 50 &lt; 200)</li>
+        <li>RS rating below 70</li>
+        <li>Price more than 25% below 52-week high</li>
+      </ul>
+    </div>
+    <div class="card card-red">
+      <h4 style="color:var(--red);">VCP Pattern Failures</h4>
+      <ul>
+        <li>Pullbacks widening instead of contracting</li>
+        <li>Heavy volume on the red pullback days</li>
+        <li>Lower lows forming in the base</li>
+        <li>No clear pivot/resistance level visible</li>
+        <li>Breakout on below-average volume</li>
+      </ul>
+    </div>
+    <div class="card card-red">
+      <h4 style="color:var(--red);">Behavioral / Execution Failures</h4>
+      <ul>
+        <li>Chasing a breakout that is already extended</li>
+        <li>Entering before the pivot is confirmed</li>
+        <li>Averaging down into a losing position</li>
+        <li>Holding through a stop because "it will come back"</li>
+        <li>Trading aggressively in a hostile market</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 06 — RISK MANAGEMENT MODEL
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 06 · Risk Management Model</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>RISK <span>MANAGEMENT</span></h2>
+      <p>Risk management is the structural backbone of SEPA. It is not a reactive afterthought — it is built into the entry architecture itself. Every trade starts with the stop. Everything else is calculated from there.</p>
+
+      <div class="card card-black mt-24">
+        <h3 style="color:white;margin-bottom:16px;">The Two Core Risk Rules</h3>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:36px;color:var(--accent);line-height:1;flex-shrink:0;">1</span>
+            <div>
+              <p style="font-weight:700;color:white;margin-bottom:4px;">Maximum Loss Per Trade: 7–8%</p>
+              <p style="font-size:13px;">This is the hard ceiling. The stop is placed at the logical technical level first; if that level is more than 8% away, the trade is not taken. Not a guideline — a rule.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="font-family:'Bebas Neue',cursive;font-size:36px;color:var(--accent);line-height:1;flex-shrink:0;">2</span>
+            <div>
+              <p style="font-weight:700;color:white;margin-bottom:4px;">Winners Must Be Larger Than Losers</p>
+              <p style="font-size:13px;">Minervini operates at a 45–60% win rate. The math only works because average winners (20–30%+) are 3–4× the average losers (5–7%). Asymmetric outcomes are the foundation of the strategy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-32">The Math of Survival</h3>
+      <div class="callout callout-gold">
+        <strong>Geometric loss math (Minervini's own teaching):</strong> A 20% loss requires a 25% gain to recover. A 50% loss requires a 100% gain. "Once you start going over 10%, the math starts working against you."
+      </div>
+
+      <h3 class="mt-24">Win Rate Reality Check</h3>
+      <table class="t mt-12">
+        <thead><tr><th>Scenario</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>5 winners at avg +25%, 5 losers at avg -7.5%</td><td><strong>+87.5% net on deployed capital</strong></td></tr>
+          <tr><td>One 100% winner + twelve 7–8% losers</td><td><strong>Still net positive</strong></td></tr>
+          <tr><td>Win rate drops to 40%</td><td>Still profitable if R:R ratio maintained</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3>Progressive Exposure &amp; Market-Conditional Sizing</h3>
+      <div class="card mt-16">
+        <h4>Normal Conditions</h4>
+        <ul>
+          <li>Position size calculated backward from max loss tolerance</li>
+          <li>Typical stop: 5–6% (tight entries enabled by VCP precision)</li>
+          <li>Concentrated portfolio of 4–6 positions</li>
+          <li>Add to winners in smaller increments once position proves itself</li>
+        </ul>
+      </div>
+
+      <div class="card card-stripe mt-16">
+        <h4>Weak / Hostile Market — Trader Rehab Mode</h4>
+        <p>When drawdowns accumulate or market conditions deteriorate, Minervini scales down systematically. This is not optional — it is part of the written system.</p>
+        <ul>
+          <li>Reduce position size (e.g., 5,000 shares → 1,000 shares)</li>
+          <li>Take profits quicker than normal (10–12% instead of 20–25%)</li>
+          <li>Tighten stop to 4–5% instead of 7–8%</li>
+          <li>Reduce total portfolio exposure — move to cash</li>
+          <li>Focus only on the cleanest, highest-quality VCP setups</li>
+          <li>Do not trade bigger to recover losses. Recover accuracy first.</li>
+        </ul>
+        <div class="mt-16"><span class="conf-high">HIGH</span></div>
+      </div>
+
+      <h3 class="mt-24">Profit Protection Rules</h3>
+      <ul>
+        <li>Once a trade gains 2–3× the initial risk, <strong>yesterday's profit is today's principal</strong></li>
+        <li>Move stop to breakeven after first partial sale</li>
+        <li>Never let a position that was once up 20%+ turn into a loss</li>
+        <li>In strong moves: trail the 10-day MA aggressively</li>
+        <li>In parabolic vertical moves: sell <em>into</em> the vertical spike — do not wait for the top</li>
+      </ul>
+
+      <div class="callout callout-gold mt-16">
+        <strong>Confirmed Rule:</strong> "Once I make a profit, that money belongs to me. Yesterday's profit is part of today's principal." — Minervini, Think &amp; Trade Like a Champion
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 07 — PSYCHOLOGY & PROCESS
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 07 · Psychology, Process Rules &amp; Recurring Mental Models</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>PSYCHOLOGY &amp; <span>PROCESS</span></h2>
+      <p>Minervini's psychology framework is not motivational filler — it is the operating system that keeps the mechanical rules functional under real-money pressure.</p>
+
+      <h3 class="mt-24">Core Mental Models</h3>
+      <div class="evidence-row">
+        <div class="evidence-num">1</div>
+        <div><strong>Lose correctly before winning big.</strong><p>"It's better to lose correctly than to win incorrectly." Taking the correct small loss teaches discipline. A large loss from ignoring the stop teaches the wrong lesson even if the stock eventually recovers.</p></div>
+      </div>
+      <div class="evidence-row">
+        <div class="evidence-num">2</div>
+        <div><strong>Ego is your enemy.</strong><p>Traders have to accept being wrong 40–55% of the time. Ego resistance to taking losses is the single most destructive force in the system. The market is always right; only the trader can be wrong.</p></div>
+      </div>
+      <div class="evidence-row">
+        <div class="evidence-num">3</div>
+        <div><strong>Compound the capital, not the mistakes.</strong><p>"To compound your money, and not your mistakes, your goal is to buy on the way up — not on the way down." Averaging down compounds the mistake. Averaging up compounds the win.</p></div>
+      </div>
+      <div class="evidence-row">
+        <div class="evidence-num">4</div>
+        <div><strong>Specialize ruthlessly.</strong><p>"Specialists get paid well, while those who know a little about many things make good conversation at parties." The VCP/SEPA methodology only works if it is practiced with enough repetition to develop genuine pattern recognition.</p></div>
+      </div>
+      <div class="evidence-row">
+        <div class="evidence-num">5</div>
+        <div><strong>Process over outcomes, short term.</strong><p>One trade does not define the system. The system is evaluated over a statistically significant sample of trades — at minimum, 20–30 trades before drawing conclusions about what is working or not.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Discipline Rules</h3>
+      <div class="card mt-16">
+        <ul class="checklist">
+          <li><span class="c-icon c-green">✓</span><span>Run the Trend Template screen before generating a watchlist</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Confirm fundamentals before chart analysis</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Identify the VCP structure and pivot before the market opens</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Enter on the pivot breakout only — not before the pivot</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Define the stop price before the entry is placed</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Take partial profits systematically at 2–3× risk</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Scale down during losing streaks — do not press harder</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Review trade statistics regularly and eliminate underperforming categories</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Never average down into a losing position</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Never hold through a stop loss out of hope</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Never trade aggressively in a hostile market environment</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Never jump strategy mid-drawdown before mastering the current one</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Never enter a breakout that is already well-extended past the pivot</span></li>
+        </ul>
+      </div>
+
+      <h3 class="mt-24">Daily Process (Reconstructed)</h3>
+      <ol class="mt-12" style="display:flex;flex-direction:column;gap:10px;">
+        <li><strong>Pre-market:</strong> Screen universe through Trend Template. Narrow to stocks with VCP structures forming or near pivot.</li>
+        <li><strong>Fundamental check:</strong> Verify earnings acceleration and RS for top candidates.</li>
+        <li><strong>Chart review:</strong> Mark pivot levels and set alerts for breakouts.</li>
+        <li><strong>Market open:</strong> Monitor volume on breakouts. Enter only confirmed pivots with expanding volume.</li>
+        <li><strong>Intraday:</strong> Monitor existing positions. Apply stop rules without hesitation if triggered.</li>
+        <li><strong>Post-market:</strong> Journal all trades. Track win rate, average gain, average loss, R:R. Identify which setups or sectors are underperforming.</li>
+        <li><strong>Weekly:</strong> Review statistics. Cut underperforming categories. Increase focus on best-performing patterns.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 08 — CONTRADICTIONS & EDGE ASSESSMENT
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 08 · Contradictions, Tensions &amp; Real Edge Assessment</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>CONTRADICTIONS &amp; <span>TENSIONS</span></h2>
+
+      <div class="card card-stripe mt-24" style="border-left-color:var(--amber);">
+        <h4 style="color:var(--amber);">1. Win Rate vs. "Simple System" Narrative</h4>
+        <p>Minervini openly states his win rate is 45–60%. Yet the system is often presented as high-probability. <strong>The tension:</strong> the system is not high-probability in terms of win rate; it is high-expectancy in terms of R:R. These are not the same thing, but they are sometimes conflated in marketing.</p>
+        <p style="margin-top:8px;"><span class="conf-high">High Confidence</span></p>
+      </div>
+
+      <div class="card card-stripe mt-24" style="border-left-color:var(--amber);">
+        <h4 style="color:var(--amber);">2. Aggressive Leverage Usage vs. Conservative Rule Teaching</h4>
+        <p>Minervini explicitly uses leverage in his championship accounts (his 334% return in 2021 was achieved with concentrated, leveraged positions). In teaching, leverage is not prominently emphasized as a student recommendation — this creates a gap between what he actually does to generate his returns and what he explicitly teaches.</p>
+        <p style="margin-top:8px;"><span class="conf-med">Medium Concern</span></p>
+      </div>
+
+      <div class="card card-stripe mt-24" style="border-left-color:var(--amber);">
+        <h4 style="color:var(--amber);">3. Bull Market Dependence vs. "Works in Any Market" Branding</h4>
+        <p>SEPA and VCP perform best in bull markets with expanding breadth and sector leadership. Minervini is explicit about reducing exposure in weak markets, but his book title ("Super Performance in Stocks in Any Market") and certain marketing frames suggest more universal applicability than the system actually delivers in bear markets.</p>
+        <p style="margin-top:8px;"><span class="conf-high">High Confidence</span></p>
+      </div>
+
+      <div class="card card-stripe mt-24" style="border-left-color:var(--amber);">
+        <h4 style="color:var(--amber);">4. "Any Serious Trader Can Do This" vs. Pattern Recognition Complexity</h4>
+        <p>The rules are teachable. But recognizing a genuine VCP from a failing consolidation in real time, reading volume correctly, and maintaining emotional discipline at the stop all require deep practice. The gap between knowing the rules and executing them is significant and is underrepresented in the popular framing of the system.</p>
+        <p style="margin-top:8px;"><span class="conf-high">High Confidence</span></p>
+      </div>
+    </div>
+
+    <div>
+      <h2>REAL EDGE <span>ASSESSMENT</span></h2>
+      <p>What is the actual edge, separated from the brand, the education business, and the motivational framing?</p>
+
+      <div class="card card-black mt-24">
+        <h3 style="color:white;margin-bottom:16px;">The Actual Edge — 5 Components</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div>
+            <p style="font-weight:700;color:var(--accent);margin-bottom:4px;">1. Structural Filtering (Trend Template)</p>
+            <p style="font-size:13px;">Eliminates 95%+ of stocks before any chart analysis. Keeps focus on only the stocks institutions are already buying. This filter alone dramatically improves base rate probabilities.</p>
+          </div>
+          <div>
+            <p style="font-weight:700;color:var(--accent);margin-bottom:4px;">2. Supply Exhaustion Entry (VCP)</p>
+            <p style="font-size:13px;">Entering only when supply has demonstrably dried up means the stock is entering a low-resistance environment. The entry is not at a random moment — it is at a specific inflection identified by price and volume behavior.</p>
+          </div>
+          <div>
+            <p style="font-weight:700;color:var(--accent);margin-bottom:4px;">3. Risk-First Sizing Math</p>
+            <p style="font-size:13px;">Tight entries = larger positions with the same dollar risk. Most traders size positions and then figure out the risk. Minervini does the inverse. This alone changes the profit profile materially.</p>
+          </div>
+          <div>
+            <p style="font-weight:700;color:var(--accent);margin-bottom:4px;">4. Asymmetric R:R (Losers Small, Winners Run)</p>
+            <p style="font-size:13px;">The 7–8% hard stop keeps losers controlled. Trailing exits allow winners to extend to 50–100%+. Winning 50% of the time with 3–4× R:R is mathematically superior to winning 70% at 1:1.</p>
+          </div>
+          <div>
+            <p style="font-weight:700;color:var(--accent);margin-bottom:4px;">5. Data-Driven Self-Refinement</p>
+            <p style="font-size:13px;">Tracking statistics by setup type, price range, and sector and eliminating underperforming categories is how the system improves. Most traders do not do this with enough discipline. Minervini does.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-gold mt-20">
+        <strong>Branding vs. Edge:</strong> The motivational packaging (the championship story, the 33,500% number, the "anyone can do this" message) is real in the sense that the strategy is genuinely teachable. But the leverage, the decades of screen time, and the institutional-level fundamental research that goes into his own trading represent barriers that the educational product packaging cannot fully convey.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 09 — PROS & CONS + VS COMPARISON
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 09 · Strategy Assessment &amp; Comparison</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <h2>PROS &amp; CONS OF <span>THE SYSTEM</span></h2>
+  <p>The rules are among the most clearly documented in public retail investing. The weak points are regime dependence and the execution gap between knowing and doing.</p>
+
+  <div class="pros-cons mt-28">
+    <div class="pros-col">
+      <h4 style="color:var(--green);">✓ &nbsp; Confirmed Strengths</h4>
+      <ul style="list-style:none;padding:0;margin-top:16px;">
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--green);font-weight:800;">+</span><span>8-point Trend Template is fully quantifiable and automatable</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--green);font-weight:800;">+</span><span>VCP pattern logic is explainable, teachable, and identifiable on charts</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--green);font-weight:800;">+</span><span>Hard 7–8% stop prevents catastrophic account drawdowns</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--green);font-weight:800;">+</span><span>Risk-first sizing produces larger positions with identical dollar risk</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--green);font-weight:800;">+</span><span>Performance data is audited and verified over a 5-year period</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--green);font-weight:800;">+</span><span>System explicitly adjusts to market conditions — avoids blind trading</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--green);font-weight:800;">+</span><span>Statistical self-review framework built into the methodology</span></li>
+        <li style="display:flex;gap:10px;"><span style="color:var(--green);font-weight:800;">+</span><span>Long track record across multiple market cycles (1994–present)</span></li>
+      </ul>
+    </div>
+    <div class="cons-col">
+      <h4 style="color:var(--red);">✗ &nbsp; Confirmed Limitations</h4>
+      <ul style="list-style:none;padding:0;margin-top:16px;">
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--red);font-weight:800;">−</span><span>Highly dependent on bull market conditions and sector leadership</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--red);font-weight:800;">−</span><span>Real-time VCP identification requires substantial screen time to develop</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--red);font-weight:800;">−</span><span>Championship returns involved leverage not prominently taught to students</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--red);font-weight:800;">−</span><span>Pattern can fail with volume-less breakouts, especially in extended markets</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--red);font-weight:800;">−</span><span>Requires significant fundamental research capacity (earnings, margins, institutional filings)</span></li>
+        <li style="display:flex;gap:10px;margin-bottom:12px;"><span style="color:var(--red);font-weight:800;">−</span><span>Emotional discipline to exit at 7–8% is harder than it appears in writing</span></li>
+        <li style="display:flex;gap:10px;"><span style="color:var(--red);font-weight:800;">−</span><span>Strategy explicitly recommends moving to cash in bear markets — opportunity cost for those seeking always-invested approaches</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h3 class="mt-32">Comparison: Minervini VCP vs. William O'Neil CANSLIM</h3>
+  <p style="margin-bottom:20px;">Minervini explicitly credits O'Neil as a major influence. Understanding the differences clarifies what VCP adds beyond CANSLIM.</p>
+
+  <div class="vs-grid">
+    <div class="card card-gold" style="border-radius:8px 0 0 8px;">
+      <h4 style="color:var(--accent-dark);">MINERVINI — VCP / SEPA</h4>
+      <ul>
+        <li>Entry at the <strong>tightest contraction</strong> within the base (final pivot)</li>
+        <li>Multiple contraction sequence is required (not just one pivot)</li>
+        <li>Volume dry-up within each contraction is explicit and measured</li>
+        <li>Risk-first sizing math is a core structural innovation</li>
+        <li>Explicit "Trader Rehab" protocol for losing streaks</li>
+        <li>Statistical self-refinement by setup category is built in</li>
+      </ul>
+    </div>
+    <div class="vs-divider"><div class="vs-circle">VS</div></div>
+    <div class="card" style="border-radius:0 8px 8px 0;border-left:none;">
+      <h4 style="color:var(--black);">O'NEIL — CANSLIM / CUP WITH HANDLE</h4>
+      <ul>
+        <li>Cup-with-handle focuses on one major base plus one smaller consolidation (handle)</li>
+        <li>Seven fundamental factors (C, A, N, S, L, I, M) are more prescriptive</li>
+        <li>VCP can form inside a cup-with-handle's handle</li>
+        <li>O'Neil's system is primarily daily chart; VCP works across daily and weekly</li>
+        <li>Risk management approach is similar but less precisely articulated</li>
+        <li>Both systems agree on Stage 2, volume on breakout, and RS importance</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 10 — RULES-BASED RECONSTRUCTION
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 10 · Rules-Based Reconstruction — Executable Checklists</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <h2>RULES-BASED <span>RECONSTRUCTION</span></h2>
+  <p>This section converts the entire playbook into a simple executable format. Use this as a daily operating reference — not as a substitute for studying the underlying logic.</p>
+
+  <div class="col-2 mt-28">
+    <div>
+      <div class="card card-gold mb-20">
+        <h3>Pre-Trade Checklist — Stock Selection</h3>
+        <ul class="checklist mt-12">
+          <li><span class="c-icon c-green">✓</span><span>All 8 Trend Template criteria pass</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Stage 2 uptrend confirmed on daily and weekly chart</span></li>
+          <li><span class="c-icon c-green">✓</span><span>EPS growth accelerating (20%+ preferred, improving vs. prior quarters)</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Revenue growth 15–20%+</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Margins expanding, not contracting</span></li>
+          <li><span class="c-icon c-green">✓</span><span>RS rating 70+, ideally 80s–90s</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Institutional ownership increasing (check 13F filings)</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT qualify cyclicals or merger candidates</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT qualify Stage 4 stocks regardless of earnings news</span></li>
+        </ul>
+      </div>
+
+      <div class="card mb-20">
+        <h3>VCP Pattern Checklist</h3>
+        <ul class="checklist mt-12">
+          <li><span class="c-icon c-green">✓</span><span>Prior advance of 25%+ before the base formed</span></li>
+          <li><span class="c-icon c-green">✓</span><span>2–6 contractions visible, each smaller than the last</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Volume lower on each successive pullback</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Higher lows throughout — no new lows in the base</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Stock currently in tightest phase (right side of base)</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Clear, identifiable pivot/resistance level visible</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Volume near its lowest point in the base</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Quick recoveries (tennis ball) after each small pullback</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Entry Checklist</h3>
+        <ul class="checklist mt-12">
+          <li><span class="c-icon c-green">✓</span><span>All VCP pattern criteria confirmed</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Overall market in a healthy bull phase</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Stop distance ≤ 7–8% from entry (if wider, skip)</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Position size calculated from max dollar risk ÷ stop distance</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Breakout volume is 40–50%+ above 50-day average</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Entry is one cent above the pivot high</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT enter before the pivot is broken</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT enter on light or average volume breakouts</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT chase an already-extended move past the pivot</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="card card-red mb-20">
+        <h3>Risk Checklist</h3>
+        <ul>
+          <li>Hard stop set at logical technical level — below last contraction low</li>
+          <li>Maximum stop distance: 7–8% below entry — no exceptions</li>
+          <li>Typical target: 3–4% stop distance → first exit at 2–3× that risk</li>
+          <li>Never average down into a losing position</li>
+          <li>Scale down position size during losing streaks</li>
+          <li>Reduce exposure in hostile market environments — move toward cash</li>
+          <li>Do not use leverage without tightening stops proportionally</li>
+        </ul>
+      </div>
+
+      <div class="card mb-20">
+        <h3>Exit Checklist</h3>
+        <ul class="checklist mt-12">
+          <li><span class="c-icon c-green">✓</span><span>Take first partial at 2–3× initial risk</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Move stop to breakeven after first partial</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Trail remaining shares with 10-day MA</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Sell aggressively into vertical / parabolic moves</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Exit if stock closes below 10-day MA on heavy volume</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT hold through the hard stop — exit without question</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT let a position that was +20% turn into a loss</span></li>
+          <li><span class="c-icon c-red">✗</span><span>Do NOT hold a vertical parabolic move hoping for more</span></li>
+        </ul>
+      </div>
+
+      <div class="card card-red">
+        <h3>No-Trade Conditions</h3>
+        <ul>
+          <li>Any Trend Template criteria fails</li>
+          <li>Fundamentals do not show earnings acceleration</li>
+          <li>VCP contractions not clearly tightening</li>
+          <li>Volume is rising on the pullbacks (distribution signal)</li>
+          <li>New lows are forming in the base</li>
+          <li>Breakout lacks volume expansion</li>
+          <li>Overall market in distribution / declining breadth</li>
+          <li>You are currently in a losing streak — reduce size first</li>
+          <li>The only reason to enter is FOMO, not checklist confirmation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 11 — BEGINNER / INTERMEDIATE VERSIONS + CHEAT SHEET
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 11 · Beginner Version, Intermediate Version &amp; Quick-Reference Cheat Sheet</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <div class="col-2">
+    <div>
+      <h2>SKILL-LEVEL <span>VERSIONS</span></h2>
+
+      <div class="card card-blue mt-16">
+        <h3>Beginner Version — The Simplified VCP</h3>
+        <p>Focus on mastering one thing: identifying a stock that is in a confirmed uptrend, forming tighter and tighter pullbacks, and breaking out on high volume. Everything else is secondary until this recognition is automatic.</p>
+        <h4 class="mt-16">Your 3-Part Focus</h4>
+        <ol style="display:flex;flex-direction:column;gap:10px;">
+          <li><strong>Stage 2 only.</strong> Run the Trend Template. If any of the 8 criteria fail, move on. Do not rationalize exceptions.</li>
+          <li><strong>VCP basics.</strong> Find the stock making smaller and smaller pullbacks with quieter and quieter volume. That is the setup. Wait for the breakout.</li>
+          <li><strong>Hard stop, no arguments.</strong> Set your stop at 5–7% below entry. If it hits, you exit. Period. This one skill, done correctly, protects your account while everything else develops.</li>
+        </ol>
+        <div class="callout callout-gold mt-16">
+          <strong>Beginner rule:</strong> Paper trade the setup identification for 60 days before risking real money. Track win rate, average gain, and average loss. Fix the framework before adding capital.
+        </div>
+      </div>
+
+      <div class="card card-green mt-20">
+        <h3>Intermediate Version — Full SEPA Execution</h3>
+        <p>You can identify VCPs consistently. Now add the layers that turn a pattern-matching skill into a full risk-managed system.</p>
+        <h4 class="mt-16">4 Layers to Add</h4>
+        <ol style="display:flex;flex-direction:column;gap:10px;">
+          <li><strong>Fundamental pre-filter.</strong> Before charting any stock, run the EPS acceleration check. Eliminate decelerating earners even if the chart looks good.</li>
+          <li><strong>Risk-first sizing.</strong> Stop calculating how many shares you want. Calculate your max dollar risk first, divide by the stop %, and that is your position size. This changes everything.</li>
+          <li><strong>Market condition adjustment.</strong> Track overall market breadth. When breadth deteriorates, cut position sizes in half. When it improves, restore them. The market environment determines your aggressiveness level.</li>
+          <li><strong>Statistical self-review.</strong> Track every trade. After 20+ trades, review: what is your win rate, average gain, average loss? Eliminate the setups or sectors where your numbers are worst.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div>
+      <h3>One Realistic Trade Example (Reconstructed from Documented Logic)</h3>
+      <div class="card card-black mt-16">
+        <h4 style="color:var(--accent);">HYPOTHETICAL VCP TRADE WALKTHROUGH</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+          <div style="padding:10px 0;border-bottom:1px solid #333;">
+            <span style="color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;">STEP 1 — SCREEN</span>
+            <p style="font-size:13px;">Stock passes all 8 Trend Template criteria. EPS grew 45% last quarter vs. 22% prior quarter (accelerating). RS rating of 88. Sector showing broad institutional buying.</p>
+          </div>
+          <div style="padding:10px 0;border-bottom:1px solid #333;">
+            <span style="color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;">STEP 2 — VCP IDENTIFICATION</span>
+            <p style="font-size:13px;">Prior advance: +65% over 4 months. Base now 7 weeks old. Three visible contractions: 18% → 11% → 6%. Volume progressively lower on each pullback. Currently in tightest phase. Pivot identified at $85.00.</p>
+          </div>
+          <div style="padding:10px 0;border-bottom:1px solid #333;">
+            <span style="color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;">STEP 3 — ENTRY</span>
+            <p style="font-size:13px;">Stock breaks $85.01 at 10:15 AM on 2.3× average volume. Entry confirmed. Stop set at $79.10 (7% below entry at $85.01). Dollar risk = 1% of portfolio → Position size = 14.3% of portfolio.</p>
+          </div>
+          <div style="padding:10px 0;border-bottom:1px solid #333;">
+            <span style="color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;">STEP 4 — MANAGEMENT</span>
+            <p style="font-size:13px;">Stock reaches $96.00 (+13% = ~2× risk). Sell 30% of position. Stop moved to $85.01 (breakeven). Stock continues to $108.00. Trailing with 10-day MA. 10-day MA is at $98.00.</p>
+          </div>
+          <div style="padding:10px 0;">
+            <span style="color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;">STEP 5 — EXIT</span>
+            <p style="font-size:13px;">Stock closes below 10-day MA on heavy volume at $97.00. Remaining position is sold. Total trade: partial sell at +13%, final exit at +14% average. Stop never hit. Capital preserved for next setup.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="mt-24">Quick-Reference Cheat Sheet</h3>
+      <div class="card card-stripe mt-12">
+        <h4>VCP / SEPA — ONE PAGE</h4>
+        <table class="t mt-8">
+          <tbody>
+            <tr><td><strong>Pre-screen</strong></td><td>8-point Trend Template passes. EPS accelerating. RS 70+.</td></tr>
+            <tr><td><strong>Pattern</strong></td><td>2–6 contractions. Each smaller. Volume drier each time.</td></tr>
+            <tr><td><strong>Entry</strong></td><td>1 cent above pivot. Volume 40–50%+ above average. Limit order.</td></tr>
+            <tr><td><strong>Stop</strong></td><td>Below last contraction low. Max 7–8%. Size backward from this.</td></tr>
+            <tr><td><strong>First profit</strong></td><td>2–3× risk. Move stop to breakeven.</td></tr>
+            <tr><td><strong>Trail</strong></td><td>10-day MA. Exit on close below it with heavy volume.</td></tr>
+            <tr><td><strong>Parabolic</strong></td><td>Sell into the vertical spike. Do not wait for the top.</td></tr>
+            <tr><td><strong>Loser</strong></td><td>Stop hit → exit without question. No averaging down. Ever.</td></tr>
+            <tr><td><strong>Bad market</strong></td><td>Cut size. Tighten stops to 4–5%. Take profits faster.</td></tr>
+            <tr><td><strong>Losing streak</strong></td><td>Reduce size first. Restore accuracy. Then restore size.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 12 — FINAL ANALYSIS
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-label">
+    <span>Section 12 · Final Analysis &amp; Reliability Rating</span>
+    <span>Mark Minervini · SEPA / VCP System</span>
+  </div>
+
+  <h2>TOP 5 STRONGEST <span>TAKEAWAYS</span></h2>
+  <div class="takeaway-grid mt-24">
+    <div class="takeaway-card">
+      <div class="takeaway-num">01</div>
+      <div class="takeaway-text">The Trend Template is the most mechanical and replicable part of the system. It requires no discretion and can be automated. Every VCP trade starts here — not at the chart.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="takeaway-num">02</div>
+      <div class="takeaway-text">The VCP's core insight is supply exhaustion, not just pattern shape. Volume behavior within each contraction matters as much as the price contraction itself.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="takeaway-num">03</div>
+      <div class="takeaway-text">The 7–8% hard stop is not a guideline. It was reverse-engineered from decades of loss data and is the structural protection that makes the asymmetric R:R possible.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="takeaway-num">04</div>
+      <div class="takeaway-text">Risk-first position sizing is the most underappreciated part of the system. Tight entries enable larger positions with the same dollar risk — this is the math behind the big returns.</div>
+    </div>
+    <div class="takeaway-card">
+      <div class="takeaway-num">05</div>
+      <div class="takeaway-text">The system is explicitly designed to be reduced during bad markets. Knowing when NOT to trade is treated as a core skill, not a failure. Cash is a valid position in SEPA.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2 class="mt-32">TOP 5 UNRESOLVED <span>UNKNOWNS</span></h2>
+  <div class="unknown-grid mt-24">
+    <div class="unknown-card">
+      <div class="unknown-num">?1</div>
+      <div class="unknown-text">Exact leverage ratios used in championship accounts. The rules do not specify what is publicly modeled vs. privately executed.</div>
+    </div>
+    <div class="unknown-card">
+      <div class="unknown-num">?2</div>
+      <div class="unknown-text">Precise bear market accuracy and drawdown data. Performance in 2002, 2008, and 2022 bear markets is not comprehensively documented publicly.</div>
+    </div>
+    <div class="unknown-card">
+      <div class="unknown-num">?3</div>
+      <div class="unknown-text">Full scanner and screening criteria used in live trading. The Trend Template is public but exact filters within Private Access are not fully disclosed.</div>
+    </div>
+    <div class="unknown-card">
+      <div class="unknown-num">?4</div>
+      <div class="unknown-text">Exact partial-profit percentages in live trades. "2–3× risk" is the rule, but real-time decisions under market pressure may vary from the documented framework.</div>
+    </div>
+    <div class="unknown-card">
+      <div class="unknown-num">?5</div>
+      <div class="unknown-text">How significantly the strategy has evolved since the initial 1994–2000 era that produced the 220% average annual return. Market structure changes may affect replication.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="col-2 mt-32">
+    <div>
+      <h2>TRUE OPERATING <span>STYLE</span></h2>
+      <div class="callout callout-gold mt-16" style="padding:24px;">
+        <p>Mark Minervini operates as a systematic growth-stock momentum trader who uses fundamental acceleration to identify institutional favorites and then times entries with extreme precision using the VCP pattern. His real edge is not chart-reading alone — it is the convergence of earnings acceleration, Stage 2 trend structure, supply exhaustion at the pivot, and risk-first position sizing that collectively produce an asymmetric outcome profile. The system requires bull market conditions to perform at its best, explicitly instructs the trader to reduce exposure in weak markets, and demands both mechanical discipline (the stop) and informed judgment (reading volume within contractions). It is one of the most fully documented and reproducible systems in public retail investing literature, though the gap between the written rules and live execution precision remains substantial for developing traders.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2>EDGE <span>CHECKLIST</span></h2>
+      <div class="card mt-16">
+        <ul class="checklist">
+          <li><span class="c-icon c-green">✓</span><span>Structural edge: Trend Template eliminates 95% of stocks before analysis</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Fundamental edge: only trades stocks with institutional buying evidence</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Supply edge: enters only when volume confirms seller exhaustion</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Sizing edge: risk-first math produces larger positions with identical dollar risk</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Behavioral edge: hard stop removes emotion from the loss decision</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Asymmetric edge: average winners 3–4× average losers</span></li>
+          <li><span class="c-icon c-green">✓</span><span>Refinement edge: data-driven removal of underperforming categories</span></li>
+        </ul>
+      </div>
+
+      <div class="card card-black mt-16">
+        <h4 style="color:rgba(255,255,255,.5);">Final Reliability Rating</h4>
+        <p style="font-family:'Bebas Neue',cursive;font-size:26px;color:var(--accent);margin:8px 0;letter-spacing:.03em;">HIGHLY RECONSTRUCTABLE</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.65);">The Trend Template, VCP structure, stop rules, sizing logic, profit-taking protocol, and market-condition adjustments are all explicitly documented across two books, multiple interviews, and live trading records. A serious trader can build a functional version of this system from public sources alone. Live execution precision and real-time pattern recognition are the remaining barriers — both solvable through deliberate practice.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Mark Minervini VCP / SEPA Playbook Analysis · Built from Trade Like a Stock Market Wizard (2013), Think &amp; Trade Like a Champion (2017), Momentum Masters (2015), Verified Interviews &amp; Documented Trade Data · For Educational Research Purposes Only · Not Financial Advice · Past performance is not indicative of future results</div>
+
+</body>
+</html>
