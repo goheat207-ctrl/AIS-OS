@@ -1,5 +1,5 @@
----
-title: "Trading Prompts — AI-Assisted Analysis and Automation"
+﻿---
+title: "Trading Prompts â€” AI-Assisted Analysis and Automation"
 type: topic
 tags: [prompts, trading-automation, stock-analysis, backtesting, journal-analysis]
 source_count: 2
@@ -9,13 +9,13 @@ updated: 2026-05-11
 
 ## What This Is
 
-A curated set of LLM prompts for trading workflows — sourced from X (Twitter) posts. Organized by function. The best ones are already implemented in [[blaine-os]] or map directly to [[q2_goals]].
+A curated set of LLM prompts for trading workflows â€” sourced from X (Twitter) posts. Organized by function. The best ones are already implemented in [[blaine-os]] or map directly to [[q2_goals]].
 
 **Warning from the community:** prompts without outcome tracking = confirmation bias. Always tie outputs to real trade data. See [[trading_context]].
 
 ---
 
-## Tier 1 — Already in the OS
+## Tier 1 â€” Already in the OS
 
 These are implemented or directly matched to existing agents/tools.
 
@@ -30,11 +30,11 @@ These are implemented or directly matched to existing agents/tools.
 
 ---
 
-## Tier 2 — Run Manually Now
+## Tier 2 â€” Run Manually Now
 
 These work today as one-off prompts pasted into Claude directly.
 
-**Strategy Backtester** *(Q2 goal — TOS backtester build)*
+**Strategy Backtester** *(Q2 goal â€” TOS backtester build)*
 > "Backtest the [trading strategy, e.g., moving average crossover, RSI divergence] on [stock/index] over the past [time period]. Report the win rate, profit factor, maximum drawdown, and suggest potential improvements to enhance performance."
 
 Can also run via [[fincept_tools]] backtesting module for deeper results.
@@ -47,7 +47,7 @@ Can also run via [[fincept_tools]] backtesting module for deeper results.
 
 ---
 
-## Tier 3 — Reference / Situational
+## Tier 3 â€” Reference / Situational
 
 **Complete Stock Analysis** *(what the pre-market brief produces for A-tier setups)*
 > "Combine business analysis, financial health, valuation, industry context, risk assessment, and technical structure into a structured investment summary for [stock]."
@@ -62,17 +62,21 @@ Can also run via [[fincept_tools]] backtesting module for deeper results.
 
 ## Key Principle
 
-> "Most retail investors don't need AI analysis — they need discipline. If you're not backtesting or tracking accuracy over time, you're just getting expensive confirmation bias." — @Agent_Kro_Works
+> "Most retail investors don't need AI analysis â€” they need discipline. If you're not backtesting or tracking accuracy over time, you're just getting expensive confirmation bias." â€” @Agent_Kro_Works
 
-All prompt outputs should be checked against actual trade history in [[trading_context]] — not just narrative.
+All prompt outputs should be checked against actual trade history in [[trading_context]] â€” not just narrative.
 
 ---
 
 ## Sources
 
-- [[src_20260510_ai_trading_prompts_med1]] — 7 equity research prompts (@Med1_Ai)
-- [[src_20260510_ai_trading_prompts_shahriar]] — 7 trading automation prompts (@Shahriar661731)
+- [[src_20260510_ai_trading_prompts_med1]] â€” 7 equity research prompts (@Med1_Ai)
+- [[src_20260510_ai_trading_prompts_shahriar]] â€” 7 trading automation prompts (@Shahriar661731)
 
 ## Links
 
-[[q2_goals]] · [[trading_context]] · [[blaine]] · [[thinkorswim]]
+
+[[professional_grade_prompt_structure]]
+[[premarket_small_cap_indicator_prompt]]
+[[q2_goals]] Â· [[trading_context]] Â· [[blaine]] Â· [[thinkorswim]]
+

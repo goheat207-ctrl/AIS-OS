@@ -51,3 +51,28 @@ Note: Books cataloged but not fully ingested — too large to process all at onc
 Source: flagged gap in [[index]]
 Pages created: [[thinkorswim]], [[trading_prompts]]
 Pages updated: [[index]] (Entities + Topics sections, gap removed)
+
+## [2026-05-12] cleanup | Obsidian loose topic notes
+
+Converted 34 loose .txt files in Agentic_OS/wiki/topics/ into Markdown topic notes with frontmatter and headings.
+Pages created: [[imported_trading_notes]]
+Pages updated: [[index]]
+
+## [2026-05-12] cleanup | Second-brain connection pass
+
+Added connector pages for [[fincept_tools]], [[blaine-os]], and [[small_cap_catalyst]].
+Moved two loose prompt notes into topic pages: [[professional_grade_prompt_structure]] and [[premarket_small_cap_indicator_prompt]].
+Created [[quadrant_trading_system_assets]] for loose Obsidian images and [[raw_source_inbox]] for raw files that still need future ingest.
+Cleaned old external folder links in [[SMALL_CAP_BREAKOUT_STRATEGY]] so they no longer appear as broken Obsidian wiki links.
+
+## [2026-05-12] setup | Obsidian Web Clipper routing
+
+Created `D:\AIS-OS\obsidian-web-clipper-ais-os-settings.json` for Web Clipper import.
+Routes clips into `Agentic_OS/raw/articles` and `Agentic_OS/raw/notes` so the wiki stays compiled instead of becoming a dumping ground.
+Pages created: [[src_20260512_obsidian_web_clipper_settings]]
+Pages updated: [[index]]
+
+## [2026-05-12] update | Web Clipper schema alignment
+
+Updated `D:\AIS-OS\obsidian-web-clipper-ais-os-settings.json` so all templates include the actual vault schema fields from [[SCHEMA]] and [[SCHEMA 1]].
+Pages updated: [[src_20260512_obsidian_web_clipper_settings]]

@@ -4,24 +4,37 @@
     "type": "split",
     "children": [
       {
-        "id": "f50fb7f789f8bec1",
+        "id": "28608561bde383c8",
         "type": "tabs",
         "children": [
           {
             "id": "ad4319cb7a6126fc",
             "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "graph",
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "a27c19e7acbbf9ec",
+            "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/SCHEMA.md",
+                "file": "wiki/index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SCHEMA"
+              "title": "index"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -73,88 +86,49 @@
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
+          },
+          {
+            "id": "2b06b2c2c6355bb1",
+            "type": "leaf",
+            "state": {
+              "type": "notebook-navigator",
+              "state": {},
+              "icon": "notebook-navigator",
+              "title": "Notebook Navigator"
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 425.5024757385254
   },
   "right": {
     "id": "de770409e292ba58",
     "type": "split",
     "children": [
       {
-        "id": "b84398046af22416",
+        "id": "7298bdc09adb98b7",
         "type": "tabs",
         "children": [
           {
-            "id": "fc1e0b6371d1b462",
+            "id": "6a9037439937a36f",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "backlink",
-              "state": {
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Backlinks"
-            }
-          },
-          {
-            "id": "e05c639106ccf952",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-tags",
-              "title": "Tags"
-            }
-          },
-          {
-            "id": "6ca64424b3d1a386",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency",
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-archive",
-              "title": "All properties"
-            }
-          },
-          {
-            "id": "5c6b694df0ebbbe9",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "Outline"
+              "type": "calendar",
+              "state": {},
+              "pinned": true,
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 309.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -164,55 +138,62 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "bases:Create new base": false,
-      "graph:Open graph view": false
+      "graph:Open graph view": false,
+      "obsidian-import-json:JSON/CSV Importer": false,
+      "notebook-navigator:Notebook Navigator": false,
+      "periodic-notes:Open today": false,
+      "rss-dashboard:RSS dashboard": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "ad4319cb7a6126fc",
+  "active": "a27c19e7acbbf9ec",
   "lastOpenFiles": [
-    "wiki/SECOND_BRAIN_GUIDE.md",
-    "wiki/index.md",
     "wiki/log.md",
-    "filename_without_extension/(1) Grok.md",
+    "wiki/index.md",
+    "wiki/SCHEMA 1.md",
     "wiki/SCHEMA.md",
-    "filename_without_extension",
-    "wiki/entities/Prompts  NOT looking for basic retail answers.md",
-    "wiki/entities/professional-grade prompt structure.md",
-    "wiki/topics/trading_prompts.md",
+    "wiki/SECOND_BRAIN_GUIDE.md",
     "wiki/entities/codex.md",
-    "wiki/SECOND_BRAIN_GUIDE.md.tmp.112396.711ce5de8c70",
-    "wiki/log.md.tmp.112396.b7453bf2104f",
-    "wiki/log.md.tmp.112396.dba7d86b65bd",
-    "wiki/index.md.tmp.112396.59be886dc642",
-    "wiki/index.md.tmp.112396.3b88c9d915b2",
-    "wiki/sources/src_20260511_account_statement_schwab.md",
-    "wiki/sources/src_20260511_account_statement_schwab.md.tmp.112396.8f600b60e687",
-    "wiki/topics/playbook_library.md",
-    "wiki/topics/playbook_library.md.tmp.112396.b800caf656e7",
-    "wiki/sources/src_20260511_smart_money_tracking_milesdeutscher.md",
-    "wiki/sources/src_20260511_smart_money_tracking_milesdeutscher.md.tmp.112396.090f74a0b087",
-    "raw/data/CLIK, CLIK, CLIK, CLIK, CLIK - Flexible Grid Main@thinkorswim [build 1991] 2026-05-11 07-22-11.mp4",
-    "raw/data/2026-05-05-t&s-SOBR.png",
-    "raw/data/2026-05-05-AT-SOBR.png",
-    "raw/data/2026-05-05-lvl2-SOBR.png",
-    "raw/data/2026-05-05-FLEXIBLE_GRID.png",
-    "raw/thinkorswim.md",
-    "raw/articles/Post by @RoundtableSpace on X.md",
-    "raw/articles/Post by @OpenledgerHQ on X.md",
     "wiki/entities/trading_agents.md",
-    "raw/articles/Post by @tom_doerr on X.md",
-    "raw/articles/Post by @milesdeutscher on X.md",
     "wiki/entities/thinkorswim.md",
-    "raw/articles/Post by @Shahriar661731 on X.md",
-    "wiki/sources/src_20260510_ai_trading_prompts_shahriar.md",
-    "wiki/sources/src_20260510_ai_trading_prompts_med1.md",
-    "raw/articles/Post by @Med1_Ai on X.md",
-    "2026-05-11.md",
     "wiki/entities/blaine.md",
+    "wiki/sources/src_20260512_obsidian_web_clipper_settings.md",
+    "wiki/topics/step_5_mental_override_rule_critical.png",
+    "wiki/topics/step_4_make_this_mechanical_in_thinkorswim.png",
+    "wiki/topics/step_3_trade_rules_by_quadrant_execution_layer.png",
+    "wiki/topics/web_scraping_ai_agents_for_news_sites.md",
+    "wiki/sources/raw_source_inbox.md",
+    "wiki/topics/Web scraping AI agents for news sites.md",
+    "wiki/topics/trading_context.md",
+    "wiki/topics/quadrant_trading_system_assets.md",
+    "wiki/entities/small_cap_catalyst.md",
+    "wiki/entities/blaine-os.md",
+    "wiki/entities/fincept_tools.md",
+    "wiki/topics/q2_goals.md",
     "wiki/topics/adhd_workflow.md",
-    "Screenshot 2026-05-09 212303.png",
-    "Screenshot 2026-05-09 212357.png",
-    "Screenshot 2026-05-09 212536.png",
-    "Screenshot 2026-05-09 213130.png",
-    "Screenshot 2026-05-09 212704.png"
+    "wiki/topics/trading_prompts.md",
+    "wiki/topics/playbook_library.md",
+    "wiki/topics/premarket_small_cap_indicator_prompt.md",
+    "wiki/topics/professional_grade_prompt_structure.md",
+    "raw/data/2026-05-12-FLEXIBLE_GRID.png",
+    "wiki/topics/imported_trading_notes.md",
+    "wiki/topics/transcript_of_trading_psychology_mindset_and_dopamine.md",
+    "wiki/topics/about.md.txt",
+    "wiki/topics/About Liquidity 1.txt",
+    "wiki/topics/QUADRANT  DEAD ZONE.png",
+    "wiki/topics/DILUTION RISK SCORE (DRS).png",
+    "wiki/topics/Bottom Line QUADRANT.png",
+    "wiki/topics/STEP 5 — Mental Override Rule (Critical).png",
+    "wiki/topics/STEP 4 — Make This Mechanical in ThinkOrSwim.png",
+    "wiki/topics/STEP 3 — Trade Rules by Quadrant (Execution Layer).png",
+    "wiki/topics/Transcript of The Best Price Action Trader In The World - Al Brooks  Trader Interview.txt",
+    "wiki/topics/Transcript of The 7 Trading Signals You Can’t Trade Without.txt",
+    "wiki/topics/Transcript of Brooks Price Action - Trading Opening Breakouts & Reversals.txt",
+    "wiki/topics/Transcript of Ask Al Brooks - Tips on when to enter pullbacks.txt",
+    "wiki/topics/Transcript of Al Brooks Webinar - TradersEXPO Las Vegas Trading the Open.txt",
+    "wiki/topics/Transcript of Al Brooks- The Godfather of Price Action  Unparalleled Wisdom & Mastery.txt",
+    "wiki/topics/Transcript of Al Brooks Entering Late in Trends.txt",
+    "wiki/topics/third day surge.txt"
   ]
 }

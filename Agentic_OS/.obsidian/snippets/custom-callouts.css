@@ -1,0 +1,4 @@
+.callout[data-callout="missing-tags"] {
+    --callout-color: 255, 0, 0; /* Red color */
+    --callout-icon: lucide-alert-triangle; /* Optional: Sets a warning icon */
+}

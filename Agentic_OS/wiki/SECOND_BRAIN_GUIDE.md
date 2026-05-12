@@ -1,3 +1,12 @@
+---
+title: Second Brain Guide
+type: topic
+tags: [second_brain, obsidian, guide]
+source_count: 1
+created: 2026-05-11
+updated: 2026-05-12
+---
+
 # Second Brain — How to Use It
 
 The second brain is a query database, not a filing cabinet. Don't add things to feel organized. Add things you intend to ask questions about later. If you can't picture asking a question about it, don't add it.

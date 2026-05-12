@@ -1,0 +1,335 @@
+/* ============================================================
+   CLAUDE.AI OBSIDIAN THEME v2 — SAFE BUILD
+   Drop into: YourVault/.obsidian/snippets/
+   Enable:    Appearance → CSS Snippets → toggle ON
+   ============================================================ */
+
+/* ── COLOR TOKENS ───────────────────────────────────────────── */
+:root {
+  --clai-bg: #1c1b1afb;
+  --clai-sidebar: #121111;
+  --clai-panel: #141212;
+  --clai-elevated: #222222;
+  --clai-border: #2a2a2a;
+  --clai-border-mid: #646161;
+  --clai-text: #ebebeb;
+  --clai-muted: #d5d5d5;
+  --clai-faint: #efe8e8;
+  --clai-accent: #da7756;
+  --clai-accent-warm: #e8875a;
+  --clai-accent-dim: rgba(218, 119, 86, 0.15);
+  --clai-accent-glow: rgba(218, 119, 86, 0.07);
+}
+
+/* ── OBSIDIAN VARIABLE MAP ──────────────────────────────────── */
+.theme-dark {
+  --background-primary: var(--clai-bg);
+  --background-primary-alt: var(--clai-sidebar);
+  --background-secondary: var(--clai-sidebar);
+  --background-secondary-alt: var(--clai-panel);
+  --background-modifier-hover: rgba(255, 255, 255, 0.05);
+  --background-modifier-active-hover: rgba(255, 255, 255, 0.07);
+  --background-modifier-border: var(--clai-border);
+  --background-modifier-border-hover: var(--clai-border-mid);
+  --background-modifier-border-focus: var(--clai-accent);
+  --text-normal: var(--clai-text);
+  --text-muted: var(--clai-muted);
+  --text-faint: var(--clai-faint);
+  --text-on-accent: #ffffff;
+  --text-accent: var(--clai-accent);
+  --text-accent-hover: var(--clai-accent-warm);
+  --text-selection: var(--clai-accent-dim);
+  --interactive-accent: var(--clai-accent);
+  --interactive-accent-hover: var(--clai-accent-warm);
+  --interactive-accent-rgb: 218, 119, 86;
+  --tag-color: var(--clai-accent);
+  --tag-background: var(--clai-accent-dim);
+  --tag-border-color: rgba(218, 119, 86, 0.28);
+  --link-color: var(--clai-accent);
+  --link-color-hover: var(--clai-accent-warm);
+  --link-unresolved-color: rgba(218, 119, 86, 0.45);
+  --blockquote-border-color: var(--clai-accent);
+  --checkbox-color: var(--clai-accent);
+  --checkbox-color-hover: var(--clai-accent-warm);
+  --checkbox-border-color: var(--clai-border-mid);
+  --scrollbar-thumb-bg: var(--clai-border-mid);
+  --tab-text-color: var(--clai-muted);
+  --tab-text-color-active: var(--clai-text);
+  --tab-background-active: var(--clai-bg);
+  --tab-outline-color: var(--clai-border);
+  --graph-line: var(--clai-border-mid);
+  --graph-node: var(--clai-muted);
+  --graph-node-tag: var(--clai-accent);
+  --code-background: var(--clai-panel);
+}
+
+/* ── GRAIN TEXTURE (subtle — won't break layout) ────────────── */
+.workspace::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* ── SIDEBAR / FILE EXPLORER ────────────────────────────────── */
+.nav-file-title,
+.nav-folder-title {
+  border-radius: 4px;
+  color: var(--clai-muted);
+  font-size: 13px;
+}
+
+.nav-file-title:hover,
+.nav-folder-title:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--clai-text) !important;
+}
+
+.nav-file-title.is-active {
+  background-color: var(--clai-accent-dim) !important;
+  color: var(--clai-accent) !important;
+}
+
+.nav-folder-title-content {
+  color: var(--clai-muted);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── TAB BAR ────────────────────────────────────────────────── */
+.workspace-tab-header-container {
+  border-bottom: 1px solid var(--clai-border);
+}
+
+.workspace-tab-header {
+  color: var(--clai-faint);
+  border-radius: 6px 6px 0 0;
+}
+
+.workspace-tab-header:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: var(--clai-muted) !important;
+}
+
+.workspace-tab-header.is-active {
+  color: var(--clai-text) !important;
+  border-top: 2px solid var(--clai-accent) !important;
+}
+
+/* ── EDITOR CURSOR ──────────────────────────────────────────── */
+.cm-cursor,
+.cm-cursor-primary {
+  border-left-color: var(--clai-accent) !important;
+}
+
+/* ── EDITOR ACTIVE LINE ─────────────────────────────────────── */
+.cm-active-line,
+.cm-activeLine {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* ── SELECTION ──────────────────────────────────────────────── */
+.cm-selectionBackground {
+  background-color: rgba(218, 119, 86, 0.18) !important;
+}
+
+/* ── CODE ───────────────────────────────────────────────────── */
+code {
+  background-color: var(--clai-panel) !important;
+  color: #e8c79a !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 4px !important;
+}
+
+pre {
+  background-color: var(--clai-panel) !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 8px !important;
+}
+
+pre code {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ── BLOCKQUOTE ─────────────────────────────────────────────── */
+blockquote {
+  border-left: 3px solid var(--clai-accent) !important;
+  background-color: var(--clai-accent-glow) !important;
+  border-radius: 0 6px 6px 0 !important;
+  color: var(--clai-muted) !important;
+}
+
+/* ── TABLES ─────────────────────────────────────────────────── */
+th {
+  background-color: var(--clai-panel) !important;
+  color: var(--clai-muted) !important;
+  font-size: 0.82em !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid var(--clai-border) !important;
+}
+
+td {
+  border-bottom: 1px solid var(--clai-border) !important;
+  color: var(--clai-text) !important;
+}
+
+tr:hover td {
+  background-color: rgba(255, 255, 255, 0.025) !important;
+}
+
+/* ── TAGS ───────────────────────────────────────────────────── */
+.tag {
+  background-color: var(--clai-accent-dim) !important;
+  color: var(--clai-accent) !important;
+  border: 1px solid rgba(218, 119, 86, 0.25) !important;
+  border-radius: 4px !important;
+  font-size: 0.8em !important;
+  padding: 1px 7px !important;
+}
+
+.tag:hover {
+  background-color: rgba(218, 119, 86, 0.22) !important;
+  color: var(--clai-accent-warm) !important;
+}
+
+/* ── CALLOUTS ───────────────────────────────────────────────── */
+.callout {
+  background-color: var(--clai-panel) !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 8px !important;
+}
+
+.callout[data-callout="note"],
+.callout[data-callout="info"] {
+  border-left: 3px solid var(--clai-accent) !important;
+  background-color: var(--clai-accent-glow) !important;
+}
+
+.callout[data-callout="warning"] {
+  border-left: 3px solid #e8c05a !important;
+  background-color: rgba(232, 192, 90, 0.06) !important;
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"] {
+  border-left: 3px solid #e87070 !important;
+  background-color: rgba(232, 112, 112, 0.06) !important;
+}
+
+/* ── BUTTONS ────────────────────────────────────────────────── */
+button.mod-cta {
+  background-color: var(--clai-accent) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+}
+
+button.mod-cta:hover {
+  background-color: var(--clai-accent-warm) !important;
+}
+
+/* ── MODALS ─────────────────────────────────────────────────── */
+.modal {
+  background-color: var(--clai-panel) !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ── POPOVER ────────────────────────────────────────────────── */
+.popover.hover-popover {
+  background-color: var(--clai-panel) !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ── STATUS BAR ─────────────────────────────────────────────── */
+.status-bar {
+  background-color: #111111 !important;
+  border-top: 1px solid var(--clai-border) !important;
+  color: var(--clai-faint) !important;
+  font-size: 11px !important;
+}
+
+/* ── SCROLLBARS ─────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--clai-border-mid);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--clai-muted);
+}
+
+/* ── SIDEBAR RIBBON ─────────────────────────────────────────── */
+.workspace-ribbon {
+  background-color: #111111 !important;
+  border-right: 1px solid var(--clai-border) !important;
+}
+
+.side-dock-ribbon-action {
+  color: var(--clai-muted);
+  border-radius: 4px;
+}
+
+.side-dock-ribbon-action:hover {
+  color: var(--clai-accent) !important;
+  background-color: var(--clai-accent-glow) !important;
+}
+
+.side-dock-ribbon-action.is-active {
+  color: var(--clai-accent) !important;
+}
+
+/* ── SETTINGS SIDEBAR ───────────────────────────────────────── */
+.vertical-tab-nav-item {
+  color: var(--clai-muted) !important;
+  border-radius: 4px !important;
+}
+
+.vertical-tab-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--clai-text) !important;
+}
+
+.vertical-tab-nav-item.is-active {
+  background-color: var(--clai-accent-dim) !important;
+  color: var(--clai-accent) !important;
+}
+
+/* ── SEARCH HIGHLIGHT ───────────────────────────────────────── */
+mark {
+  background-color: rgba(218, 119, 86, 0.22) !important;
+  color: var(--clai-accent-warm) !important;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* ── RESIZE HANDLE ──────────────────────────────────────────── */
+.workspace-leaf-resize-handle:hover {
+  background-color: var(--clai-accent) !important;
+}
+
+/* ── NOTICE / TOAST ─────────────────────────────────────────── */
+.notice {
+  background-color: var(--clai-elevated) !important;
+  color: var(--clai-text) !important;
+  border: 1px solid var(--clai-border-mid) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}

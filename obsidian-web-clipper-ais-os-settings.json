@@ -1,0 +1,479 @@
+﻿{
+    "migrationVersion":  1,
+    "vaults":  [
+                   "Agentic_OS"
+               ],
+    "general_settings":  {
+                             "showMoreActionsButton":  true,
+                             "betaFeatures":  false,
+                             "legacyMode":  false,
+                             "silentOpen":  false,
+                             "openBehavior":  "popup",
+                             "saveBehavior":  "addToObsidian"
+                         },
+    "highlighter_settings":  {
+                                 "highlighterEnabled":  true,
+                                 "alwaysShowHighlights":  true,
+                                 "highlightBehavior":  "highlight-inline"
+                             },
+    "interpreter_settings":  {
+                                 "interpreterModel":  "",
+                                 "models":  [
+
+                                            ],
+                                 "providers":  [
+
+                                               ],
+                                 "interpreterEnabled":  false,
+                                 "interpreterAutoRun":  false,
+                                 "defaultPromptContext":  ""
+                             },
+    "reader_settings":  {
+                            "fontSize":  16,
+                            "lineHeight":  1.6,
+                            "maxWidth":  38,
+                            "lightTheme":  "default",
+                            "darkTheme":  "same",
+                            "appearance":  "auto",
+                            "fonts":  [
+
+                                      ],
+                            "defaultFont":  "",
+                            "blendImages":  true,
+                            "colorLinks":  false,
+                            "followLinks":  true,
+                            "pinPlayer":  true,
+                            "autoScroll":  true,
+                            "highlightActiveLine":  true,
+                            "customCss":  ""
+                        },
+    "stats":  {
+                  "addToObsidian":  0,
+                  "saveFile":  0,
+                  "copyToClipboard":  0,
+                  "share":  0
+              },
+    "property_types":  [
+                           {
+                               "name":  "title",
+                               "type":  "text",
+                               "defaultValue":  "{{title}}"
+                           },
+                           {
+                               "name":  "type",
+                               "type":  "text",
+                               "defaultValue":  "source"
+                           },
+                           {
+                               "name":  "tags",
+                               "type":  "multitext",
+                               "defaultValue":  "clippings, second_brain, needs_ingest"
+                           },
+                           {
+                               "name":  "source_count",
+                               "type":  "number",
+                               "defaultValue":  "1"
+                           },
+                           {
+                               "name":  "created",
+                               "type":  "date",
+                               "defaultValue":  "{{date|date:\"YYYY-MM-DD\"}}"
+                           },
+                           {
+                               "name":  "updated",
+                               "type":  "date",
+                               "defaultValue":  "{{date|date:\"YYYY-MM-DD\"}}"
+                           },
+                           {
+                               "name":  "source",
+                               "type":  "text",
+                               "defaultValue":  "{{url}}"
+                           },
+                           {
+                               "name":  "site",
+                               "type":  "text",
+                               "defaultValue":  "{{site}}"
+                           },
+                           {
+                               "name":  "author",
+                               "type":  "text",
+                               "defaultValue":  "{{author}}"
+                           },
+                           {
+                               "name":  "published",
+                               "type":  "date",
+                               "defaultValue":  "{{published|date:\"YYYY-MM-DD\"}}"
+                           },
+                           {
+                               "name":  "status",
+                               "type":  "text",
+                               "defaultValue":  "needs_ingest"
+                           }
+                       ],
+    "template_list":  [
+                          "ais_article_clip",
+                          "ais_trading_article_clip",
+                          "ais_x_post_clip",
+                          "ais_youtube_clip",
+                          "ais_personal_note_clip"
+                      ],
+    "template_ais_article_clip":  {
+                                      "schemaVersion":  "0.1.0",
+                                      "id":  "ais_article_clip",
+                                      "name":  "AIS-OS - Article / Web Page",
+                                      "behavior":  "create",
+                                      "vault":  "Agentic_OS",
+                                      "noteNameFormat":  "{{date|date:\"YYYY-MM-DD\"}} - {{title|safe_name|trim}}",
+                                      "path":  "raw/articles",
+                                      "context":  "{{content|slice:0,12000|trim}}",
+                                      "properties":  [
+                                                         {
+                                                             "name":  "title",
+                                                             "value":  "{{title}}",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "type",
+                                                             "value":  "source",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "tags",
+                                                             "value":  "clippings, raw_article, second_brain, needs_ingest",
+                                                             "type":  "multitext"
+                                                         },
+                                                         {
+                                                             "name":  "source_count",
+                                                             "value":  "1",
+                                                             "type":  "number"
+                                                         },
+                                                         {
+                                                             "name":  "created",
+                                                             "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                             "type":  "date"
+                                                         },
+                                                         {
+                                                             "name":  "updated",
+                                                             "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                             "type":  "date"
+                                                         },
+                                                         {
+                                                             "name":  "source",
+                                                             "value":  "{{url}}",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "site",
+                                                             "value":  "{{site}}",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "author",
+                                                             "value":  "{{author}}",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "published",
+                                                             "value":  "{{published|date:\"YYYY-MM-DD\"}}",
+                                                             "type":  "date"
+                                                         },
+                                                         {
+                                                             "name":  "status",
+                                                             "value":  "needs_ingest",
+                                                             "type":  "text"
+                                                         }
+                                                     ],
+                                      "triggers":  [
+                                                       "schema:@Article",
+                                                       "schema:@NewsArticle",
+                                                       "schema:@BlogPosting"
+                                                   ],
+                                      "noteContentFormat":  "# {{title}}\n\n## Why I saved this\n\n- \n\n## Key idea\n\n- \n\n## Source\n\n- URL: {{url}}\n- Site: {{site}}\n- Author: {{author}}\n- Clipped: {{date|date:\"YYYY-MM-DD\"}}\n\n## Content\n\n{{content}}\n\n## Next ingest action\n\nAsk Codex: \"Ingest this clip into the second brain if it is useful: [[{{date|date:\"YYYY-MM-DD\"}} - {{title|safe_name|trim}}]]\"\n"
+                                  },
+    "template_ais_trading_article_clip":  {
+                                              "schemaVersion":  "0.1.0",
+                                              "id":  "ais_trading_article_clip",
+                                              "name":  "AIS-OS - Trading Research / Playbook",
+                                              "behavior":  "create",
+                                              "vault":  "Agentic_OS",
+                                              "noteNameFormat":  "{{date|date:\"YYYY-MM-DD\"}} - trading - {{title|safe_name|trim}}",
+                                              "path":  "raw/articles",
+                                              "context":  "{{content|slice:0,16000|trim}}",
+                                              "properties":  [
+                                                                 {
+                                                                     "name":  "title",
+                                                                     "value":  "{{title}}",
+                                                                     "type":  "text"
+                                                                 },
+                                                                 {
+                                                                     "name":  "type",
+                                                                     "value":  "source",
+                                                                     "type":  "text"
+                                                                 },
+                                                                 {
+                                                                     "name":  "tags",
+                                                                     "value":  "clippings, trading, raw_article, second_brain, needs_ingest",
+                                                                     "type":  "multitext"
+                                                                 },
+                                                                 {
+                                                                     "name":  "source_count",
+                                                                     "value":  "1",
+                                                                     "type":  "number"
+                                                                 },
+                                                                 {
+                                                                     "name":  "created",
+                                                                     "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                                     "type":  "date"
+                                                                 },
+                                                                 {
+                                                                     "name":  "updated",
+                                                                     "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                                     "type":  "date"
+                                                                 },
+                                                                 {
+                                                                     "name":  "source",
+                                                                     "value":  "{{url}}",
+                                                                     "type":  "text"
+                                                                 },
+                                                                 {
+                                                                     "name":  "site",
+                                                                     "value":  "{{site}}",
+                                                                     "type":  "text"
+                                                                 },
+                                                                 {
+                                                                     "name":  "author",
+                                                                     "value":  "{{author}}",
+                                                                     "type":  "text"
+                                                                 },
+                                                                 {
+                                                                     "name":  "published",
+                                                                     "value":  "{{published|date:\"YYYY-MM-DD\"}}",
+                                                                     "type":  "date"
+                                                                 },
+                                                                 {
+                                                                     "name":  "status",
+                                                                     "value":  "needs_ingest",
+                                                                     "type":  "text"
+                                                                 }
+                                                             ],
+                                              "triggers":  [
+                                                               "/trading|stocks|market|small.?cap|thinkorswim|scanner|backtest|sec|edgar|dilution|float|momentum/i"
+                                                           ],
+                                              "noteContentFormat":  "# {{title}}\n\n## Trading use\n\n- Setup or pattern:\n- Ticker if relevant:\n- Why this matters:\n\n## Extracted rules\n\n- Entry:\n- Exit:\n- Risk:\n- Avoid when:\n\n## Source\n\n- URL: {{url}}\n- Site: {{site}}\n- Clipped: {{date|date:\"YYYY-MM-DD\"}}\n\n## Content\n\n{{content}}\n\n## Connect later\n\nPotential wiki targets: [[trading_context]], [[playbook_library]], [[thinkorswim]], [[imported_trading_notes]]\n"
+                                          },
+    "template_ais_x_post_clip":  {
+                                     "schemaVersion":  "0.1.0",
+                                     "id":  "ais_x_post_clip",
+                                     "name":  "AIS-OS - X / Social Post",
+                                     "behavior":  "create",
+                                     "vault":  "Agentic_OS",
+                                     "noteNameFormat":  "{{date|date:\"YYYY-MM-DD\"}} - post - {{title|safe_name|trim}}",
+                                     "path":  "raw/articles",
+                                     "context":  "{{content|slice:0,8000|trim}}",
+                                     "properties":  [
+                                                        {
+                                                            "name":  "title",
+                                                            "value":  "{{title}}",
+                                                            "type":  "text"
+                                                        },
+                                                        {
+                                                            "name":  "type",
+                                                            "value":  "source",
+                                                            "type":  "text"
+                                                        },
+                                                        {
+                                                            "name":  "tags",
+                                                            "value":  "clippings, social_post, second_brain, needs_review",
+                                                            "type":  "multitext"
+                                                        },
+                                                        {
+                                                            "name":  "source_count",
+                                                            "value":  "1",
+                                                            "type":  "number"
+                                                        },
+                                                        {
+                                                            "name":  "created",
+                                                            "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                            "type":  "date"
+                                                        },
+                                                        {
+                                                            "name":  "updated",
+                                                            "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                            "type":  "date"
+                                                        },
+                                                        {
+                                                            "name":  "source",
+                                                            "value":  "{{url}}",
+                                                            "type":  "text"
+                                                        },
+                                                        {
+                                                            "name":  "site",
+                                                            "value":  "{{site}}",
+                                                            "type":  "text"
+                                                        },
+                                                        {
+                                                            "name":  "author",
+                                                            "value":  "{{author}}",
+                                                            "type":  "text"
+                                                        },
+                                                        {
+                                                            "name":  "published",
+                                                            "value":  "{{published|date:\"YYYY-MM-DD\"}}",
+                                                            "type":  "date"
+                                                        },
+                                                        {
+                                                            "name":  "status",
+                                                            "value":  "needs_review",
+                                                            "type":  "text"
+                                                        }
+                                                    ],
+                                     "triggers":  [
+                                                      "https://x.com/",
+                                                      "https://twitter.com/"
+                                                  ],
+                                     "noteContentFormat":  "# {{title}}\n\n## Save filter\n\nWill I ask about this in the next 30 days?\n\n- [ ] Yes\n- [ ] No, delete later\n\n## Why it matters\n\n- \n\n## Source\n\n- URL: {{url}}\n- Author: {{author}}\n- Clipped: {{date|date:\"YYYY-MM-DD\"}}\n\n## Clip\n\n{{content}}\n\n## Connect later\n\nPotential wiki targets: [[trading_prompts]], [[trading_context]], [[raw_source_inbox]]\n"
+                                 },
+    "template_ais_youtube_clip":  {
+                                      "schemaVersion":  "0.1.0",
+                                      "id":  "ais_youtube_clip",
+                                      "name":  "AIS-OS - YouTube / Video",
+                                      "behavior":  "create",
+                                      "vault":  "Agentic_OS",
+                                      "noteNameFormat":  "{{date|date:\"YYYY-MM-DD\"}} - video - {{title|safe_name|trim}}",
+                                      "path":  "raw/articles",
+                                      "context":  "{{content|slice:0,12000|trim}}",
+                                      "properties":  [
+                                                         {
+                                                             "name":  "title",
+                                                             "value":  "{{title}}",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "type",
+                                                             "value":  "source",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "tags",
+                                                             "value":  "clippings, video, trading, second_brain, needs_ingest",
+                                                             "type":  "multitext"
+                                                         },
+                                                         {
+                                                             "name":  "source_count",
+                                                             "value":  "1",
+                                                             "type":  "number"
+                                                         },
+                                                         {
+                                                             "name":  "created",
+                                                             "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                             "type":  "date"
+                                                         },
+                                                         {
+                                                             "name":  "updated",
+                                                             "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                             "type":  "date"
+                                                         },
+                                                         {
+                                                             "name":  "source",
+                                                             "value":  "{{url}}",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "site",
+                                                             "value":  "{{site}}",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "author",
+                                                             "value":  "{{schema:@VideoObject:author}}",
+                                                             "type":  "text"
+                                                         },
+                                                         {
+                                                             "name":  "published",
+                                                             "value":  "{{schema:@VideoObject:uploadDate|date:\"YYYY-MM-DD\"}}",
+                                                             "type":  "date"
+                                                         },
+                                                         {
+                                                             "name":  "status",
+                                                             "value":  "needs_ingest",
+                                                             "type":  "text"
+                                                         }
+                                                     ],
+                                      "triggers":  [
+                                                       "https://www.youtube.com/watch",
+                                                       "https://youtu.be/"
+                                                   ],
+                                      "noteContentFormat":  "# {{title}}\n\n![{{title}}]({{schema:@VideoObject:thumbnailUrl|first}})\n\n## Why I saved this\n\n- \n\n## Trading lesson\n\n- \n\n## Source\n\n- URL: {{url}}\n- Channel: {{schema:@VideoObject:author}}\n- Published: {{schema:@VideoObject:uploadDate|date:\"YYYY-MM-DD\"}}\n- Clipped: {{date|date:\"YYYY-MM-DD\"}}\n\n## Description / content\n\n{{schema:@VideoObject:description}}\n\n{{content}}\n\n## Connect later\n\nPotential wiki targets: [[imported_trading_notes]], [[playbook_library]], [[trading_context]]\n"
+                                  },
+    "template_ais_personal_note_clip":  {
+                                            "schemaVersion":  "0.1.0",
+                                            "id":  "ais_personal_note_clip",
+                                            "name":  "AIS-OS - Personal Note / Idea",
+                                            "behavior":  "create",
+                                            "vault":  "Agentic_OS",
+                                            "noteNameFormat":  "{{date|date:\"YYYY-MM-DD\"}} - note - {{title|safe_name|trim}}",
+                                            "path":  "raw/notes",
+                                            "context":  "{{content|slice:0,8000|trim}}",
+                                            "properties":  [
+                                                               {
+                                                                   "name":  "title",
+                                                                   "value":  "{{title}}",
+                                                                   "type":  "text"
+                                                               },
+                                                               {
+                                                                   "name":  "type",
+                                                                   "value":  "source",
+                                                                   "type":  "text"
+                                                               },
+                                                               {
+                                                                   "name":  "tags",
+                                                                   "value":  "personal_note, raw_note, second_brain, needs_review",
+                                                                   "type":  "multitext"
+                                                               },
+                                                               {
+                                                                   "name":  "source_count",
+                                                                   "value":  "1",
+                                                                   "type":  "number"
+                                                               },
+                                                               {
+                                                                   "name":  "created",
+                                                                   "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                                   "type":  "date"
+                                                               },
+                                                               {
+                                                                   "name":  "updated",
+                                                                   "value":  "{{date|date:\"YYYY-MM-DD\"}}",
+                                                                   "type":  "date"
+                                                               },
+                                                               {
+                                                                   "name":  "source",
+                                                                   "value":  "{{url}}",
+                                                                   "type":  "text"
+                                                               },
+                                                               {
+                                                                   "name":  "site",
+                                                                   "value":  "{{site}}",
+                                                                   "type":  "text"
+                                                               },
+                                                               {
+                                                                   "name":  "author",
+                                                                   "value":  "{{author}}",
+                                                                   "type":  "text"
+                                                               },
+                                                               {
+                                                                   "name":  "published",
+                                                                   "value":  "{{published|date:\"YYYY-MM-DD\"}}",
+                                                                   "type":  "date"
+                                                               },
+                                                               {
+                                                                   "name":  "status",
+                                                                   "value":  "needs_review",
+                                                                   "type":  "text"
+                                                               }
+                                                           ],
+                                            "triggers":  [
+
+                                                         ],
+                                            "noteContentFormat":  "# {{title}}\n\n## Thought\n\n- \n\n## Why this matters\n\n- \n\n## Next action\n\n- [ ] Keep and connect\n- [ ] Delete later\n\n## Source / context\n\n{{url}}\n\n{{content}}\n"
+                                        }
+}

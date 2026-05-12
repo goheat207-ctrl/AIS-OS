@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Example Domain",
+    "summary": "This page explains that Example Domain is reserved for illustrative examples in documentation. It tells readers they may use the domain without asking for permission. The page is short and mainly acts as a neutral placeholder.",
+    "key_points": [
+      "Example Domain is available for documentation examples.",
+      "The domain can be used without prior permission.",
+      "The page points readers to more information."
+    ],
+    "topics": [
+      "documentation",
+      "example domains",
+      "internet resources"
+    ],
+    "entities": [
+      "Example Domain",
+      "IANA"
+    ],
+    "sentiment": "neutral",
+    "data_found": [
+      "No major numbers, statistics, or dates found."
+    ],
+    "source_url": "https://example.com",
+    "scraped_at": "2026-05-12T14:30:00+00:00"
+  }
+]

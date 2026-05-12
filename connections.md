@@ -10,7 +10,7 @@ Registry of every system your AIOS can reach. Filled by `/onboard` from Q4-Q7 an
 | 4 | Communication | Twitter/X, Facebook, Instagram, Discord | not yet connected | — | — |
 | 5 | Project / task tracking | None yet | not yet connected | — | — |
 | 6 | Meeting intelligence | None yet | not yet connected | — | — |
-| 7 | Knowledge / files | Obsidian | not yet connected | — | — |
+| 7 | Knowledge / files | Obsidian second brain | local Markdown vault (`Agentic_OS/`) + wiki index (`Agentic_OS/wiki/index.md`) | local files | 2026-05-12 |
 | 8 | Trade journal / backtest | TOS Trading Journal | WebFetch (public REST API) | none (public) | 2026-05-11 |
 | 9 | Market data | yfinance (Yahoo Finance) | Python script (`fincept_tools/data/yfinance_data.py`) | none (free) | 2026-05-11 |
 | 10 | SEC / EDGAR | SEC EDGAR API | Python scripts (`fincept_tools/data/sec_data.py`, `fincept_tools/edgar/`) | none (public) | 2026-05-11 |
@@ -23,3 +23,4 @@ Registry of every system your AIOS can reach. Filled by `/onboard` from Q4-Q7 an
 **Mechanism options:** `mcp` (MCP server), `script` (Python/Bash hitting an API, in `scripts/`), `export` (CSV/JSON dump pipeline), `key+ref` (`.env` key + `references/{tool}-api.md` guide), `not yet connected`.
 
 When you wire a new tool, also save `references/{tool}-api.md` capturing endpoints, auth flow, and common queries — researched-once-saved-forever.
+

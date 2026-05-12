@@ -1,3 +1,18 @@
 [
-  "obsidian-clipper"
+  "obsidian-clipper",
+  "obsidian-auto-link-title",
+  "obsidian-banners",
+  "obsidian-import-json",
+  "notebook-navigator",
+  "calendar",
+  "obsidian-excalidraw-plugin",
+  "flowcharts",
+  "js-engine",
+  "periodic-notes",
+  "quickadd",
+  "readwise-official",
+  "rss-dashboard",
+  "sqlseal-charts",
+  "obsidian-tracker",
+  "templater-obsidian"
 ]

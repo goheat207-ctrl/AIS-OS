@@ -1,0 +1,12 @@
+﻿---
+title: Transcript of Ask Al Brooks - Tips on when to enter pullbacks
+type: topic
+tags: [trading, imported_note]
+source_count: 1
+created: 2026-05-12
+updated: 2026-05-12
+---
+
+# Transcript of Ask Al Brooks - Tips on when to enter pullbacks
+
+okay question I have trouble working out when to enter on a pullback directly above or below the prior bar or one point above or below and when to wait for a deeper pullback like a 50% pullback before entering any tips on when to get in early and when to wait one of the things that I really enjoy about trading is that it is so subjective but that's also one of the things that makes it really frustrating for Traders everyone wants rules you know do this you make money do that you make make money and if you think about it rules are impossible because if there's a rule that it's a perfect trade you do it you make money right however there has to be an institution taking the other side of the trade and it's not going to take long for the institution to realize that every time they take that particular trade they lose money and you make money so they're going to stop doing it and all of a sudden you're going to stop making money and that makes everything constantly subjective in general I think a Trader starting out should not be buying with limit orders even easy trades like 58 58 low really high probability that there'd be buyers below you know what's high probability you know 70% 80% really high probability not necessarily within one or two bars but certainly within four or five bars chances are there'd be buyers below here before the market gets below here or below here so if you're ever going to buy with a limit order and a bull breakout the only time you should consider it is on the very first reversal up after a strong breakout and then beyond that if you have a weaker Trend like in here then you're expecting a lot of two-sided trading so you're expecting deeper pullbacks this is the kind of environment where Traders would consider entering on 50% pullbacks so rally here and then guess what Traders bought the 50% pullback sell off here but within a trading range so what do you think happened Bears sold the 50% pullback right that just happens all the time so the more two-sided the market is the more likely pullbacks will be deep and the more likely Traders will be looking to wait for 50% pullbacks the stronger a trend is the more likely pullbacks will be small and Traders will not wait around 4 50% pullback

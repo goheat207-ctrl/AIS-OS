@@ -1,0 +1,647 @@
+/* ============================================================
+   CLAUDE.AI OBSIDIAN THEME — v3 ANNOTATED + CUSTOM CALLOUTS
+   Drop into: YourVault/.obsidian/snippets/
+   Enable:    Appearance → CSS Snippets → toggle ON
+
+   QUARTER LABEL: Search "UPDATE EACH QUARTER" to find the
+   one line you change every 3 months (e.g. Q3 · 2026)
+   ============================================================ */
+
+/* ════════════════════════════════════════════════════════════
+   1. COLOR TOKENS
+   These are your master variables. Change a value here and
+   it updates everywhere that references it. This is the
+   ONE place to tweak colors without hunting through the file.
+   ════════════════════════════════════════════════════════════ */
+:root {
+  /* --- Main backgrounds (darkest to lightest) --- */
+  --clai-bg: #0d0d0d; /* Main editor + workspace bg */
+  --clai-sidebar: #171717; /* Left/right panel bg */
+  --clai-panel: #1a1a1a; /* Cards, modals, code blocks */
+  --clai-elevated: #222222; /* Hover panels, raised elements */
+
+  /* --- Borders (subtle to visible) --- */
+  --clai-border: #2a2a2a; /* Default border color */
+  --clai-border-mid: #333333; /* Slightly more visible border */
+
+  /* --- Text (bright to invisible) --- */
+  --clai-text: #ebebeb; /* Main readable text */
+  --clai-muted: #a8a8a8; /* Secondary/label text */
+  --clai-faint: #5e5e5e; /* Very dim text, line numbers */
+
+  /* --- Claude Accent (warm orange/terracotta) ---
+     This is the brand color. Used on: active tabs, links,
+     tags, checkboxes, callout borders, cursor, selections.
+     Change this ONE value to re-skin the whole accent system. */
+  --clai-accent: #da7756;
+  --clai-accent-warm: #e8875a; /* Hover state of accent */
+  --clai-accent-dim: rgba(218, 119, 86, 0.15); /* Tinted bg fill */
+  --clai-accent-glow: rgba(218, 119, 86, 0.07); /* Very subtle glow bg */
+}
+
+/* ════════════════════════════════════════════════════════════
+   2. OBSIDIAN CORE VARIABLE OVERRIDES
+   Obsidian reads these built-in variable names to paint
+   every surface. We point them at our tokens above.
+   You rarely need to touch this section directly — just
+   edit the tokens in section 1 instead.
+   ════════════════════════════════════════════════════════════ */
+.theme-dark {
+  /* Backgrounds */
+  --background-primary: var(--clai-bg);
+  --background-primary-alt: var(--clai-sidebar);
+  --background-secondary: var(--clai-sidebar);
+  --background-secondary-alt: var(--clai-panel);
+  --background-modifier-hover: rgba(255, 255, 255, 0.05);
+  --background-modifier-active-hover: rgba(255, 255, 255, 0.07);
+  --background-modifier-border: var(--clai-border);
+  --background-modifier-border-hover: var(--clai-border-mid);
+  --background-modifier-border-focus: var(--clai-accent);
+
+  /* Text */
+  --text-normal: var(--clai-text);
+  --text-muted: var(--clai-muted);
+  --text-faint: var(--clai-faint);
+  --text-on-accent: #ffffff;
+  --text-accent: var(--clai-accent);
+  --text-accent-hover: var(--clai-accent-warm);
+  --text-selection: var(--clai-accent-dim);
+
+  /* Accent / interactive */
+  --interactive-accent: var(--clai-accent);
+  --interactive-accent-hover: var(--clai-accent-warm);
+  --interactive-accent-rgb: 218, 119, 86;
+
+  /* Tags */
+  --tag-color: var(--clai-accent);
+  --tag-background: var(--clai-accent-dim);
+  --tag-border-color: rgba(218, 119, 86, 0.28);
+
+  /* Links */
+  --link-color: var(--clai-accent);
+  --link-color-hover: var(--clai-accent-warm);
+  --link-unresolved-color: rgba(218, 119, 86, 0.45);
+
+  /* Misc */
+  --blockquote-border-color: var(--clai-accent);
+  --checkbox-color: var(--clai-accent);
+  --checkbox-color-hover: var(--clai-accent-warm);
+  --checkbox-border-color: var(--clai-border-mid);
+  --scrollbar-thumb-bg: var(--clai-border-mid);
+  --code-background: var(--clai-panel);
+
+  /* Tabs */
+  --tab-text-color: var(--clai-muted);
+  --tab-text-color-active: var(--clai-text);
+  --tab-background-active: var(--clai-bg);
+  --tab-outline-color: var(--clai-border);
+
+  /* Graph view nodes/lines */
+  --graph-line: var(--clai-border-mid);
+  --graph-node: var(--clai-muted);
+  --graph-node-tag: var(--clai-accent);
+}
+
+/* ════════════════════════════════════════════════════════════
+   3. GRAIN TEXTURE
+   A barely-visible SVG noise layer fixed over the whole app.
+   Gives the "premium matte screen" feel like Claude.ai/Cowork.
+   To remove: delete this whole block.
+   To make stronger: increase opacity (default 0.025).
+   ════════════════════════════════════════════════════════════ */
+.workspace::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+/* ════════════════════════════════════════════════════════════
+   5. SIDEBAR / FILE EXPLORER
+   Controls the left panel: folder names, file names,
+   hover highlights, and active (selected) file.
+   ════════════════════════════════════════════════════════════ */
+.nav-file-title,
+.nav-folder-title {
+  border-radius: 4px;
+  color: var(--clai-muted);
+  font-size: 13px;
+}
+
+/* Hover = slightly brighter */
+.nav-file-title:hover,
+.nav-folder-title:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--clai-text) !important;
+}
+
+/* Active/selected file = orange tint */
+.nav-file-title.is-active {
+  background-color: var(--clai-accent-dim) !important;
+  color: var(--clai-accent) !important;
+}
+
+/* Folder section headers (uppercase small labels) */
+.nav-folder-title-content {
+  color: var(--clai-muted);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ════════════════════════════════════════════════════════════
+   6. TAB BAR
+   Controls the tabs at the top of the editor area.
+   Active tab gets the orange top-border line.
+   ════════════════════════════════════════════════════════════ */
+.workspace-tab-header-container {
+  border-bottom: 1px solid var(--clai-border);
+}
+
+.workspace-tab-header {
+  color: var(--clai-faint);
+  border-radius: 6px 6px 0 0;
+}
+
+.workspace-tab-header:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: var(--clai-muted) !important;
+}
+
+/* Active tab: orange top stripe, bright text */
+.workspace-tab-header.is-active {
+  color: var(--clai-text) !important;
+  border-top: 2px solid var(--clai-accent) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   7. EDITOR SURFACE
+   Controls cursor color, active line highlight, and
+   text selection color inside the note editor.
+   Does NOT touch layout — safe for CodeMirror internals.
+   ════════════════════════════════════════════════════════════ */
+
+/* Blinking cursor line */
+.cm-cursor,
+.cm-cursor-primary {
+  border-left-color: var(--clai-accent) !important;
+}
+
+/* Line you're currently typing on (very faint) */
+.cm-active-line,
+.cm-activeLine {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Highlighted/selected text */
+.cm-selectionBackground {
+  background-color: rgba(218, 119, 86, 0.18) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   8. CODE BLOCKS
+   Inline `code` and fenced ``` blocks.
+   Panel bg, warm text color, subtle border.
+   ════════════════════════════════════════════════════════════ */
+code {
+  background-color: var(--clai-panel) !important;
+  color: #e8c79a !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 4px !important;
+}
+
+pre {
+  background-color: var(--clai-panel) !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 8px !important;
+}
+
+pre code {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   9. BLOCKQUOTE
+   The > indented quote block. Orange left border + glow bg.
+   ════════════════════════════════════════════════════════════ */
+blockquote {
+  border-left: 3px solid var(--clai-accent) !important;
+  background-color: var(--clai-accent-glow) !important;
+  border-radius: 0 6px 6px 0 !important;
+  color: var(--clai-muted) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   10. TABLES
+   Styles the header row and data rows.
+   Uppercase headers, subtle hover highlight on rows.
+   ════════════════════════════════════════════════════════════ */
+th {
+  background-color: var(--clai-panel) !important;
+  color: var(--clai-muted) !important;
+  font-size: 0.82em !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid var(--clai-border) !important;
+}
+
+td {
+  border-bottom: 1px solid var(--clai-border) !important;
+  color: var(--clai-text) !important;
+}
+
+tr:hover td {
+  background-color: rgba(255, 255, 255, 0.025) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   11. TAGS
+   The #hashtag chips in your notes.
+   Orange tinted pill with border.
+   ════════════════════════════════════════════════════════════ */
+.tag {
+  background-color: var(--clai-accent-dim) !important;
+  color: var(--clai-accent) !important;
+  border: 1px solid rgba(218, 119, 86, 0.25) !important;
+  border-radius: 4px !important;
+  font-size: 0.8em !important;
+  padding: 1px 7px !important;
+}
+
+.tag:hover {
+  background-color: rgba(218, 119, 86, 0.22) !important;
+  color: var(--clai-accent-warm) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   12. BUTTONS
+   Primary CTA buttons (Save, Confirm) = orange fill.
+   Secondary buttons = dark with accent border on hover.
+   ════════════════════════════════════════════════════════════ */
+button.mod-cta {
+  background-color: var(--clai-accent) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+}
+
+button.mod-cta:hover {
+  background-color: var(--clai-accent-warm) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   13. MODALS & POPOVERS
+   Settings panels, confirmation dialogs, link previews.
+   Dark panel bg, rounded corners, strong shadow.
+   ════════════════════════════════════════════════════════════ */
+.modal {
+  background-color: var(--clai-panel) !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6) !important;
+}
+
+.popover.hover-popover {
+  background-color: var(--clai-panel) !important;
+  border: 1px solid var(--clai-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   14. STATUS BAR
+   The slim bar at the very bottom (word count, mode, etc).
+   Near-black bg, faint text.
+   ════════════════════════════════════════════════════════════ */
+.status-bar {
+  background-color: #111111 !important;
+  border-top: 1px solid var(--clai-border) !important;
+  color: var(--clai-faint) !important;
+  font-size: 11px !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   15. SCROLLBARS
+   Thin (5px) minimal scrollbars. Dim by default,
+   slightly brighter on hover.
+   ════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--clai-border-mid);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--clai-muted);
+}
+
+/* ════════════════════════════════════════════════════════════
+   16. SIDEBAR RIBBON
+   The far-left icon strip (vault, search, etc icons).
+   Near-black bg, icons glow orange on hover.
+   ════════════════════════════════════════════════════════════ */
+.workspace-ribbon {
+  background-color: #111111 !important;
+  border-right: 1px solid var(--clai-border) !important;
+}
+
+.side-dock-ribbon-action {
+  color: var(--clai-muted);
+  border-radius: 4px;
+}
+
+.side-dock-ribbon-action:hover {
+  color: var(--clai-accent) !important;
+  background-color: var(--clai-accent-glow) !important;
+}
+
+.side-dock-ribbon-action.is-active {
+  color: var(--clai-accent) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   17. SETTINGS PANEL SIDEBAR
+   The left nav inside Settings (Appearance, Plugins, etc).
+   Same active = orange pattern as file explorer.
+   ════════════════════════════════════════════════════════════ */
+.vertical-tab-nav-item {
+  color: var(--clai-muted) !important;
+  border-radius: 4px !important;
+}
+
+.vertical-tab-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--clai-text) !important;
+}
+
+.vertical-tab-nav-item.is-active {
+  background-color: var(--clai-accent-dim) !important;
+  color: var(--clai-accent) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   18. SEARCH HIGHLIGHT
+   Text highlighted by search/find results — orange tint.
+   ════════════════════════════════════════════════════════════ */
+mark {
+  background-color: rgba(218, 119, 86, 0.22) !important;
+  color: var(--clai-accent-warm) !important;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   19. RESIZE HANDLE
+   The draggable line between sidebar and editor.
+   Glows orange on hover so you can find it.
+   ════════════════════════════════════════════════════════════ */
+.workspace-leaf-resize-handle:hover {
+  background-color: var(--clai-accent) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+   20. NOTICE / TOAST
+   The pop-up notification that appears bottom-right.
+   Dark bg, rounded, soft shadow.
+   ════════════════════════════════════════════════════════════ */
+.notice {
+  background-color: var(--clai-elevated) !important;
+  color: var(--clai-text) !important;
+  border: 1px solid var(--clai-border-mid) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ════════════════════════════════════════════════════════════
+
+   CUSTOM CALLOUTS — YOUR BRAND + TRADING SYSTEM
+   ─────────────────────────────────────────────
+   HOW TO USE IN A NOTE:
+   > [!TRADE]
+   > SMCI long at 48.20. Stop 46.80. Target 52.00.
+
+   > [!WIN]
+   > Held the breakout. +$340. Thesis held.
+
+   Available callouts listed below.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── [!TRADE] — Trade Setup / Entry Plan ───────────────────── */
+/* Orange accent. Use for: setups, entries, thesis logging      */
+.callout[data-callout="trade"] {
+  background-color: rgba(218, 119, 86, 0.08) !important;
+  border: 1px solid rgba(218, 119, 86, 0.3) !important;
+  border-left: 4px solid #da7756 !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="trade"] .callout-title {
+  color: #da7756 !important;
+}
+.callout[data-callout="trade"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="trade"] .callout-title::before {
+  content: "📈  TRADE";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ── [!WIN] — Trade Win / Milestone Hit ────────────────────── */
+/* Green accent. Use for: closed trades in profit, goals hit    */
+.callout[data-callout="win"] {
+  background-color: rgba(80, 200, 120, 0.07) !important;
+  border: 1px solid rgba(80, 200, 120, 0.25) !important;
+  border-left: 4px solid #50c878 !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="win"] .callout-title {
+  color: #50c878 !important;
+}
+.callout[data-callout="win"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="win"] .callout-title::before {
+  content: "✅  WIN";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ── [!LOSS] — Loss / Lesson Learned ──────────────────────── */
+/* Red accent. Use for: stopped out trades, what went wrong     */
+.callout[data-callout="loss"] {
+  background-color: rgba(232, 112, 112, 0.07) !important;
+  border: 1px solid rgba(232, 112, 112, 0.25) !important;
+  border-left: 4px solid #e87070 !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="loss"] .callout-title {
+  color: #e87070 !important;
+}
+.callout[data-callout="loss"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="loss"] .callout-title::before {
+  content: "🔴  LOSS — LESSON";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ── [!DESK] — The Unfiltered Grind: The Desk ─────────────── */
+/* Warm gold. Use for: daily trading journal entries, premarket */
+.callout[data-callout="desk"] {
+  background-color: rgba(232, 192, 90, 0.07) !important;
+  border: 1px solid rgba(232, 192, 90, 0.25) !important;
+  border-left: 4px solid #e8c05a !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="desk"] .callout-title {
+  color: #e8c05a !important;
+}
+.callout[data-callout="desk"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="desk"] .callout-title::before {
+  content: "🖥️  THE DESK";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ── [!GRIND] — The Mid-Life Grind / Life Engine ──────────── */
+/* Muted purple/slate. Use for: life reflections, identity,     */
+/* the adversity narrative, personal brand posts               */
+.callout[data-callout="grind"] {
+  background-color: rgba(140, 120, 200, 0.08) !important;
+  border: 1px solid rgba(140, 120, 200, 0.22) !important;
+  border-left: 4px solid #9b89d4 !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="grind"] .callout-title {
+  color: #9b89d4 !important;
+}
+.callout[data-callout="grind"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="grind"] .callout-title::before {
+  content: "🔥  THE GRIND";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ── [!FOCUS] — ADHD Focus Lock / Priority Item ───────────── */
+/* Bright cyan. Use for: ONE thing to do right now,             */
+/* breaking paralysis, clearing mental fog                     */
+.callout[data-callout="focus"] {
+  background-color: rgba(80, 200, 220, 0.07) !important;
+  border: 1px solid rgba(80, 200, 220, 0.22) !important;
+  border-left: 4px solid #50c8dc !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="focus"] .callout-title {
+  color: #50c8dc !important;
+}
+.callout[data-callout="focus"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="focus"] .callout-title::before {
+  content: "🎯  FOCUS — ONE THING";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ── [!RULE] — Trading Rule / System Rule ─────────────────── */
+/* Hard white border. Use for: non-negotiable system rules,     */
+/* reminders you need to see before trading                    */
+.callout[data-callout="rule"] {
+  background-color: rgba(235, 235, 235, 0.04) !important;
+  border: 1px solid rgba(235, 235, 235, 0.15) !important;
+  border-left: 4px solid #ebebeb !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="rule"] .callout-title {
+  color: #ebebeb !important;
+}
+.callout[data-callout="rule"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="rule"] .callout-title::before {
+  content: "⚡  RULE";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ── [!BUILD] — Project / System Build Log ────────────────── */
+/* Electric blue. Use for: app builds, automation, project OS   */
+.callout[data-callout="build"] {
+  background-color: rgba(70, 140, 220, 0.07) !important;
+  border: 1px solid rgba(70, 140, 220, 0.22) !important;
+  border-left: 4px solid #468cdc !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="build"] .callout-title {
+  color: #468cdc !important;
+}
+.callout[data-callout="build"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="build"] .callout-title::before {
+  content: "🔧  BUILD";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ── [!THREAD] — X Thread Draft ───────────────────────────── */
+/* Claude orange. Use for: raw thread ideas, voice capture,     */
+/* content drafts before posting                               */
+.callout[data-callout="thread"] {
+  background-color: var(--clai-accent-dim) !important;
+  border: 1px solid rgba(218, 119, 86, 0.28) !important;
+  border-left: 4px solid var(--clai-accent) !important;
+  border-radius: 8px !important;
+}
+.callout[data-callout="thread"] .callout-title {
+  color: var(--clai-accent) !important;
+}
+.callout[data-callout="thread"] .callout-icon svg {
+  display: none;
+}
+.callout[data-callout="thread"] .callout-title::before {
+  content: "𝕏  THREAD DRAFT";
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.82em;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CALLOUT BODY TEXT — consistent across all custom callouts
+   ════════════════════════════════════════════════════════════ */
+.callout[data-callout="trade"] .callout-content,
+.callout[data-callout="win"] .callout-content,
+.callout[data-callout="loss"] .callout-content,
+.callout[data-callout="desk"] .callout-content,
+.callout[data-callout="grind"] .callout-content,
+.callout[data-callout="focus"] .callout-content,
+.callout[data-callout="rule"] .callout-content,
+.callout[data-callout="build"] .callout-content,
+.callout[data-callout="thread"] .callout-content {
+  color: var(--clai-muted) !important;
+  font-size: 0.93em !important;
+  line-height: 1.65 !important;
+}
