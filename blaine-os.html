@@ -14,19 +14,17 @@
   --border: #2a2a2a; --border2:#3d3939;
   --orange: #da7756; --orange2:#e8875a; --oglow:  rgba(218,119,86,0.15);
   --text:   #d5d5d5; --dim:    #666260; --bright: #ebebeb;
-  --grn:    #50c878;
+  --grn:    #50c878; --red:    #e05c5c;
   --font:   'Open Sans', system-ui, sans-serif;
   --mono:   'JetBrains Mono', monospace;
 }
 html, body { height:100%; background:var(--bg); color:var(--text); font-family:var(--font); font-size:16px; overflow:hidden; }
 
-/* SCROLLBAR */
 ::-webkit-scrollbar { width:4px; height:4px; }
 ::-webkit-scrollbar-track { background:transparent; }
 ::-webkit-scrollbar-thumb { background-color:var(--border2); border-radius:3px; }
 ::-webkit-scrollbar-thumb:hover { background-color:var(--dim); }
 
-/* HEADER */
 #header { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; border-bottom:1px solid var(--border); height:48px; flex-shrink:0; background:var(--bg2); }
 .logo { display:flex; align-items:center; gap:10px; }
 .logo-hex { width:26px; height:26px; background:var(--orange); clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%); display:flex; align-items:center; justify-content:center; font-size:13px; color:#fff; font-weight:700; font-family:var(--mono); }
@@ -37,7 +35,6 @@ html, body { height:100%; background:var(--bg); color:var(--text); font-family:v
 .header-links span:hover { color:var(--orange); }
 .header-links .sep { color:var(--border2); }
 
-/* TABS */
 #tabs { display:flex; align-items:center; justify-content:space-between; padding:0 20px; border-bottom:1px solid var(--border); height:40px; flex-shrink:0; background:var(--bg2); }
 .tabs-left { display:flex; gap:4px; height:100%; align-items:center; }
 .tab { display:flex; align-items:center; gap:6px; padding:6px 14px; border:1px solid transparent; background:transparent; color:var(--dim); font-family:var(--mono); font-size:13px; letter-spacing:1px; cursor:pointer; text-transform:uppercase; transition:all 0.12s; height:28px; border-radius:4px; }
@@ -49,14 +46,12 @@ html, body { height:100%; background:var(--bg); color:var(--text); font-family:v
 .idle-dot { width:6px; height:6px; background:var(--orange); border-radius:50%; animation:blink 2s ease-in-out infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
 
-/* LAYOUT */
 #body { display:flex; height:calc(100vh - 88px); overflow:hidden; }
 #left { flex:1; overflow-y:auto; border-right:1px solid var(--border); }
 #right { width:280px; flex-shrink:0; overflow-y:auto; background:var(--bg2); }
 .view { display:none; }
 .view.active { display:block; }
 
-/* METRICS */
 .metrics { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--border); }
 .metric { padding:14px 18px; border-right:1px solid var(--border); }
 .metric:last-child { border-right:none; }
@@ -68,21 +63,18 @@ html, body { height:100%; background:var(--bg); color:var(--text); font-family:v
 .m-val { font-size:26px; font-weight:500; color:var(--bright); letter-spacing:-0.5px; margin-bottom:5px; font-family:var(--mono); }
 .m-sub { display:flex; justify-content:space-between; font-size:11px; color:var(--dim); letter-spacing:1px; font-family:var(--mono); }
 
-/* CHART */
 .chart-wrap { padding:16px 20px; border-bottom:1px solid var(--border); }
 .chart-head { display:flex; justify-content:space-between; margin-bottom:14px; }
 .chart-title { font-size:11px; letter-spacing:1.5px; color:var(--dim); text-transform:uppercase; font-family:var(--mono); }
 .chart-stat  { font-size:11px; letter-spacing:1px; color:var(--dim); font-family:var(--mono); }
 .chart-canvas { height:150px; position:relative; }
 
-/* INTEGRATIONS */
-.integrations { display:flex; align-items:center; gap:20px; padding:10px 20px; border-bottom:1px solid var(--border); background:var(--bg2); flex-wrap:wrap; }
-.int-label { font-size:11px; letter-spacing:1.5px; color:var(--orange); text-transform:uppercase; font-family:var(--mono); }
+.integrations { display:flex; align-items:center; gap:16px; padding:10px 20px; border-bottom:1px solid var(--border); background:var(--bg2); flex-wrap:wrap; }
+.int-label { font-size:11px; letter-spacing:1.5px; color:var(--orange); text-transform:uppercase; font-family:var(--mono); white-space:nowrap; }
 .int-item { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--dim); letter-spacing:0.5px; font-family:var(--mono); }
 .int-dot { width:5px; height:5px; background:var(--orange); border-radius:50%; }
 .int-dot.pending { background:var(--dim); }
 
-/* READY */
 .ready-area { padding:28px 24px 20px; border-bottom:1px solid var(--border); }
 .ready-tag { font-size:11px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; margin-bottom:14px; font-family:var(--mono); }
 .ready-headline { font-size:40px; font-weight:600; color:var(--bright); letter-spacing:-1px; line-height:1.1; margin-bottom:12px; font-family:var(--mono); }
@@ -91,7 +83,6 @@ html, body { height:100%; background:var(--bg); color:var(--text); font-family:v
 @keyframes cur { 0%,100%{opacity:1} 50%{opacity:0} }
 .ready-sub { font-size:14px; color:var(--dim); letter-spacing:0.3px; }
 
-/* PROMPT */
 .prompt-wrap { padding:16px 20px; border-bottom:1px solid var(--border); }
 .prompt-lbl { font-size:11px; letter-spacing:3px; color:var(--orange); text-transform:uppercase; margin-bottom:8px; font-family:var(--mono); }
 textarea.prompt-in { width:100%; min-height:90px; background:var(--bg2); border:1px solid var(--border2); color:var(--bright); font-family:var(--mono); font-size:15px; padding:12px 14px; resize:vertical; outline:none; line-height:1.6; border-radius:6px; }
@@ -104,7 +95,6 @@ textarea.prompt-in::placeholder { color:var(--dim); }
 .btn-clr { background:transparent; color:var(--dim); }
 .btn-clr:hover { color:var(--text); border-color:var(--dim); }
 
-/* SKILLS */
 .skills-wrap { padding:22px 20px 40px; }
 .s-category { margin-bottom:26px; }
 .s-cat-label { font-size:12px; letter-spacing:2px; color:var(--orange); text-transform:uppercase; margin-bottom:10px; font-family:var(--mono); font-weight:600; }
@@ -113,19 +103,83 @@ textarea.prompt-in::placeholder { color:var(--dim); }
 .s-btn:hover { border-color:var(--orange); background:var(--oglow); color:var(--orange); }
 .s-btn.active { border-color:var(--orange); background:var(--oglow); color:var(--orange); }
 
-/* VAULT VIEW */
 .vault-view { padding:24px 22px; }
 .v-tree { display:flex; flex-direction:column; gap:4px; }
 .v-root { font-size:15px; color:var(--bright); margin-bottom:8px; font-family:var(--mono); }
+.v-section { font-size:12px; color:var(--orange); letter-spacing:1.5px; padding:10px 0 4px; font-family:var(--mono); text-transform:uppercase; }
 .v-item { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--dim); padding:5px 0 5px 20px; border-left:1px solid var(--border); }
 .v-item:hover { color:var(--text); border-color:var(--border2); }
 .v-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
 
-/* DAILY NOTE */
 .daily-view { padding:24px 22px; }
 .daily-hd { font-size:12px; letter-spacing:2px; color:var(--dim); margin-bottom:16px; font-family:var(--mono); text-transform:uppercase; }
 textarea.daily-in { width:100%; min-height:500px; background:var(--bg2); border:1px solid var(--border2); color:var(--bright); font-family:var(--mono); font-size:15px; padding:16px; resize:vertical; outline:none; line-height:1.8; border-radius:6px; }
 textarea.daily-in:focus { border-color:var(--orange); box-shadow:0 0 0 3px var(--oglow); }
+
+/* TRADE JOURNAL TAB */
+.tj-metrics { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-bottom:1px solid var(--border); }
+.tj-metric { padding:12px 16px; border-right:1px solid var(--border); }
+.tj-metric:last-child { border-right:none; }
+.tj-m-label { font-size:10px; letter-spacing:1.5px; color:var(--dim); text-transform:uppercase; font-family:var(--mono); margin-bottom:6px; }
+.tj-m-val { font-size:22px; font-weight:500; color:var(--bright); font-family:var(--mono); }
+.tj-m-val.red { color:var(--red); }
+.tj-m-val.grn { color:var(--grn); }
+.tj-m-sub { font-size:11px; color:var(--dim); font-family:var(--mono); margin-top:4px; }
+
+.tj-section { padding:16px 20px; border-bottom:1px solid var(--border); }
+.tj-section-hd { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.tj-section-title { font-size:11px; letter-spacing:2px; color:var(--orange); text-transform:uppercase; font-family:var(--mono); font-weight:600; }
+.tj-btn { padding:5px 12px; background:transparent; border:1px solid var(--border2); color:var(--dim); font-family:var(--mono); font-size:11px; letter-spacing:1px; cursor:pointer; border-radius:4px; transition:all 0.12s; }
+.tj-btn:hover { color:var(--orange); border-color:var(--orange); }
+textarea.tj-in { width:100%; min-height:80px; background:var(--bg2); border:1px solid var(--border2); color:var(--bright); font-family:var(--mono); font-size:13px; padding:10px 12px; resize:vertical; outline:none; line-height:1.6; border-radius:6px; }
+textarea.tj-in:focus { border-color:var(--orange); box-shadow:0 0 0 3px var(--oglow); }
+textarea.tj-in::placeholder { color:var(--dim); }
+.trades-table { width:100%; border-collapse:collapse; font-family:var(--mono); font-size:12px; }
+.trades-table th { color:var(--dim); font-weight:400; letter-spacing:1px; text-align:left; padding:6px 8px; border-bottom:1px solid var(--border); }
+.trades-table td { color:var(--text); padding:7px 8px; border-bottom:1px solid var(--border); }
+.trades-table tr:last-child td { border-bottom:none; }
+.trades-table tr:hover td { background:var(--bg3); }
+.trade-win { color:var(--grn); }
+.trade-loss { color:var(--red); }
+.api-status { font-size:11px; color:var(--dim); font-family:var(--mono); padding:8px 0; }
+.api-status.loading { color:var(--orange); }
+.api-status.error { color:var(--red); }
+
+/* TASKS TAB */
+.tasks-view { padding:20px 22px 40px; }
+.task-section { margin-bottom:28px; }
+.task-section-hd { font-size:12px; letter-spacing:2px; color:var(--orange); text-transform:uppercase; font-family:var(--mono); font-weight:600; margin-bottom:12px; }
+.milestone { padding:12px 14px; background:var(--bg2); border:1px solid var(--border); border-radius:6px; margin-bottom:8px; }
+.milestone-top { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.ms-badge { font-size:9px; letter-spacing:1.5px; padding:2px 7px; border-radius:3px; font-family:var(--mono); text-transform:uppercase; font-weight:600; }
+.ms-badge.p1 { background:rgba(218,119,86,0.2); color:var(--orange); border:1px solid rgba(218,119,86,0.3); }
+.ms-badge.p2 { background:rgba(74,144,217,0.15); color:#4a90d9; border:1px solid rgba(74,144,217,0.3); }
+.ms-badge.p3 { background:rgba(80,200,120,0.12); color:var(--grn); border:1px solid rgba(80,200,120,0.3); }
+.ms-title { font-size:14px; color:var(--bright); font-weight:500; }
+.ms-target { font-size:11px; color:var(--dim); font-family:var(--mono); margin-left:auto; }
+.ms-progress { height:3px; background:var(--border2); border-radius:2px; margin-bottom:6px; overflow:hidden; }
+.ms-progress-fill { height:100%; border-radius:2px; }
+.ms-steps { font-size:12px; color:var(--dim); line-height:2; padding-left:4px; }
+.ms-steps .done { color:var(--grn); }
+.ms-steps .active { color:var(--orange); }
+
+.checklist { display:flex; flex-direction:column; gap:4px; }
+.cl-item { display:flex; align-items:center; gap:10px; padding:8px 12px; background:var(--bg2); border:1px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.12s; }
+.cl-item:hover { border-color:var(--border2); }
+.cl-item.checked { opacity:0.5; }
+.cl-check { width:16px; height:16px; border:1px solid var(--border2); border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:10px; color:var(--grn); flex-shrink:0; }
+.cl-item.checked .cl-check { background:rgba(80,200,120,0.15); border-color:var(--grn); }
+.cl-text { font-size:13px; color:var(--text); }
+.cl-time { font-size:11px; color:var(--dim); font-family:var(--mono); margin-left:auto; }
+
+.backlog-item { padding:10px 14px; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; gap:10px; }
+.backlog-item:last-child { border-bottom:none; }
+.bl-pri { font-size:9px; letter-spacing:1px; font-family:var(--mono); font-weight:600; padding:2px 6px; border-radius:3px; flex-shrink:0; margin-top:2px; }
+.bl-pri.high { background:rgba(218,119,86,0.2); color:var(--orange); }
+.bl-pri.med  { background:rgba(74,144,217,0.12); color:#4a90d9; }
+.bl-pri.low  { background:var(--bg3); color:var(--dim); }
+.bl-text { font-size:13px; color:var(--text); line-height:1.5; }
+.bl-tag  { font-size:11px; color:var(--dim); font-family:var(--mono); }
 
 /* RIGHT SIDEBAR */
 .sb-section { border-bottom:1px solid var(--border); padding:14px 16px; }
@@ -147,6 +201,7 @@ textarea.daily-in:focus { border-color:var(--orange); box-shadow:0 0 0 3px var(-
 .vp-top { display:flex; align-items:center; gap:7px; }
 .vp-badge { font-size:10px; padding:2px 6px; background:var(--orange); color:#fff; font-weight:600; flex-shrink:0; text-transform:uppercase; border-radius:3px; font-family:var(--mono); }
 .vp-badge.upd { background:transparent; border:1px solid var(--orange); color:var(--orange); }
+.vp-badge.new { background:rgba(80,200,120,0.2); border:1px solid var(--grn); color:var(--grn); }
 .vp-name { font-size:12px; color:var(--text); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .vp-path { font-size:11px; color:var(--dim); font-family:var(--mono); }
 .run-item { padding:7px 0; border-bottom:1px solid var(--border); font-size:12px; color:var(--dim); line-height:1.5; }
@@ -162,17 +217,14 @@ textarea.daily-in:focus { border-color:var(--orange); box-shadow:0 0 0 3px var(-
 .s-done  { color:var(--text); }
 .s-pend  { color:var(--dim); }
 
-/* GRAIN */
 body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.015;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat:repeat; background-size:180px 180px; }
 
-/* WAR ROOM — full-width override */
 #body.warroom-mode #right { display:none; }
 #body.warroom-mode #left { border-right:none; overflow:hidden; }
 #view-warroom.active { display:flex !important; flex-direction:column; height:100%; }
 
-/* WAR ROOM — assembling screen */
 #warroom-assembling { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; transition:opacity 0.5s; }
 #warroom-assembling.hidden { opacity:0; pointer-events:none; }
 .wr-title { font-size:42px; font-weight:600; color:var(--bright); letter-spacing:-1px; margin-bottom:8px; text-align:center; font-family:var(--mono); }
@@ -188,7 +240,6 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
 .wr-progress-fill { height:100%; background:var(--orange); width:0%; transition:width 0.8s ease; }
 .wr-progress-lbl { font-size:9px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; font-family:var(--mono); }
 
-/* WAR ROOM — active chat */
 #warroom-active { display:none; flex:1; overflow:hidden; }
 #warroom-active.visible { display:flex; }
 .wr-sidebar { width:200px; min-width:200px; background:var(--bg2); border-right:1px solid var(--border); display:flex; flex-direction:column; overflow:hidden; }
@@ -254,7 +305,8 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
   <div class="tabs-left">
     <button class="tab active" onclick="setTab('main',this)"><span class="dot"></span> CLAUDE CODE</button>
     <button class="tab" onclick="setTab('vault',this)"><span class="dot"></span> WORKSPACE</button>
-    <button class="tab" onclick="setTab('daily',this)"><span class="ico">§</span> DAILY NOTE</button>
+    <button class="tab" onclick="setTab('journal',this)"><span class="ico">📓</span> TRADE JOURNAL</button>
+    <button class="tab" onclick="setTab('tasks',this)"><span class="ico">▣</span> TASKS</button>
     <button class="tab" onclick="setTab('priorities',this)"><span class="ico">▸</span> Q2 PRIORITIES</button>
     <button class="tab" onclick="setTab('runlog',this)"><span class="ico">≡</span> RUN LOG</button>
     <button class="tab" onclick="setTab('warroom',this)"><span class="ico">⚔</span> WAR ROOM</button>
@@ -265,7 +317,7 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
 <div id="body">
 <div id="left">
 
-  <!-- MAIN TAB -->
+  <!-- MAIN / CLAUDE CODE TAB -->
   <div class="view active" id="view-main">
     <div class="metrics">
       <div class="metric">
@@ -275,16 +327,16 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
         <div class="m-sub"><span>TARGET LOSS CAP</span><span>→ Q2</span></div>
       </div>
       <div class="metric">
-        <div class="metric-head"><span class="m-label">BUILD PROGRESS</span><span class="m-reset">JULY TARGET</span></div>
-        <div class="pbar"><div class="pbar-fill" style="width:15%"></div></div>
-        <div class="m-val">DAY 1</div>
-        <div class="m-sub"><span>AIOS LIVE</span><span>→ BUILDING</span></div>
+        <div class="metric-head"><span class="m-label">WIN RATE</span><span class="m-reset">242 TRADES</span></div>
+        <div class="pbar"><div class="pbar-fill" style="width:30.6%"></div></div>
+        <div class="m-val">30.6%</div>
+        <div class="m-sub"><span>74W · 167L · 1E</span><span>→ TARGET 40%+</span></div>
       </div>
       <div class="metric">
-        <div class="metric-head"><span class="m-label">SKILLS INSTALLED</span><span class="m-reset">RUN /LEVEL-UP</span></div>
-        <div class="pbar"><div class="pbar-fill" style="width:20%"></div></div>
-        <div class="m-val">3 / 15+</div>
-        <div class="m-sub"><span>ONBOARD·AUDIT·LEVEL-UP</span><span>→ ADD</span></div>
+        <div class="metric-head"><span class="m-label">CONNECTIONS</span><span class="m-reset">WIRED / TOTAL</span></div>
+        <div class="pbar"><div class="pbar-fill" style="width:53%"></div></div>
+        <div class="m-val">8 / 15</div>
+        <div class="m-sub"><span>8 LIVE · 7 PENDING</span><span>→ WIRE MORE</span></div>
       </div>
     </div>
 
@@ -297,13 +349,22 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
     </div>
 
     <div class="integrations">
-      <span class="int-label">INTEGRATIONS</span>
+      <span class="int-label">INTEGRATIONS 8/15</span>
       <div class="int-item"><div class="int-dot"></div> TOS / TD AMERITRADE</div>
       <div class="int-item"><div class="int-dot"></div> SEC / EDGAR</div>
       <div class="int-item"><div class="int-dot"></div> OBSIDIAN VAULT</div>
+      <div class="int-item"><div class="int-dot"></div> TRADE JOURNAL API</div>
+      <div class="int-item"><div class="int-dot"></div> TRADINGAGENTS</div>
+      <div class="int-item"><div class="int-dot"></div> FINCEPT TOOLS</div>
+      <div class="int-item"><div class="int-dot"></div> EDGAR TOOLS</div>
+      <div class="int-item"><div class="int-dot"></div> THINKORSWIM DATA</div>
       <div class="int-item"><div class="int-dot pending"></div> GMAIL</div>
       <div class="int-item"><div class="int-dot pending"></div> DISCORD</div>
       <div class="int-item"><div class="int-dot pending"></div> TWITTER/X</div>
+      <div class="int-item"><div class="int-dot pending"></div> DISCORD MCP</div>
+      <div class="int-item"><div class="int-dot pending"></div> FACEBOOK</div>
+      <div class="int-item"><div class="int-dot pending"></div> INSTAGRAM</div>
+      <div class="int-item"><div class="int-dot pending"></div> OBSIDIAN MCP</div>
     </div>
 
     <div class="ready-area">
@@ -401,50 +462,257 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
       <div class="sb-label" style="margin-bottom:18px;">WORKSPACE — d:\AIS-OS\</div>
       <div class="v-tree">
         <div class="v-root">📁 d:\AIS-OS\</div>
+
+        <div class="v-section">Core Config</div>
         <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> CLAUDE.md — root operating manual (filled in)</div>
-        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> aios-intake.md — all 7 questions answered</div>
-        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> connections.md — 7 tools registered</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> AGENTS.md — Codex partner root guide</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> connections.md — registry of all wired tools</div>
         <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> context\ — about-me · about-business · priorities</div>
-        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> references\ — voice.md · 3ms-framework.md</div>
-        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> decisions\log.md — first entry written today</div>
-        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> .claude\skills\ — onboard · audit · level-up</div>
-        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\ — trading OS, scanners, risk, journal</div>
-        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\TRADING_SYSTEMS\ — core trading context</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> references\ — voice.md · 3ms-framework.md · trade-journal-api.md</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> decisions\log.md — append-only decisions record</div>
+
+        <div class="v-section">AI OS</div>
+        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\TRADING_SYSTEMS\ — trading OS, scanners, risk, journal</div>
         <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\THINKING_MODELS\ — decision frameworks</div>
         <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\MEMORY\ — session handoff template</div>
+        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\AGENT_SYSTEMS\ — agent design + codex_partner.md</div>
+        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\CONTENT_SYSTEMS\ — content OS, pillars, voice</div>
+        <div class="v-item"><div class="v-dot" style="background:#4a90d9"></div> AI_OS\TRADING_SYSTEMS\fincept_tools\ — Fincept backtesting</div>
+
+        <div class="v-section">Second Brain (Obsidian)</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> Agentic_OS\wiki\index.md — knowledge base index</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> Agentic_OS\wiki\entities\ — blaine · trading_agents · thinkorswim · codex</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> Agentic_OS\wiki\topics\ — trading_context · q2_goals · adhd_workflow · trading_prompts</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> Agentic_OS\wiki\sources\ — ai_trading_prompts · smart_money_tracking</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--dim)"></div> Agentic_OS\raw\ — notes · articles · data · books (ingest to wiki)</div>
+
+        <div class="v-section">Agents and Skills</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> .claude\agents\ — pre-market-scan · small-cap-catalyst · trade-pattern-analyst · trading-agents-team</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--orange)"></div> .claude\skills\ — onboard · audit · level-up</div>
+
+        <div class="v-section">Trading Tools</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> TradingAgents\ — 10-agent analysis pipeline (Claude + DeepSeek)</div>
+        <div class="v-item"><div class="v-dot" style="background:var(--grn)"></div> scripts\run_trading_agents.py — CLI wrapper</div>
         <div class="v-item"><div class="v-dot" style="background:var(--dim)"></div> archives\ — old files. don't delete, move here.</div>
       </div>
     </div>
   </div>
 
-  <!-- DAILY NOTE TAB -->
-  <div class="view" id="view-daily">
-    <div class="daily-view">
-      <div class="daily-hd">DAILY TRADING NOTE — <span id="dailyDate"></span></div>
-      <textarea class="daily-in" id="dailyNote" placeholder="# Daily Note
-
-## Pre-Market
-- Watchlist:
-- Top catalyst:
-- Key levels:
-- Market environment (active / cautious):
-
-## Trades
-| Ticker | Side | Entry | Exit | P&L | Loss % | Grade |
-|--------|------|-------|------|-----|--------|-------|
-|        |      |       |      |     |        |       |
-
-## End of Day Review
-- Win rate today:
-- Average loss %:
-- Biggest mistake:
-- Rule violations (Y/N):
-- Vs 0.33% target: UNDER / OVER
-
-## Notes / Lessons"></textarea>
-      <div style="margin-top:10px;">
-        <button class="btn-run" onclick="saveDaily()" style="width:100%">SAVE NOTE →</button>
+  <!-- TRADE JOURNAL TAB -->
+  <div class="view" id="view-journal">
+    <div class="tj-metrics">
+      <div class="tj-metric">
+        <div class="tj-m-label">TOTAL TRADES</div>
+        <div class="tj-m-val" id="tj-total">242</div>
+        <div class="tj-m-sub">74W · 167L · 1E</div>
       </div>
+      <div class="tj-metric">
+        <div class="tj-m-label">WIN RATE</div>
+        <div class="tj-m-val" id="tj-wr">30.6%</div>
+        <div class="tj-m-sub">TARGET 40%+</div>
+      </div>
+      <div class="tj-metric">
+        <div class="tj-m-label">NET P&amp;L</div>
+        <div class="tj-m-val red" id="tj-pnl">-$141.81</div>
+        <div class="tj-m-sub">ALL TIME</div>
+      </div>
+      <div class="tj-metric">
+        <div class="tj-m-label">STREAK</div>
+        <div class="tj-m-val red" id="tj-streak">-6</div>
+        <div class="tj-m-sub">CURRENT LOSING</div>
+      </div>
+    </div>
+
+    <div class="tj-section">
+      <div class="tj-section-hd">
+        <span class="tj-section-title">PRE-MARKET NOTES</span>
+        <span style="font-size:11px;color:var(--dim);font-family:var(--mono);" id="journalDate"></span>
+      </div>
+      <textarea class="tj-in" id="preMarketNotes" rows="4" placeholder="Watchlist: &#10;Top catalyst: &#10;Key levels: &#10;Environment (active / cautious):"></textarea>
+    </div>
+
+    <div class="tj-section">
+      <div class="tj-section-hd">
+        <span class="tj-section-title">TODAY'S TRADES</span>
+        <button class="tj-btn" onclick="fetchTodayTrades()">↻ REFRESH</button>
+      </div>
+      <div id="tradesContainer">
+        <div class="api-status loading" id="tradesStatus">Fetching from journal API...</div>
+        <table class="trades-table" id="tradesTable" style="display:none;">
+          <thead>
+            <tr>
+              <th>TICKER</th><th>SIDE</th><th>ENTRY</th><th>EXIT</th><th>P&amp;L</th><th>LOSS%</th><th>GRADE</th>
+            </tr>
+          </thead>
+          <tbody id="tradesBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tj-section">
+      <div class="tj-section-hd">
+        <span class="tj-section-title">LOG A TRADE</span>
+        <button class="tj-btn" onclick="copyTradeTemplate()">COPY TEMPLATE</button>
+      </div>
+      <div style="font-size:12px;color:var(--dim);font-family:var(--mono);line-height:2;margin-bottom:8px;">
+        Click COPY TEMPLATE to load the trade entry prompt into clipboard, then paste into Claude.
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <button class="btn-run" onclick="copyTradeTemplate()" style="padding:10px;">COPY TRADE LOG PROMPT →</button>
+        <button class="btn-clr" onclick="pick(document.querySelector('.s-btn'),'trade-journal')" style="padding:10px;">OPEN IN CLAUDE CODE</button>
+      </div>
+    </div>
+
+    <div class="tj-section">
+      <div class="tj-section-hd">
+        <span class="tj-section-title">EOD REVIEW</span>
+      </div>
+      <textarea class="tj-in" id="eodNotes" rows="5" placeholder="Win rate today:&#10;Average loss %:&#10;Biggest mistake:&#10;Rule violations (Y/N):&#10;Vs 0.33% target: UNDER / OVER&#10;Tomorrow's focus:"></textarea>
+      <div style="margin-top:8px;">
+        <button class="btn-run" onclick="saveEOD()" style="width:100%;padding:10px;">SAVE EOD REVIEW →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TASKS TAB -->
+  <div class="view" id="view-tasks">
+    <div class="tasks-view">
+
+      <div class="task-section">
+        <div class="task-section-hd">Q2 MILESTONES — JULY 2026</div>
+        <div class="milestone">
+          <div class="milestone-top">
+            <span class="ms-badge p1">P1 — P&amp;L</span>
+            <span class="ms-title">Cut per-trade losses to 0.25–0.33%</span>
+            <span class="ms-target">ONGOING</span>
+          </div>
+          <div class="ms-progress"><div class="ms-progress-fill" style="width:25%;background:var(--orange)"></div></div>
+          <div class="ms-steps">
+            <span class="done">✓</span> Trade journal live (API connected) &nbsp;
+            <span class="active">→</span> Reduce average loss per trade &nbsp;
+            <span style="color:var(--dim)">○</span> Hit 0.33% max per trade &nbsp;
+            <span style="color:var(--dim)">○</span> Hit 0.25% max per trade
+          </div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-top">
+            <span class="ms-badge p2">P2 — JOURNAL</span>
+            <span class="ms-title">Finish Trade Journal / Backtest Prototype</span>
+            <span class="ms-target">JULY</span>
+          </div>
+          <div class="ms-progress"><div class="ms-progress-fill" style="width:30%;background:#4a90d9"></div></div>
+          <div class="ms-steps">
+            <span class="done">✓</span> Journal API live on PythonAnywhere &nbsp;
+            <span class="done">✓</span> Basic trade entry working &nbsp;
+            <span class="active">→</span> Add P&amp;L trend charts &nbsp;
+            <span style="color:var(--dim)">○</span> Add mistake pattern tracker &nbsp;
+            <span style="color:var(--dim)">○</span> Ship MVP
+          </div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-top">
+            <span class="ms-badge p3">P3 — BACKTESTER</span>
+            <span class="ms-title">TOS Backtester + Dilution Tracker + Thinkscript Filters</span>
+            <span class="ms-target">JULY</span>
+          </div>
+          <div class="ms-progress"><div class="ms-progress-fill" style="width:10%;background:var(--grn)"></div></div>
+          <div class="ms-steps">
+            <span class="active">→</span> Step 1: Scanner filters (get tradeable tickers) &nbsp;
+            <span style="color:var(--dim)">○</span> Step 2: Dilution research layer &nbsp;
+            <span style="color:var(--dim)">○</span> Step 3: Backtest logic &nbsp;
+            <span style="color:var(--dim)">○</span> Step 4: Learning system
+          </div>
+        </div>
+      </div>
+
+      <div class="task-section">
+        <div class="task-section-hd">DAILY CHECKLIST</div>
+        <div class="checklist">
+          <div class="cl-item" onclick="toggleCheck(this)">
+            <div class="cl-check"></div>
+            <div class="cl-text">Run Pre-Market Scan — check top gappers + catalysts</div>
+            <div class="cl-time">08:00</div>
+          </div>
+          <div class="cl-item" onclick="toggleCheck(this)">
+            <div class="cl-check"></div>
+            <div class="cl-text">Morning Brief — set the day's ONE priority</div>
+            <div class="cl-time">08:30</div>
+          </div>
+          <div class="cl-item" onclick="toggleCheck(this)">
+            <div class="cl-check"></div>
+            <div class="cl-text">Risk Check — confirm max loss limits before first trade</div>
+            <div class="cl-time">09:25</div>
+          </div>
+          <div class="cl-item" onclick="toggleCheck(this)">
+            <div class="cl-check"></div>
+            <div class="cl-text">Log all trades to journal API (no missed entries)</div>
+            <div class="cl-time">INTRADAY</div>
+          </div>
+          <div class="cl-item" onclick="toggleCheck(this)">
+            <div class="cl-check"></div>
+            <div class="cl-text">EOD Review — win rate, avg loss%, violations, tomorrow's focus</div>
+            <div class="cl-time">16:00</div>
+          </div>
+          <div class="cl-item" onclick="toggleCheck(this)">
+            <div class="cl-check"></div>
+            <div class="cl-text">P&amp;L Review — are losses trending toward 0.33% target?</div>
+            <div class="cl-time">16:30</div>
+          </div>
+          <div class="cl-item" onclick="toggleCheck(this)">
+            <div class="cl-check"></div>
+            <div class="cl-text">ONE build task — 30 min minimum on TOS backtester or journal</div>
+            <div class="cl-time">EVENING</div>
+          </div>
+          <div class="cl-item" onclick="toggleCheck(this)">
+            <div class="cl-check"></div>
+            <div class="cl-text">Session Handoff — save what was done + next session start</div>
+            <div class="cl-time">END OF DAY</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-section">
+        <div class="task-section-hd">PROJECT BACKLOG</div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <div class="backlog-item">
+            <span class="bl-pri high">HIGH</span>
+            <div><div class="bl-text">Add P&amp;L chart to trade journal (weekly trend view)</div><div class="bl-tag">Journal Prototype</div></div>
+          </div>
+          <div class="backlog-item">
+            <span class="bl-pri high">HIGH</span>
+            <div><div class="bl-text">Write base TOS strategy script (entry + exit conditions)</div><div class="bl-tag">TOS Backtester</div></div>
+          </div>
+          <div class="backlog-item">
+            <span class="bl-pri high">HIGH</span>
+            <div><div class="bl-text">Build pre-market gapper scanner in Thinkscript</div><div class="bl-tag">Scanner Build</div></div>
+          </div>
+          <div class="backlog-item">
+            <span class="bl-pri med">MED</span>
+            <div><div class="bl-text">Design dilution tracker data structure (shares, S-1/S-3, warrants)</div><div class="bl-tag">Dilution Tracker</div></div>
+          </div>
+          <div class="backlog-item">
+            <span class="bl-pri med">MED</span>
+            <div><div class="bl-text">Wire Gmail via OAuth for inbox triage skill</div><div class="bl-tag">Connections</div></div>
+          </div>
+          <div class="backlog-item">
+            <span class="bl-pri med">MED</span>
+            <div><div class="bl-text">Add mistake pattern tracker to journal (recurring errors)</div><div class="bl-tag">Journal Prototype</div></div>
+          </div>
+          <div class="backlog-item">
+            <span class="bl-pri low">LOW</span>
+            <div><div class="bl-text">Connect Obsidian MCP for live vault read/write</div><div class="bl-tag">Connections</div></div>
+          </div>
+          <div class="backlog-item">
+            <span class="bl-pri low">LOW</span>
+            <div><div class="bl-text">Run Day 7 /audit — check Four Cs score</div><div class="bl-tag">AIOS</div></div>
+          </div>
+          <div class="backlog-item">
+            <span class="bl-pri low">LOW</span>
+            <div><div class="bl-text">Wire Discord for community + alert routing</div><div class="bl-tag">Connections</div></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -468,10 +736,10 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
         <div style="font-size:12px;letter-spacing:2px;color:var(--orange);margin-bottom:10px;font-family:var(--mono);font-weight:600;">PRIORITY 2 — TRADE JOURNAL</div>
         <div style="font-size:16px;color:var(--bright);margin-bottom:10px;font-weight:600;">Finish the Trade Journal / Backtest Prototype</div>
         <div style="font-size:14px;color:var(--dim);line-height:2.2;">
-          ● Define done: what does the MVP include?<br>
-          ● One build session per day<br>
+          ● Journal API is live — keep logging every trade<br>
+          ● Add P&amp;L chart + mistake pattern tracker<br>
           ● Ship MVP first, optimize later<br>
-          ● Use the Journal Prototype skill to start sessions
+          ● Use the Journal Prototype skill to start build sessions
         </div>
       </div>
 
@@ -572,11 +840,12 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
 
   <div class="sb-section">
     <div class="sb-label">VAULT PULSE</div>
-    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">context/about-me.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">CONTEXT</div></div>
-    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">context/priorities.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">CONTEXT</div></div>
-    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">references/voice.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">REFERENCES</div></div>
-    <div class="vp-item"><div class="vp-top"><span class="vp-badge upd">UPDATED</span><span class="vp-name">CLAUDE.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">ROOT</div></div>
-    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">decisions/log.md</span><span class="vp-path" style="margin-left:auto;font-size:11px;color:var(--dim);">TODAY</span></div><div class="vp-path">DECISIONS</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge new">NEW</span><span class="vp-name">wiki/sources/smart_money_tracking.md</span><span style="margin-left:auto;font-size:11px;color:var(--dim);">5/11</span></div><div class="vp-path">SECOND BRAIN</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge new">NEW</span><span class="vp-name">wiki/entities/trading_agents.md</span><span style="margin-left:auto;font-size:11px;color:var(--dim);">5/11</span></div><div class="vp-path">ENTITIES</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge new">NEW</span><span class="vp-name">wiki/topics/trading_prompts.md</span><span style="margin-left:auto;font-size:11px;color:var(--dim);">5/11</span></div><div class="vp-path">TOPICS</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge upd">UPDATED</span><span class="vp-name">wiki/entities/blaine.md</span><span style="margin-left:auto;font-size:11px;color:var(--dim);">5/11</span></div><div class="vp-path">ENTITIES</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge upd">UPDATED</span><span class="vp-name">CLAUDE.md</span><span style="margin-left:auto;font-size:11px;color:var(--dim);">5/11</span></div><div class="vp-path">ROOT</div></div>
+    <div class="vp-item"><div class="vp-top"><span class="vp-badge">CREATED</span><span class="vp-name">references/trade-journal-api.md</span><span style="margin-left:auto;font-size:11px;color:var(--dim);">5/11</span></div><div class="vp-path">REFERENCES</div></div>
   </div>
 
   <div class="sb-section">
@@ -595,15 +864,16 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
     <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Onboarding complete</span></div>
     <div class="setup-item"><span class="s-check">✓</span><span class="s-done">context/ files (3)</span></div>
     <div class="setup-item"><span class="s-check">✓</span><span class="s-done">references/ populated</span></div>
-    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">decisions/log.md</span></div>
-    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">3 skills installed</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">decisions/log.md active</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Agents installed (4)</span></div>
     <div class="setup-item"><span class="s-check">✓</span><span class="s-done">AI_OS workspace loaded</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">TradingAgents installed</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Trade Journal API live</span></div>
+    <div class="setup-item"><span class="s-check">✓</span><span class="s-done">Second brain (wiki) built</span></div>
     <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">API keys (.env)</span></div>
-    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Obsidian MCP connected</span></div>
     <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Gmail connected</span></div>
     <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Trade Journal prototype done</span></div>
     <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">TOS backtester v1 done</span></div>
-    <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Dilution Tracker built</span></div>
     <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">P&amp;L loss target hit (0.33%)</span></div>
     <div class="setup-item"><span class="s-pend">○</span><span class="s-pend">Day 7 /audit run</span></div>
   </div>
@@ -613,7 +883,83 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
 
 <script>
 const TODAY = new Date().toISOString().split('T')[0];
+document.getElementById('journalDate').textContent = TODAY;
 
+/* ── TRADE JOURNAL ───────────────────────────────── */
+async function fetchTodayTrades() {
+  const status = document.getElementById('tradesStatus');
+  const table  = document.getElementById('tradesTable');
+  const tbody  = document.getElementById('tradesBody');
+  status.textContent = 'Fetching from goheat207.pythonanywhere.com...';
+  status.className = 'api-status loading';
+  status.style.display = 'block';
+  table.style.display = 'none';
+  try {
+    const res = await fetch('https://goheat207.pythonanywhere.com/api/trades?date=' + TODAY, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const trades = Array.isArray(data) ? data : (data.trades || []);
+    tbody.innerHTML = '';
+    if (trades.length === 0) {
+      status.textContent = 'No trades logged today yet.';
+      status.className = 'api-status';
+      return;
+    }
+    trades.forEach(t => {
+      const pnl = parseFloat(t.pnl || t.pl || 0);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${t.ticker||'-'}</td><td>${t.side||'-'}</td><td>${t.entry||'-'}</td><td>${t.exit||'-'}</td><td class="${pnl>=0?'trade-win':'trade-loss'}">${pnl>=0?'+':''}${pnl.toFixed(2)}</td><td>${t.loss_pct||t.lossPct||'-'}</td><td>${t.grade||'-'}</td>`;
+      tbody.appendChild(tr);
+    });
+    status.style.display = 'none';
+    table.style.display = 'table';
+  } catch(e) {
+    status.textContent = 'API unavailable — log trades manually via Claude Code.';
+    status.className = 'api-status error';
+  }
+}
+
+function copyTradeTemplate() {
+  const text = `Trade Journal Entry — ${TODAY}
+
+Ticker:
+Side (LONG / SHORT):
+Entry price + time ET:
+Exit price + time ET:
+Shares:
+P&L: +$  / -$
+Loss % of account:
+Catalyst:
+Setup type (gap-and-go / VWAP reclaim / HOD break / reversal / other):
+Entry reason:
+Exit reason (target / stop / thesis broken):
+Grade (A / B / C / D):
+Rule violations? (Y/N — if Y, what):
+Notes:
+
+[Fill in above — I'll format and save to your trade journal]`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = 'COPIED ✓';
+    setTimeout(() => btn.textContent = orig, 1800);
+  });
+}
+
+function saveEOD() {
+  const btn = event.target;
+  btn.textContent = 'SAVED ✓';
+  setTimeout(() => btn.textContent = 'SAVE EOD REVIEW →', 2000);
+}
+
+/* ── TASKS ───────────────────────────────────────── */
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  const box = el.querySelector('.cl-check');
+  box.textContent = el.classList.contains('checked') ? '✓' : '';
+}
+
+/* ── SKILLS DATA ─────────────────────────────────── */
 const SKILLS = {
 'vault-cleanup':`Review my vault at d:\\AIS-OS\\ and identify:
 1. Files that may be outdated (check context/ dates)
@@ -980,11 +1326,11 @@ Run the 10-agent TradingAgents pipeline on this ticker:
   - Risk Team x3 (conservative / neutral / aggressive)
   - Portfolio Manager (final approval)
 
-Command (run from d:\AIS-OS):
+Command (run from d:\\AIS-OS):
   python scripts/run_trading_agents.py [TICKER] ${TODAY}
 
 Or use CLI:
-  cd d:\AIS-OS\TradingAgents && python -m cli.main
+  cd d:\\AIS-OS\\TradingAgents && python -m cli.main
 
 After the analysis, cross-check:
   1. Float size — under 50M float for relevance to Blaine's style
@@ -1053,6 +1399,7 @@ function setTab(id, btn) {
   } else {
     body.classList.remove('warroom-mode');
   }
+  if (id === 'journal') fetchTodayTrades();
 }
 
 function doRun() {
@@ -1092,14 +1439,6 @@ function doClear() {
   document.getElementById('readyLine').innerHTML = 'RUN A <span class="hl">SKILL</span> TO BEGIN<span class="cursor"></span>';
   document.getElementById('readySub').textContent = 'click a skill · press run · or type any prompt';
 }
-
-function saveDaily() {
-  const btn = event.target;
-  btn.textContent = 'SAVED ✓';
-  setTimeout(() => btn.textContent = 'SAVE NOTE →', 2000);
-}
-
-document.getElementById('dailyDate').textContent = TODAY;
 
 /* ── WAR ROOM DATA ───────────────────────────────── */
 const WR_AGENTS = [
