@@ -20,17 +20,17 @@
             }
           },
           {
-            "id": "a27c19e7acbbf9ec",
+            "id": "66d5773998b1adfa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/index.md",
+                "file": "wiki/syntheses/HTCO.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "HTCO"
             }
           }
         ],
@@ -123,6 +123,69 @@
               "icon": "calendar-with-checkmark",
               "title": "Calendar"
             }
+          },
+          {
+            "id": "56be6b02b102df4d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "wiki/syntheses/HTCO.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for HTCO"
+            }
+          },
+          {
+            "id": "a339966064b5d4aa",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e52a3404868e7cce",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "0d2e89d6bc5b872f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "wiki/syntheses/HTCO.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of HTCO"
+            }
           }
         ]
       }
@@ -141,18 +204,24 @@
       "graph:Open graph view": false,
       "obsidian-import-json:JSON/CSV Importer": false,
       "notebook-navigator:Notebook Navigator": false,
-      "periodic-notes:Open today": false,
       "rss-dashboard:RSS dashboard": false,
       "templater-obsidian:Templater": false,
-      "obsidian-excalidraw-plugin:New drawing": false
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "periodic-notes:Open today": false
     }
   },
-  "active": "a27c19e7acbbf9ec",
+  "active": "66d5773998b1adfa",
   "lastOpenFiles": [
+    "wiki/syntheses/HTCO.md",
+    "raw/attachments/2026-05-12_catalyst_HTCO.png",
+    "raw/attachments/2026-05-12-TOS_CHARTS_HTCO.png",
+    "raw/attachments/2026-05-12-FLEXIBLE_GRID_HTCO.png",
+    "raw/attachments",
+    "wiki/SCHEMA.md",
+    "wiki/syntheses",
     "wiki/log.md",
     "wiki/index.md",
     "wiki/SCHEMA 1.md",
-    "wiki/SCHEMA.md",
     "wiki/SECOND_BRAIN_GUIDE.md",
     "wiki/entities/codex.md",
     "wiki/entities/trading_agents.md",
@@ -177,23 +246,16 @@
     "wiki/topics/premarket_small_cap_indicator_prompt.md",
     "wiki/topics/professional_grade_prompt_structure.md",
     "raw/data/2026-05-12-FLEXIBLE_GRID.png",
-    "wiki/topics/imported_trading_notes.md",
-    "wiki/topics/transcript_of_trading_psychology_mindset_and_dopamine.md",
     "wiki/topics/about.md.txt",
     "wiki/topics/About Liquidity 1.txt",
     "wiki/topics/QUADRANT  DEAD ZONE.png",
     "wiki/topics/DILUTION RISK SCORE (DRS).png",
     "wiki/topics/Bottom Line QUADRANT.png",
-    "wiki/topics/STEP 5 — Mental Override Rule (Critical).png",
-    "wiki/topics/STEP 4 — Make This Mechanical in ThinkOrSwim.png",
-    "wiki/topics/STEP 3 — Trade Rules by Quadrant (Execution Layer).png",
     "wiki/topics/Transcript of The Best Price Action Trader In The World - Al Brooks  Trader Interview.txt",
     "wiki/topics/Transcript of The 7 Trading Signals You Can’t Trade Without.txt",
     "wiki/topics/Transcript of Brooks Price Action - Trading Opening Breakouts & Reversals.txt",
     "wiki/topics/Transcript of Ask Al Brooks - Tips on when to enter pullbacks.txt",
     "wiki/topics/Transcript of Al Brooks Webinar - TradersEXPO Las Vegas Trading the Open.txt",
-    "wiki/topics/Transcript of Al Brooks- The Godfather of Price Action  Unparalleled Wisdom & Mastery.txt",
-    "wiki/topics/Transcript of Al Brooks Entering Late in Trends.txt",
-    "wiki/topics/third day surge.txt"
+    "wiki/topics/Transcript of Al Brooks- The Godfather of Price Action  Unparalleled Wisdom & Mastery.txt"
   ]
 }
