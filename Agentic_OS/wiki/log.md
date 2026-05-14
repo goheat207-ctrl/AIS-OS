@@ -76,3 +76,17 @@ Pages updated: [[index]]
 
 Updated `D:\AIS-OS\obsidian-web-clipper-ais-os-settings.json` so all templates include the actual vault schema fields from [[SCHEMA]] and [[SCHEMA 1]].
 Pages updated: [[src_20260512_obsidian_web_clipper_settings]]
+
+## [2026-05-13] ingest | trading | Exit Conditions in Trading
+
+Source: `Agentic_OS/raw/articles/2026-05-13 - Exit Conditions in Trading.md`
+Pages created: [[src_20260513_exit_conditions_trading]], [[exit_strategies]]
+Pages updated: [[index]] (Topics + Sources sections)
+Key content: 3 exit methods (ATR trailing, RSI exit, prior candle low), expectancy math, regime-adaptive exits, small-cap dilution warning layer
+
+## [2026-05-13] ingest | trading | SMB Capital — 5 Day Trading Mistakes
+
+Source: `Agentic_OS/raw/articles/2026-05-13 - video - The 5 Day Trading Mistakes Robbing Your Account ($10k+ per month).md`
+Pages created: [[src_20260513_smb_5_trading_mistakes]], [[execution_discipline]]
+Pages updated: [[reading_the_tape_quick]] (upgraded with 4 tape confirmation signals + SMB data), [[index]] (Topics + Sources sections)
+Key content: 5 execution mistakes, 10:30 momentum window data, tape confirmation 4-signal framework, resistance probability data (68% first-test hold rate), averaging-down 3 forms

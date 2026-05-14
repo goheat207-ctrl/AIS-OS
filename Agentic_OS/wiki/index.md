@@ -22,6 +22,8 @@ See [[SCHEMA]] for how the wiki works. See [[INTELLIGENCE_GUIDE]] for how it con
 
 ### Trading
 
+- [[exit_strategies]] — ATR trailing, RSI exit, prior candle low, resistance exit, 10:30 rule | relevance: high
+- [[execution_discipline]] — 5 execution mistakes (SMB Capital), how to fix each | relevance: high
 - [[trading_context]] — small cap setup, what's being built and why | relevance: high
 - [[q2_goals]] — Q2 2026 priorities, due end of July | relevance: high
 - [[SMALL_CAP_BREAKOUT_STRATEGY]] — Grant-style breakout playbook and execution rules | relevance: high
@@ -83,12 +85,20 @@ See [[SCHEMA]] for how the wiki works. See [[INTELLIGENCE_GUIDE]] for how it con
 
 ## Sources
 
+- [[src_20260513_exit_conditions_trading]] — ATR/RSI/price-action exit methods, expectancy math | domain: trading
+- [[src_20260513_smb_5_trading_mistakes]] — SMB Capital: 5 execution mistakes costing $500+/day | domain: trading
 - [[src_20260510_ai_trading_prompts_med1]] — 7 equity research prompts (@Med1_Ai) | domain: trading
 - [[src_20260510_ai_trading_prompts_shahriar]] — 7 trading automation prompts (@Shahriar) | domain: trading
 - [[src_20260511_smart_money_tracking_milesdeutscher]] — Form 4 / politician trade tracking | domain: trading
 - [[src_20260511_account_statement_schwab]] — Schwab account Jan-May 2026, raw P&L data | domain: trading
 - [[raw_source_inbox]] — raw files not yet ingested (backlog)
 - [[src_20260512_obsidian_web_clipper_settings]] — Web Clipper routing settings | domain: system
+
+---
+
+## Syntheses
+
+- [[HTCO]] — HTCO ticker catalyst synthesis (2026-05-12) | domain: trading
 
 ---
 
