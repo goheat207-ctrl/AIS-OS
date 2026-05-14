@@ -8,33 +8,63 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ad4319cb7a6126fc",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "graph",
-              "state": {},
-              "pinned": true,
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          },
-          {
-            "id": "66d5773998b1adfa",
+            "id": "e0e0fcb3cf14a822",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/syntheses/HTCO.md",
+                "file": "raw/articles/2026-05-13 - Exit Conditions in Trading.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "HTCO"
+              "title": "2026-05-13 - Exit Conditions in Trading"
+            }
+          },
+          {
+            "id": "6f297dcdfbf732aa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "DAY 1 -- Immediate Assessment of My Current AIS-OS"
+            }
+          },
+          {
+            "id": "54960de08e147a27",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OWNERS INFORMATION/Reorganize Prompts.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Reorganize Prompts"
+            }
+          },
+          {
+            "id": "b459f7c8a9b8b0f0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "DAY 1 -- Immediate Assessment of My Current AIS-OS"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -111,6 +141,7 @@
       {
         "id": "7298bdc09adb98b7",
         "type": "tabs",
+        "dimension": 41.37931034482759,
         "children": [
           {
             "id": "6a9037439937a36f",
@@ -130,7 +161,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "wiki/syntheses/HTCO.md",
+                "file": "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,7 +171,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for HTCO"
+              "title": "Backlinks for DAY 1 -- Immediate Assessment of My Current AIS-OS"
             }
           },
           {
@@ -178,13 +209,32 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/syntheses/HTCO.md",
+                "file": "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of HTCO"
+              "title": "Outline of DAY 1 -- Immediate Assessment of My Current AIS-OS"
+            }
+          }
+        ]
+      },
+      {
+        "id": "211387e57c47a85c",
+        "type": "tabs",
+        "dimension": 58.620689655172406,
+        "children": [
+          {
+            "id": "ad4319cb7a6126fc",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "graph",
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -207,11 +257,30 @@
       "rss-dashboard:RSS dashboard": false,
       "templater-obsidian:Templater": false,
       "obsidian-excalidraw-plugin:New drawing": false,
-      "periodic-notes:Open today": false
+      "periodic-notes:Open today": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "66d5773998b1adfa",
+  "active": "2b06b2c2c6355bb1",
   "lastOpenFiles": [
+    "wiki/index.md.tmp.28820.1778718200501",
+    "wiki/INTELLIGENCE_GUIDE.md",
+    "wiki/INTELLIGENCE_GUIDE.md.tmp.28820.1778718162864",
+    "wiki/SCHEMA.md.tmp.28820.1778718127495",
+    "OWNERS INFORMATION/🧠 AIS-OS PROMPT SUITE (INTEGRATED).md",
+    "wiki/entities/blaine-os.md.tmp.28820.1778717422659",
+    "OWNERS INFORMATION/Reorganize Prompts.md",
+    "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
+    "OWNERS INFORMATION/MANUAL.md",
+    "raw/Untitled.base",
+    "raw/articles/2026-05-13 - Exit Conditions in Trading.md",
+    "OWNERS INFORMATION",
+    "raw/articles/2026-05-13 - video - The 5 Day Trading Mistakes Robbing Your Account ($10k+ per month).md",
+    "Untitled.md",
+    "wiki/topics/adhd_workflow.md",
+    "wiki/topics/playbook_library.md",
+    "2026-05-11.md",
+    "wiki/index.md",
     "wiki/syntheses/HTCO.md",
     "raw/attachments/2026-05-12_catalyst_HTCO.png",
     "raw/attachments/2026-05-12-TOS_CHARTS_HTCO.png",
@@ -220,7 +289,6 @@
     "wiki/SCHEMA.md",
     "wiki/syntheses",
     "wiki/log.md",
-    "wiki/index.md",
     "wiki/SCHEMA 1.md",
     "wiki/SECOND_BRAIN_GUIDE.md",
     "wiki/entities/codex.md",
@@ -234,28 +302,12 @@
     "wiki/topics/web_scraping_ai_agents_for_news_sites.md",
     "wiki/sources/raw_source_inbox.md",
     "wiki/topics/Web scraping AI agents for news sites.md",
-    "wiki/topics/trading_context.md",
-    "wiki/topics/quadrant_trading_system_assets.md",
-    "wiki/entities/small_cap_catalyst.md",
-    "wiki/entities/blaine-os.md",
-    "wiki/entities/fincept_tools.md",
-    "wiki/topics/q2_goals.md",
-    "wiki/topics/adhd_workflow.md",
-    "wiki/topics/trading_prompts.md",
-    "wiki/topics/playbook_library.md",
-    "wiki/topics/premarket_small_cap_indicator_prompt.md",
-    "wiki/topics/professional_grade_prompt_structure.md",
     "raw/data/2026-05-12-FLEXIBLE_GRID.png",
     "wiki/topics/about.md.txt",
     "wiki/topics/About Liquidity 1.txt",
     "wiki/topics/QUADRANT  DEAD ZONE.png",
     "wiki/topics/DILUTION RISK SCORE (DRS).png",
     "wiki/topics/Bottom Line QUADRANT.png",
-    "wiki/topics/Transcript of The Best Price Action Trader In The World - Al Brooks  Trader Interview.txt",
-    "wiki/topics/Transcript of The 7 Trading Signals You Can’t Trade Without.txt",
-    "wiki/topics/Transcript of Brooks Price Action - Trading Opening Breakouts & Reversals.txt",
-    "wiki/topics/Transcript of Ask Al Brooks - Tips on when to enter pullbacks.txt",
-    "wiki/topics/Transcript of Al Brooks Webinar - TradersEXPO Las Vegas Trading the Open.txt",
-    "wiki/topics/Transcript of Al Brooks- The Godfather of Price Action  Unparalleled Wisdom & Mastery.txt"
+    "wiki/topics/Transcript of The Best Price Action Trader In The World - Al Brooks  Trader Interview.txt"
   ]
 }

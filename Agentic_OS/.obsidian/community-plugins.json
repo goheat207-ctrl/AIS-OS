@@ -14,5 +14,14 @@
   "rss-dashboard",
   "sqlseal-charts",
   "obsidian-tracker",
-  "templater-obsidian"
+  "templater-obsidian",
+  "obsidian-meta-bind-plugin",
+  "table-editor-obsidian",
+  "buttons",
+  "obsidian-charts",
+  "obsidian-chartsview-plugin",
+  "obsidian-style-settings",
+  "dataview",
+  "cmdr",
+  "multi-properties"
 ]

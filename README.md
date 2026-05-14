@@ -22,17 +22,17 @@ Three felt **success indicators** tell you the AIOS is actually changing how you
 
 **1. Team-reaches-out:**
 
-> *"A teammate messages you with a question. You realize your AIOS would answer it better, faster, and with exact sources — even if you were awake and free. So you ask your AIOS too. That's the moment you stop being a bottleneck for your own knowledge."*
+> _"A teammate messages you with a question. You realize your AIOS would answer it better, faster, and with exact sources — even if you were awake and free. So you ask your AIOS too. That's the moment you stop being a bottleneck for your own knowledge."_
 
 **2. Context-switching reduction:**
 
-> *"You stop opening new tabs. You stop launching the desktop app. When something new lands, your first move is to ask the AIOS, not to open six things. The default surface for thought work shifts. Silent. Compounding."*
+> _"You stop opening new tabs. You stop launching the desktop app. When something new lands, your first move is to ask the AIOS, not to open six things. The default surface for thought work shifts. Silent. Compounding."_
 
 **3. Knowledge-leaves-your-head:**
 
-> *"You stop trying to remember business facts. You don't rehearse what you decided last quarter or what your customer said in that meeting. You trust the retrieval. The AIOS holds the truth, you hold the questions."*
+> _"You stop trying to remember business facts. You don't rehearse what you decided last quarter or what your customer said in that meeting. You trust the retrieval. The AIOS holds the truth, you hold the questions."_
 
-**Personal foundation → company AI-readiness.** Once these indicators show up for one person, the same data architecture powers everything else. Custom dashboards on the data you already collect. Automations on top of the connections you already wired. Team rollout where everyone has theirs. *A company where every operator runs a personal AIOS is a company that's actually AI-ready.*
+**Personal foundation → company AI-readiness.** Once these indicators show up for one person, the same data architecture powers everything else. Custom dashboards on the data you already collect. Automations on top of the connections you already wired. Team rollout where everyone has theirs. _A company where every operator runs a personal AIOS is a company that's actually AI-ready._
 
 The kit teaches personal AIOS first. Everything scales from there.
 
@@ -44,28 +44,28 @@ The kit teaches two complementary frameworks. **Three Ms first, Four Cs second.*
 
 ### The Three Ms — operator brain (how you think)
 
-| M | One-liner |
-|---|---|
-| **Mindset** | Default Shift, Function Breakdown, Curiosity Rule. *To what extent can AI be leveraged here?* |
-| **Method** | Find Constraint → EAD (Eliminate, Automate, Delegate) → Map Process → Pick Autonomy Level → Tie to KPI. |
-| **Machine** | Lego Principle, Validation Chain, Bike Method, Intern Rule, Kill Switch. *Boring is beautiful. Workflows beat agents.* |
+| M           | One-liner                                                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Mindset** | Default Shift, Function Breakdown, Curiosity Rule. _To what extent can AI be leveraged here?_                          |
+| **Method**  | Find Constraint → EAD (Eliminate, Automate, Delegate) → Map Process → Pick Autonomy Level → Tie to KPI.                |
+| **Machine** | Lego Principle, Validation Chain, Bike Method, Intern Rule, Kill Switch. _Boring is beautiful. Workflows beat agents._ |
 
 Full breakdown in `references/3ms-framework.md`. The `/level-up` skill walks you through all three weekly.
 
-> *The Three Ms of AI™ is a trademark of Nate Herk. © 2026 Nate Herk.*
+> _The Three Ms of AI™ is a trademark of Nate Herk. © 2026 Nate Herk._
 
 ### The Four Cs — architecture (what you build)
 
-| # | Layer | One-liner | "This layer is in place" test |
-|---|---|---|---|
-| 1 | **Context** | Knows your business | Fresh Claude session answers "what does this business do and who works here?" without browsing |
-| 2 | **Connections** | Reaches your stuff | "What's on my calendar tomorrow and what tasks are due?" → live data, no paste |
-| 3 | **Capabilities** | Knows how to do the work | A short phrase triggers a multi-step workflow that produces an artifact |
-| 4 | **Cadence** | Runs without being asked | Laptop closed. A brief lands in the inbox. A teammate messages it and gets a real answer |
+| #   | Layer            | One-liner                | "This layer is in place" test                                                                  |
+| --- | ---------------- | ------------------------ | ---------------------------------------------------------------------------------------------- |
+| 1   | **Context**      | Knows your business      | Fresh Claude session answers "what does this business do and who works here?" without browsing |
+| 2   | **Connections**  | Reaches your stuff       | "What's on my calendar tomorrow and what tasks are due?" → live data, no paste                 |
+| 3   | **Capabilities** | Knows how to do the work | A short phrase triggers a multi-step workflow that produces an artifact                        |
+| 4   | **Cadence**      | Runs without being asked | Laptop closed. A brief lands in the inbox. A teammate messages it and gets a real answer       |
 
 **Brand line:** Context. Connections. Capabilities. Cadence.
 
-> *The Four Cs of an AIOS™ is a trademark of Nate Herk. © 2026 Nate Herk.*
+> _The Four Cs of an AIOS™ is a trademark of Nate Herk. © 2026 Nate Herk._
 
 Dependency graph: Context is non-skippable. Connections + Capabilities can build in parallel. Cadence is last — don't automate workflows that don't work manually.
 
@@ -75,13 +75,13 @@ Dependency graph: Context is non-skippable. Connections + Capabilities can build
 
 The kit is intentionally lean. Skills here are ideation prompts and thinking tools, not heavy automations. You hack on top of the structure.
 
-| Skill | Type | When to run |
-|---|---|---|
-| `/onboard` | Setup wizard (one-time) | Day 1, immediately after clone. 7-question interview. Generates Day-1 file set + fills `CLAUDE.md`. |
-| `/audit` | Recurring thinking skill | Day 7, then weekly. Four-Cs gap report. Read-only. Watch the score climb. |
+| Skill       | Type                     | When to run                                                                                           |
+| ----------- | ------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `/onboard`  | Setup wizard (one-time)  | Day 1, immediately after clone. 7-question interview. Generates Day-1 file set + fills `CLAUDE.md`.   |
+| `/audit`    | Recurring thinking skill | Day 7, then weekly. Four-Cs gap report. Read-only. Watch the score climb.                             |
 | `/level-up` | Recurring thinking skill | Day 14, then weekly. Three Ms interview (Mindset → Method → Machine). One run = one shipped artifact. |
 
-`/audit` asks *"is the AIOS built right?"* (form). `/level-up` asks *"what business leverage am I missing?"* (function). They work in series — fix structure first, then capability planning becomes meaningful.
+`/audit` asks _"is the AIOS built right?"_ (form). `/level-up` asks _"what business leverage am I missing?"_ (function). They work in series — fix structure first, then capability planning becomes meaningful.
 
 ---
 

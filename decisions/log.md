@@ -39,3 +39,9 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 **Alternatives considered:** Leave Codex as an external chat tool only. Rejected because the OS should preserve how Codex should operate inside this workspace.
 
 **Owner:** Blaine
+
+## 2026-05-13 — Quick note
+
+**Decision:** Testing main.py orchestrator - all commands working
+
+**Owner:** Blaine

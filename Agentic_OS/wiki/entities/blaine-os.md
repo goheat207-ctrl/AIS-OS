@@ -9,7 +9,7 @@ updated: 2026-05-12
 
 # Blaine OS Dashboard
 
-`blaine-os.html` is the local AIS-OS dashboard shell in the workspace root.
+`dashboards/blaine-os.html` is the local AIS-OS dashboard shell. All dashboards now live in `dashboards/`.
 
 ## Current Role
 

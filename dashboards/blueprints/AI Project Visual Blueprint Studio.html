@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Project Visual Blueprint Studio</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #101319;
+    color: #eef2f7;
+    font-family: Segoe UI, system-ui, Arial, sans-serif;
+    overflow: hidden;
+  }
+  button, input, textarea { font: inherit; }
+  #topbar {
+    position: fixed;
+    inset: 0 0 auto 0;
+    min-height: 62px;
+    background: #151a24;
+    border-bottom: 1px solid #263043;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    z-index: 20;
+    overflow-x: auto;
+  }
+  #title {
+    min-width: 240px;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .divider { width: 1px; height: 28px; background: #2b3549; flex: 0 0 auto; }
+  .btn {
+    border: 1px solid #344057;
+    background: #1d2431;
+    color: #cbd5e1;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .btn:hover { background: #273145; color: #fff; }
+  .btn.primary { background: #2563eb; border-color: #3b82f6; color: #fff; }
+  .btn.good { background: #0f5132; border-color: #198754; color: #d1fae5; }
+  .btn.warn { color: #fecaca; }
+  #stage {
+    position: fixed;
+    inset: 62px 0 0 0;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  svg { width: 100%; height: 100%; display: block; cursor: grab; }
+  svg.dragging { cursor: grabbing; }
+  .edge { fill: none; stroke-width: 2.25; opacity: .86; }
+  .edge.build { stroke: #64748b; }
+  .edge.data { stroke: #f59e0b; stroke-dasharray: 7 5; }
+  .edge.ai { stroke: #8b5cf6; stroke-dasharray: 7 5; }
+  .edge.test { stroke: #22c55e; stroke-dasharray: 5 4; }
+  .node { cursor: pointer; }
+  .node rect.main { filter: drop-shadow(0 10px 16px rgba(0,0,0,.38)); }
+  .node:hover rect.main { stroke-width: 2.4; filter: brightness(1.12) drop-shadow(0 12px 18px rgba(0,0,0,.4)); }
+  .node text { pointer-events: none; user-select: none; }
+  #side {
+    position: fixed;
+    right: 14px;
+    top: 76px;
+    width: 318px;
+    max-height: calc(100vh - 96px);
+    background: #151a24;
+    border: 1px solid #2b3549;
+    border-radius: 8px;
+    padding: 14px;
+    z-index: 30;
+    overflow: auto;
+  }
+  #side h2 { margin: 0 0 6px; font-size: 16px; }
+  #side .path { color: #93c5fd; font-size: 12px; margin-bottom: 10px; }
+  #side .plain { color: #cbd5e1; font-size: 13px; line-height: 1.5; margin: 0 0 12px; }
+  .mini-title {
+    color: #94a3b8;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin: 14px 0 7px;
+  }
+  .steps {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .steps li {
+    background: #0f131b;
+    border: 1px solid #273145;
+    border-radius: 6px;
+    padding: 8px;
+    color: #dbeafe;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  #notes {
+    width: 100%;
+    min-height: 104px;
+    resize: vertical;
+    background: #0f131b;
+    border: 1px solid #273145;
+    border-radius: 6px;
+    color: #e5e7eb;
+    padding: 9px;
+    line-height: 1.4;
+    font-size: 12px;
+  }
+  #legend {
+    position: fixed;
+    left: 14px;
+    bottom: 14px;
+    background: #151a24;
+    border: 1px solid #2b3549;
+    border-radius: 8px;
+    padding: 10px 12px;
+    z-index: 25;
+    color: #cbd5e1;
+    font-size: 11px;
+    display: grid;
+    gap: 6px;
+  }
+  .key { display: flex; align-items: center; gap: 8px; }
+  .dot { width: 12px; height: 12px; border-radius: 3px; }
+  .line { width: 25px; height: 0; border-top: 2px solid #64748b; }
+  .line.data { border-color: #f59e0b; border-style: dashed; }
+  .line.ai { border-color: #8b5cf6; border-style: dashed; }
+  .line.test { border-color: #22c55e; border-style: dashed; }
+  #starter {
+    position: fixed;
+    left: 14px;
+    top: 76px;
+    width: 278px;
+    background: #151a24;
+    border: 1px solid #2b3549;
+    border-radius: 8px;
+    padding: 12px;
+    z-index: 26;
+  }
+  #starter h1 { margin: 0 0 8px; font-size: 15px; }
+  #starter p { margin: 0 0 10px; color: #cbd5e1; font-size: 12px; line-height: 1.45; }
+  #starter code {
+    display: block;
+    background: #0f131b;
+    border: 1px solid #273145;
+    border-radius: 6px;
+    padding: 8px;
+    color: #bfdbfe;
+    font-size: 11px;
+    white-space: pre-wrap;
+  }
+  @media (max-width: 900px) {
+    #side { width: calc(100vw - 28px); left: 14px; right: 14px; top: auto; bottom: 14px; max-height: 40vh; }
+    #legend, #starter { display: none; }
+    #title { min-width: 190px; }
+  }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <input id="title" value="AI Project Visual Blueprint Studio" aria-label="Blueprint title">
+  <div class="divider"></div>
+  <button class="btn primary" onclick="loadPreset('overview')">Overview</button>
+  <button class="btn" onclick="loadPreset('html')">HTML</button>
+  <button class="btn" onclick="loadPreset('app')">Functioning App</button>
+  <button class="btn" onclick="loadPreset('aiProject')">AI Projects Tab</button>
+  <button class="btn" onclick="loadPreset('vscode')">VS Code Workspace</button>
+  <button class="btn" onclick="loadPreset('backtest')">Trading Backtest</button>
+  <button class="btn" onclick="loadPreset('dashboard')">Dashboard</button>
+  <button class="btn" onclick="loadPreset('journal')">Journal</button>
+  <button class="btn" onclick="loadPreset('browser')">Browser Project</button>
+  <div class="divider"></div>
+  <button class="btn good" onclick="fitView()">Fit</button>
+  <button class="btn" onclick="saveMap()">Save</button>
+  <button class="btn warn" onclick="resetNotes()">Clear Notes</button>
+</div>
+
+<main id="stage">
+  <svg id="canvas" role="img" aria-label="Visual project blueprint">
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"></path>
+      </marker>
+      <marker id="arrowData" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"></path>
+      </marker>
+      <marker id="arrowAi" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"></path>
+      </marker>
+      <marker id="arrowTest" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"></path>
+      </marker>
+    </defs>
+    <g id="viewport"></g>
+  </svg>
+</main>
+
+<aside id="starter">
+  <h1>How to use this</h1>
+  <p>Pick one blueprint at the top. Click any box. Read only the small panel on the right.</p>
+  <code>1. Pick map
+2. Click box
+3. Build that piece
+4. Test it
+5. Move to next box</code>
+</aside>
+
+<aside id="side">
+  <h2 id="side-title">Start Here</h2>
+  <div id="side-path" class="path">Pick a blueprint button above.</div>
+  <p id="side-desc" class="plain">This file is a visual thinking tool. It shows how projects are built as connected boxes instead of a long confusing checklist.</p>
+  <div class="mini-title">Tiny Build Steps</div>
+  <ul id="side-steps" class="steps"></ul>
+  <div class="mini-title">Notes</div>
+  <textarea id="notes" placeholder="Write messy notes here. Short notes are enough."></textarea>
+</aside>
+
+<div id="legend">
+  <div class="key"><span class="dot" style="background:#2563eb"></span> Start / setup</div>
+  <div class="key"><span class="dot" style="background:#7c3aed"></span> Frontend / screen</div>
+  <div class="key"><span class="dot" style="background:#059669"></span> Logic / engine</div>
+  <div class="key"><span class="dot" style="background:#d97706"></span> Data / storage</div>
+  <div class="key"><span class="dot" style="background:#dc2626"></span> User action</div>
+  <div class="key"><span class="line"></span> build order</div>
+  <div class="key"><span class="line data"></span> data flow</div>
+  <div class="key"><span class="line ai"></span> AI help</div>
+  <div class="key"><span class="line test"></span> test loop</div>
+</div>
+
+<script>
+const colors = {
+  start: '#2563eb',
+  ui: '#7c3aed',
+  logic: '#059669',
+  data: '#d97706',
+  user: '#dc2626',
+  ai: '#8b5cf6',
+  test: '#22c55e',
+  file: '#0891b2'
+};
+
+const commonSteps = [
+  'Name the project in one sentence.',
+  'Build the smallest visible version.',
+  'Test one thing.',
+  'Save what worked.',
+  'Add the next piece.'
+];
+
+const presets = {
+  overview: {
+    title: 'How Any Project Gets Built',
+    nodes: [
+      node('idea', 80, 80, colors.start, 'Idea', 'What am I trying to make?', 'Start with one plain sentence.', ['Write the result you want.', 'Remove extra features for now.', 'Keep the first version small.']),
+      node('parts', 360, 80, colors.file, 'Parts', 'What pieces does it need?', 'Break the idea into visible boxes: screen, data, logic, tests.', ['List the pieces.', 'Put each piece in a box.', 'Connect boxes in build order.']),
+      node('screen', 80, 260, colors.ui, 'Screen', 'What do I see?', 'The visible page, dashboard, journal, chart, or app interface.', ['Sketch the screen.', 'Make the HTML.', 'Style it enough to understand it.']),
+      node('logic', 360, 260, colors.logic, 'Logic', 'What does it do?', 'The functions that respond when buttons are clicked or data changes.', ['Create one function.', 'Connect it to one button.', 'Check the result.']),
+      node('data', 640, 260, colors.data, 'Data', 'What is remembered?', 'Notes, trades, settings, files, API results, or saved project state.', ['Decide what to save.', 'Pick localStorage, file, or database.', 'Test saving and loading.']),
+      node('test', 360, 450, colors.test, 'Test', 'Does it work?', 'A simple loop: try it, notice what breaks, fix one thing.', ['Click through the app.', 'Write down one bug.', 'Fix one bug.']),
+      node('ship', 640, 450, colors.start, 'Usable Version', 'Something you can open and use', 'A working version, even if it is simple.', ['Open it fresh.', 'Use it once.', 'Save the next improvement as a note.'])
+    ],
+    edges: [
+      edge('idea','parts'), edge('parts','screen'), edge('screen','logic'),
+      edge('logic','data','data'), edge('data','test','test'), edge('test','logic','test'),
+      edge('test','ship')
+    ]
+  },
+  html: {
+    title: 'HTML Page Blueprint',
+    nodes: [
+      node('file', 80, 120, colors.start, 'index.html', 'The main file', 'This is the page the browser opens.', ['Create index.html.', 'Add html, head, and body.', 'Open it in the browser.']),
+      node('structure', 330, 60, colors.file, 'HTML Structure', 'Sections and content', 'Headings, buttons, forms, panels, tables, and containers.', ['Add the visible sections.', 'Use clear names.', 'Keep one idea per section.']),
+      node('style', 330, 220, colors.ui, 'CSS Style', 'How it looks', 'Colors, spacing, layout, borders, and responsive sizing.', ['Add a style block.', 'Set body font and background.', 'Style one section at a time.']),
+      node('behavior', 590, 140, colors.logic, 'JavaScript', 'How it reacts', 'Click handlers, calculations, filters, saving, loading, and drawing.', ['Add a script block.', 'Write one function.', 'Connect it to a button.']),
+      node('browser', 850, 140, colors.test, 'Browser Test', 'See what changed', 'Refresh the page and check the visible result.', ['Refresh.', 'Click buttons.', 'Fix the first broken thing.'])
+    ],
+    edges: [edge('file','structure'), edge('file','style'), edge('structure','behavior'), edge('style','browser','test'), edge('behavior','browser','test')]
+  },
+  app: {
+    title: 'Functioning App Blueprint',
+    nodes: [
+      node('goal', 70, 120, colors.start, 'Goal', 'One job the app does', 'Example: track trades, organize notes, scan setups, manage projects.', ['Write the app job.', 'Pick one main user.', 'Pick one core action.']),
+      node('ui', 320, 60, colors.ui, 'Interface', 'What the user sees', 'Inputs, buttons, lists, charts, cards, and pages.', ['Build the main screen.', 'Add only needed controls.', 'Make the core action obvious.']),
+      node('state', 320, 230, colors.data, 'State', 'Current app memory', 'What the app knows right now: filters, form values, selected item.', ['Name the key values.', 'Update them on click.', 'Show them on screen.']),
+      node('logic', 590, 140, colors.logic, 'App Logic', 'Rules and actions', 'Functions that create, update, delete, calculate, sort, or validate.', ['Write one action.', 'Use it from the UI.', 'Check the state changed.']),
+      node('storage', 850, 60, colors.data, 'Storage', 'Saved memory', 'localStorage, files, database, or cloud storage.', ['Save one record.', 'Reload the page.', 'Confirm it came back.']),
+      node('tests', 850, 230, colors.test, 'Testing', 'Proof it works', 'Manual checks or automated tests that protect the app.', ['Test the happy path.', 'Test an empty input.', 'Test saving.'])
+    ],
+    edges: [edge('goal','ui'), edge('ui','state','data'), edge('state','logic','data'), edge('logic','storage','data'), edge('logic','tests','test'), edge('tests','ui','test')]
+  },
+  aiProject: {
+    title: 'AI Projects Tab Blueprint',
+    nodes: [
+      node('project', 80, 120, colors.start, 'Project Tab', 'One container for the work', 'A project tab holds files, instructions, goals, and context for the AI.', ['Create one project.', 'Name the outcome.', 'Keep related files together.']),
+      node('instructions', 350, 40, colors.ai, 'Instructions', 'How AI should act', 'Rules for tone, steps, output style, and what the AI should avoid.', ['Write clear behavior rules.', 'Add examples.', 'Keep it short enough to use.']),
+      node('files', 350, 210, colors.file, 'Files', 'What AI can read', 'HTML, notes, data, screenshots, docs, strategy rules, and examples.', ['Upload or create files.', 'Use clear filenames.', 'Keep one purpose per file.']),
+      node('prompt', 630, 120, colors.ai, 'Prompt', 'The current request', 'The specific thing you ask the AI to do right now.', ['Ask for one result.', 'Mention the file to edit.', 'Ask it to test the result.']),
+      node('output', 900, 120, colors.ui, 'Output', 'The produced work', 'Code, chart, blueprint, app, notes, explanation, or project file.', ['Open the result.', 'Check what changed.', 'Save the useful version.'])
+    ],
+    edges: [edge('project','instructions','ai'), edge('project','files'), edge('instructions','prompt','ai'), edge('files','prompt','data'), edge('prompt','output','ai')]
+  },
+  vscode: {
+    title: 'VS Code Workspace Blueprint',
+    nodes: [
+      node('folder', 80, 130, colors.start, 'Project Folder', 'The home base', 'A folder contains everything for one project.', ['Create one folder.', 'Use a simple name.', 'Do not mix unrelated projects.']),
+      node('workspace', 330, 130, colors.file, 'Workspace', 'VS Code view', 'VS Code opens the folder and shows files, terminal, search, and source control.', ['Open folder in VS Code.', 'Use Explorer for files.', 'Use Terminal for commands.']),
+      node('files', 580, 50, colors.file, 'Files', 'Code and assets', 'HTML, CSS, JS, Python, data, images, config, README.', ['Create needed files.', 'Keep names plain.', 'Use folders when it gets crowded.']),
+      node('terminal', 580, 220, colors.logic, 'Terminal', 'Run commands', 'Starts servers, installs packages, runs tests, and builds projects.', ['Run one command at a time.', 'Read the last error line.', 'Fix one issue.']),
+      node('git', 840, 130, colors.data, 'Git', 'Version history', 'Saves checkpoints so you can return to a working version.', ['Check changes.', 'Commit a working point.', 'Push when ready.'])
+    ],
+    edges: [edge('folder','workspace'), edge('workspace','files'), edge('workspace','terminal'), edge('files','git','data'), edge('terminal','git','data')]
+  },
+  backtest: {
+    title: 'Trading Strategy Backtest Blueprint',
+    nodes: [
+      node('idea', 60, 130, colors.start, 'Strategy Idea', 'The trading rule', 'Example: buy pullback after trend confirmation, exit at target or stop.', ['Write entry rule.', 'Write exit rule.', 'Write risk rule.']),
+      node('data', 310, 60, colors.data, 'Market Data', 'Candles and prices', 'Historical OHLCV data for the symbol and timeframe.', ['Pick symbol.', 'Pick timeframe.', 'Load clean data.']),
+      node('signals', 310, 230, colors.logic, 'Signals', 'Entry and exit points', 'Code turns strategy rules into buy, sell, stop, and target events.', ['Calculate indicators.', 'Mark entries.', 'Mark exits.']),
+      node('engine', 590, 145, colors.logic, 'Backtest Engine', 'Simulates trades', 'Applies fills, fees, stop loss, position sizing, and equity curve.', ['Run one strategy.', 'Calculate each trade.', 'Track account balance.']),
+      node('metrics', 870, 60, colors.test, 'Metrics', 'Does it work?', 'Win rate, profit factor, drawdown, expectancy, average trade, sample size.', ['Check drawdown.', 'Check sample size.', 'Check if rules are realistic.']),
+      node('journal', 870, 230, colors.ui, 'Review Journal', 'What you learned', 'Screenshots, notes, failure cases, market conditions, next changes.', ['Save chart examples.', 'Write one lesson.', 'Pick one improvement.'])
+    ],
+    edges: [edge('idea','signals'), edge('data','signals','data'), edge('signals','engine','data'), edge('engine','metrics','test'), edge('engine','journal','data'), edge('journal','idea','test')]
+  },
+  dashboard: {
+    title: 'Dashboard Blueprint',
+    nodes: [
+      node('purpose', 80, 130, colors.start, 'Purpose', 'What decisions it helps', 'A dashboard should answer questions, not just display numbers.', ['Write the main question.', 'Pick the user.', 'Pick the refresh need.']),
+      node('sources', 330, 60, colors.data, 'Data Sources', 'Where numbers come from', 'Files, APIs, databases, forms, or manual entries.', ['List data sources.', 'Check format.', 'Load one source first.']),
+      node('clean', 330, 230, colors.logic, 'Clean Data', 'Make it usable', 'Parse, filter, group, calculate, and remove bad rows.', ['Normalize fields.', 'Calculate totals.', 'Handle missing values.']),
+      node('widgets', 610, 130, colors.ui, 'Widgets', 'Cards and charts', 'Tables, charts, counters, filters, timelines, alerts.', ['Add one chart.', 'Add one table.', 'Add one filter.']),
+      node('actions', 890, 130, colors.user, 'Actions', 'What user does next', 'Export, save, mark reviewed, open detail, add note, change filter.', ['Add one useful action.', 'Test the action.', 'Keep it obvious.'])
+    ],
+    edges: [edge('purpose','sources'), edge('sources','clean','data'), edge('clean','widgets','data'), edge('widgets','actions')]
+  },
+  journal: {
+    title: 'Trading / Project Journal Blueprint',
+    nodes: [
+      node('entry', 80, 120, colors.start, 'New Entry', 'Capture the moment', 'A journal entry records what happened before details fade.', ['Write date.', 'Name the setup.', 'Add one screenshot or note.']),
+      node('fields', 330, 50, colors.file, 'Fields', 'What you track', 'Symbol, setup, emotion, plan, execution, result, lesson.', ['Pick 5 to 8 fields.', 'Keep labels simple.', 'Use the same fields each time.']),
+      node('review', 330, 220, colors.logic, 'Review', 'Find patterns', 'Look across entries to see repeated wins, mistakes, and conditions.', ['Review weekly.', 'Tag mistakes.', 'Tag best setups.']),
+      node('metrics', 610, 120, colors.data, 'Metrics', 'Numbers from entries', 'Win rate, average R, mistake count, best time, best setup.', ['Count entries.', 'Group by tag.', 'Track one improvement metric.']),
+      node('change', 880, 120, colors.test, 'Next Rule', 'Improve one thing', 'Turn review into one behavior change for the next session.', ['Choose one fix.', 'Write it as a rule.', 'Check it next time.'])
+    ],
+    edges: [edge('entry','fields'), edge('fields','review','data'), edge('review','metrics','data'), edge('metrics','change','test'), edge('change','entry','test')]
+  },
+  browser: {
+    title: 'Browser-Style App Blueprint',
+    nodes: [
+      node('url', 80, 120, colors.start, 'Address / Route', 'Where the user goes', 'The app decides what screen to show from the URL or selected tab.', ['Create routes or tabs.', 'Name each screen.', 'Set a default screen.']),
+      node('shell', 330, 120, colors.ui, 'App Shell', 'Navigation frame', 'Top bar, side bar, tabs, search, content area, settings.', ['Build the frame.', 'Add navigation.', 'Make current view clear.']),
+      node('views', 580, 40, colors.ui, 'Views', 'Pages inside app', 'Dashboard, journal, project map, backtest, settings, notes.', ['Create one view.', 'Switch between views.', 'Keep each view focused.']),
+      node('actions', 580, 220, colors.logic, 'Actions', 'What buttons do', 'Search, save, open, close, filter, export, run test.', ['Wire one button.', 'Show feedback.', 'Handle empty state.']),
+      node('state', 850, 120, colors.data, 'Session State', 'What stays while browsing', 'Selected tab, filters, open item, user settings, saved entries.', ['Save selected view.', 'Remember filters.', 'Reload and check.'])
+    ],
+    edges: [edge('url','shell'), edge('shell','views'), edge('shell','actions'), edge('views','state','data'), edge('actions','state','data'), edge('state','views','data')]
+  }
+};
+
+function node(id, x, y, color, title, sub, desc, steps) {
+  return { id, x, y, color, title, sub, desc, steps: steps || commonSteps };
+}
+function edge(from, to, type) { return { from, to, type: type || 'build' }; }
+
+const W = 190;
+const H = 86;
+let active = 'overview';
+let nodes = [];
+let edges = [];
+let selected = null;
+let transform = { x: 60, y: 40, s: 1 };
+let panning = false;
+let panStart = null;
+let startTransform = null;
+
+const svg = document.getElementById('canvas');
+const viewport = document.getElementById('viewport');
+const notes = document.getElementById('notes');
+
+window.addEventListener('load', () => {
+  const saved = localStorage.getItem('visualBlueprint.active');
+  loadPreset(saved || 'overview', true);
+});
+
+notes.addEventListener('input', () => {
+  localStorage.setItem('visualBlueprint.notes.' + active, notes.value);
+});
+
+function loadPreset(key, skipSave) {
+  active = key;
+  const preset = presets[key];
+  nodes = JSON.parse(JSON.stringify(preset.nodes));
+  edges = JSON.parse(JSON.stringify(preset.edges));
+  document.getElementById('title').value = preset.title;
+  notes.value = localStorage.getItem('visualBlueprint.notes.' + active) || '';
+  selected = nodes[0] || null;
+  render();
+  showNode(selected);
+  fitView();
+  if (!skipSave) localStorage.setItem('visualBlueprint.active', active);
+}
+
+function saveMap() {
+  localStorage.setItem('visualBlueprint.notes.' + active, notes.value);
+  const btns = [...document.querySelectorAll('.btn')];
+  const save = btns.find(b => b.textContent === 'Save');
+  if (save) {
+    save.textContent = 'Saved';
+    save.classList.add('good');
+    setTimeout(() => { save.textContent = 'Save'; save.classList.remove('good'); }, 900);
+  }
+}
+
+function resetNotes() {
+  if (!confirm('Clear notes for this blueprint?')) return;
+  notes.value = '';
+  localStorage.removeItem('visualBlueprint.notes.' + active);
+}
+
+function render() {
+  viewport.innerHTML = '';
+  edges.forEach(drawEdge);
+  nodes.forEach(drawNode);
+  applyTransform();
+}
+
+function drawEdge(e) {
+  const a = nodes.find(n => n.id === e.from);
+  const b = nodes.find(n => n.id === e.to);
+  if (!a || !b) return;
+  const ax = a.x + W;
+  const ay = a.y + H / 2;
+  const bx = b.x;
+  const by = b.y + H / 2;
+  const c1 = ax + Math.max(70, (bx - ax) * .45);
+  const c2 = bx - Math.max(70, (bx - ax) * .45);
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', `M ${ax} ${ay} C ${c1} ${ay}, ${c2} ${by}, ${bx} ${by}`);
+  path.setAttribute('class', 'edge ' + (e.type || 'build'));
+  const marker = e.type === 'data' ? 'arrowData' : e.type === 'ai' ? 'arrowAi' : e.type === 'test' ? 'arrowTest' : 'arrow';
+  path.setAttribute('marker-end', `url(#${marker})`);
+  viewport.appendChild(path);
+}
+
+function drawNode(n) {
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.setAttribute('class', 'node');
+  g.setAttribute('transform', `translate(${n.x},${n.y})`);
+  g.addEventListener('click', () => {
+    selected = n;
+    showNode(n);
+    render();
+  });
+
+  const rect = svgEl('rect', { class: 'main', width: W, height: H, rx: 8, fill: '#151a24', stroke: selected && selected.id === n.id ? '#f8fafc' : n.color, 'stroke-width': 1.6 });
+  const bar = svgEl('rect', { width: 6, height: H, rx: 4, fill: n.color });
+  const title = svgEl('text', { x: 18, y: 28, fill: '#ffffff', 'font-size': 13, 'font-weight': 700 });
+  title.textContent = trim(n.title, 22);
+  const sub = svgEl('text', { x: 18, y: 49, fill: '#cbd5e1', 'font-size': 11 });
+  sub.textContent = trim(n.sub, 27);
+  const tag = svgEl('text', { x: 18, y: 69, fill: n.color, 'font-size': 10, 'font-weight': 700 });
+  tag.textContent = selected && selected.id === n.id ? 'SELECTED' : 'CLICK TO LEARN';
+
+  g.append(rect, bar, title, sub, tag);
+  viewport.appendChild(g);
+}
+
+function showNode(n) {
+  if (!n) return;
+  document.getElementById('side-title').textContent = n.title;
+  document.getElementById('side-path').textContent = n.sub;
+  document.getElementById('side-desc').textContent = n.desc;
+  const list = document.getElementById('side-steps');
+  list.innerHTML = '';
+  (n.steps || commonSteps).forEach(s => {
+    const li = document.createElement('li');
+    li.textContent = s;
+    list.appendChild(li);
+  });
+}
+
+function fitView() {
+  if (!nodes.length) return;
+  const xs = nodes.map(n => n.x);
+  const ys = nodes.map(n => n.y);
+  const minX = Math.min(...xs) - 50;
+  const minY = Math.min(...ys) - 50;
+  const maxX = Math.max(...xs) + W + 360;
+  const maxY = Math.max(...ys) + H + 80;
+  const viewW = window.innerWidth;
+  const viewH = window.innerHeight - 62;
+  const scale = Math.min(1.08, Math.max(.48, Math.min(viewW / (maxX - minX), viewH / (maxY - minY))));
+  transform = {
+    x: (viewW - (maxX - minX) * scale) / 2 - minX * scale,
+    y: (viewH - (maxY - minY) * scale) / 2 - minY * scale,
+    s: scale
+  };
+  applyTransform();
+}
+
+function applyTransform() {
+  viewport.setAttribute('transform', `translate(${transform.x},${transform.y}) scale(${transform.s})`);
+}
+
+svg.addEventListener('mousedown', e => {
+  if (e.target.closest('.node')) return;
+  panning = true;
+  svg.classList.add('dragging');
+  panStart = { x: e.clientX, y: e.clientY };
+  startTransform = { ...transform };
+});
+
+window.addEventListener('mousemove', e => {
+  if (!panning) return;
+  transform.x = startTransform.x + (e.clientX - panStart.x);
+  transform.y = startTransform.y + (e.clientY - panStart.y);
+  applyTransform();
+});
+
+window.addEventListener('mouseup', () => {
+  panning = false;
+  svg.classList.remove('dragging');
+});
+
+svg.addEventListener('wheel', e => {
+  e.preventDefault();
+  const before = screenToWorld(e.clientX, e.clientY);
+  transform.s = Math.max(.35, Math.min(2.4, transform.s * (e.deltaY > 0 ? .9 : 1.1)));
+  const after = screenToWorld(e.clientX, e.clientY);
+  transform.x += (after.x - before.x) * transform.s;
+  transform.y += (after.y - before.y) * transform.s;
+  applyTransform();
+}, { passive: false });
+
+window.addEventListener('resize', fitView);
+
+function screenToWorld(x, y) {
+  const r = svg.getBoundingClientRect();
+  return {
+    x: (x - r.left - transform.x) / transform.s,
+    y: (y - r.top - transform.y) / transform.s
+  };
+}
+
+function svgEl(tag, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+  return el;
+}
+
+function trim(text, max) {
+  text = text || '';
+  return text.length > max ? text.slice(0, max - 3) + '...' : text;
+}
+</script>
+</body>
+</html>

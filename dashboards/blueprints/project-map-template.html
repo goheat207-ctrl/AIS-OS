@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Map — Universal Template</title>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  UNIVERSAL PROJECT MAP TEMPLATE  — by Blaine / Claude           ║
+  ║  Works for: Coding · Trading · Business · Learning · AI         ║
+  ╠══════════════════════════════════════════════════════════════════╣
+  ║  HOW TO USE IN OBSIDIAN:                                         ║
+  ║  1. Copy this file, rename it "YourProject-map.html"            ║
+  ║  2. Edit the CONFIG section below (NODES + LINKS)               ║
+  ║  3. Right-click the file in Obsidian → Open in default app      ║
+  ║     OR install "HTML Reader" community plugin to view in-app    ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f1117; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+
+  /* ── TOOLBAR ───────────────────────────────────────────────── */
+  #toolbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 52px;
+    background: #12152a; border-bottom: 1px solid #1e2235;
+    display: flex; align-items: center; gap: 8px; padding: 0 16px; z-index: 200;
+  }
+  #project-name {
+    font-size: 15px; font-weight: 700; color: #fff; cursor: pointer;
+    background: none; border: none; color: #fff; outline: none;
+    min-width: 160px; max-width: 280px;
+  }
+  #project-name:focus { border-bottom: 1px solid #6366f1; }
+  .divider { width: 1px; height: 24px; background: #1e2235; margin: 0 4px; }
+  .btn {
+    background: #1a1d2e; border: 1px solid #2a2d45; color: #a0a4c0;
+    padding: 5px 12px; border-radius: 5px; font-size: 11px; cursor: pointer;
+    white-space: nowrap; transition: all 0.15s;
+  }
+  .btn:hover { background: #252840; color: #fff; border-color: #3a3d5c; }
+  .btn.active { background: #4f46e5; border-color: #4f46e5; color: #fff; }
+  .btn.green  { background: #065f46; border-color: #059669; color: #34d399; }
+  .preset-btn { font-size: 10px; padding: 4px 10px; }
+  #preset-section { display: flex; align-items: center; gap: 5px; }
+  #preset-label { font-size: 10px; color: #4b5563; white-space: nowrap; }
+
+  /* ── LEGEND ────────────────────────────────────────────────── */
+  #legend {
+    position: fixed; bottom: 16px; left: 16px;
+    background: #12152a; border: 1px solid #1e2235; border-radius: 8px;
+    padding: 12px 14px; z-index: 100; font-size: 11px; min-width: 160px;
+  }
+  #legend h3 { font-size: 10px; color: #6b7280; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .leg { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; color: #9ca3af; }
+  .leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .leg-line { width: 24px; height: 2px; flex-shrink: 0; }
+  #legend hr { border: none; border-top: 1px solid #1e2235; margin: 8px 0; }
+
+  /* ── STATUS LEGEND ─────────────────────────────────────────── */
+  #status-legend {
+    position: fixed; bottom: 16px; left: 192px;
+    background: #12152a; border: 1px solid #1e2235; border-radius: 8px;
+    padding: 12px 14px; z-index: 100; font-size: 11px;
+  }
+  #status-legend h3 { font-size: 10px; color: #6b7280; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── INFO PANEL ────────────────────────────────────────────── */
+  #info-panel {
+    position: fixed; right: 16px; top: 68px; width: 270px;
+    background: #12152a; border: 1px solid #1e2235; border-radius: 8px;
+    padding: 16px; z-index: 100; display: none;
+  }
+  #info-panel h3 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  #ip-path { font-size: 10px; color: #6366f1; margin-bottom: 8px; font-family: monospace; }
+  #ip-status { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px; margin-bottom: 10px; font-weight: 600; }
+  #ip-desc { font-size: 12px; color: #9ca3af; line-height: 1.6; }
+  #ip-endpoints { margin-top: 10px; }
+  .ep-label { font-size: 9px; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+  .endpoint { font-size: 10px; font-family: monospace; background: #0f1117; padding: 3px 6px; border-radius: 3px; margin-bottom: 3px; display: block; }
+  .m-get { color: #34d399; } .m-post { color: #60a5fa; } .m-patch { color: #fbbf24; } .m-del { color: #f87171; }
+  #close-panel { float: right; background: none; border: none; color: #6b7280; cursor: pointer; font-size: 16px; margin-top: -4px; }
+  #close-panel:hover { color: #fff; }
+
+  /* ── ADD NODE PANEL ────────────────────────────────────────── */
+  #add-panel {
+    position: fixed; left: 16px; top: 68px; width: 240px;
+    background: #12152a; border: 1px solid #1e2235; border-radius: 8px;
+    padding: 14px; z-index: 100; display: none;
+  }
+  #add-panel h3 { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+  .form-row { margin-bottom: 10px; }
+  .form-row label { display: block; font-size: 10px; color: #6b7280; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%; background: #0f1117; border: 1px solid #2a2d45; color: #e0e0e0;
+    padding: 6px 8px; border-radius: 4px; font-size: 11px; font-family: 'Segoe UI', sans-serif;
+  }
+  .form-row textarea { height: 56px; resize: none; }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { outline: none; border-color: #4f46e5; }
+  .form-actions { display: flex; gap: 6px; margin-top: 12px; }
+  .form-actions .btn { flex: 1; text-align: center; }
+
+  /* ── SVG CANVAS ────────────────────────────────────────────── */
+  svg { position: fixed; top: 52px; left: 0; right: 0; bottom: 0; width: 100%; height: calc(100vh - 52px); }
+  .node-group { cursor: pointer; }
+  .node-group:hover .node-box { filter: brightness(1.3); }
+  .link { fill: none; stroke-width: 1.5; }
+  text { user-select: none; }
+
+  /* ── MINI HELP ─────────────────────────────────────────────── */
+  #help {
+    position: fixed; right: 16px; bottom: 16px;
+    background: #12152a; border: 1px solid #1e2235; border-radius: 8px;
+    padding: 10px 14px; z-index: 100; font-size: 10px; color: #4b5563;
+    line-height: 1.8;
+  }
+  #help span { color: #6366f1; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TOOLBAR
+════════════════════════════════════════════════════════════ -->
+<div id="toolbar">
+  <input id="project-name" value="My Project" title="Click to rename" />
+  <div class="divider"></div>
+  <button class="btn active" onclick="fitView()">⊞ FIT</button>
+  <button class="btn" id="labels-btn" onclick="toggleLabels()">LABELS</button>
+  <button class="btn green" onclick="toggleAddPanel()">+ NODE</button>
+  <div class="divider"></div>
+  <span id="preset-label">LOAD PRESET →</span>
+  <div id="preset-section">
+    <button class="btn preset-btn" onclick="loadPreset('coding')">💻 Coding</button>
+    <button class="btn preset-btn" onclick="loadPreset('trading')">📈 Trading</button>
+    <button class="btn preset-btn" onclick="loadPreset('business')">💼 Business</button>
+    <button class="btn preset-btn" onclick="loadPreset('learning')">📚 Learning</button>
+    <button class="btn preset-btn" onclick="loadPreset('ai')">🤖 AI</button>
+  </div>
+  <div class="divider"></div>
+  <button class="btn" onclick="saveToStorage()" id="save-btn">💾 SAVED</button>
+  <button class="btn" onclick="clearAll()" style="margin-left:auto; color:#f87171;">🗑 CLEAR</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LEGEND
+════════════════════════════════════════════════════════════ -->
+<div id="legend">
+  <h3>Node Types</h3>
+  <div class="leg"><div class="leg-dot" style="background:#4f46e5"></div> Entry / Config</div>
+  <div class="leg"><div class="leg-dot" style="background:#0891b2"></div> API / Routes</div>
+  <div class="leg"><div class="leg-dot" style="background:#059669"></div> Logic / Service</div>
+  <div class="leg"><div class="leg-dot" style="background:#d97706"></div> Database / Storage</div>
+  <div class="leg"><div class="leg-dot" style="background:#7c3aed"></div> UI / Frontend</div>
+  <div class="leg"><div class="leg-dot" style="background:#8b5cf6"></div> AI / Agent / Model</div>
+  <div class="leg"><div class="leg-dot" style="background:#f59e0b"></div> Trading / Scanner</div>
+  <div class="leg"><div class="leg-dot" style="background:#10b981"></div> Business / Revenue</div>
+  <div class="leg"><div class="leg-dot" style="background:#e11d48"></div> User / Auth</div>
+  <div class="leg"><div class="leg-dot" style="background:#be185d"></div> Files / Data</div>
+  <div class="leg"><div class="leg-dot" style="background:#0d9488"></div> Learning / Resource</div>
+  <div class="leg"><div class="leg-dot" style="background:#ca8a04"></div> Automation / Bot</div>
+  <hr>
+  <div class="leg"><div class="leg-line" style="background:#3a3d5c"></div> imports</div>
+  <div class="leg"><div class="leg-line" style="border-top:2px dashed #f59e0b"></div> data flow</div>
+  <div class="leg"><div class="leg-line" style="border-top:2px dashed #6366f1"></div> serves</div>
+  <div class="leg"><div class="leg-line" style="border-top:2px dashed #8b5cf6"></div> AI call</div>
+</div>
+
+<div id="status-legend">
+  <h3>Status</h3>
+  <div class="leg"><span style="color:#34d399">✓</span> &nbsp;Done</div>
+  <div class="leg"><span style="color:#fbbf24">⟳</span> &nbsp;In Progress</div>
+  <div class="leg"><span style="color:#f87171">✗</span> &nbsp;Blocked</div>
+  <div class="leg"><span style="color:#4b5563">·</span> &nbsp;Not Started</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     INFO PANEL (click a node to open)
+════════════════════════════════════════════════════════════ -->
+<div id="info-panel">
+  <button id="close-panel" onclick="closeInfoPanel()">×</button>
+  <h3 id="ip-title"></h3>
+  <div id="ip-path"></div>
+  <div id="ip-status"></div>
+  <div id="ip-desc"></div>
+  <div id="ip-endpoints"></div>
+  <div style="margin-top:14px; display:flex; gap:6px;">
+    <button class="btn" style="flex:1; font-size:10px;" onclick="editNode(currentNode)">✏️ Edit</button>
+    <button class="btn" style="flex:1; font-size:10px; color:#f87171;" onclick="deleteNode(currentNode)">🗑 Delete</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ADD / EDIT NODE PANEL
+════════════════════════════════════════════════════════════ -->
+<div id="add-panel">
+  <h3 id="add-panel-title">➕ Add Node</h3>
+  <div class="form-row">
+    <label>Title</label>
+    <input id="f-title" placeholder="e.g. main.js or Strategy Engine" />
+  </div>
+  <div class="form-row">
+    <label>Subtitle</label>
+    <input id="f-sub" placeholder="e.g. Entry Point" />
+  </div>
+  <div class="form-row">
+    <label>Path / Location</label>
+    <input id="f-path" placeholder="e.g. src/main.js or Step 2" />
+  </div>
+  <div class="form-row">
+    <label>Description</label>
+    <textarea id="f-desc" placeholder="What does this do?"></textarea>
+  </div>
+  <div class="form-row">
+    <label>Type / Color</label>
+    <select id="f-color">
+      <option value="#4f46e5">🟣 Entry / Config</option>
+      <option value="#0891b2">🔵 API / Routes</option>
+      <option value="#059669">🟢 Logic / Service</option>
+      <option value="#d97706">🟡 Database / Storage</option>
+      <option value="#7c3aed">🟣 UI / Frontend</option>
+      <option value="#8b5cf6">🟣 AI / Agent / Model</option>
+      <option value="#f59e0b">🟠 Trading / Scanner</option>
+      <option value="#10b981">🟢 Business / Revenue</option>
+      <option value="#e11d48">🔴 User / Auth</option>
+      <option value="#be185d">🩷 Files / Data</option>
+      <option value="#0d9488">🩵 Learning / Resource</option>
+      <option value="#ca8a04">🟡 Automation / Bot</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label>Icon (emoji)</label>
+    <input id="f-icon" placeholder="🚀" maxlength="4" style="width:60px;" />
+  </div>
+  <div class="form-row">
+    <label>Status</label>
+    <select id="f-status">
+      <option value="">Not Started</option>
+      <option value="progress">⟳ In Progress</option>
+      <option value="done">✓ Done</option>
+      <option value="blocked">✗ Blocked</option>
+    </select>
+  </div>
+  <div class="form-actions">
+    <button class="btn" onclick="cancelAdd()">Cancel</button>
+    <button class="btn active" onclick="submitNode()">Save Node</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HELP
+════════════════════════════════════════════════════════════ -->
+<div id="help">
+  <span>Scroll</span> to zoom &nbsp;|&nbsp;
+  <span>Drag</span> to pan &nbsp;|&nbsp;
+  <span>Click</span> node to inspect
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SVG CANVAS
+════════════════════════════════════════════════════════════ -->
+<svg id="canvas">
+  <defs>
+    <marker id="arr"       markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#3a3d5c"/></marker>
+    <marker id="arr-data"  markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#f59e0b"/></marker>
+    <marker id="arr-serve" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#6366f1"/></marker>
+    <marker id="arr-ai"    markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#8b5cf6"/></marker>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g id="vp"></g>
+</svg>
+
+<!-- ═══════════════════════════════════════════════════════════
+
+  ████████╗███████╗███╗   ███╗██████╗ ██╗      █████╗ ████████╗███████╗
+     ██╔══╝██╔════╝████╗ ████║██╔══██╗██║     ██╔══██╗╚══██╔══╝██╔════╝
+     ██║   █████╗  ██╔████╔██║██████╔╝██║     ███████║   ██║   █████╗
+     ██║   ██╔══╝  ██║╚██╔╝██║██╔═══╝ ██║     ██╔══██║   ██║   ██╔══╝
+     ██║   ███████╗██║ ╚═╝ ██║██║     ███████╗██║  ██║   ██║   ███████╗
+     ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
+
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  ✏️  EDIT BELOW TO BUILD YOUR PROJECT MAP                   ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║  1. Change PROJECT.name at the top                          ║
+  ║  2. Edit NODES array — each node is one box on the map      ║
+  ║  3. Edit LINKS array — each link is an arrow between boxes  ║
+  ║  4. OR click "+ NODE" in the toolbar to add without coding  ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+════════════════════════════════════════════════════════════ -->
+
+<script>
+
+// ════════════════════════════════════════════════════
+//  PROJECT CONFIG  ← EDIT THIS
+// ════════════════════════════════════════════════════
+const PROJECT = {
+  name: "My Project"   // shown in toolbar header
+};
+
+// ════════════════════════════════════════════════════
+//  COLOR REFERENCE (use in NODES below)
+// ════════════════════════════════════════════════════
+const C = {
+  entry:      '#4f46e5',   // Entry / Config
+  api:        '#0891b2',   // API / Routes
+  logic:      '#059669',   // Logic / Service
+  data:       '#d97706',   // Database / Storage
+  ui:         '#7c3aed',   // UI / Frontend
+  ai:         '#8b5cf6',   // AI / Agent / Model
+  trading:    '#f59e0b',   // Trading / Scanner
+  business:   '#10b981',   // Business / Revenue
+  user:       '#e11d48',   // User / Auth
+  file:       '#be185d',   // Files / Data
+  learning:   '#0d9488',   // Learning / Resource
+  automation: '#ca8a04',   // Automation / Bot
+};
+
+// ════════════════════════════════════════════════════
+//  NODES  ← ADD YOUR PROJECT BOXES HERE
+// ════════════════════════════════════════════════════
+//  Each node = one box on the map
+//  Required: id, x, y, color, icon, title, sub
+//  Optional: path, desc, endpoints[], status
+//  status: '' | 'progress' | 'done' | 'blocked'
+//  x/y: position on canvas (pixels, can be any number)
+// ════════════════════════════════════════════════════
+let NODES = [
+  {
+    id: 'start', x: 420, y: 120,
+    color: C.entry, icon: '🚀',
+    title: 'Start Here',
+    sub: 'Click me to inspect',
+    path: 'project root',
+    desc: 'This is a blank template. Use the + NODE button to add nodes, or load a preset from the toolbar to get started fast.',
+    endpoints: [],
+    status: ''
+  }
+];
+
+// ════════════════════════════════════════════════════
+//  LINKS  ← CONNECT YOUR NODES WITH ARROWS
+// ════════════════════════════════════════════════════
+//  type: 'default' | 'data' | 'serve' | 'ai'
+//  default = gray solid arrow
+//  data    = amber dashed (reads/writes)
+//  serve   = indigo dashed (serves/renders)
+//  ai      = purple dashed (AI calls)
+// ════════════════════════════════════════════════════
+let LINKS = [];
+
+// ════════════════════════════════════════════════════
+//  PRESET TEMPLATES  ← Click toolbar buttons to load
+// ════════════════════════════════════════════════════
+const PRESETS = {
+
+  coding: {
+    name: "Coding App",
+    nodes: [
+      { id:'main',    x:420,  y:80,  color:C.entry,   icon:'🚀', title:'main.js',          sub:'Server Entry',     path:'main.js',             desc:'Starts the server. Registers middleware and mounts routes.',                 status:'progress' },
+      { id:'env',     x:160,  y:80,  color:C.entry,   icon:'⚙️', title:'.env',             sub:'Config / Secrets', path:'.env',                desc:'Stores environment variables: PORT, DB_PATH, API keys. Never committed.',    status:'done' },
+      { id:'routes',  x:200,  y:240, color:C.api,     icon:'🔗', title:'routes/api.js',    sub:'API Router',       path:'src/routes/api.js',   desc:'Handles all API endpoints. Delegates logic to services layer.',               status:'progress', endpoints:[{m:'GET',e:'/api/items'},{m:'POST',e:'/api/items'},{m:'PATCH',e:'/api/items/:id'}] },
+      { id:'service', x:200,  y:400, color:C.logic,   icon:'🧠', title:'services/core.js', sub:'Business Logic',   path:'src/services/core.js',desc:'All core business logic. Validates, transforms, and orchestrates data.',      status:'' },
+      { id:'db',      x:420,  y:540, color:C.data,    icon:'🗄️', title:'db.js',            sub:'Database Layer',   path:'src/db.js',           desc:'Database abstraction. Exposes insert(), all(), update(), delete().',          status:'' },
+      { id:'dbfile',  x:640,  y:660, color:C.file,    icon:'📄', title:'data/db.json',     sub:'Persistent Data',  path:'data/db.json',        desc:'Flat-file JSON database. Stores all app data.',                               status:'' },
+      { id:'frontend',x:420,  y:240, color:C.ui,      icon:'🖥️', title:'public/',          sub:'Frontend (SPA)',   path:'public/',             desc:'Client-side app. index.html shell + JS files for UI and data fetching.',      status:'' },
+      { id:'uploads', x:640,  y:400, color:C.logic,   icon:'📤', title:'services/upload',  sub:'Upload Handler',   path:'src/services/upload',  desc:'Handles file uploads. Saves metadata and manages upload folder.',            status:'' },
+      { id:'static',  x:200,  y:660, color:C.file,    icon:'🖼️', title:'data/uploads/',    sub:'Image Files',      path:'data/uploads/',       desc:'Uploaded images stored here. Served as static files at /uploads/*.',         status:'' },
+    ],
+    links: [
+      { from:'main',    to:'env',      type:'default' },
+      { from:'main',    to:'routes',   type:'default' },
+      { from:'main',    to:'uploads',  type:'default' },
+      { from:'main',    to:'frontend', type:'serve'   },
+      { from:'routes',  to:'service',  type:'default' },
+      { from:'service', to:'db',       type:'default' },
+      { from:'uploads', to:'db',       type:'default' },
+      { from:'db',      to:'dbfile',   type:'data'    },
+      { from:'uploads', to:'static',   type:'data'    },
+    ]
+  },
+
+  trading: {
+    name: "Trading System",
+    nodes: [
+      { id:'scanner',   x:420,  y:80,  color:C.trading,    icon:'📡', title:'TOS Scanner',       sub:'Signal Generator',    path:'ThinkOrSwim → Scan', desc:'Custom ThinkorSwim scanner. Detects momentum setups based on price, volume, and L2 patterns.',            status:'progress' },
+      { id:'watchlist', x:160,  y:220, color:C.trading,    icon:'👁️', title:'Watchlist',          sub:'Filtered Tickers',    path:'TOS Watchlist',      desc:'Active watchlist fed by scanner results. Top movers under $2B market cap.',                            status:'' },
+      { id:'l2',        x:680,  y:220, color:C.trading,    icon:'📊', title:'Level 2 / T&S',      sub:'Order Flow Reader',   path:'TOS L2 + Time&Sales',desc:'Level 2 depth and Time & Sales. Used to read momentum, absorption, and intent.',                       status:'' },
+      { id:'strategy',  x:420,  y:300, color:C.logic,      icon:'🧠', title:'Strategy Rules',     sub:'Entry / Exit Logic',  path:'Trading Plan',       desc:'Your core trading rules. Entry trigger, size, stop placement, scale-out levels, and max loss.',          status:'progress' },
+      { id:'broker',    x:160,  y:440, color:C.api,        icon:'🏦', title:'Broker (CMEG)',       sub:'Order Execution',     path:'CenterPoint / CMEG', desc:'Order execution. Hotkeys for buy, sell, stop. Hard locate for short selling.',                          status:'done' },
+      { id:'journal',   x:680,  y:440, color:C.data,       icon:'📓', title:'Trade Journal',      sub:'Log & Review',        path:'Obsidian / JARVIS',  desc:'Records every trade: entry, exit, P&L, setup type, emotional state, and screenshots.',                 status:'progress' },
+      { id:'analytics', x:420,  y:560, color:C.business,   icon:'📈', title:'Analytics',          sub:'Performance Review',  path:'Level2Lab App',      desc:'Win rate, streak, accuracy by setup type. Weekly digest and pattern scoring.',                          status:'' },
+      { id:'mindset',   x:160,  y:660, color:C.user,       icon:'🧘', title:'Pre-Market Routine', sub:'Mental Prep',         path:'0500 Block',         desc:'Bias check, news scan, gap scan. Sets mental frame before open.',                                      status:'' },
+      { id:'risk',      x:680,  y:660, color:C.automation, icon:'🛡️', title:'Risk Rules',         sub:'Capital Protection',  path:'Risk Framework',     desc:'Max daily loss, max position size, no trading after 2 losses, hard stops on all positions.',             status:'done' },
+    ],
+    links: [
+      { from:'scanner',   to:'watchlist', type:'default' },
+      { from:'scanner',   to:'l2',        type:'default' },
+      { from:'watchlist', to:'strategy',  type:'default' },
+      { from:'l2',        to:'strategy',  type:'default' },
+      { from:'strategy',  to:'broker',    type:'default' },
+      { from:'strategy',  to:'journal',   type:'data'    },
+      { from:'broker',    to:'journal',   type:'data'    },
+      { from:'journal',   to:'analytics', type:'data'    },
+      { from:'mindset',   to:'strategy',  type:'default' },
+      { from:'risk',      to:'strategy',  type:'default' },
+    ]
+  },
+
+  business: {
+    name: "Business Idea",
+    nodes: [
+      { id:'goal',      x:420,  y:80,  color:C.entry,    icon:'🎯', title:'Core Goal',        sub:'The Why',         path:'Vision',           desc:'The single outcome you are building toward. Clear, measurable, time-bound.',             status:'' },
+      { id:'problem',   x:160,  y:220, color:C.user,     icon:'😣', title:'Problem',          sub:'Customer Pain',   path:'Market Research',  desc:'The specific pain your target customer experiences. Validated with real evidence.',      status:'' },
+      { id:'solution',  x:680,  y:220, color:C.logic,    icon:'💡', title:'Solution',         sub:'Your Answer',     path:'Product Concept',  desc:'How you solve the problem. Unique approach, core value proposition.',                  status:'' },
+      { id:'market',    x:160,  y:400, color:C.business, icon:'📊', title:'Target Market',    sub:'Who & How Many',  path:'ICP / TAM',        desc:'Ideal customer profile. Size of market. Niche you are entering first.',               status:'' },
+      { id:'product',   x:420,  y:360, color:C.ui,       icon:'📦', title:'Product / MVP',    sub:'What You Build',  path:'v1 Scope',         desc:'Minimum viable product. The smallest version that delivers core value.',              status:'progress' },
+      { id:'revenue',   x:680,  y:400, color:C.business, icon:'💰', title:'Revenue Model',    sub:'How You Get Paid',path:'Pricing',          desc:'How the business makes money. Pricing tiers, subscription, one-time, affiliate.',      status:'' },
+      { id:'channels',  x:160,  y:560, color:C.api,      icon:'📣', title:'Marketing',        sub:'Acquisition',     path:'Go-to-Market',     desc:'How you reach customers. Organic, paid, content, community, cold outreach.',           status:'' },
+      { id:'tools',     x:420,  y:560, color:C.automation,icon:'🔧',title:'Tools & Stack',    sub:'What You Use',    path:'Tech Stack',       desc:'Software, platforms, and tools powering the business.',                               status:'' },
+      { id:'metrics',   x:680,  y:560, color:C.data,     icon:'📉', title:'Success Metrics',  sub:'How You Know',    path:'KPIs',             desc:'Key metrics: MRR, CAC, LTV, churn, DAU. How you track progress.',                     status:'' },
+    ],
+    links: [
+      { from:'goal',     to:'problem',  type:'default' },
+      { from:'goal',     to:'solution', type:'default' },
+      { from:'problem',  to:'market',   type:'default' },
+      { from:'solution', to:'product',  type:'default' },
+      { from:'market',   to:'product',  type:'default' },
+      { from:'product',  to:'revenue',  type:'data'    },
+      { from:'product',  to:'channels', type:'default' },
+      { from:'product',  to:'tools',    type:'default' },
+      { from:'revenue',  to:'metrics',  type:'data'    },
+      { from:'channels', to:'metrics',  type:'data'    },
+    ]
+  },
+
+  learning: {
+    name: "Learning Plan",
+    nodes: [
+      { id:'goal',      x:420,  y:80,  color:C.entry,    icon:'🎯', title:'Learning Goal',   sub:'What & Why',       path:'Goal',             desc:'What skill or knowledge you are building. Why it matters to you right now.',          status:'' },
+      { id:'foundations',x:160, y:240, color:C.learning, icon:'🧱', title:'Foundations',     sub:'Core Concepts',    path:'Phase 1',          desc:'The fundamentals you must understand before anything else clicks.',                  status:'progress' },
+      { id:'resources', x:680,  y:240, color:C.learning, icon:'📚', title:'Resources',       sub:'Books / Courses',  path:'Study Material',   desc:'Curated list of books, courses, videos, and docs. Quality over quantity.',           status:'' },
+      { id:'practice',  x:160,  y:420, color:C.logic,    icon:'🛠️', title:'Practice',        sub:'Do the Work',      path:'Projects / Drills',desc:'Hands-on practice. The only way skills actually stick.',                            status:'' },
+      { id:'projects',  x:420,  y:420, color:C.ui,       icon:'🏗️', title:'Build Projects',  sub:'Apply It',         path:'Portfolio Work',   desc:'Real projects that prove your skill. Start small, ship something.',                  status:'' },
+      { id:'community', x:680,  y:420, color:C.user,     icon:'👥', title:'Community',       sub:'Learn with Others', path:'Discord / X',      desc:'Find peers learning the same thing. Teach to solidify your own understanding.',      status:'' },
+      { id:'review',    x:160,  y:600, color:C.data,     icon:'📓', title:'Review & Notes',  sub:'Obsidian / Recall', path:'Notes Vault',      desc:'Spaced repetition, summaries, and re-reading your own notes.',                      status:'' },
+      { id:'milestones',x:420,  y:600, color:C.business, icon:'🏁', title:'Milestones',      sub:'Track Progress',    path:'Checkpoints',      desc:'Clear checkpoints. How you know you have leveled up.',                               status:'' },
+      { id:'apply',     x:680,  y:600, color:C.automation,icon:'⚡',title:'Apply to Life',   sub:'Real-World Use',    path:'Implementation',   desc:'Where this skill shows up in your actual work and life.',                            status:'' },
+    ],
+    links: [
+      { from:'goal',      to:'foundations', type:'default' },
+      { from:'goal',      to:'resources',   type:'default' },
+      { from:'foundations',to:'practice',   type:'default' },
+      { from:'resources', to:'practice',    type:'default' },
+      { from:'practice',  to:'projects',    type:'default' },
+      { from:'community', to:'projects',    type:'default' },
+      { from:'projects',  to:'review',      type:'data'    },
+      { from:'projects',  to:'milestones',  type:'data'    },
+      { from:'milestones',to:'apply',       type:'default' },
+    ]
+  },
+
+  ai: {
+    name: "AI Project",
+    nodes: [
+      { id:'goal',    x:420,  y:80,  color:C.entry,      icon:'🎯', title:'Project Goal',       sub:'What to Automate',  path:'Objective',         desc:'The specific outcome this AI project achieves. One clear job it does.',           status:'' },
+      { id:'input',   x:160,  y:240, color:C.file,       icon:'📥', title:'Input / Data',       sub:'What Goes In',      path:'Data Sources',      desc:'Raw data, user input, files, API feeds. Everything the AI system consumes.',      status:'' },
+      { id:'model',   x:420,  y:260, color:C.ai,         icon:'🧠', title:'LLM / Model',        sub:'Claude / GPT / etc',path:'AI Model',          desc:'The AI model powering the system. Model version, context window, cost per call.', status:'progress' },
+      { id:'prompt',  x:680,  y:240, color:C.ai,         icon:'✍️', title:'Prompt System',      sub:'Instructions',      path:'Prompts / Skills',  desc:'System prompt, user prompt templates, few-shot examples. The model instructions.',status:'progress' },
+      { id:'tools',   x:160,  y:440, color:C.api,        icon:'🔧', title:'Tools / MCPs',       sub:'What Claude Can Do', path:'Tool Definitions',  desc:'Functions and MCP servers the model can call. File access, search, APIs, etc.',   status:'' },
+      { id:'agent',   x:420,  y:440, color:C.ai,         icon:'🤖', title:'Agent Loop',         sub:'Reasoning + Action', path:'Agent Logic',       desc:'The agentic loop: observe → plan → act → observe. Multi-step execution.',         status:'' },
+      { id:'memory',  x:680,  y:440, color:C.data,       icon:'💾', title:'Memory / State',     sub:'What It Remembers',  path:'Context / DB',      desc:'How the agent stores and retrieves context. CLAUDE.md, vector DB, session state.', status:'' },
+      { id:'output',  x:160,  y:620, color:C.ui,         icon:'📤', title:'Output',             sub:'What Gets Produced', path:'Deliverable',       desc:'The final output: file, message, action, report, or UI update.',                 status:'' },
+      { id:'interface',x:420, y:620, color:C.ui,         icon:'🖥️', title:'Interface',          sub:'How You Interact',   path:'UI / CLI / Chat',   desc:'How you interact with the agent. Chat, CLI, Cowork, API endpoint.',              status:'' },
+      { id:'eval',    x:680,  y:620, color:C.business,   icon:'📊', title:'Eval / Quality',     sub:'Does It Work?',      path:'Testing',           desc:'How you measure output quality. Benchmarks, spot checks, user feedback loops.',   status:'' },
+    ],
+    links: [
+      { from:'goal',    to:'input',     type:'default' },
+      { from:'goal',    to:'model',     type:'default' },
+      { from:'input',   to:'agent',     type:'data'    },
+      { from:'model',   to:'agent',     type:'ai'      },
+      { from:'prompt',  to:'model',     type:'ai'      },
+      { from:'tools',   to:'agent',     type:'default' },
+      { from:'agent',   to:'memory',    type:'data'    },
+      { from:'memory',  to:'agent',     type:'data'    },
+      { from:'agent',   to:'output',    type:'default' },
+      { from:'agent',   to:'interface', type:'serve'   },
+      { from:'output',  to:'eval',      type:'data'    },
+    ]
+  }
+
+}; // end PRESETS
+
+// ════════════════════════════════════════════════════
+//  ENGINE — DO NOT EDIT BELOW THIS LINE
+// ════════════════════════════════════════════════════
+
+const W = 164, H = 68;
+let showLabels = false;
+let transform = { x: 80, y: 30, scale: 0.95 };
+let dragging = false, dragStart = {}, vpStart = {};
+let currentNode = null;
+let editingId = null;
+
+const svg = document.getElementById('canvas');
+const vp  = document.getElementById('vp');
+
+// ── Init ───────────────────────────────────────────
+window.addEventListener('load', () => {
+  document.getElementById('project-name').value = PROJECT.name;
+  const saved = localStorage.getItem('projectMap_' + slugify(PROJECT.name));
+  if (saved) {
+    try {
+      const d = JSON.parse(saved);
+      NODES = d.nodes; LINKS = d.links;
+      if (d.name) document.getElementById('project-name').value = d.name;
+    } catch(e) {}
+  }
+  render();
+  setTimeout(fitView, 80);
+});
+
+document.getElementById('project-name').addEventListener('input', () => markUnsaved());
+
+function slugify(s) { return s.toLowerCase().replace(/\s+/g,'_'); }
+
+// ── Render ─────────────────────────────────────────
+function render() {
+  vp.innerHTML = '';
+  drawLinks();
+  drawNodes();
+}
+
+function drawLinks() {
+  for (const lk of LINKS) {
+    const f = nodeById(lk.from), t = nodeById(lk.to);
+    if (!f || !t) continue;
+    const {ox,oy,ix,iy} = edgePt(f,t);
+    const cpx = ox + (ix-ox)*0.5, cpy = oy + (iy-oy)*0.3;
+    const path = makeSvg('path');
+    path.setAttribute('d', `M${ox},${oy} C${cpx},${cpy} ${cpx},${cpy} ${ix},${iy}`);
+    path.setAttribute('class','link');
+    const styles = {
+      default: { stroke:'#3a3d5c', dash:'',     marker:'arr'       },
+      data:    { stroke:'#f59e0b', dash:'5,3',  marker:'arr-data'  },
+      serve:   { stroke:'#6366f1', dash:'5,3',  marker:'arr-serve' },
+      ai:      { stroke:'#8b5cf6', dash:'5,3',  marker:'arr-ai'    },
+    };
+    const st = styles[lk.type || 'default'];
+    path.style.stroke = st.stroke;
+    if (st.dash) path.style.strokeDasharray = st.dash;
+    path.setAttribute('marker-end', `url(#${st.marker})`);
+    vp.appendChild(path);
+  }
+}
+
+function drawNodes() {
+  for (const n of NODES) {
+    const g = makeSvg('g');
+    g.setAttribute('class','node-group');
+    g.setAttribute('transform',`translate(${n.x},${n.y})`);
+    g.addEventListener('click', () => showInfo(n));
+
+    // shadow
+    const shd = makeSvg('rect');
+    Object.assign_svg(shd, {width:W,height:H,rx:8,ry:8,fill:'rgba(0,0,0,0.5)',transform:'translate(3,4)'});
+    g.appendChild(shd);
+
+    // box
+    const rect = makeSvg('rect');
+    Object.assign_svg(rect, {width:W,height:H,rx:8,ry:8,fill:n.color,'fill-opacity':'0.18',stroke:n.color,'stroke-width':'1.5',class:'node-box'});
+    g.appendChild(rect);
+
+    // left color bar
+    const bar = makeSvg('rect');
+    Object.assign_svg(bar, {width:4,height:H,rx:3,fill:n.color});
+    g.appendChild(bar);
+
+    // status badge
+    const statusMap = { done:'✓', progress:'⟳', blocked:'✗', '':'·' };
+    const statusColor = { done:'#34d399', progress:'#fbbf24', blocked:'#f87171', '':'#374151' };
+    const badge = makeSvg('text');
+    Object.assign_svg(badge, {x:W-10, y:16, 'text-anchor':'middle', 'font-size':'12', fill: statusColor[n.status||'']});
+    badge.textContent = statusMap[n.status||''];
+    g.appendChild(badge);
+
+    // icon
+    const icon = makeSvg('text');
+    Object.assign_svg(icon, {x:18, y:38, 'text-anchor':'middle', 'font-size':'18'});
+    icon.textContent = n.icon;
+    g.appendChild(icon);
+
+    // title
+    const title = makeSvg('text');
+    Object.assign_svg(title, {x:32, y:27, 'font-size':'11', 'font-weight':'600', fill:'#fff'});
+    title.textContent = truncate(n.title, 17);
+    g.appendChild(title);
+
+    // sub
+    const sub = makeSvg('text');
+    Object.assign_svg(sub, {x:32, y:43, 'font-size':'9', fill:'#9ca3af'});
+    sub.textContent = truncate(n.sub, 22);
+    g.appendChild(sub);
+
+    // path label
+    if (showLabels) {
+      const pl = makeSvg('text');
+      Object.assign_svg(pl, {x:W/2, y:H+14, 'text-anchor':'middle', fill:'#374151', 'font-size':'9'});
+      pl.textContent = n.path;
+      g.appendChild(pl);
+    }
+
+    vp.appendChild(g);
+  }
+}
+
+// ── Info Panel ─────────────────────────────────────
+function showInfo(n) {
+  currentNode = n;
+  const p = document.getElementById('info-panel');
+  p.style.display = 'block';
+  document.getElementById('ip-title').textContent = `${n.icon}  ${n.title}`;
+  document.getElementById('ip-path').textContent = n.path || '';
+
+  const st = document.getElementById('ip-status');
+  const sm = { done:['✓ Done','#065f46','#34d399'], progress:['⟳ In Progress','#78350f','#fbbf24'], blocked:['✗ Blocked','#7f1d1d','#f87171'], '':['Not Started','#1e2235','#4b5563'] };
+  const s = sm[n.status||''];
+  st.textContent = s[0]; st.style.background = s[1]; st.style.color = s[2];
+
+  document.getElementById('ip-desc').textContent = n.desc || '';
+
+  const ep = document.getElementById('ip-endpoints');
+  ep.innerHTML = '';
+  if (n.endpoints && n.endpoints.length) {
+    const lbl = document.createElement('div');
+    lbl.className = 'ep-label'; lbl.textContent = 'Endpoints'; ep.appendChild(lbl);
+    for (const e of n.endpoints) {
+      const s = document.createElement('span');
+      s.className = 'endpoint';
+      const cls = {GET:'m-get',POST:'m-post',PATCH:'m-patch',DELETE:'m-del'}[e.m]||'';
+      s.innerHTML = `<span class="${cls}">${e.m}</span> ${e.e}`;
+      ep.appendChild(s);
+    }
+  }
+}
+
+function closeInfoPanel() {
+  document.getElementById('info-panel').style.display = 'none';
+  currentNode = null;
+}
+
+// ── Add/Edit Node Panel ────────────────────────────
+function toggleAddPanel() {
+  const p = document.getElementById('add-panel');
+  if (p.style.display === 'block') {
+    cancelAdd();
+  } else {
+    editingId = null;
+    document.getElementById('add-panel-title').textContent = '➕ Add Node';
+    clearForm();
+    p.style.display = 'block';
+  }
+}
+
+function editNode(n) {
+  if (!n) return;
+  editingId = n.id;
+  document.getElementById('add-panel-title').textContent = '✏️ Edit Node';
+  document.getElementById('f-title').value = n.title || '';
+  document.getElementById('f-sub').value   = n.sub   || '';
+  document.getElementById('f-path').value  = n.path  || '';
+  document.getElementById('f-desc').value  = n.desc  || '';
+  document.getElementById('f-color').value = n.color || '#4f46e5';
+  document.getElementById('f-icon').value  = n.icon  || '🔵';
+  document.getElementById('f-status').value = n.status || '';
+  document.getElementById('add-panel').style.display = 'block';
+  closeInfoPanel();
+}
+
+function submitNode() {
+  const title = document.getElementById('f-title').value.trim();
+  if (!title) { alert('Title is required.'); return; }
+
+  if (editingId) {
+    const n = nodeById(editingId);
+    if (n) {
+      n.title  = title;
+      n.sub    = document.getElementById('f-sub').value.trim();
+      n.path   = document.getElementById('f-path').value.trim();
+      n.desc   = document.getElementById('f-desc').value.trim();
+      n.color  = document.getElementById('f-color').value;
+      n.icon   = document.getElementById('f-icon').value.trim() || '🔵';
+      n.status = document.getElementById('f-status').value;
+    }
+  } else {
+    const maxX = NODES.reduce((m,n) => Math.max(m,n.x), 100);
+    const maxY = NODES.reduce((m,n) => Math.max(m,n.y), 100);
+    NODES.push({
+      id: 'node_' + Date.now(),
+      x: Math.min(maxX + 40, 800), y: Math.max(80, maxY - 100 + Math.random()*200|0),
+      title,
+      sub:    document.getElementById('f-sub').value.trim(),
+      path:   document.getElementById('f-path').value.trim(),
+      desc:   document.getElementById('f-desc').value.trim(),
+      color:  document.getElementById('f-color').value,
+      icon:   document.getElementById('f-icon').value.trim() || '🔵',
+      status: document.getElementById('f-status').value,
+      endpoints: []
+    });
+  }
+
+  cancelAdd();
+  render();
+  saveToStorage();
+}
+
+function deleteNode(n) {
+  if (!n || !confirm(`Delete "${n.title}"?`)) return;
+  NODES = NODES.filter(nd => nd.id !== n.id);
+  LINKS = LINKS.filter(lk => lk.from !== n.id && lk.to !== n.id);
+  closeInfoPanel();
+  render();
+  saveToStorage();
+}
+
+function cancelAdd() {
+  editingId = null;
+  clearForm();
+  document.getElementById('add-panel').style.display = 'none';
+}
+
+function clearForm() {
+  ['f-title','f-sub','f-path','f-desc','f-icon'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-color').value = '#4f46e5';
+  document.getElementById('f-status').value = '';
+}
+
+// ── Presets ────────────────────────────────────────
+function loadPreset(type) {
+  if (!confirm(`Load the "${PRESETS[type].name}" preset? This will replace your current nodes.`)) return;
+  const p = PRESETS[type];
+  NODES = JSON.parse(JSON.stringify(p.nodes));
+  LINKS = JSON.parse(JSON.stringify(p.links));
+  document.getElementById('project-name').value = p.name;
+  render();
+  setTimeout(fitView, 80);
+  saveToStorage();
+}
+
+// ── Persistence ────────────────────────────────────
+function saveToStorage() {
+  const name = document.getElementById('project-name').value;
+  localStorage.setItem('projectMap_' + slugify(name), JSON.stringify({ name, nodes: NODES, links: LINKS }));
+  const btn = document.getElementById('save-btn');
+  btn.textContent = '✅ SAVED';
+  btn.classList.add('green');
+  setTimeout(() => { btn.textContent = '💾 SAVED'; btn.classList.remove('green'); }, 1500);
+}
+
+function markUnsaved() {
+  const btn = document.getElementById('save-btn');
+  btn.textContent = '💾 SAVE';
+  btn.classList.remove('green');
+}
+
+function clearAll() {
+  if (!confirm('Clear all nodes and links?')) return;
+  NODES = []; LINKS = [];
+  closeInfoPanel();
+  render();
+  saveToStorage();
+}
+
+// ── Pan & Zoom ─────────────────────────────────────
+svg.addEventListener('mousedown', e => {
+  if (e.target.closest('.node-group')) return;
+  dragging = true;
+  dragStart = { x: e.clientX, y: e.clientY };
+  vpStart   = { x: transform.x, y: transform.y };
+  svg.style.cursor = 'grabbing';
+});
+window.addEventListener('mousemove', e => {
+  if (!dragging) return;
+  transform.x = vpStart.x + (e.clientX - dragStart.x);
+  transform.y = vpStart.y + (e.clientY - dragStart.y);
+  applyTransform();
+});
+window.addEventListener('mouseup', () => { dragging = false; svg.style.cursor = 'default'; });
+svg.addEventListener('wheel', e => {
+  e.preventDefault();
+  const f = e.deltaY > 0 ? 0.9 : 1.1;
+  transform.scale = Math.max(0.25, Math.min(3, transform.scale * f));
+  applyTransform();
+}, { passive: false });
+
+function applyTransform() {
+  vp.setAttribute('transform', `translate(${transform.x},${transform.y}) scale(${transform.scale})`);
+}
+
+function fitView() {
+  if (!NODES.length) { transform = {x:400,y:200,scale:1}; applyTransform(); return; }
+  const xs = NODES.map(n=>n.x), ys = NODES.map(n=>n.y);
+  const minX=Math.min(...xs)-20, maxX=Math.max(...xs)+W+40;
+  const minY=Math.min(...ys)-20, maxY=Math.max(...ys)+H+40;
+  const vw=window.innerWidth, vh=window.innerHeight-52;
+  const sc=Math.min(0.98, Math.min(vw/(maxX-minX), vh/(maxY-minY)));
+  transform = { x:(vw-sc*(maxX-minX))/2 - sc*minX, y:(vh-sc*(maxY-minY))/2 - sc*minY, scale:sc };
+  applyTransform();
+}
+
+function toggleLabels() {
+  showLabels = !showLabels;
+  document.getElementById('labels-btn').classList.toggle('active', showLabels);
+  render();
+}
+
+// ── Utils ──────────────────────────────────────────
+function nodeById(id) { return NODES.find(n => n.id === id); }
+function cx(n) { return n.x + W/2; }
+function cy(n) { return n.y + H/2; }
+function truncate(s, max) { return s && s.length > max ? s.slice(0,max)+'…' : (s||''); }
+
+function edgePt(from, to) {
+  const fx=cx(from), fy=cy(from), tx=cx(to), ty=cy(to);
+  const dx=tx-fx, dy=ty-fy, len=Math.sqrt(dx*dx+dy*dy)||1;
+  const ux=dx/len, uy=dy/len;
+  return {
+    ox: fx + ux*(W/2+2),  oy: fy + uy*(H/2+2),
+    ix: tx - ux*(W/2+10), iy: ty - uy*(H/2+10)
+  };
+}
+
+function makeSvg(tag) { return document.createElementNS('http://www.w3.org/2000/svg', tag); }
+Object.assign_svg = (el, attrs) => { for (const [k,v] of Object.entries(attrs)) el.setAttribute(k,v); };
+
+</script>
+</body>
+</html>
