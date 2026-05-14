@@ -771,6 +771,9 @@ body::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:
       <div id="fullRunLog">
         <div style="font-size:14px;color:var(--dim);">No runs yet. Pick a skill and press RUN to log it here.</div>
       </div>
+
+      <div class="sb-label" style="margin-top:32px;margin-bottom:16px;">AUDIT HISTORY</div>
+      <div id="auditLog"></div>
     </div>
   </div>
 
@@ -1372,7 +1375,52 @@ Present as a time-stamped checklist.`
 };
 
 let activeBtn = null;
-let runHistory = [];
+let runHistory = JSON.parse(localStorage.getItem('aios_runHistory') || '[]');
+
+/* AUDIT LOG — updated by /audit skill on every run */
+const AUDIT_LOG = [
+  { date: '2026-05-14', score: '68/100', stage: 'Stage 1: Built', file: '../audits/audit-2026-05-14.md' },
+  { date: '2026-05-13', score: '71/100', stage: 'Stage 2: Compounding', file: '../audits/audit-2026-05-13.md' }
+];
+
+function renderAuditLog() {
+  const el = document.getElementById('auditLog');
+  if (!el) return;
+  if (!AUDIT_LOG.length) {
+    el.innerHTML = '<div style="font-size:14px;color:var(--dim);">No audits yet. Run /audit to create your first entry.</div>';
+    return;
+  }
+  el.innerHTML = AUDIT_LOG.map(a =>
+    `<div style="border-bottom:1px solid var(--border);padding:10px 0;font-size:13px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="color:var(--orange);margin-bottom:2px;">${a.date} — ${a.score}</div>
+        <div style="color:var(--dim);font-size:12px;">${a.stage}</div>
+      </div>
+      <a href="${a.file}" target="_blank" style="color:var(--orange);font-size:12px;text-decoration:none;border:1px solid var(--orange);padding:3px 8px;border-radius:3px;">VIEW →</a>
+    </div>`
+  ).join('');
+}
+
+function initRunLog() {
+  if (!runHistory.length) return;
+  const runsEl = document.getElementById('recentRuns');
+  if (runsEl) {
+    const noRuns = runsEl.querySelector('.no-runs');
+    if (noRuns) noRuns.remove();
+    runHistory.slice(0, 5).forEach(r => {
+      const item = document.createElement('div');
+      item.className = 'run-item';
+      item.innerHTML = `<span class="run-name">${r.name}</span><br>${r.time}`;
+      runsEl.appendChild(item);
+    });
+  }
+  document.getElementById('fullRunLog').innerHTML = runHistory.map(r =>
+    `<div style="border-bottom:1px solid var(--border);padding:10px 0;font-size:13px;">
+      <div style="color:var(--orange);margin-bottom:2px;">${r.name}</div>
+      <div style="color:var(--dim);margin-bottom:4px;font-family:var(--mono);">${r.time}</div>
+      <div style="color:var(--text);opacity:0.6;">${r.preview}${r.preview && r.preview.length===80?'…':''}</div>
+    </div>`).join('');
+}
 
 function pick(btn, id) {
   const text = SKILLS[id];
@@ -1418,11 +1466,12 @@ function doRun() {
   runsEl.insertBefore(item, runsEl.firstChild);
 
   runHistory.unshift({ name, time: now, preview: text.slice(0, 80) });
+  localStorage.setItem('aios_runHistory', JSON.stringify(runHistory.slice(0, 100)));
   document.getElementById('fullRunLog').innerHTML = runHistory.map(r =>
     `<div style="border-bottom:1px solid var(--border);padding:10px 0;font-size:13px;">
       <div style="color:var(--orange);margin-bottom:2px;">${r.name}</div>
       <div style="color:var(--dim);margin-bottom:4px;font-family:var(--mono);">${r.time}</div>
-      <div style="color:var(--text);opacity:0.6;">${r.preview}${r.preview.length===80?'…':''}</div>
+      <div style="color:var(--text);opacity:0.6;">${r.preview}${r.preview && r.preview.length===80?'…':''}</div>
     </div>`).join('');
 
   navigator.clipboard.writeText(text).then(() => {
@@ -1652,6 +1701,10 @@ function wrSize(size, btn) {
     el.appendChild(col);
   });
 })();
+
+/* Init on load */
+initRunLog();
+renderAuditLog();
 </script>
 </body>
 </html>

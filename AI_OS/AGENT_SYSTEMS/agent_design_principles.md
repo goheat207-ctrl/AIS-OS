@@ -10,12 +10,14 @@ Complexity is not intelligence.
 ## When to Build an Agent
 
 Build an agent when:
+
 - A task repeats frequently enough to justify automation
 - The task has a well-defined input → output structure
 - The task can be broken into discrete steps
 - A human checking the output is practical
 
 Do NOT build an agent when:
+
 - You could do it with a single well-structured prompt
 - The task requires too much judgment to automate reliably
 - The maintenance cost will exceed the time saved
@@ -54,6 +56,7 @@ State should live in files or databases — not inside the agent.
 ## Agent Context Loading
 
 When building an agent prompt:
+
 - Load only the context the agent's specific task requires
 - Do not dump the full workspace into the agent prompt
 - Use the workflow_routing.md routing table to determine what the agent needs
@@ -64,6 +67,7 @@ When building an agent prompt:
 ## Anti-Patterns
 
 Avoid:
+
 - Mega-agents that do everything
 - Agents with no defined output format
 - Agents that can't explain what they did
@@ -74,9 +78,9 @@ Avoid:
 
 ## Agent vs. Workflow Decision
 
-| Situation                           | Use                          |
-| ----------------------------------- | ---------------------------- |
-| Task repeats daily, same structure  | Agent                        |
-| Task is complex but happens once    | Structured workflow          |
-| Task requires judgment each time    | Human + AI collaboration     |
-| Task is fully deterministic         | Script (not AI at all)       |
+| Situation                          | Use                      |
+| ---------------------------------- | ------------------------ |
+| Task repeats daily, same structure | Agent                    |
+| Task is complex but happens once   | Structured workflow      |
+| Task requires judgment each time   | Human + AI collaboration |
+| Task is fully deterministic        | Script (not AI at all)   |

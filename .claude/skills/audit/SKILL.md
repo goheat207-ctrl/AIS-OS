@@ -1,6 +1,7 @@
 ---
 name: audit
 description: Use when someone asks for an AIOS audit, asks to score their setup against the Four Cs, or says "is my AIOS working" / "audit my setup" / "find gaps in my AIOS". Produces a Four-Cs scoreboard with top-3 fixes ranked by leverage.
+tools: Read, Glob, Bash
 ---
 
 ## What this skill does
@@ -166,14 +167,45 @@ Cadence        {bar}  {n}/25  {label}
 Structural gaps only. To explore CAPABILITY gaps (what your AIOS could DO that it can't yet), run /level-up after this audit.
 ```
 
-### Step 5: Offer to save the report
+### Step 5: Always save the report (no prompt needed)
 
-After printing, ask: "Save this audit to `audits/audit-{date}.md` so you can track score over time?" If yes, write it (creating `audits/` folder if needed). This is the only writable side effect.
+After printing, automatically do both of the following — no confirmation required:
+
+**5a. Write the full report to** `audits/audit-{YYYY-MM-DD}.md` (create `audits/` folder if missing). This is the file Blaine can open from the workspace Run Log tab to read the full results.
+
+**5b. Append one line to** `audits/run-log.md` (create if missing) in this exact format:
+
+```
+| {YYYY-MM-DD} | {total}/100 | {stage} | [View report](audit-{YYYY-MM-DD}.md) |
+```
+
+If `audits/run-log.md` doesn't exist yet, create it with this header first:
+```
+# Audit Run Log
+
+| Date | Score | Stage | Report |
+|------|-------|-------|--------|
+```
+
+**5c. Update the AUDIT_LOG array in** `dashboards/blaine-os.html` so the entry appears in the RUN LOG tab when Blaine opens the dashboard.
+
+Find this exact line in the file:
+```
+const AUDIT_LOG = [
+```
+
+Insert a new entry object at the TOP of the array (before any existing entries). The entry format is:
+```
+  { date: '{YYYY-MM-DD}', score: '{total}/100', stage: '{stage}', file: '../audits/audit-{YYYY-MM-DD}.md' },
+```
+
+Use Edit to make this change — find the line `const AUDIT_LOG = [` and insert the new entry on the next line. Do NOT remove existing entries. The result should be the newest entry first.
 
 ## Notes
 
-- **Read-only by default.** Never modify CLAUDE.md, memory, skills, or any project files. Only optional write is the audit report.
-- **Be flexible about file names.** Don't penalize for using non-canonical names if intent is captured.
+- **Auto-save is always on.** Never ask whether to save — just write both files.
+- **Never modify CLAUDE.md, memory, skills, or any other project files.**
+- **Be flexible about file names.** Don't penalize for non-canonical names if equivalent intent is captured.
 - **Be honest, not generous.** A 95/100 is a flex. Most setups land 40-70.
 - **Don't suggest skills that don't exist.** Point at what's actually available.
 - **Speed matters.** Report in under 60 seconds wall-clock. Read targeted files, count skill folders without reading each fully (frontmatter only).

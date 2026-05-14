@@ -1,6 +1,7 @@
 ---
 name: level-up
 description: Use weekly to find and ship one new automation. Walks the 3Ms interview — Mindset (find the candidate) → Method (scope one) → Machine (build it). Trigger on "let's level up", "what should I automate next", "find me leverage this week", or as a Friday ritual. One run = one shipped artifact.
+tools: Read, Glob, Bash, Write, Edit
 ---
 
 > *Adapted from The Three Ms of AI™. © 2026 Nate Herk. All rights reserved.*

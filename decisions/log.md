@@ -45,3 +45,19 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 **Decision:** Testing main.py orchestrator - all commands working
 
 **Owner:** Blaine
+
+## 2026-05-14 — Neuron Architecture + wiki-ingest skill
+
+**Decision:** Redesign the second brain around five isolated domain neurons (trading, coding, business, os_design, general). Each neuron has a `current_state.md` (what I currently know in this domain) and an `index.md` (registry of filed entries). Built `/wiki-ingest` skill to route new knowledge into the correct neuron with AI classification + human review before filing.
+
+**Why:** The existing wiki was a flat pile — all topics mixed together. AI was loading undifferentiated context or the wrong domain entirely. Car mechanics knowledge doesn't help you cook. The neuron structure lets AI load ONLY the relevant domain per session, cutting cognitive overhead and making context actually useful.
+
+**Autonomy level:** L2 — AI drafts and classifies, Blaine reviews and approves before filing. Advance to L3 after 10 validated entries.
+
+**KPI:** Cut costs (cognitive overhead). Metric: sessions where AI loads correct domain context without re-explanation — target 80%+ within 2 weeks of use.
+
+**Alternatives considered:** Continuing with flat topics/ structure. Rejected — it's the root cause of AI context failures.
+
+**Bike Method Phase:** 1 — run manually, review every output.
+
+**Owner:** Blaine
