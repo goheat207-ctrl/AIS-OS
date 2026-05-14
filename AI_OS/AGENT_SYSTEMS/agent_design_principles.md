@@ -77,6 +77,6 @@ Avoid:
 | Situation                           | Use                          |
 | ----------------------------------- | ---------------------------- |
 | Task repeats daily, same structure  | Agent                        |
-| Task is complex but happens once    | Structured workflow           |
+| Task is complex but happens once    | Structured workflow          |
 | Task requires judgment each time    | Human + AI collaboration     |
 | Task is fully deterministic         | Script (not AI at all)       |
