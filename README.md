@@ -77,9 +77,10 @@ The kit is intentionally lean. Skills here are ideation prompts and thinking too
 
 | Skill       | Type                     | When to run                                                                                           |
 | ----------- | ------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `/onboard`  | Setup wizard (one-time)  | Day 1, immediately after clone. 7-question interview. Generates Day-1 file set + fills `CLAUDE.md`.   |
-| `/audit`    | Recurring thinking skill | Day 7, then weekly. Four-Cs gap report. Read-only. Watch the score climb.                             |
-| `/level-up` | Recurring thinking skill | Day 14, then weekly. Three Ms interview (Mindset → Method → Machine). One run = one shipped artifact. |
+| `/onboard`      | Setup wizard (one-time)  | Day 1, immediately after clone. 7-question interview. Generates Day-1 file set + fills `CLAUDE.md`.   |
+| `/audit`        | Recurring thinking skill | Day 7, then weekly. Four-Cs gap report. Read-only. Watch the score climb.                             |
+| `/level-up`     | Recurring thinking skill | Day 14, then weekly. Three Ms interview (Mindset → Method → Machine). One run = one shipped artifact. |
+| `/wiki-search`  | Search utility           | Any time. Grep-based keyword search across the wiki. Returns matching files and line snippets.         |
 
 `/audit` asks _"is the AIOS built right?"_ (form). `/level-up` asks _"what business leverage am I missing?"_ (function). They work in series — fix structure first, then capability planning becomes meaningful.
 
@@ -117,7 +118,8 @@ AIS-OS/
     └── skills/
         ├── onboard/SKILL.md
         ├── audit/SKILL.md
-        └── level-up/SKILL.md
+        ├── level-up/SKILL.md
+        └── wiki-search/SKILL.md
 ```
 
 See `EXPANSIONS.md` for what to add as you grow (`projects/`, `templates/`, `scripts/`, `.claude/agents/`, sub-OS folders, etc.).
