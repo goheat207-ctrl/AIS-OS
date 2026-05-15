@@ -32,7 +32,7 @@ What's actively being worked on right now. Updated nightly at 10PM automatically
 3. Pick the top P0 task from BACKLOG.md
 
 **Next recommended task:**
-- [ ] **Run `/startup [domain]` at the start of every session** — habit, not a build task. The hook is live, just needs to be used.
+- [x] **Run `/startup [domain]` at the start of every session** — habit, not a build task. The hook is live, just needs to be used.
 
 ---
 
