@@ -7,8 +7,8 @@ P0 = blocking / immediate. P3 = future / low urgency.
 
 ## P0 — Immediate (do next session)
 
-- [ ] **Fix git push** — run `git push origin main` from your own terminal (not via Claude Code). gh auth is already done, just needs a direct terminal run.
-- [ ] **Set n8n as Windows startup service** — so Morning Journal Pull fires at 8AM automatically without you starting n8n manually. ~10 min job.
+- [x] **Fix git push** — stripped 871MB of mp4 files from history with git-filter-repo, added binary patterns to .gitignore, force-pushed clean history.
+- [x] **Set n8n as Windows startup service** — Windows Task Scheduler at-logon task registered last session.
 - [x] **Nightly task updater** — `scripts/update_tasks.py` + Windows Task Scheduler at 10PM. CURRENT.md, COMPLETED.md, BACKLOG.md auto-update every night.
 - [ ] **Run `/startup [domain]` at the start of every session** — habit, not a build task. The hook is live, just needs to be used.
 
@@ -20,6 +20,7 @@ P0 = blocking / immediate. P3 = future / low urgency.
 - [ ] **Wire n8n morning brief to save to file** — `logs/morning-brief.json` persists between sessions. `scripts/save_morning_brief.py` is already written, just needs to be connected. Replace the Execute Command node issue with a Write Binary File node or webhook approach.
 - [ ] **Wiki keyword search skill** — simple grep-based `/wiki-search` skill. Even basic search is better than manually navigating 80+ files.
 - [ ] **Add 1+ memory files** — currently 2 memory files. Need >3 to hit the Context score threshold on the next audit. Add `memory/project_n8n.md` or `memory/feedback_session1.md`.
+- [ ] **Add TOS_Statements/ to .gitignore** — account statement CSVs should not be in git (financial data + file size). Add the folder pattern now before more accumulate.
 
 ---
 
