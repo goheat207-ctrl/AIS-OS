@@ -6,3 +6,12 @@ __pycache__/
 node_modules/
 .claude/settings.local.json
 audits/
+
+# Large binary files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wmv
+*.zip
+*.tar.gz
