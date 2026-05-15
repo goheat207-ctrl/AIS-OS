@@ -4,32 +4,32 @@
   "hasMigratedWeeklyNoteSettings": false,
   "daily": {
     "format": "",
-    "template": "MISC/Templates/Daily Note Template.md",
-    "folder": "Dailys",
+    "template": "",
+    "folder": "raw/notes",
     "enabled": true
   },
   "weekly": {
     "format": "",
     "template": "",
-    "folder": "Weeklys",
+    "folder": "",
     "enabled": true
   },
   "monthly": {
     "format": "",
     "template": "",
-    "folder": "Monthlys",
+    "folder": "",
     "enabled": true
   },
   "quarterly": {
     "format": "",
     "template": "",
-    "folder": "Quarterlys",
+    "folder": "",
     "enabled": true
   },
   "yearly": {
     "format": "",
     "template": "",
-    "folder": "Yearlys",
+    "folder": "",
     "enabled": true
   }
 }

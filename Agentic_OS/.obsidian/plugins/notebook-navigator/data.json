@@ -72,6 +72,10 @@
       "shortcuts": [
         {
           "type": "note",
+          "path": "OWNERS INFORMATION/Analyzation/PROMPT analyze my current OS architecture.md"
+        },
+        {
+          "type": "note",
           "path": "wiki/index.md"
         },
         {
@@ -555,6 +559,21 @@
       "property": false
     },
     "wiki/topics/trading_context.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "wiki/SECOND_BRAIN_GUIDE.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "raw/Tables.base": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "raw/thinkorswim.md": {
       "folder": true,
       "tag": false,
       "property": false

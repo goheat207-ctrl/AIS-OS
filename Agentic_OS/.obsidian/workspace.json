@@ -4,67 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "28608561bde383c8",
+        "id": "17d824bb1034df99",
         "type": "tabs",
         "children": [
           {
-            "id": "e0e0fcb3cf14a822",
+            "id": "135edfb8b6757084",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "raw/articles/2026-05-13 - Exit Conditions in Trading.md",
+                "file": "OWNERS INFORMATION/Analyzation/05-14-2026.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-05-13 - Exit Conditions in Trading"
-            }
-          },
-          {
-            "id": "6f297dcdfbf732aa",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "DAY 1 -- Immediate Assessment of My Current AIS-OS"
-            }
-          },
-          {
-            "id": "54960de08e147a27",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWNERS INFORMATION/Reorganize Prompts.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Reorganize Prompts"
-            }
-          },
-          {
-            "id": "b459f7c8a9b8b0f0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "DAY 1 -- Immediate Assessment of My Current AIS-OS"
+              "title": "05-14-2026"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -132,7 +89,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 425.5024757385254
+    "width": 438.5024757385254
   },
   "right": {
     "id": "de770409e292ba58",
@@ -161,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
+                "file": "OWNERS INFORMATION/Analyzation/05-14-2026.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -171,7 +128,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for DAY 1 -- Immediate Assessment of My Current AIS-OS"
+              "title": "Backlinks for 05-14-2026"
             }
           },
           {
@@ -209,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
+                "file": "OWNERS INFORMATION/Analyzation/05-14-2026.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of DAY 1 -- Immediate Assessment of My Current AIS-OS"
+              "title": "Outline of 05-14-2026"
             }
           }
         ]
@@ -261,47 +218,47 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "2b06b2c2c6355bb1",
+  "active": "135edfb8b6757084",
   "lastOpenFiles": [
-    "wiki/log.md.tmp.28820.1778719388033",
-    "wiki/index.md.tmp.28820.1778719370292",
-    "wiki/index.md.tmp.28820.1778719361884",
-    "wiki/index.md.tmp.28820.1778719352998",
-    "wiki/topics/reading_the_tape_quick.md.tmp.28820.1778719338654",
-    "wiki/topics/execution_discipline.md",
-    "wiki/topics/execution_discipline.md.tmp.28820.1778719312978",
-    "wiki/topics/exit_strategies.md",
-    "wiki/topics/exit_strategies.md.tmp.28820.1778719290431",
-    "wiki/sources/src_20260513_smb_5_trading_mistakes.md",
-    "wiki/sources/src_20260513_smb_5_trading_mistakes.md.tmp.28820.1778719263725",
-    "wiki/sources/src_20260513_exit_conditions_trading.md",
-    "wiki/sources/src_20260513_exit_conditions_trading.md.tmp.28820.1778719227453",
-    "wiki/index.md.tmp.28820.1778718200501",
-    "wiki/INTELLIGENCE_GUIDE.md",
-    "wiki/INTELLIGENCE_GUIDE.md.tmp.28820.1778718162864",
-    "OWNERS INFORMATION/🧠 AIS-OS PROMPT SUITE (INTEGRATED).md",
-    "OWNERS INFORMATION/Reorganize Prompts.md",
+    "OWNERS INFORMATION/Analyzation/PROMPT analyze my current OS architecture.md",
+    "raw/notes/2026-05-14 MOBX.md",
+    "OWNERS INFORMATION/Analyzation/05-14-2026.md",
+    "OWNERS INFORMATION/Analyzation",
+    "OWNERS INFORMATION/The Reality of an Agentic OS.md",
     "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
-    "OWNERS INFORMATION/MANUAL.md",
-    "raw/articles/2026-05-13 - Exit Conditions in Trading.md",
-    "raw/articles/2026-05-13 - video - The 5 Day Trading Mistakes Robbing Your Account ($10k+ per month).md",
-    "Untitled.md",
-    "wiki/topics/adhd_workflow.md",
-    "wiki/topics/playbook_library.md",
-    "2026-05-11.md",
+    "OWNERS INFORMATION/UUE (upgrades-updates-enhancements)/UPGRADES - UPDATES - ENHANCEMENTS.md",
+    "wiki/neurons/general/index.md",
+    "wiki/neurons/general/index.md.tmp.59420.1778793032195",
+    "wiki/neurons/general/current_state.md",
+    "wiki/neurons/general/current_state.md.tmp.59420.1778793026497",
+    "wiki/neurons/general",
+    "wiki/neurons/os_design/index.md",
+    "wiki/neurons/os_design/index.md.tmp.59420.1778793021630",
+    "wiki/neurons/os_design/current_state.md",
+    "wiki/neurons/os_design/current_state.md.tmp.59420.1778793016397",
+    "wiki/neurons/os_design",
+    "wiki/neurons/business/index.md",
+    "wiki/neurons/business/index.md.tmp.59420.1778793010187",
+    "wiki/neurons/business/current_state.md",
+    "wiki/neurons/business/current_state.md.tmp.59420.1778793004049",
+    "wiki/neurons/business",
+    "wiki/neurons/coding/index.md",
+    "wiki/neurons/coding/current_state.md",
+    "wiki/neurons/trading/index.md",
+    "wiki/neurons/trading/current_state.md",
+    "wiki/SECOND_BRAIN_GUIDE.md",
+    "wiki/SCHEMA.md",
+    "wiki/INTELLIGENCE_GUIDE.md",
+    "wiki/log.md",
     "wiki/index.md",
-    "wiki/syntheses/HTCO.md",
+    "raw/articles/2026-05-14 - video - $30+ Million Verified Trader vs 15 Unprofitable Traders (FT Umar Ashraf).md",
+    "raw/articles/2026-05-14 - ahmadelswifyagentic-os A collection of AI-native operating systems powered by Claude Code. Manage work, career, life, and meetings through conversation.md",
+    "Dailys/2026-05-14.md",
+    "wiki/topics/exit_strategies.md",
+    "OWNERS INFORMATION/OS DASHBOARD BUILD PLAN/BUILD PLAN.md",
     "raw/attachments/2026-05-12_catalyst_HTCO.png",
     "raw/attachments/2026-05-12-TOS_CHARTS_HTCO.png",
     "raw/attachments/2026-05-12-FLEXIBLE_GRID_HTCO.png",
-    "wiki/SCHEMA.md",
-    "wiki/log.md",
-    "wiki/SCHEMA 1.md",
-    "wiki/SECOND_BRAIN_GUIDE.md",
-    "wiki/entities/codex.md",
-    "wiki/entities/trading_agents.md",
-    "wiki/entities/thinkorswim.md",
-    "wiki/entities/blaine.md",
     "wiki/topics/step_5_mental_override_rule_critical.png",
     "wiki/topics/step_4_make_this_mechanical_in_thinkorswim.png",
     "wiki/topics/step_3_trade_rules_by_quadrant_execution_layer.png",
