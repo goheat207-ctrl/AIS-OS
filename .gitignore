@@ -7,6 +7,10 @@ node_modules/
 .claude/settings.local.json
 audits/
 
+# Financial data — never in git
+TOS_Statements/
+*.csv
+
 # Large binary files
 *.mp4
 *.mov
