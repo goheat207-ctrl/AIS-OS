@@ -75,6 +75,14 @@
           "path": "DAILY_WORKFLOW.md"
         },
         {
+          "type": "folder",
+          "path": "TASKS"
+        },
+        {
+          "type": "note",
+          "path": "OWNERS INFORMATION/projects.md"
+        },
+        {
           "type": "note",
           "path": "OWNERS INFORMATION/Analyzation/PROMPT analyze my current OS architecture.md"
         },
@@ -583,6 +591,16 @@
       "property": false
     },
     "DAILY_WORKFLOW.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "OWNERS INFORMATION/projects.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "TASKS/BACKLOG.md": {
       "folder": true,
       "tag": false,
       "property": false

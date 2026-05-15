@@ -26,7 +26,6 @@ P0 = blocking / immediate. P3 = future / low urgency.
 
 ## P2 — Medium (next month)
 
-- [ ] **Wire Gmail as first tier-1 domain** — highest leverage connection gap. `claude mcp add gmail` or Python script + `references/gmail-api.md`. Jumps audit Connections score by ~6 pts.
 - [ ] **Add reference guides for connected tools** — SEC EDGAR, yfinance, TradingAgents each need a `references/{tool}-api.md`. Research once, save forever. Currently 8 of 9 active connections have no guide.
 - [ ] **Build templates folder** — `.claude/templates/` with at least 1 file. Easy +5 pts on next audit Cadence score.
 - [ ] **Ingest raw/ backlog** — 2 articles and 1 note sitting in `Agentic_OS/raw/` unprocessed. Run `/wiki-ingest` on each.
@@ -42,7 +41,6 @@ P0 = blocking / immediate. P3 = future / low urgency.
 - [ ] **Dilution tracker** — standalone tool. Feeds into the pre-market scan agent.
 - [ ] **n8n additional workflows** — weekly pattern review auto-trigger, wiki ingest queue checker.
 - [ ] **Vector/RAG retrieval** — needs 500+ quality wiki entries before semantic search adds value. Don't build yet.
-- [ ] **Gmail integration** — after reference guide is written and API is understood.
 - [ ] **External-facing trader tools** — after your own tools are proven. Not yet.
 
 ---

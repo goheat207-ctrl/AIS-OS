@@ -11,6 +11,11 @@ What's actively being worked on right now. Updated nightly at 10PM automatically
 **Last activity:** 2026-05-13T20:23:51.276341
 
 **Built / committed today:**
+- Quick mods
+- Add daily operating workflow to Obsidian vault
+- Close P0s: git push fixed + n8n startup done. Add TOS statements gitignore task.
+- Add large binary file patterns to .gitignore
+- Nightly task updater — scripts/update_tasks.py + Windows Task Scheduler at 10PM
 - hi
 - push
 - n8n first workflow — Morning Journal Pull (live + working)
@@ -27,8 +32,8 @@ What's actively being worked on right now. Updated nightly at 10PM automatically
 3. Pick the top P0 task from BACKLOG.md
 
 **Next recommended task:**
-- [ ] **Fix git push** — run `git push origin main` from your own terminal (not via Claude Code). gh auth is already done, just needs a direct terminal run.
+- [ ] **Run `/startup [domain]` at the start of every session** — habit, not a build task. The hook is live, just needs to be used.
 
 ---
 
-*Auto-updated: 2026-05-14 21:02*
+*Auto-updated: 2026-05-14 22:00*
