@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OWNERS INFORMATION/Analyzation/05-14-2026.md",
+                "file": "OWNERS INFORMATION/The Reality of an Agentic OS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "05-14-2026"
+              "title": "The Reality of an Agentic OS"
             }
           }
         ]
@@ -118,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "OWNERS INFORMATION/Analyzation/05-14-2026.md",
+                "file": "OWNERS INFORMATION/The Reality of an Agentic OS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +128,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 05-14-2026"
+              "title": "Backlinks for The Reality of an Agentic OS"
             }
           },
           {
@@ -166,13 +166,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "OWNERS INFORMATION/Analyzation/05-14-2026.md",
+                "file": "OWNERS INFORMATION/The Reality of an Agentic OS.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 05-14-2026"
+              "title": "Outline of The Reality of an Agentic OS"
             }
           }
         ]
@@ -220,9 +220,20 @@
   },
   "active": "135edfb8b6757084",
   "lastOpenFiles": [
+    "DAILY_WORKFLOW.md",
+    "TASKS/BACKLOG.md",
+    "DAILY_WORKFLOW.md.tmp.59420.1778809521775",
+    "TASKS/BACKLOG.md.tmp.59420.1778809103847",
+    "TASKS/BACKLOG.md.tmp.59420.1778808942761",
+    "TASKS/BACKLOG.md.tmp.59420.1778806977834",
+    "TASKS/CURRENT.md",
+    "TASKS/COMPLETED.md",
+    "OWNERS INFORMATION/Analyzation/05-14-2026.md",
+    "TASKS/COMPLETED.md.tmp.59420.1778806211934",
+    "TASKS/BACKLOG.md.tmp.59420.1778806184910",
+    "TASKS",
     "OWNERS INFORMATION/Analyzation/PROMPT analyze my current OS architecture.md",
     "raw/notes/2026-05-14 MOBX.md",
-    "OWNERS INFORMATION/Analyzation/05-14-2026.md",
     "OWNERS INFORMATION/Analyzation",
     "OWNERS INFORMATION/The Reality of an Agentic OS.md",
     "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
@@ -231,17 +242,10 @@
     "wiki/neurons/general/index.md.tmp.59420.1778793032195",
     "wiki/neurons/general/current_state.md",
     "wiki/neurons/general/current_state.md.tmp.59420.1778793026497",
-    "wiki/neurons/general",
     "wiki/neurons/os_design/index.md",
-    "wiki/neurons/os_design/index.md.tmp.59420.1778793021630",
     "wiki/neurons/os_design/current_state.md",
-    "wiki/neurons/os_design/current_state.md.tmp.59420.1778793016397",
-    "wiki/neurons/os_design",
     "wiki/neurons/business/index.md",
-    "wiki/neurons/business/index.md.tmp.59420.1778793010187",
     "wiki/neurons/business/current_state.md",
-    "wiki/neurons/business/current_state.md.tmp.59420.1778793004049",
-    "wiki/neurons/business",
     "wiki/neurons/coding/index.md",
     "wiki/neurons/coding/current_state.md",
     "wiki/neurons/trading/index.md",
@@ -252,10 +256,6 @@
     "wiki/log.md",
     "wiki/index.md",
     "raw/articles/2026-05-14 - video - $30+ Million Verified Trader vs 15 Unprofitable Traders (FT Umar Ashraf).md",
-    "raw/articles/2026-05-14 - ahmadelswifyagentic-os A collection of AI-native operating systems powered by Claude Code. Manage work, career, life, and meetings through conversation.md",
-    "Dailys/2026-05-14.md",
-    "wiki/topics/exit_strategies.md",
-    "OWNERS INFORMATION/OS DASHBOARD BUILD PLAN/BUILD PLAN.md",
     "raw/attachments/2026-05-12_catalyst_HTCO.png",
     "raw/attachments/2026-05-12-TOS_CHARTS_HTCO.png",
     "raw/attachments/2026-05-12-FLEXIBLE_GRID_HTCO.png",

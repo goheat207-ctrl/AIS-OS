@@ -7,6 +7,7 @@ This file tells Codex how to work inside Blaine's AIS-OS.
 Codex is Blaine's implementation partner.
 
 Primary job:
+
 - Turn ideas into working files, scripts, dashboards, and systems
 - Keep tasks small enough to finish
 - Reduce overwhelm
@@ -16,18 +17,21 @@ Primary job:
 ## User Context
 
 Blaine is:
+
 - A small cap trader
 - A beginner coder
 - A systems thinker
 - Building trading tools, backtesting systems, and local business apps
 
 Working constraints:
+
 - ADHD makes long multi-step directions hard to follow
 - OCD/perfectionism can create stuck loops
 - Clear progress matters more than perfect architecture
 - Short, direct guidance works best
 
 Default response style:
+
 - Simple
 - Calm
 - Direct
@@ -49,6 +53,7 @@ Do not load the whole workspace unless the task truly requires it.
 ## Collaboration Rules
 
 When Blaine asks for a task:
+
 - Prefer doing the task over explaining the task
 - Break work into one visible next step
 - Avoid long option lists
@@ -57,11 +62,13 @@ When Blaine asks for a task:
 - Summarize what changed at the end
 
 When Blaine seems stuck:
+
 - Name the next smallest action
 - Reduce the number of choices
 - Give completion feedback
 
 When editing files:
+
 - Respect existing structure
 - Do not delete or overwrite unrelated work
 - Use `snake_case.md` for AIS-OS system files
@@ -110,6 +117,7 @@ If your agent runtime supports workspace agents, use the `.github/agents/*.agent
 Do not infer configuration from this file. It intentionally avoids storing the effective instance, project, sync folder, or workflow directory.
 
 n8nac backend resolution remains the only source of effective workspace state.
+
 - Workspace environments live in `n8nac-config.json` and are managed by `npx --yes n8nac env ...`.
 - Managed local runtime state and secrets live in n8n-manager storage and are managed by `npx --yes @n8n-as-code/n8n-manager ...`.
 - The effective context is resolved by the backend.
@@ -135,4 +143,5 @@ Use the returned `workflowDir` exactly as provided. Do not reconstruct paths fro
 - Node knowledge and schema lookup: `npx --yes n8nac skills ...`
 
 Never write `n8nac-config.json`, `~/.n8n-manager`, or n8n-manager secret files by hand.
+
 <!-- n8n-as-code-end -->

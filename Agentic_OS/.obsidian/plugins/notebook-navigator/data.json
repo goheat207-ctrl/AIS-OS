@@ -72,6 +72,10 @@
       "shortcuts": [
         {
           "type": "note",
+          "path": "DAILY_WORKFLOW.md"
+        },
+        {
+          "type": "note",
           "path": "OWNERS INFORMATION/Analyzation/PROMPT analyze my current OS architecture.md"
         },
         {
@@ -577,6 +581,11 @@
       "folder": true,
       "tag": false,
       "property": false
+    },
+    "DAILY_WORKFLOW.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
     }
   },
   "collapsedPinnedContexts": {},
@@ -641,7 +650,8 @@
   "rootFolderOrder": [
     "OWNERS INFORMATION",
     "raw",
-    "wiki"
+    "wiki",
+    "TASKS"
   ],
   "rootTagOrder": [],
   "rootPropertyOrder": []

@@ -17,7 +17,7 @@
 ## BEFORE MARKET OPEN — 8:00 to 9:30 AM
 
 ### Step 1 — Open your apps (do this first, every time)
-- [ ] Open **thinkorswim** — let it fully load before you do anything else
+- [ ] Open **ThinkOrSwim** — let it fully load before you do anything else
 - [ ] Open **Obsidian** — this file should be your home tab
 - [ ] Open **Claude Code** — type `claude` in your terminal or open the desktop app
 
@@ -97,14 +97,14 @@ git push origin main
 
 ## QUICK REFERENCE — Commands you'll use daily
 
-| What you want | What to type in Claude Code |
-|---------------|----------------------------|
-| Load trading context | `/startup trading` |
-| Pre-market scan | `run pre-market scan` |
-| Analyze my trades | `run trade-pattern-analyst` |
-| Save a note to the wiki | `/wiki-ingest` |
-| Weekly automation review | `/level-up` |
-| System health check | `/audit` |
+|      What you want       | What to type in Claude Code |     When     |
+| :----------------------: | :-------------------------: | :----------: |
+|   Load trading context   |     `/startup trading`      |    Daily     |
+|     Pre-market scan      |    `run pre-market scan`    |    Daily     |
+|    Analyze my trades     | `run trade-pattern-analyst` |    Daily     |
+| Save a note to the wiki  |       `/wiki-ingest`        | Periodically |
+| Weekly automation review |         `/level-up`         |    Sunday    |
+|   System health check    |          `/audit`           |  As needed   |
 
 ---
 
