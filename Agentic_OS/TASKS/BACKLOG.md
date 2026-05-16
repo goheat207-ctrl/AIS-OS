@@ -34,6 +34,21 @@ P0 = blocking / immediate. P3 = future / low urgency.
 
 ---
 
+## P1 — High — Weekend Build Tracks
+
+- [ ] **Write Blaine's Trading Criteria doc** — single source of truth for all agents. Stock filters, dilution mechanics, catalyst keywords, entry/exit rules. All agents inherit from this file.
+- [ ] **Rebuild pre-market-scan agent with trading criteria** — update agent prompt to reference the criteria doc. Strip vague language. Test against 3 real setups.
+- [ ] **Dashboard skeleton connected to morning-brief.json** — one working panel showing live trade metrics from `logs/morning-brief.json`. No fake data.
+- [ ] **Add weekend workflow to DAILY_WORKFLOW.md** — done this session.
+
+## P2 — Medium — Weekend Build Tracks
+
+- [ ] **Dashboard: Task panel connected to CURRENT.md** — second dashboard panel showing today's tasks pulled from TASKS/CURRENT.md. Auto-refreshes.
+- [ ] **Update small-cap-catalyst agent** — add dilution mechanics knowledge, S-1 red flags, float rotation rules, halt patterns. Reference the trading criteria doc.
+- [ ] **YouTube → wiki ingest habit** — not a tool build, a habit install. 2-3 ingests per weekend. Track in wiki/log.md.
+- [ ] **n8n workflow: pre-market catalyst pull** — SEC EDGAR 8-K overnight filings at 7AM. Feeds trading neuron before market open.
+- [ ] **Update connections.md** — document brief_writer_server (localhost:8765), workflow ID, what each n8n workflow does.
+
 ## P3 — Low (Q3 2026 / when ready)
 
 - [ ] **ThinkScript scanner development** — Dilution tracker + watchlist scan filters. Q2 priority but needs TOS time.

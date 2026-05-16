@@ -15,6 +15,49 @@
 
 ---
 
+## WEEKEND WORKFLOW — Saturday & Sunday
+
+No market. This time is for building the machine.
+
+### Focus 1 — Feed the Brain (wiki ingest)
+The wiki only gets smarter if you put things in it. Weekends are ingest time.
+
+- [ ] Open YouTube — watch 1-2 trading/building videos with intention, not passively
+- [ ] After each video: open Claude Code, run `/wiki-ingest` — paste the transcript or key notes
+- [ ] Check Obsidian Web Clipper for anything you clipped during the week — ingest each one
+- [ ] Run `/wiki-search [topic]` to see if the new content fills a known gap
+- [ ] Optional: run `lint the wiki` in Claude Code — finds orphan files and stale claims
+
+> Target: 2-3 quality ingests per weekend. Quantity is secondary to quality.
+
+### Focus 2 — Dashboard (build the UI)
+The HTML dashboard at `dashboards/blaine-os.html` is the target surface. Build one panel per session.
+
+- [ ] Open `dashboards/blaine-os.html` in browser — note what's broken or missing
+- [ ] Pick ONE panel to work on this session (trade metrics, task list, or system status)
+- [ ] Connect it to real data: `logs/morning-brief.json`, `TASKS/CURRENT.md`, or the journal API
+- [ ] Test it with real data before closing — does the number actually match what you expect?
+- [ ] Commit when the panel works: `git commit -m "dashboard: [panel name] connected"`
+
+> Rule: never ship a panel that shows fake or hardcoded data.
+
+### Focus 3 — Agent Improvement
+Agents are only as good as the rules you give them. Weekends are for tightening the brief.
+
+- [ ] Pick ONE agent to improve this session (pre-market-scan, small-cap-catalyst, or trade-pattern-analyst)
+- [ ] Read its current `.claude/agents/{name}.md` — what's vague, what's missing?
+- [ ] Add or sharpen: stock filters, dilution mechanics, catalyst keywords, entry/exit criteria
+- [ ] Test it: run the agent, does the output reflect your rules? If not, iterate.
+- [ ] Commit the improved agent file
+
+> Agents don't know your rules unless you write them down. Every edit makes them smarter.
+
+### End of weekend — 5 min close-out
+- [ ] Commit and push everything: `git add -A && git commit -m "weekend build" && git push`
+- [ ] Note one thing that's better than Friday in `decisions/log.md`
+
+---
+
 ## BEFORE MARKET OPEN — 8:00 to 9:30 AM
 
 ### Step 1 — Open your apps (do this first, every time)
