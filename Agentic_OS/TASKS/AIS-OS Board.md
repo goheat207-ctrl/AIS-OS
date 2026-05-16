@@ -157,31 +157,28 @@ kanban-plugin: board
 ## ⚙️ OS Maintenance — Recurring
 
 - [ ] **Weekly /audit + /level-up ritual** #system #recurring
-  Every Sunday. /audit finds structural gaps. /level-up surfaces one automation to ship. Run back to back, in that order.
-  **Est:** 30-45 min | **Cadence:** Every Sunday
-  - [ ] Run `/audit` — read the Four-Cs gap report
-  - [ ] Pick ONE gap to close this week, add it as a task
-  - [ ] Run `/level-up` — answer the Three Ms interview
-  - [ ] Scope the one automation that comes out of it
-  - [ ] Add scoped task to P1 or P2 column on this board
-
+	  Every Sunday. /audit finds structural gaps. /level-up surfaces one automation to ship. Run back to back, in that order.
+	  **Est:** 30-45 min | **Cadence:** Every Sunday
+	  - [ ] Run `/audit` — read the Four-Cs gap report
+	  - [ ] Pick ONE gap to close this week, add it as a task
+	  - [ ] Run `/level-up` — answer the Three Ms interview
+	  - [ ] Scope the one automation that comes out of it
+	  - [ ] Add scoped task to P1 or P2 column on this board
 - [ ] **Wiki lint + ingest backlog check** #wiki #recurring
-  Every 2 weeks. Find orphan files, stale claims, and anything sitting in raw/ unprocessed.
-  **Est:** 20 min | **Cadence:** Every other Sunday
-  - [ ] Tell Claude: "lint the wiki" — checks for orphans and broken links
-  - [ ] Check `Agentic_OS/raw/` — anything unprocessed? Run `/wiki-ingest` on each
-  - [ ] Check `wiki/log.md` — last ingest should be within 2 weeks
-  - [ ] Run `/wiki-search [recent topic]` — confirm new entries are findable
-
+	  Every 2 weeks. Find orphan files, stale claims, and anything sitting in raw/ unprocessed.
+	  **Est:** 20 min | **Cadence:** Every other Sunday
+	  - [ ] Tell Claude: "lint the wiki" — checks for orphans and broken links
+	  - [ ] Check `Agentic_OS/raw/` — anything unprocessed? Run `/wiki-ingest` on each
+	  - [ ] Check `wiki/log.md` — last ingest should be within 2 weeks
+	  - [ ] Run `/wiki-search [recent topic]` — confirm new entries are findable
 - [ ] **Monthly OS health check** #system #recurring
-  First Sunday of each month. Review connections, memory files, and decision log for staleness.
-  **Est:** 20 min | **Cadence:** Monthly
-  - [ ] Open `connections.md` — any tools added this month that aren't documented?
-  - [ ] Check `memory/*.md` — any stale facts to update or remove?
-  - [ ] Review `decisions/log.md` — are last month's decisions still holding? Any to revisit?
-  - [ ] Check Kanban Done column — archive anything older than 30 days
+	  First Sunday of each month. Review connections, memory files, and decision log for staleness.
+	  **Est:** 20 min | **Cadence:** Monthly
+	  - [ ] Open `connections.md` — any tools added this month that aren't documented?
+	  - [ ] Check `memory/*.md` — any stale facts to update or remove?
+	  - [ ] Review `decisions/log.md` — are last month's decisions still holding? Any to revisit?
+	  - [ ] Check Kanban Done column — archive anything older than 30 days
 
----
 
 ## 🔄 In Progress
 
@@ -204,6 +201,6 @@ kanban-plugin: board
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","list-collapse":[null,null]}
+{"kanban-plugin":"board","list-collapse":[null,null,null,false]}
 ```
 %%

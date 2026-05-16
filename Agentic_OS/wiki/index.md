@@ -9,7 +9,7 @@ See [[SCHEMA]] for how the wiki works. See [[INTELLIGENCE_GUIDE]] for how it con
 ## Entities
 
 - [[codex]] — implementation partner inside AIS-OS | domain: system
-- [[blaine]] — who he is, ADHD context, tools, what he's building toward | domain: system
+- [[Blaine]] — who he is, ADHD context, tools, what he's building toward | domain: system
 - [[blaine-os]] — local AIS-OS dashboard at `dashboards/blaine-os.html` | domain: system
 - [[thinkorswim]] — primary execution/backtesting platform, Q2 build target | domain: trading
 - [[trading_agents]] — TauricResearch multi-agent framework, installed at `TradingAgents/` | domain: trading

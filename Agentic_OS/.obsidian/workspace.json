@@ -27,16 +27,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TASKS/BACKLOG.md",
+                "file": "DAILY_WORKFLOW.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "BACKLOG"
+              "title": "DAILY_WORKFLOW"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -189,6 +188,16 @@
               "icon": "lucide-list",
               "title": "Outline of BACKLOG"
             }
+          },
+          {
+            "id": "b0f284de3e33932b",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
+            }
           }
         ]
       },
@@ -230,47 +239,48 @@
       "templater-obsidian:Templater": false,
       "obsidian-excalidraw-plugin:New drawing": false,
       "periodic-notes:Open today": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-kanban:Create new board": false,
+      "task-board:Open task board": false
     }
   },
-  "active": "6dab2d273dff73da",
+  "active": "135edfb8b6757084",
   "lastOpenFiles": [
     "TASKS/CURRENT.md",
-    "TASKS/COMPLETED.md",
+    "TASKS/AIS-OS Board.md",
+    "TASKS/AIS OS - Backlog Prompt Library.md",
+    "TASKS/AIS-OS Board.md.tmp.52652.1778900207847",
+    "TASKS/CURRENT.md.tmp.52652.1778900193575",
+    "TASKS/BACKLOG.md.tmp.52652.1778900044377",
     "TASKS/BACKLOG.md",
     "DAILY_WORKFLOW.md",
-    "OWNERS INFORMATION/projects.md",
+    "DAILY_WORKFLOW.md.tmp.52652.1778899126093",
+    "DAILY_WORKFLOW.md.tmp.52652.1778898962091",
+    "DAILY_WORKFLOW.md.tmp.52652.1778898853244",
+    "DAILY_WORKFLOW.md.tmp.52652.1778898110435",
+    "TASKS/AIS-OS Board.md.tmp.52652.1778897989690",
+    "DAILY_WORKFLOW.md.tmp.52652.1778897974787",
+    "wiki/entities/thinkorswim.md",
+    "wiki/entities/Blaine.md",
+    "wiki/entities/trading_agents.md",
+    "wiki/entities/codex.md",
+    "wiki/entities/fincept_tools.md",
+    "wiki/entities/small_cap_catalyst.md",
+    "wiki/entities/blaine-os.md",
+    "raw/thinkorswim.md",
+    "raw/Tables.base",
+    "raw/Untitled.md",
+    "raw/Untitled 2.md",
+    "raw/Untitled 1.md",
     "OWNERS INFORMATION/Analyzation/PROMPT analyze my current OS architecture.md",
+    "OWNERS INFORMATION/Analyzation/05-14-2026.md",
+    "OWNERS INFORMATION/projects.md",
+    "TASKS/COMPLETED.md",
+    "raw/Untitled Kanban.md",
     "wiki/SCHEMA.md",
     "wiki/SECOND_BRAIN_GUIDE.md",
     "wiki/index.md",
     "OWNERS INFORMATION/The Reality of an Agentic OS.md",
-    "DAILY_WORKFLOW.md.tmp.59420.1778809521775",
-    "TASKS/BACKLOG.md.tmp.59420.1778809103847",
-    "TASKS/BACKLOG.md.tmp.59420.1778808942761",
-    "TASKS/BACKLOG.md.tmp.59420.1778806977834",
-    "OWNERS INFORMATION/Analyzation/05-14-2026.md",
-    "TASKS/COMPLETED.md.tmp.59420.1778806211934",
-    "TASKS/BACKLOG.md.tmp.59420.1778806184910",
-    "TASKS",
-    "raw/notes/2026-05-14 MOBX.md",
-    "OWNERS INFORMATION/Analyzation",
-    "OWNERS INFORMATION/DAY 1 -- Immediate Assessment of My Current AIS-OS.md",
-    "OWNERS INFORMATION/UUE (upgrades-updates-enhancements)/UPGRADES - UPDATES - ENHANCEMENTS.md",
-    "wiki/neurons/general/index.md",
-    "wiki/neurons/general/index.md.tmp.59420.1778793032195",
-    "wiki/neurons/general/current_state.md",
-    "wiki/neurons/general/current_state.md.tmp.59420.1778793026497",
-    "wiki/neurons/os_design/index.md",
-    "wiki/neurons/os_design/current_state.md",
-    "wiki/neurons/business/index.md",
-    "wiki/neurons/business/current_state.md",
-    "wiki/neurons/coding/index.md",
-    "wiki/neurons/coding/current_state.md",
-    "wiki/neurons/trading/index.md",
-    "wiki/neurons/trading/current_state.md",
-    "wiki/INTELLIGENCE_GUIDE.md",
-    "wiki/log.md",
     "raw/attachments/2026-05-12_catalyst_HTCO.png",
     "raw/attachments/2026-05-12-TOS_CHARTS_HTCO.png",
     "raw/attachments/2026-05-12-FLEXIBLE_GRID_HTCO.png",

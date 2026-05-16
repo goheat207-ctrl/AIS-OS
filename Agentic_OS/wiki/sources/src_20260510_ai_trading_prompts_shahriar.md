@@ -47,4 +47,4 @@ Author: @Shahriar661731 on X
 
 ## Links
 
-[[trading_prompts]] · [[q2_goals]] · [[trading_context]] · [[blaine]]
+[[trading_prompts]] · [[q2_goals]] · [[trading_context]] · [[Blaine]]

@@ -11,7 +11,7 @@ Created SCHEMA.md, index.md, log.md, raw/ folder structure. First ingest: bootst
 ## [2026-05-11] ingest | Blaine AIOS Context — Session 1 bootstrap
 
 Source: context/about-me.md, context/about-business.md, context/priorities.md
-Pages created: [[blaine]], [[trading_context]], [[q2_goals]], [[adhd_workflow]]
+Pages created: [[Blaine]], [[trading_context]], [[q2_goals]], [[adhd_workflow]]
 Pages updated: (none — first ingest)
 
 ## [2026-05-11] ingest | AI Trading Prompts — @Med1_Ai (X post)

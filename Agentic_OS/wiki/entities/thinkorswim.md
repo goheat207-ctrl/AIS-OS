@@ -50,4 +50,4 @@ See [[q2_goals]] for full priority list and deadlines.
 
 ## Links
 
-[[trading_context]] · [[q2_goals]] · [[blaine]] · [[trading_prompts]] · [[fincept_tools]]
+[[trading_context]] · [[q2_goals]] · [[Blaine]] · [[trading_prompts]] · [[fincept_tools]]

@@ -78,5 +78,5 @@ All prompt outputs should be checked against actual trade history in [[trading_c
 
 [[professional_grade_prompt_structure]]
 [[premarket_small_cap_indicator_prompt]]
-[[q2_goals]] Â· [[trading_context]] Â· [[blaine]] Â· [[thinkorswim]]
+[[q2_goals]] Â· [[trading_context]] Â·[[Blaine]]] Â· [[thinkorswim]]
 

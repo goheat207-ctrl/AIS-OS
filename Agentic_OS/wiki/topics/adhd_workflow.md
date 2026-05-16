@@ -9,7 +9,7 @@ updated: 2026-05-11
 
 # ADHD Workflow
 
-[[blaine]] has severe ADHD/OCD. This is not a side note — it is the dominant operational fact that shapes every system, tool, and process in this workspace.
+[[Blaine]] has severe ADHD/OCD. This is not a side note — it is the dominant operational fact that shapes every system, tool, and process in this workspace.
 
 ## What this means in practice
 
@@ -40,7 +40,7 @@ The AIOS goal is to reduce cognitive overhead — not add to it. That means:
 
 ## What's working incrementally
 
-Obsidian as a knowledge base. This wiki as a second brain. The AIOS as a system that handles the bookkeeping so [[blaine]] can focus on the actual work.
+Obsidian as a knowledge base. This wiki as a second brain. The AIOS as a system that handles the bookkeeping so [[Blaine]] can focus on the actual work.
 
 ## Related
 

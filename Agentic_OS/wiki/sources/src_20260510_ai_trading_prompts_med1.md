@@ -53,4 +53,4 @@ This is relevant to Blaine's situation. The prompts are useful but must be tied 
 
 ## Links
 
-[[trading_prompts]] · [[small_cap_catalyst]] · [[trading_context]] · [[blaine]]
+[[trading_prompts]] · [[small_cap_catalyst]] · [[trading_context]] · [[Blaine]]

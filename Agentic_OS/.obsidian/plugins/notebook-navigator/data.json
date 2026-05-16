@@ -604,6 +604,31 @@
       "folder": true,
       "tag": false,
       "property": false
+    },
+    "TASKS/CURRENT.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "TASKS/AIS OS - Backlog Prompt Library.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "OWNERS INFORMATION/Analyzation/PROMPT analyze my current OS architecture.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "TASKS/COMPLETED.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
+    },
+    "wiki/entities/Blaine.md": {
+      "folder": true,
+      "tag": false,
+      "property": false
     }
   },
   "collapsedPinnedContexts": {},
@@ -666,10 +691,10 @@
   ],
   "lastShownVersion": "2.6.6",
   "rootFolderOrder": [
+    "TASKS",
     "OWNERS INFORMATION",
     "raw",
-    "wiki",
-    "TASKS"
+    "wiki"
   ],
   "rootTagOrder": [],
   "rootPropertyOrder": []

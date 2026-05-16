@@ -9,7 +9,7 @@ updated: 2026-05-11
 
 # Q2 2026 Goals
 
-Three priorities for [[blaine]] by end of July 2026. If any of these aren't done by then, Q2 was wasted.
+Three priorities for [[Blaine]] by end of July 2026. If any of these aren't done by then, Q2 was wasted.
 
 ## Goal 1 — Fix the P&L
 
@@ -38,4 +38,4 @@ Goal 1 first — it stops the bleeding. Goal 2 second — it makes Goal 1 sustai
 
 ## Constraint
 
-All of this is [[blaine]] solo, with [[adhd_workflow]] as the dominant operational challenge.
+All of this is [[Blaine]] solo, with [[adhd_workflow]] as the dominant operational challenge.

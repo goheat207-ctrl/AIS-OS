@@ -4,6 +4,30 @@ Append-only log. Newest at top.
 
 ---
 
+## 2026-05-15
+
+- [x] feat: Obsidian Kanban board with full P1/P2/P3 task breakdown
+- [x] feat: weekend workflow section + weekend build track tasks in backlog
+- [x] docs: add brief writer server to daily workflow and troubleshooting guide
+- [x] fix: use 127.0.0.1 instead of localhost in Save Brief node
+- [x] fix: switch brief writer to port 8765 — 5679 blocked by Windows
+- [x] fix: route morning brief through local HTTP server — bypass n8n fs sandbox
+- [x] fix: write file via fs.writeFileSync in Code node — drop Write Binary File node
+- [x] fix: sequential chain — removes parallel merge that broke Code node in n8n v2
+- [x] fix: repair trailing comma — workflow JSON was invalid after node removal
+- [x] fix: remove disabled executeCommand node — not supported in n8n v2.20
+- [x] fix: morning brief now persists to logs/morning-brief.json via n8n
+- [x] snapshot: pre morning-brief node fix
+- [x] snapshot: pre memory file addition (files already written to memory/)
+- [x] docs: register /wiki-search in README skills table and repo layout
+- [x] feat: /wiki-search grep-based skill added
+- [x] snapshot: before wiki-search skill
+- [x] chore: add TOS_Statements/ to .gitignore — financial data excluded from repo
+- [x] snapshot: before gitignore update
+
+---
+
+
 ## 2026-05-14 — Session 3
 
 - [x] **n8n Morning Journal Pull workflow** — live and pulling real data. Fires 8AM Mon-Fri. Metrics + per-symbol (top 3 winners/losers) + Q2 status. Workflow ID: `dKaFYoqNQ4wIiZIz`.
@@ -51,3 +75,5 @@ Append-only log. Newest at top.
 ---
 
 *Append new entries at the top under a new date heading.*
+
+*Auto-updated: 2026-05-15 22:00*

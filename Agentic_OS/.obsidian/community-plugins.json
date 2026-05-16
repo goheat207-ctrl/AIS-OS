@@ -23,5 +23,9 @@
   "obsidian-style-settings",
   "dataview",
   "cmdr",
-  "multi-properties"
+  "multi-properties",
+  "obsidian-kanban",
+  "obsidian-tasks-plugin",
+  "task-list-kanban",
+  "task-board"
 ]

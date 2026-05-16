@@ -46,4 +46,4 @@ Or cross-reference with journal:
 
 ## Links
 
-[[trading_context]] · [[q2_goals]] · [[blaine]]
+[[trading_context]] · [[q2_goals]] · [[Blaine]]

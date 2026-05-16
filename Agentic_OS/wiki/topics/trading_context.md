@@ -9,7 +9,7 @@ updated: 2026-05-11
 
 # Trading Context
 
-[[blaine]] trades small cap stocks using thinkorswim (TD Ameritrade). This is the primary activity right now. All the tools being built exist to solve problems he ran into as a beginner.
+[[Blaine]] trades small cap stocks using thinkorswim (TD Ameritrade). This is the primary activity right now. All the tools being built exist to solve problems he ran into as a beginner.
 
 ## The core problem
 
@@ -40,4 +40,4 @@ Small caps move faster and farther on catalysts. More accessible for a solo trad
 
 ## Future product angle
 
-Eventually selling tools and dashboards to other beginner traders — people who are where [[blaine]] was when he started. See [[q2_goals]] for current timeline.
+Eventually selling tools and dashboards to other beginner traders — people who are where [[Blaine]] was when he started. See [[q2_goals]] for current timeline.

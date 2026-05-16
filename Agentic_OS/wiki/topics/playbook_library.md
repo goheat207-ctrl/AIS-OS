@@ -108,4 +108,4 @@ These are the source of truth for Blaine's own methodology. When building TOS sc
 
 ## Links
 
-[[trading_context]] · [[q2_goals]] · [[thinkorswim]] · [[trading_prompts]] · [[blaine]]
+[[trading_context]] · [[q2_goals]] · [[thinkorswim]] · [[trading_prompts]] · [[Blaine]]
