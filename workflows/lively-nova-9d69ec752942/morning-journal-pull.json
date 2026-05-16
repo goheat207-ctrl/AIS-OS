@@ -13,10 +13,10 @@
         }
       },
       "id": "a1b2c3d4-0001-0001-0001-000000000001",
-      "name": "Schedule — 8AM Mon-Fri",
+      "name": "Schedule",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
-      "position": [240, 300]
+      "position": [240, 390]
     },
     {
       "parameters": {
@@ -26,10 +26,10 @@
         }
       },
       "id": "a1b2c3d4-0002-0002-0002-000000000002",
-      "name": "Get Journal Metrics",
+      "name": "Get Metrics",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [460, 300]
+      "position": [460, 390]
     },
     {
       "parameters": {
@@ -39,20 +39,20 @@
         }
       },
       "id": "a1b2c3d4-0003-0003-0003-000000000003",
-      "name": "Get Per-Symbol Breakdown",
+      "name": "Get Per-Symbol",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [460, 480]
+      "position": [680, 390]
     },
     {
       "parameters": {
-        "jsCode": "const metrics = $('Get Journal Metrics').first().json;\nconst symbols = $('Get Per-Symbol Breakdown').all().map(i => i.json);\n\nconst today = new Date().toISOString().split('T')[0];\n\nconst sorted = [...symbols].sort((a, b) => (b.avg_pnl || 0) - (a.avg_pnl || 0));\nconst winners = sorted.filter(s => (s.avg_pnl || 0) > 0).slice(0, 3);\nconst losers = sorted.filter(s => (s.avg_pnl || 0) < 0).slice(-3).reverse();\n\nconst brief = {\n  date: today,\n  generated_at: new Date().toISOString(),\n  metrics: {\n    win_rate: metrics.win_rate,\n    expectancy: metrics.expectancy,\n    profit_factor: metrics.profit_factor,\n    avg_win: metrics.avg_win,\n    avg_loss: metrics.avg_loss,\n    total_pnl: metrics.total_pnl,\n    current_streak: metrics.current_streak\n  },\n  top_winners: winners.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  top_losers: losers.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  q2_goal_status: {\n    target_avg_loss_pct: '0.25-0.33%',\n    current_avg_loss: metrics.avg_loss,\n    current_win_rate: metrics.win_rate,\n    target_win_rate: '40%'\n  }\n};\n\nreturn [{\n  json: brief,\n  binary: {\n    data: {\n      data: Buffer.from(JSON.stringify(brief, null, 2)).toString('base64'),\n      mimeType: 'application/json',\n      fileName: 'morning-brief.json'\n    }\n  }\n}];"
+        "jsCode": "const metrics = $('Get Metrics').first().json;\nconst symbols = $('Get Per-Symbol').all().map(i => i.json);\n\nconst today = new Date().toISOString().split('T')[0];\n\nconst sorted = [...symbols].sort((a, b) => (b.avg_pnl || 0) - (a.avg_pnl || 0));\nconst winners = sorted.filter(s => (s.avg_pnl || 0) > 0).slice(0, 3);\nconst losers = sorted.filter(s => (s.avg_pnl || 0) < 0).slice(-3).reverse();\n\nconst brief = {\n  date: today,\n  generated_at: new Date().toISOString(),\n  metrics: {\n    win_rate: metrics.win_rate,\n    expectancy: metrics.expectancy,\n    profit_factor: metrics.profit_factor,\n    avg_win: metrics.avg_win,\n    avg_loss: metrics.avg_loss,\n    total_pnl: metrics.total_pnl,\n    current_streak: metrics.current_streak\n  },\n  top_winners: winners.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  top_losers: losers.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  q2_goal_status: {\n    target_avg_loss_pct: '0.25-0.33%',\n    current_avg_loss: metrics.avg_loss,\n    current_win_rate: metrics.win_rate,\n    target_win_rate: '40%'\n  }\n};\n\nreturn [{\n  json: brief,\n  binary: {\n    data: {\n      data: Buffer.from(JSON.stringify(brief, null, 2)).toString('base64'),\n      mimeType: 'application/json',\n      fileName: 'morning-brief.json'\n    }\n  }\n}];"
       },
       "id": "a1b2c3d4-0004-0004-0004-000000000004",
-      "name": "Format Morning Brief",
+      "name": "Format Brief",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [700, 390]
+      "position": [900, 390]
     },
     {
       "parameters": {
@@ -60,35 +60,24 @@
         "dataPropertyName": "data"
       },
       "id": "a1b2c3d4-0006-0006-0006-000000000006",
-      "name": "Write Morning Brief to Disk",
+      "name": "Write to Disk",
       "type": "n8n-nodes-base.writeBinaryFile",
       "typeVersion": 1,
-      "position": [940, 390]
+      "position": [1120, 390]
     }
   ],
   "connections": {
-    "Schedule — 8AM Mon-Fri": {
-      "main": [
-        [
-          { "node": "Get Journal Metrics", "type": "main", "index": 0 },
-          { "node": "Get Per-Symbol Breakdown", "type": "main", "index": 0 }
-        ]
-      ]
+    "Schedule": {
+      "main": [[{ "node": "Get Metrics", "type": "main", "index": 0 }]]
     },
-    "Get Journal Metrics": {
-      "main": [
-        [{ "node": "Format Morning Brief", "type": "main", "index": 0 }]
-      ]
+    "Get Metrics": {
+      "main": [[{ "node": "Get Per-Symbol", "type": "main", "index": 0 }]]
     },
-    "Get Per-Symbol Breakdown": {
-      "main": [
-        [{ "node": "Format Morning Brief", "type": "main", "index": 1 }]
-      ]
+    "Get Per-Symbol": {
+      "main": [[{ "node": "Format Brief", "type": "main", "index": 0 }]]
     },
-    "Format Morning Brief": {
-      "main": [
-        [{ "node": "Write Morning Brief to Disk", "type": "main", "index": 0 }]
-      ]
+    "Format Brief": {
+      "main": [[{ "node": "Write to Disk", "type": "main", "index": 0 }]]
     }
   },
   "settings": {
