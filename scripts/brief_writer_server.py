@@ -9,7 +9,7 @@ import logging
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
-PORT = 5679
+PORT = 8765
 OUTPUT = Path("D:/AIS-OS/logs/morning-brief.json")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")

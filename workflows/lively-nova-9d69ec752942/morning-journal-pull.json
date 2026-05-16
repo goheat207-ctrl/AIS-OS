@@ -53,7 +53,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "http://localhost:5679/brief",
+        "url": "http://localhost:8765/brief",
         "sendBody": true,
         "contentType": "json",
         "body": "={{ JSON.stringify($json) }}",
