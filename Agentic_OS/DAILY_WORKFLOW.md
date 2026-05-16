@@ -11,6 +11,7 @@
 | Morning Journal Pull | 8:00 AM Mon-Fri | n8n at localhost:5678 |
 | Nightly Task Updater | 10:00 PM daily | Agentic_OS/TASKS/CURRENT.md |
 | n8n starts on login | When Windows boots | Runs in background silently |
+| Brief writer server | When Windows boots | localhost:8765 — writes logs/morning-brief.json |
 
 ---
 
@@ -28,6 +29,7 @@ The n8n workflow already pulled your journal data at 8AM.
 - [ ] Scan the metrics: P&L summary, top 3 winners, top 3 losers, Q2 status
 
 > If n8n shows no recent execution: click the workflow and hit **Execute Workflow** manually.
+> If the Save Brief node fails: the brief writer server may not be running. Fix: open a terminal and run `python D:/AIS-OS/scripts/brief_writer_server.py`
 
 ### Step 3 — Start your Claude Code session (1 min)
 - [ ] In Claude Code, type: `/startup trading`
@@ -89,6 +91,7 @@ git push origin main
 |---------|-----|
 | n8n didn't run this morning | Open localhost:5678, run the workflow manually |
 | n8n won't open | Search Windows → Task Scheduler → find "AIS-OS n8n Startup" → Run it |
+| Morning brief not saving | Brief writer server is down — run `python D:/AIS-OS/scripts/brief_writer_server.py` in a terminal |
 | Claude Code has no context | Type `/startup trading` — this reloads everything |
 | git push fails | Ask Claude "why is git push failing" before doing anything else |
 | Trade journal shows no data | Check goheat207.pythonanywhere.com directly in browser |
