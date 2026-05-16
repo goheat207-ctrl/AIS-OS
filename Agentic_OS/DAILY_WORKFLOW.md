@@ -188,11 +188,11 @@ Before you can operate the OS, you need to know what each layer is for.
 
 | You're working on | Command |
 |---|---|
- | Trading / pre-market | `/startup trading` → loads `AI_OS/TRADING_SYSTEMS/` |
- | Building a script or tool | `/startup software` → loads `AI_OS/AGENT_SYSTEMS/` + `AI_OS/WORKFLOWS/` |
-   | Client or business work | `/startup business` → loads `context/about-business.md` + `AI_OS/WORKFLOWS/` |
-   | Research or learning | `/startup learning` → loads `AI_OS/RESEARCH/` + `Agentic_OS/wiki/index.md` |
-   | n8n, agents, automation | `/startup automation` → loads `AI_OS/AUTOMATIONS/` + `AI_OS/AGENT_SYSTEMS/` |
+| Trading / pre-market | `/startup trading` → loads `AI_OS/TRADING_SYSTEMS/` |
+| Building a script or tool | `/startup software` → loads `AI_OS/AGENT_SYSTEMS/` + `AI_OS/WORKFLOWS/` |
+| Client or business work | `/startup business` → loads `context/about-business.md` + `AI_OS/WORKFLOWS/` |
+| Research or learning | `/startup learning` → loads `AI_OS/RESEARCH/` + `Agentic_OS/wiki/index.md` |
+| n8n, agents, automation | `/startup automation` → loads `AI_OS/AUTOMATIONS/` + `AI_OS/AGENT_SYSTEMS/` |
 
 3. Check today's tasks: `Agentic_OS/TASKS/CURRENT.md`
 4. Pick ONE thing to ship this session
