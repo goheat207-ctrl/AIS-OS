@@ -46,24 +46,13 @@
     },
     {
       "parameters": {
-        "jsCode": "const metrics = $('Get Metrics').first().json;\nconst symbols = $('Get Per-Symbol').all().map(i => i.json);\n\nconst today = new Date().toISOString().split('T')[0];\n\nconst sorted = [...symbols].sort((a, b) => (b.avg_pnl || 0) - (a.avg_pnl || 0));\nconst winners = sorted.filter(s => (s.avg_pnl || 0) > 0).slice(0, 3);\nconst losers = sorted.filter(s => (s.avg_pnl || 0) < 0).slice(-3).reverse();\n\nconst brief = {\n  date: today,\n  generated_at: new Date().toISOString(),\n  metrics: {\n    win_rate: metrics.win_rate,\n    expectancy: metrics.expectancy,\n    profit_factor: metrics.profit_factor,\n    avg_win: metrics.avg_win,\n    avg_loss: metrics.avg_loss,\n    total_pnl: metrics.total_pnl,\n    current_streak: metrics.current_streak\n  },\n  top_winners: winners.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  top_losers: losers.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  q2_goal_status: {\n    target_avg_loss_pct: '0.25-0.33%',\n    current_avg_loss: metrics.avg_loss,\n    current_win_rate: metrics.win_rate,\n    target_win_rate: '40%'\n  }\n};\n\nreturn [{\n  json: brief,\n  binary: {\n    data: {\n      data: Buffer.from(JSON.stringify(brief, null, 2)).toString('base64'),\n      mimeType: 'application/json',\n      fileName: 'morning-brief.json'\n    }\n  }\n}];"
+        "jsCode": "const fs = require('fs');\n\nconst metrics = $('Get Metrics').first().json;\nconst symbols = $('Get Per-Symbol').all().map(i => i.json);\n\nconst today = new Date().toISOString().split('T')[0];\n\nconst sorted = [...symbols].sort((a, b) => (b.avg_pnl || 0) - (a.avg_pnl || 0));\nconst winners = sorted.filter(s => (s.avg_pnl || 0) > 0).slice(0, 3);\nconst losers = sorted.filter(s => (s.avg_pnl || 0) < 0).slice(-3).reverse();\n\nconst brief = {\n  date: today,\n  generated_at: new Date().toISOString(),\n  metrics: {\n    win_rate: metrics.win_rate,\n    expectancy: metrics.expectancy,\n    profit_factor: metrics.profit_factor,\n    avg_win: metrics.avg_win,\n    avg_loss: metrics.avg_loss,\n    total_pnl: metrics.total_pnl,\n    current_streak: metrics.current_streak\n  },\n  top_winners: winners.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  top_losers: losers.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  q2_goal_status: {\n    target_avg_loss_pct: '0.25-0.33%',\n    current_avg_loss: metrics.avg_loss,\n    current_win_rate: metrics.win_rate,\n    target_win_rate: '40%'\n  }\n};\n\nfs.writeFileSync('D:/AIS-OS/logs/morning-brief.json', JSON.stringify(brief, null, 2), 'utf8');\n\nreturn [{ json: { ...brief, saved: true } }];"
       },
       "id": "a1b2c3d4-0004-0004-0004-000000000004",
-      "name": "Format Brief",
+      "name": "Format and Save Brief",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [900, 390]
-    },
-    {
-      "parameters": {
-        "fileName": "D:/AIS-OS/logs/morning-brief.json",
-        "dataPropertyName": "data"
-      },
-      "id": "a1b2c3d4-0006-0006-0006-000000000006",
-      "name": "Write to Disk",
-      "type": "n8n-nodes-base.writeBinaryFile",
-      "typeVersion": 1,
-      "position": [1120, 390]
     }
   ],
   "connections": {
@@ -74,10 +63,7 @@
       "main": [[{ "node": "Get Per-Symbol", "type": "main", "index": 0 }]]
     },
     "Get Per-Symbol": {
-      "main": [[{ "node": "Format Brief", "type": "main", "index": 0 }]]
-    },
-    "Format Brief": {
-      "main": [[{ "node": "Write to Disk", "type": "main", "index": 0 }]]
+      "main": [[{ "node": "Format and Save Brief", "type": "main", "index": 0 }]]
     }
   },
   "settings": {
