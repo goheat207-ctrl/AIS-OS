@@ -21,9 +21,7 @@
     {
       "parameters": {
         "url": "https://goheat207.pythonanywhere.com/api/metrics",
-        "options": {
-          "timeout": 10000
-        }
+        "options": { "timeout": 10000 }
       },
       "id": "a1b2c3d4-0002-0002-0002-000000000002",
       "name": "Get Metrics",
@@ -34,9 +32,7 @@
     {
       "parameters": {
         "url": "https://goheat207.pythonanywhere.com/api/per-symbol",
-        "options": {
-          "timeout": 10000
-        }
+        "options": { "timeout": 10000 }
       },
       "id": "a1b2c3d4-0003-0003-0003-000000000003",
       "name": "Get Per-Symbol",
@@ -46,13 +42,28 @@
     },
     {
       "parameters": {
-        "jsCode": "const fs = require('fs');\n\nconst metrics = $('Get Metrics').first().json;\nconst symbols = $('Get Per-Symbol').all().map(i => i.json);\n\nconst today = new Date().toISOString().split('T')[0];\n\nconst sorted = [...symbols].sort((a, b) => (b.avg_pnl || 0) - (a.avg_pnl || 0));\nconst winners = sorted.filter(s => (s.avg_pnl || 0) > 0).slice(0, 3);\nconst losers = sorted.filter(s => (s.avg_pnl || 0) < 0).slice(-3).reverse();\n\nconst brief = {\n  date: today,\n  generated_at: new Date().toISOString(),\n  metrics: {\n    win_rate: metrics.win_rate,\n    expectancy: metrics.expectancy,\n    profit_factor: metrics.profit_factor,\n    avg_win: metrics.avg_win,\n    avg_loss: metrics.avg_loss,\n    total_pnl: metrics.total_pnl,\n    current_streak: metrics.current_streak\n  },\n  top_winners: winners.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  top_losers: losers.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  q2_goal_status: {\n    target_avg_loss_pct: '0.25-0.33%',\n    current_avg_loss: metrics.avg_loss,\n    current_win_rate: metrics.win_rate,\n    target_win_rate: '40%'\n  }\n};\n\nfs.writeFileSync('D:/AIS-OS/logs/morning-brief.json', JSON.stringify(brief, null, 2), 'utf8');\n\nreturn [{ json: { ...brief, saved: true } }];"
+        "jsCode": "const metrics = $('Get Metrics').first().json;\nconst symbols = $('Get Per-Symbol').all().map(i => i.json);\n\nconst today = new Date().toISOString().split('T')[0];\n\nconst sorted = [...symbols].sort((a, b) => (b.avg_pnl || 0) - (a.avg_pnl || 0));\nconst winners = sorted.filter(s => (s.avg_pnl || 0) > 0).slice(0, 3);\nconst losers = sorted.filter(s => (s.avg_pnl || 0) < 0).slice(-3).reverse();\n\nconst brief = {\n  date: today,\n  generated_at: new Date().toISOString(),\n  metrics: {\n    win_rate: metrics.win_rate,\n    expectancy: metrics.expectancy,\n    profit_factor: metrics.profit_factor,\n    avg_win: metrics.avg_win,\n    avg_loss: metrics.avg_loss,\n    total_pnl: metrics.total_pnl,\n    current_streak: metrics.current_streak\n  },\n  top_winners: winners.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  top_losers: losers.map(s => ({ symbol: s.symbol, avg_pnl: s.avg_pnl, win_rate: s.win_rate, trades: s.trade_count })),\n  q2_goal_status: {\n    target_avg_loss_pct: '0.25-0.33%',\n    current_avg_loss: metrics.avg_loss,\n    current_win_rate: metrics.win_rate,\n    target_win_rate: '40%'\n  }\n};\n\nreturn [{ json: brief }];"
       },
       "id": "a1b2c3d4-0004-0004-0004-000000000004",
-      "name": "Format and Save Brief",
+      "name": "Format Brief",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [900, 390]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5679/brief",
+        "sendBody": true,
+        "contentType": "json",
+        "body": "={{ JSON.stringify($json) }}",
+        "options": { "timeout": 5000 }
+      },
+      "id": "a1b2c3d4-0007-0007-0007-000000000007",
+      "name": "Save Brief",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 390]
     }
   ],
   "connections": {
@@ -63,7 +74,10 @@
       "main": [[{ "node": "Get Per-Symbol", "type": "main", "index": 0 }]]
     },
     "Get Per-Symbol": {
-      "main": [[{ "node": "Format and Save Brief", "type": "main", "index": 0 }]]
+      "main": [[{ "node": "Format Brief", "type": "main", "index": 0 }]]
+    },
+    "Format Brief": {
+      "main": [[{ "node": "Save Brief", "type": "main", "index": 0 }]]
     }
   },
   "settings": {
