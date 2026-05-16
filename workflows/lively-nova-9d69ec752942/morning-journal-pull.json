@@ -65,17 +65,7 @@
       "typeVersion": 1,
       "position": [940, 390]
     },
-    {
-      "parameters": {
-        "command": "python D:/AIS-OS/scripts/save_morning_brief.py \"{{ $json.date }}\" '{{ JSON.stringify($json) }}'"
-      },
-      "id": "a1b2c3d4-0005-0005-0005-000000000005",
-      "name": "Save to OS (DISABLED — broken on Windows, replaced by Write Binary File)",
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [940, 560],
-      "disabled": true
-    }
+
   ],
   "connections": {
     "Schedule — 8AM Mon-Fri": {
