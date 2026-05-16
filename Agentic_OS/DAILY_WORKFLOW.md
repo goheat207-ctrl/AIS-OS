@@ -153,7 +153,140 @@ Agents are only as good as the rules you give them. Weekends are for tightening 
 
 ---
 
-## AIS-OS OPERATING WORKFLOW
+## AIS-OS OPERATING WORKFLOW — How to Run This System
+
+This section is domain-agnostic. It applies whether you're trading, building software, running a client project, or learning something new. The sections above are trading-specific. This one is about operating the OS itself.
+
+---
+
+### EVERY SESSION — Universal Start (2 min)
+
+No matter what domain you're working in, do this first:
+
+- [ ] Open Claude Code — `claude` in terminal or desktop app
+- [ ] Tell Claude what domain you're in: `/startup [trading | software | business | learning | automation]`
+- [ ] Check today's tasks: open `Agentic_OS/TASKS/CURRENT.md` or ask Claude "what's on deck today?"
+- [ ] Pick ONE focus for this session — write it down before you start
+
+> If you skip the startup, Claude has no context and gives generic answers. The 30 seconds are worth it.
+
+**Domain routing cheat sheet:**
+
+| What you're doing | Startup command |
+|---|---|
+| Trading / pre-market / journal review | `/startup trading` |
+| Building a tool, script, or dashboard | `/startup software` |
+| Client work, local business app | `/startup business` |
+| Reading, research, learning | `/startup learning` |
+| n8n, agents, automation pipelines | `/startup automation` |
+| AIS-OS maintenance, skills, wiki | `/startup automation` |
+
+---
+
+### EVERY SESSION — Universal Close (3 min)
+
+Before you close Claude Code:
+
+- [ ] **Log any decision you made** — if you chose one approach over another, tell Claude to log it: "log this decision" and it writes to `decisions/log.md`
+- [ ] **Ingest anything worth keeping** — if you learned something during the session: `/wiki-ingest`
+- [ ] **Commit and push** — even a one-liner commit is better than nothing:
+  ```
+  git add -A && git commit -m "brief description" && git push
+  ```
+  Or just tell Claude: "commit and push everything" and it handles it.
+
+> The OS only gets smarter if you put things back in. Close-out is where the compounding happens.
+
+---
+
+### WEEKLY CADENCE — Sunday (30–45 min)
+
+Run these two skills back to back every Sunday. They're the engine that keeps the OS improving.
+
+**Step 1 — `/audit` (15 min)**
+Four-Cs gap report. Tells you what's weak in the system architecture.
+- [ ] Run `/audit` in Claude Code
+- [ ] Read the gap report — where is the score lowest?
+- [ ] Pick ONE gap to close this week. Write it as a task.
+
+**Step 2 — `/level-up` (20 min)**
+Three Ms interview. Surfaces one automation worth building.
+- [ ] Run `/level-up` in Claude Code
+- [ ] Answer the interview honestly — don't shortcut it
+- [ ] Scope the one automation that comes out of it
+- [ ] Add it to the Kanban board (`TASKS/AIS-OS Board.md`) under P1 or P2
+
+> `/audit` asks "is the OS built right?" `/level-up` asks "what leverage am I missing?" Run them in this order — fix structure first, then capability planning makes sense.
+
+---
+
+### WHEN YOU HAVE SOMETHING NEW TO ADD
+
+**New knowledge (article, video, notes):**
+→ `/wiki-ingest` — drops it into the right neuron in the second brain
+
+**New decision (rule change, process change, trade rule):**
+→ Tell Claude: "log this decision" — writes to `decisions/log.md` with the why
+
+**New tool or connection:**
+→ Add it to `connections.md` — one line, what it does, how to access it
+
+**New skill to build:**
+→ Add a card to the Kanban board P2 column, then build it on a weekend
+
+**New agent to build:**
+→ Create `.claude/agents/{name}.md` — follow the format in any existing agent file. Test it before relying on it.
+
+**New n8n workflow:**
+→ Build it in n8n, export JSON to `workflows/`, commit. Document in `connections.md`.
+
+---
+
+### MEMORY — How the OS Remembers Things
+
+The OS has two memory layers:
+
+| Layer | Where | What it's for | How to update |
+|---|---|---|---|
+| **Session context** | CLAUDE.md + wiki neurons | What Claude loads at the start of each session | Edit CLAUDE.md or run `/onboard` to refresh |
+| **Persistent memory** | `memory/*.md` files | Facts that carry across every session forever | Tell Claude "remember this" and it writes a memory file |
+
+**When to explicitly ask Claude to remember something:**
+- A preference about how you like to work ("don't use bullet points for X")
+- A key fact that changes how it should respond ("I'm in drawdown, be conservative")
+- A decision you made that should never be revisited ("we're not using X tool")
+
+**When NOT to use memory:**
+- Current task state (use TASKS/)
+- Code or file content (use the codebase)
+- Things already in the wiki
+
+---
+
+### OS HEALTH INDICATORS
+
+**Healthy signs:**
+- Claude answers domain questions without you re-explaining context
+- `/wiki-search` finds things you put in weeks ago
+- The Kanban board has cards moving from P1 → In Progress → Done
+- `decisions/log.md` has entries from this week
+- `logs/morning-brief.json` has today's date
+
+**Warning signs — address these:**
+- Claude asks you to explain your trading rules again → update the trading criteria doc
+- Pre-market scan returns irrelevant tickers → agent needs a rules update
+- Kanban board hasn't moved in 2 weeks → run `/level-up`, something is blocking
+- `logs/morning-brief.json` is stale → brief writer server is down
+- You're copy-pasting the same information into Claude every session → that belongs in a memory file or context file
+
+**Critical signs — fix immediately:**
+- `git push` fails → stop everything and debug before more commits stack up
+- n8n is not running → check startup folder, relaunch manually
+- Wiki has no new entries in 3 weeks → ingest backlog is building up, spend 30 min on it
+
+---
+
+## AIS-OS OPERATING WORKFLOW — Deep Reference
 
 How to actually run this system. Every file and command below is real and in the repo.
 
