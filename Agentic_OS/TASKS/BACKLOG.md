@@ -1,63 +1,62 @@
 # AIS-OS — Task Backlog
 
-Prioritized build queue. Updated by Claude at the end of every session.
+Prioritized build queue. Updated nightly at 10PM automatically.
 P0 = blocking / immediate. P3 = future / low urgency.
 
 ---
 
 ## P0 — Immediate (do next session)
 
-- [x] **Fix git push** — stripped 871MB of mp4 files from history with git-filter-repo, added binary patterns to .gitignore, force-pushed clean history.
-- [x] **Set n8n as Windows startup service** — Windows Task Scheduler at-logon task registered last session.
-- [x] **Nightly task updater** — `scripts/update_tasks.py` + Windows Task Scheduler at 10PM. CURRENT.md, COMPLETED.md, BACKLOG.md auto-update every night.
-- [x] **Run `/startup [domain]` at the start of every session** — habit, not a build task. The hook is live, just needs to be used.
+- [ ] **Populate morning-brief.json with real data** — currently contains `{"": ""}` (test data from curl). n8n workflow needs to be run manually once against the live journal API to confirm end-to-end. Check `logs/morning-brief.json` date field after run.
+- [ ] **Confirm nightly task updater is scheduled** — `schtasks` returned nothing. Verify Task Scheduler has "AIS-OS Nightly Task Updater" registered or re-register it.
 
 ---
 
 ## P1 — High (next 1-2 weeks)
 
-- [ ] **Reframe pre-market scan agent** — strip A/B/C tier buy recommendations. Make it a data aggregation tool (gap %, float, catalyst text, volume). You decide the tier. This makes the agent usable again.
-- [ ] **Wire n8n morning brief to save to file** — `logs/morning-brief.json` persists between sessions. `scripts/save_morning_brief.py` is already written, just needs to be connected. Replace the Execute Command node issue with a Write Binary File node or webhook approach.
-- [ ] **Wiki keyword search skill** — simple grep-based `/wiki-search` skill. Even basic search is better than manually navigating 80+ files.
-- [ ] **Add 1+ memory files** — currently 2 memory files. Need >3 to hit the Context score threshold on the next audit. Add `memory/project_n8n.md` or `memory/feedback_session1.md`.
-- [x] **Add TOS_Statements/ to .gitignore** — account statement CSVs should not be in git (financial data + file size). Add the folder pattern now before more accumulate.
+- [ ] **Write Blaine's Trading Criteria doc** — single source of truth all agents inherit from. Stock filters, dilution mechanics, catalyst keywords, entry/exit rules, hard no list. File: `AI_OS/TRADING_SYSTEMS/blaine_trading_criteria.md`.
+- [ ] **Rebuild pre-market scan agent** — strip A/B/C tier buy recommendations. Output is data only — float, gap %, catalyst text, rel. volume. Blaine decides the tier. Ref: `.claude/agents/pre-market-scan.md`.
+- [ ] **Dashboard — trade metrics panel** — one working panel in `dashboards/blaine-os.html` connected to `logs/morning-brief.json`. No hardcoded data. Requires P0 morning-brief fix first.
+- [ ] **Ingest raw/ backlog** — 10+ articles and notes in `Agentic_OS/raw/articles/` unprocessed. Run `/wiki-ingest` on each this weekend.
 
 ---
 
 ## P2 — Medium (next month)
 
-- [ ] **Add reference guides for connected tools** — SEC EDGAR, yfinance, TradingAgents each need a `references/{tool}-api.md`. Research once, save forever. Currently 8 of 9 active connections have no guide.
-- [ ] **Build templates folder** — `.claude/templates/` with at least 1 file. Easy +5 pts on next audit Cadence score.
-- [ ] **Ingest raw/ backlog** — 2 articles and 1 note sitting in `Agentic_OS/raw/` unprocessed. Run `/wiki-ingest` on each.
-- [ ] **n8n second workflow** — pre-market catalyst pull (SEC EDGAR 8-K overnight filings). Runs at 7AM, feeds the trading neuron.
-- [ ] **Update connections.md** — add n8n as a connection entry. Document workflow ID and what it does.
+- [ ] **Update small-cap-catalyst agent** — add dilution mechanics, S-1 red flags, float rotation, halt patterns. Ref: `.claude/agents/small-cap-catalyst.md`. Requires Trading Criteria doc first.
+- [ ] **Dashboard — tasks panel** — second panel connected to `Agentic_OS/TASKS/CURRENT.md`. Shows open tasks. Requires trade metrics panel first.
+- [ ] **n8n workflow — pre-market catalyst pull** — SEC EDGAR 8-K overnight filings at 7AM Mon-Fri. Save to `logs/catalyst-brief.json`. Export JSON to `workflows/`.
+- [ ] **Add reference guides for connected tools** — `references/edgar-api.md`, `references/yfinance-api.md`, `references/tradingagents-api.md`. Research once, save forever.
+- [ ] **Build templates folder** — `.claude/templates/` with at least 1 starter template. Easy +5 pts on next audit Cadence score.
+- [ ] **YouTube → wiki ingest habit** — 2-3 ingests per weekend minimum. Track in `Agentic_OS/wiki/log.md`.
 
 ---
-
-## P1 — High — Weekend Build Tracks
-
-- [ ] **Write Blaine's Trading Criteria doc** — single source of truth for all agents. Stock filters, dilution mechanics, catalyst keywords, entry/exit rules. All agents inherit from this file.
-- [ ] **Rebuild pre-market-scan agent with trading criteria** — update agent prompt to reference the criteria doc. Strip vague language. Test against 3 real setups.
-- [ ] **Dashboard skeleton connected to morning-brief.json** — one working panel showing live trade metrics from `logs/morning-brief.json`. No fake data.
-- [ ] **Add weekend workflow to DAILY_WORKFLOW.md** — done this session.
-
-## P2 — Medium — Weekend Build Tracks
-
-- [ ] **Dashboard: Task panel connected to CURRENT.md** — second dashboard panel showing today's tasks pulled from TASKS/CURRENT.md. Auto-refreshes.
-- [ ] **Update small-cap-catalyst agent** — add dilution mechanics knowledge, S-1 red flags, float rotation rules, halt patterns. Reference the trading criteria doc.
-- [ ] **YouTube → wiki ingest habit** — not a tool build, a habit install. 2-3 ingests per weekend. Track in wiki/log.md.
-- [ ] **n8n workflow: pre-market catalyst pull** — SEC EDGAR 8-K overnight filings at 7AM. Feeds trading neuron before market open.
-- [ ] **Update connections.md** — document brief_writer_server (localhost:8765), workflow ID, what each n8n workflow does.
 
 ## P3 — Low (Q3 2026 / when ready)
 
-- [ ] **ThinkScript scanner development** — Dilution tracker + watchlist scan filters. Q2 priority but needs TOS time.
-- [ ] **TOS strategy backtester** — Q2 priority. Needs ThinkScript knowledge first.
-- [ ] **Dilution tracker** — standalone tool. Feeds into the pre-market scan agent.
-- [ ] **n8n additional workflows** — weekly pattern review auto-trigger, wiki ingest queue checker.
+- [ ] **ThinkScript scanner development** — dilution tracker + watchlist scan filters in TOS. Q2 priority but needs dedicated TOS time.
+- [ ] **TOS strategy backtester** — needs ThinkScript scanner knowledge first.
+- [ ] **Dilution tracker** — standalone tool feeding into pre-market scan agent.
+- [ ] **n8n weekly pattern review trigger** — auto-trigger trade-pattern-analyst every Sunday evening.
 - [ ] **Vector/RAG retrieval** — needs 500+ quality wiki entries before semantic search adds value. Don't build yet.
 - [ ] **External-facing trader tools** — after your own tools are proven. Not yet.
+- [ ] **Dashboard — system status panel** — third panel: wiki entry count, connections health, nightly runner status.
 
 ---
 
-*Last updated: 2026-05-14 (auto) | Updated by nightly task runner.*
+## COMPLETED — This session (2026-05-15)
+
+- [x] **TOS_Statements/ excluded from git** — `.gitignore` updated, 2 CSVs untracked via `git rm --cached`, files preserved on disk.
+- [x] **/wiki-search skill** — grep-based keyword search across all wiki files. `.claude/skills/wiki-search/SKILL.md`. Registered in README.
+- [x] **Memory files added** — `project_n8n.md` and `project_skills_registry.md`. Memory count now 4 (was 2).
+- [x] **Morning brief persistence fixed** — `scripts/brief_writer_server.py` on port 8765. n8n POSTs JSON, Python writes `logs/morning-brief.json`. Added to Windows Startup folder.
+- [x] **n8n startup restored** — `start-n8n.bat` in Windows Startup folder.
+- [x] **n8n workflow fixed** — sequential chain, JSON valid, executeCommand node removed (unsupported in v2.20).
+- [x] **DAILY_WORKFLOW.md** — weekend workflow section, AIS-OS operating workflow (universal + deep reference) added.
+- [x] **Kanban board** — `Agentic_OS/TASKS/AIS-OS Board.md` created with full P1/P2/P3 breakdown.
+- [x] **decisions/log.md** — 6 session decisions logged.
+- [x] **Weekend workflow added to DAILY_WORKFLOW.md** — Focus 1 (wiki), Focus 2 (dashboard), Focus 3 (agents).
+
+---
+
+*Last updated: 2026-05-15 (manual end-of-session audit) | Next auto-update: 10PM nightly*
